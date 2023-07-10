@@ -1,0 +1,134 @@
+.side-nav-container {
+  position: sticky;
+  top: 0;
+  background-color: rgba(40, 55, 109, 0.87);
+  bottom: 0;
+}
+
+.side-nav {
+    position: absolute;
+    border-bottom: 0;
+    width: 20%;
+    background-color: rgba(40, 55, 109, 0.87);
+    padding-top: 30px;
+    height: 100vh;
+  }
+  
+  .side-nav ul {
+    list-style-type: none;
+    padding: 0;
+    margin: auto;
+    text-align: left;
+    width: 90%;
+    margin-bottom: 10px;
+    margin-left: 10%;
+  }
+  
+  .side-nav li {
+    margin-bottom: 20px;
+  }
+
+  .side-nav .image_and_label {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    background-color: #28376D;
+    border-top-left-radius: 30px;
+    border-bottom-left-radius: 30px;
+    overflow: hidden;
+  }
+
+  .side-nav .image_and_label img{
+    width: 20%;
+    height: 20%;
+    margin-left: 20px;
+  }
+
+
+  
+  .side-nav button {
+    display: block;
+    width: 100%;
+    padding: 20px;
+    background-color: #28376D;
+    color: white;
+    border: none;
+    text-align: left;
+    border-top-left-radius: 20px;
+    border-bottom-left-radius: 20px;
+    text-decoration: none;
+    font-size: 1vw;
+    font-weight: bold;
+  }
+  
+  .side-nav .image_and_label:hover {
+    background-color: #00C3FF;
+    color: white;
+    cursor: pointer;
+  }
+  
+  .side-nav .image_and_label:hover button,
+  .side-nav .image_and_label:hover img {
+    background-color: #00C3FF;
+    color: white;
+    cursor: pointer;
+  }
+
+  .side-nav .image_and_label.active {
+    background-color: white;
+    color: #28376D;
+}
+
+.side-nav .image_and_label.active button {
+    background-color: white;
+    color: #28376D;
+}
+
+  .side-nav .image_and_label.active:hover img{
+    background-color: white;
+  }
+  
+
+  .line{
+    margin-top: 30px;
+    margin-bottom: 30px;
+    width: 80%;
+    color: rgba(255, 255, 255, 0.9);
+    height: 2px;
+    border: none;
+    background-color: rgba(255, 255, 255, 0.9);
+  }
+
+  .side-nav ul li h1 {
+    font-size: 2vw;
+    color: white;
+    font-family: 'Montserrat', sans-serif; 
+    margin-top: 0;
+  }
+
+  .side-nav .image_and_label.active {
+    background-color: white;
+    color: #28376D;
+
+  }
+  .side-nav .image_and_label button.active {
+    background-color: white;
+    color: #28376D;
+
+  }
+  
+  .side-nav .image_and_label img.active-img {
+    display: none;
+  }
+  
+  .side-nav .image_and_label.active img {
+    display: none;
+  }
+  
+  .side-nav .image_and_label.active img.active-img {
+    display: block;
+  }
+  
+  
+  
+  

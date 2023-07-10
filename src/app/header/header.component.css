@@ -1,0 +1,26 @@
+header {
+    height: 55px;
+    padding: 3px;
+    font-family: 'Montserrat', sans-serif; 
+    font-weight: 600;
+}
+
+.main_div {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.date_time_container {
+    margin-left: 2%;
+}
+
+.icons_container {
+    margin-left: auto; 
+    margin-right: 2%; 
+}
+
+.icons{
+    width: 50px;
+    margin-left: 3px;
+}

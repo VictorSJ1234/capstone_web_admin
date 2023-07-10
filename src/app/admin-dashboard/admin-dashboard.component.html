@@ -1,0 +1,54 @@
+<app-header></app-header>
+<app-navbar></app-navbar>
+<app-sidenav></app-sidenav>
+
+<body>
+    <section class="label_section">
+        <div class="label_container">
+            <h1>Welcome, Admin</h1>
+        </div>
+    </section>
+    <section class="info_section">
+        <div class="info_container">
+            <div class="info_card">
+                <div class="card_image_container">
+                    <img src="../../assets/admin_dashboard_images/usersNumber.png" alt="">
+                </div>
+                <div class="card_text_container">
+                    <h3>Mobile Users</h3>
+                    <p>Total No. of Users: {{number_of_users}}</p>
+                </div>
+            </div>
+
+            <div class="info_card">
+                <div class="card_image_container">
+                    <img src="../../assets/admin_dashboard_images/adminsNumber.png" alt="">
+                </div>
+                <div class="card_text_container">
+                    <h3>Admin Accounts</h3>
+                    <p>Total No. of Users: {{number_of_complaints}}</p>
+                </div>
+            </div>
+        </div>
+    </section>   
+    
+    <section class="graph_1_section">
+        <div class="title_and_button_container">
+            <h2>Mobile Users per Month</h2>
+            <button class="view_button">Manage</button>
+        </div>
+        <div class="graph_container">
+            <img src="../../assets/admin_dashboard_images/Graph 1.png" alt="graph1">
+        </div>
+    </section>  
+
+    <section class="graph_2_section">
+        <div class="title_and_button_container">
+            <h2>Community Report Status</h2>
+            <button class="view_button">Manage</button>
+        </div>
+        <div class="graph_container">
+            <img src="../../assets/admin_dashboard_images/Graph 2.png" alt="graph1">
+        </div>
+    </section> 
+<body>

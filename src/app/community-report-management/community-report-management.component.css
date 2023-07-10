@@ -1,0 +1,246 @@
+@import url('https://fonts.googleapis.com/css2?family=Squada+One&display=swap');
+body{
+    width: 77%;
+    margin-left: auto;
+    margin-top: 0;
+}
+
+
+.label_section{
+  padding: 0;
+}
+
+.label_section H1{
+  font-family: 'Squada One', sans-serif;
+  color: #28376D;
+  font-size: 3vw;
+  margin-top: 20;
+  margin-bottom: 20px;
+}
+
+
+/*list*/
+.report_list_section{
+  margin-right: 5%;
+}
+
+.report_list_container{
+  font-family: 'Squada One', sans-serif;
+  background-color: beige;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  border-radius: 15px;
+  border: black 1px solid;
+}
+
+/*table*/
+
+table{
+    padding-bottom: 30px;
+}
+
+.report_list_header{
+    background-color: #28376D;
+    margin-top: 0;
+    padding-left: 30px;
+    padding-right: 30px;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    color: white;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 20px;
+    padding-top: 10px;
+}
+
+.report_list_header h2{
+   font-size: 2vw;
+}
+
+.search_report{
+    text-align: left;
+    font-size: 1.5vw;
+}
+
+.search_input{
+    display: flex;
+    align-items: center;
+}
+
+.search_input input{
+    width:15vw;
+    height: 2vw;
+    border-style: none;
+    border-radius: 10px;
+}
+
+.search_input img{
+    height: 1.9vw;
+}
+
+.search_input button{
+    background-color: white;
+    border-radius: 5px;
+    border-style: none;
+}
+
+.search_input button:hover{
+    background-color: #00C3FF;
+    border-style: none;
+    cursor: pointer;
+}
+
+.sort_report{
+    text-align: left;
+    font-size: 1.5vw;
+}
+
+.sort_input{
+    display: flex;
+    align-items: center;
+}
+
+.sort_input select{
+    width:15vw;
+    height: 2vw;
+    background-color: white;
+    border-style: none;
+    border-radius: 10px;
+    font-size: 1.2vw;
+}
+
+.sort_input button{
+    background-color: white;
+    border-radius: 5px;
+    border-style: none;
+}
+
+.sort_input button:hover{
+    background-color: #00C3FF;
+    border-radius: 5px;
+    border-style: none;
+    cursor: pointer;
+}
+
+.report_table .column1{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.1vw;
+    gap: 9px;
+}
+
+.report_table tbody .column2{
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+    font-size: 1.3vw;
+}
+.report_table tbody .column2 .subject_text{
+    text-align: left;
+    display: flex;
+    flex-direction: row;
+    font-size: 1.3vw;
+    align-items: center;
+}
+
+.report_table tbody .column2 span{
+    font-size: 1.3vw;
+    background-color: white;
+    padding: 5px;
+    border: black solid 1px;
+    border-radius: 10px;
+    width: 90%;
+}
+
+.date_and_barangay{
+    text-align: left;
+    display: flex;
+    align-items: center;
+}
+
+.report_table tbody .column2 .date_text{
+    text-align: left;
+    flex-direction: row;
+    font-size: 1.3vw;
+    background-color: white;
+    padding: 5px;
+    border: black solid 1px;
+    border-radius: 10px;
+    width: 50%;
+}
+
+.report_table tbody .column3{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap:  10px;
+}
+
+tbody td img{
+  width: 3vw;
+}
+
+tbody td{
+    padding-bottom: 20px;
+    padding-top: 15px;
+    font-family: 'Montserrat', sans-serif; 
+}
+
+tbody .subject{
+  text-align: left;
+  font-size: 1.5vw;
+}
+
+
+.button_column{
+    width: 20%;
+}
+
+
+.first_column{
+    width: 20%;
+}
+tbody td #delete_button{
+  border-style: none;
+  background-color: #FC657E;
+  width: 12vw;
+  height: 3.3vw;
+  border-radius: 20px;
+  color: white;
+  font-size: 1.5vw;
+  cursor: pointer;
+}
+  tbody td #open_button{
+    border-style: none;
+    background-color: #00C3FF;
+    width: 12vw;
+    height: 3.3vw;
+    border-radius: 20px;
+    color: white;
+    font-size: 1.5vw;
+    cursor: pointer;
+  }
+
+  .report_table tbody tr {
+    position: relative;
+  }
+  
+  .report_table tbody tr::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 5%; 
+    width: 90%; 
+    height: 2px;
+    background-color: black;
+  }
+
+
+

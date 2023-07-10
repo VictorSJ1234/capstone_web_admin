@@ -1,0 +1,44 @@
+<app-header></app-header>
+<app-navbar></app-navbar>
+<app-sidenav></app-sidenav>
+
+<body>
+    <section class="label_section">
+        <div class="label_container">
+            <h1>Accounts Management</h1>
+        </div>
+    </section>
+    <section class="info_section">
+        <div class="info_container">
+            <div class="info_card">
+                <div class="row1">
+                    <div class="card_image_container">
+                        <img src="../../assets/admin_dashboard_images/usersNumber.png" alt="">
+                    </div>
+                    <div class="card_text_container">
+                        <h3>Mobile Users</h3>
+                        <p>Total No. of Users: {{number_of_users}}</p>
+                    </div>
+                </div>
+                <div class="cards_buttons_container">
+                    <button [routerLink]="'/mobile-users'">Manage</button>
+                </div>
+            </div>
+
+            <div class="info_card">
+                <div class="row1">
+                    <div class="card_image_container">
+                        <img src="../../assets/admin_dashboard_images/adminsNumber.png" alt="">
+                    </div>
+                    <div class="card_text_container">
+                        <h3>Admin Accounts</h3>
+                        <p>Total No. of Users: {{number_of_complaints}}</p>
+                    </div>
+                </div>
+                <div class="cards_buttons_container">
+                    <button [routerLink]="'/admins'">Manage</button>
+                </div>
+            </div>
+        </div>
+    </section>   
+<body>

@@ -1,0 +1,111 @@
+@import url('https://fonts.googleapis.com/css2?family=Squada+One&display=swap');
+
+/*nav*/
+.header {
+    background-color: #28376D;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 2;
+    height: 7.3vw;
+    padding-left: 25px;
+    padding-right: 25px;
+  }
+
+  
+  .logo-container {
+    display: flex;
+    align-items: center;
+    margin-left: 10px;
+  }
+  
+  .logo {
+    width: 5.5vw
+  }
+
+  h2{
+    font-family: 'Squada One', sans-serif;
+    font-size: 2.5vw;
+    color: white;
+    margin-left: 10px;
+  }
+  
+  #profilepic {
+    width: 5.5vw;
+    border-radius: 180px;
+  }
+  
+  
+  .right-icons {
+    display: flex;
+    align-items: center;
+  }
+  
+  .right-icons img {
+    width: 5.5vw;
+    margin-left: 10px;
+  }
+  
+  @media screen and (max-width: 1000px) {
+    .header {
+      height: 100px;
+    }
+  
+    .logo-container {
+      display: flex;
+      align-items: center;
+      margin-left: 10px;
+    }
+    h2{
+        font-size: 3.5vw;
+      }
+  
+    .logo {
+      width: 7vw;
+    }
+  
+    .right-icons {
+      display: flex;
+      align-items: center;
+    }
+  
+    .right-icons img {
+      width: 7vw;
+      margin-left: 10px;
+    }
+  }
+    
+    @media screen and (max-width: 720px) {
+        .header {
+          height: 100px;
+      }
+  
+      .logo-container {
+        display: flex;
+        align-items: center;
+        margin-left: 10px;
+      }
+
+      h2{
+        font-size: 4.5vw;
+      }
+  
+      .logo {
+        width: 10vw;
+      }
+  
+      .right-icons {
+        display: flex;
+        align-items: center;
+      }
+  
+      .right-icons img {
+        width: 10vw;
+        margin-left: 10px;
+      }
+    }
+    /*nav*/
+    
+  
+    
+    

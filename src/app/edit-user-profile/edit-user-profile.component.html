@@ -1,0 +1,318 @@
+<app-header></app-header>
+<app-navbar></app-navbar>
+<app-sidenav></app-sidenav>
+
+<body>
+    <section class="label_section">
+        <div class="label_container">
+            <h1>Accounts Management > Edit Admin Account</h1>
+        </div>
+    </section>
+    <section class="edit_section">
+        <h2 class="report_list_header">Admin Accounts List</h2>
+        <div class="user_information_row">
+            <img [src]="image" alt="User Image">
+            <div class="username_and_name">
+                @username
+                <p><span>{{username}}</span></p>
+            </div>
+            <div class="barangay">
+                &nbsp;
+                <p><b>Barangay: </b><span>Palatiw</span></p>
+            </div>
+
+        </div>
+        <div class="form_container">
+            <form (ngSubmit)="save()" #myForm="ngForm">
+                <div class="form-row">
+                    <div class="fields_container">
+                        <div class="column_1">
+                            <!--name-->
+                            <div class="form-group">
+                                <label for="firstname">First Name</label>
+                                <input type="text" class="form-control" id="firstname" name="firstname" placeholder="First Name" required
+                                    [(ngModel)]="formData.firstname"
+                                    [ngClass]="{ 'is-invalid': myForm.submitted && myForm.controls['firstname'].invalid }">
+                                <div class="invalid-tooltip" *ngIf="myForm.submitted && myForm.controls['firstname'].invalid">
+                                    <span class="tooltip-text">Please enter your firstname.</span>
+                                </div>
+                                <div class="valid-tooltip">
+                                    &nbsp;
+                                </div>
+                            </div> 
+
+                            <!-- Middle Name -->
+                            <div class="form-group">
+                                <label for="middlename">Middle Name</label>
+                                <input type="text" class="form-control" id="middlename" name="middlename" placeholder="Middle Name" required
+                                    [(ngModel)]="formData.middlename"
+                                    [ngClass]="{ 'is-invalid': myForm.submitted && myForm.controls['middlename'].invalid }">
+                                <div class="invalid-tooltip" *ngIf="myForm.submitted && myForm.controls['middlename'].invalid">
+                                    <span class="tooltip-text">Please enter your middle name.</span>
+                                </div>
+                                <div class="valid-tooltip">
+                                    &nbsp;
+                                </div>
+                            </div> 
+
+                            
+                            <!--name-->
+                            <div class="form-group">
+                                <label for="lastname">Last Name</label>
+                                <input type="text" class="form-control" id="lastname" name="lastname" placeholder="Last Name" required
+                                    [(ngModel)]="formData.lastname"
+                                    [ngClass]="{ 'is-invalid': myForm.submitted && myForm.controls['lastname'].invalid }">
+                                <div class="invalid-tooltip" *ngIf="myForm.submitted && myForm.controls['lastname'].invalid">
+                                    <span class="tooltip-text">Please enter your lastname.</span>
+                                </div>
+                                <div class="valid-tooltip">
+                                    &nbsp;
+                                </div>
+                            </div> 
+
+                            <!-- Suffix -->
+                            <div class="form-group">
+                                <label for="suffix">Suffix</label>
+                                <input type="text" class="form-control" id="suffix" name="suffix" placeholder="Suffix" required
+                                    [(ngModel)]="formData.suffix">
+                                <div class="valid-tooltip">
+                                    &nbsp;
+                                </div>
+                            </div> 
+
+                            <!-- Username -->
+                            <div class="form-group">
+                                <label for="username">Username</label>
+                                <input type="text" class="form-control" id="username" name="username" placeholder="Username" required [(ngModel)]="formData.username"
+                                    [ngClass]="{ 'is-invalid': myForm.submitted && myForm.controls['username'].invalid }"
+                                    [value]="username">
+                                <div class="invalid-tooltip" *ngIf="myForm.submitted && myForm.controls['username'].invalid">
+                                    <span class="tooltip-text">Please enter a username.</span>
+                                </div>
+                                <div class="valid-tooltip">
+                                    &nbsp;
+                                </div>
+                            </div>
+
+                            <!--city-->
+                            <div class="form-group">
+                                <label for="city">City</label>
+                                <input type="text" class="form-control" id="city" name="city" placeholder="Pasig City" required [(ngModel)]="formData.city"
+                                  [ngClass]="{ 'is-invalid': myForm.submitted && myForm.controls['city'].invalid }" readonly>
+                            </div>
+
+                            <!--barangay-->
+                            <div class="form-group">
+                                <label for="barangay">Barangay</label>
+                                <select class="form-control" id="barangay" name="barangay" required [(ngModel)]="formData.barangay"
+                                  [ngClass]="{ 'is-invalid': myForm.submitted && myForm.controls['barangay'].invalid }">
+                                  <option value="">Select Barangay</option>
+                                  <option value="Barangay 1">Barangay 1</option>
+                                  <option value="Barangay 2">Barangay 2</option>
+                                  <option value="Barangay 3">Barangay 3</option>
+                                  <option value="Barangay 4">Barangay 4</option>
+                                  <option value="Barangay 5">Barangay 5</option>
+                                </select>
+                                <div class="invalid-tooltip" *ngIf="myForm.submitted && myForm.controls['barangay'].invalid">
+                                  <span class="tooltip-text">Please select a barangay.</span>
+                                </div>
+                                <div class="valid-tooltip">
+                                  &nbsp;
+                                </div>
+                            </div>
+
+                            <!--street-->
+                            <div class="form-group">
+                                <label for="street">Street</label>
+                                <input type="text" class="form-control" id="street" name="street" placeholder="Street" required [(ngModel)]="formData.street"
+                                    [ngClass]="{ 'is-invalid': myForm.submitted && myForm.controls['street'].invalid }">
+                                <div class="invalid-tooltip" *ngIf="myForm.submitted && myForm.controls['street'].invalid">
+                                    <span class="tooltip-text">Please enter your street.</span>
+                                </div>
+                                <div class="valid-tooltip">
+                                    &nbsp;
+                                </div>
+                            </div>
+
+
+                            
+                            <!--email-->
+                            <div class="form-group">
+                                <label for="email">Email</label>
+                                <input type="email" class="form-control" id="email" name="email" placeholder="Email" required
+                                    [(ngModel)]="formData.email"
+                                    [ngClass]="{ 'is-invalid': myForm.submitted && myForm.controls['email'].invalid }"
+                                    pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}">
+                                <div class="invalid-tooltip" *ngIf="myForm.submitted && myForm.controls['email'].invalid">
+                                    <span class="tooltip-text">Invalid Email.</span>
+                                </div>
+                                <div class="valid-tooltip">
+                                    &nbsp;
+                                </div>
+                            </div>
+
+                            <!--password-->         
+                            <div class="form-group">
+                                <label for="password">Password</label>
+                                <input type="password" class="form-control" id="password" name="password" placeholder="Password" required [(ngModel)]="formData.password"
+                                [ngClass]="{ 'is-invalid': myForm.submitted && myForm.controls['password'].invalid }"
+                                pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*]).{8,}$">
+                                <div class="invalid-tooltip" *ngIf="myForm.submitted && myForm.controls['password'].invalid">
+                                <span class="tooltip-text">Password must include atleast one uppercase and lowercase letter, one digit, and one special character.</span>
+                                </div>
+                                <div class="valid-tooltip">
+                                &nbsp;
+                                </div>
+                            </div> 
+                        </div>
+
+                        <div class="column_2">
+
+                            <!--birthday-->
+                            <div class="form-group">
+                                <label for="birthday">Birthday</label>
+                                <input type="date" class="form-control" id="birthday" name="birthday" placeholder="Birthday" required [(ngModel)]="formData.birthday"
+                                  [ngClass]="{ 'is-invalid': myForm.submitted && myForm.controls['birthday'].invalid }">
+                                <div class="invalid-tooltip" *ngIf="myForm.submitted && myForm.controls['birthday'].invalid">
+                                  <span class="tooltip-text">Please enter a valid date.</span>
+                                </div>
+                                <div class="valid-tooltip">
+                                  &nbsp;
+                                </div>
+                              </div>
+
+                            <!--gender-->
+                            <div class="form-group">
+                                <label for="gender">Gender</label>
+                                <select class="form-control" id="gender" name="gender" required [(ngModel)]="formData.gender"
+                                    [ngClass]="{ 'is-invalid': myForm.submitted && myForm.controls['gender'].invalid }">
+                                    <option value="" disabled>Select gender</option>
+                                    <option value="male">Male</option>
+                                    <option value="female">Female</option>
+                                    <option value="tagilid">Tagilid</option>
+                                </select>
+                                <div class="invalid-tooltip" *ngIf="myForm.submitted && myForm.controls['gender'].invalid">
+                                    <span class="tooltip-text">Please select a gender.</span>
+                                </div>
+                                <div class="valid-tooltip">
+                                    &nbsp;
+                                </div>
+                            </div>
+                            
+                            <!--contact number-->
+                            <div class="form-group">
+                                <label for="contactNumber">Mobile Number</label>
+                                <input type="text" class="form-control" id="contactNumber" name="contactNumber" placeholder="Contact Number" required [(ngModel)]="formData.contactNumber"
+                                    [ngClass]="{ 'is-invalid': myForm.submitted && myForm.controls['contactNumber'].invalid }"
+                                    pattern="[0-9]+">
+                                <div class="invalid-tooltip" *ngIf="myForm.submitted && myForm.controls['contactNumber'].invalid">
+                                    <span class="tooltip-text">Please enter a valid mobile number.</span>
+                                </div>
+                                <div class="valid-tooltip">
+                                    &nbsp;
+                                </div>
+                            </div>
+
+                            <!--landline-->
+                            <div class="form-group">
+                                <label for="landline">Landline</label>
+                                <input type="text" class="form-control" id="landline" name="landline" placeholder="Landline" required [(ngModel)]="formData.landline"
+                                    [ngClass]="{ 'is-invalid': myForm.submitted && myForm.controls['landline'].invalid }"
+                                    pattern="[0-9]+">
+                                <div class="invalid-tooltip" *ngIf="myForm.submitted && myForm.controls['landline'].invalid">
+                                    <span class="tooltip-text">Please enter a valid landline number.</span>
+                                </div>
+                                <div class="valid-tooltip">
+                                    &nbsp;
+                                </div>
+                            </div>
+
+                            <!--district number-->
+                             <div class="form-group">
+                                <label for="districtNumber">District Number</label>
+                                <input type="text" class="form-control" id="districtNumber" name="districtNumber" placeholder="District Number" required [(ngModel)]="formData.districtNumber"
+                                    [ngClass]="{ 'is-invalid': myForm.submitted && myForm.controls['districtNumber'].invalid }"
+                                    pattern="[0-9]+">
+                                <div class="invalid-tooltip" *ngIf="myForm.submitted && myForm.controls['districtNumber'].invalid">
+                                    <span class="tooltip-text">Please enter a valid district number.</span>
+                                </div>
+                                <div class="valid-tooltip">
+                                    &nbsp;
+                                </div>
+                            </div>
+
+                            <!--building name-->
+                            <div class="form-group">
+                                <label for="building">Building Name</label>
+                                <input type="text" class="form-control" id="building" name="building" placeholder="building" required
+                                    [(ngModel)]="formData.building"
+                                    [ngClass]="{ 'is-invalid': myForm.submitted && myForm.controls['building'].invalid }">
+                                <div class="invalid-tooltip" *ngIf="myForm.submitted && myForm.controls['building'].invalid">
+                                    <span class="tooltip-text">Please enter your lastname.</span>
+                                </div>
+                                <div class="valid-tooltip">
+                                    &nbsp;
+                                </div>
+                            </div> 
+
+                            <!--floor-->
+                            <div class="form-group">
+                                <label for="district">Floor Number(Optional)</label>
+                                <input type="text" class="form-control" id="floor" name="floor" placeholder="Floor Number" required [(ngModel)]="formData.floor"
+                                    [ngClass]="{ 'is-invalid': myForm.submitted && myForm.controls['floor'].invalid }"
+                                    pattern="[0-9]+">
+                                <div class="invalid-tooltip" *ngIf="myForm.submitted && myForm.controls['floor'].invalid">
+                                    <span class="tooltip-text">Please enter a valid contact number.</span>
+                                </div>
+                                <div class="valid-tooltip">
+                                    &nbsp;
+                                </div>
+                            </div>
+
+                            <!--house number-->
+                            <div class="form-group">
+                                <label for="district">House Number</label>
+                                <input type="text" class="form-control" id="houseNumber" name="houseNumber" placeholder="House Number / Apartment Number" required [(ngModel)]="formData.houseNumber"
+                                    [ngClass]="{ 'is-invalid': myForm.submitted && myForm.controls['houseNumber'].invalid }"
+                                    pattern="[0-9]+">
+                                <div class="invalid-tooltip" *ngIf="myForm.submitted && myForm.controls['houseNumber'].invalid">
+                                    <span class="tooltip-text">Please enter a valid house/apartment number.</span>
+                                </div>
+                                <div class="valid-tooltip">
+                                    &nbsp;
+                                </div>
+                            </div>
+        
+                            <!--repeat password-->
+                            <div class="form-group">
+                                <label for="reapeat_password">Repeat Password</label>
+                                <input type="password" class="form-control" id="repeat_password" name="repeat_password" placeholder="Repeat Password" required [(ngModel)]="formData.repeat_password"
+                                [ngClass]="{ 'is-invalid': myForm.submitted && (myForm.controls['repeat_password'].invalid || passwordMismatch) }"
+                                (input)="checkPasswordMatch()">
+                                <div class="invalid-tooltip" *ngIf="myForm.submitted && (myForm.controls['repeat_password'].invalid || passwordMismatch)">
+                                <span class="tooltip-text" *ngIf="passwordMismatch">Passwords do not match.</span>
+                                <span class="tooltip-text" *ngIf="!passwordMismatch">Please repeat the password.</span>
+                                </div>
+                                <div class="valid-tooltip">
+                                &nbsp;
+                                </div>
+                            </div>
+                        </div>     
+                    </div> 
+                </div>
+                <div class="buttons_container">
+                    <div class="send_button_container">
+                        <div class="form-row">
+                            <div class="col-md-12">
+                                <button type="submit" class="btn btn-primary mt-3">Save</button>
+                            </div>
+                            <div class="col-md-12">
+                                <button type="submit" class="btn btn-danger mt-3">Cancel</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </section>
+</body>

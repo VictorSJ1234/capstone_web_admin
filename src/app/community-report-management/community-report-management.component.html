@@ -1,0 +1,63 @@
+<app-header></app-header>
+<app-navbar></app-navbar>
+<app-sidenav></app-sidenav>
+
+<body>
+    <section class="label_section">
+        <div class="label_container">
+            <h1>Community Reports Management> User Reports</h1>
+        </div>
+    </section>
+    <section class="report_list_section">
+        <div class="report_list_container">
+            <div class="report_list_header">
+                <h2>Admin Accounts List</h2>
+                <div class="search_report">
+                    Search Report
+                    <div class="search_input">
+                        <input type="text">
+                        <button class="search_button">
+                            <img src="../../assets/user_report_images/search1.png" alt="Search">
+                        </button>
+                    </div>
+                </div>
+                <div class="sort_report">
+                    Sort Report
+                    <div class="sort_input">
+                        <select class="sort-select">
+                            <option value="date">Date</option>
+                            <option value="status">Status</option>
+                            <option value="name">Name</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <table class="report_table">
+                <tbody>
+                    <tr *ngFor="let report of reports">
+                        <td class="first_column">
+                            <div class="column1">
+                                <b>Report # {{report.reportNumber}}</b> 
+                                <img src="../../assets/user_report_images/report_icon.png" alt="Report Image">
+                                <b>Report ID#</b> <br>
+                                {{report.reportId}}
+                            </div>
+                        </td>
+                        <td>
+                            <div class="column2">
+                                <p class="subject_text"><b>Subject:&nbsp;</b><span >{{ report.subject}}</span></p>
+                                <p class="date_and_barangay"><b>Date:&nbsp;</b><span class="date_text">{{report.date}}</span>&nbsp;&nbsp;<b>Barangay:&nbsp;</b> <span class="date_text">{{report.barangay}}</span></p>
+                            </div>
+                        </td>
+                        <td class="button_column">
+                            <div class="column3">
+                                <button (click)="openReport(report)" id="open_button">Open</button>
+                                <button (click)="deleteReport(report)" id="delete_button">Delete</button>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section> 
+<body>

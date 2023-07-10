@@ -1,0 +1,144 @@
+@import url('https://fonts.googleapis.com/css2?family=Squada+One&display=swap');
+body{
+    width: 77%;
+    margin-left: auto;
+    margin-top: 0;
+}
+
+
+.label_section{
+  padding: 0;
+}
+
+.label_section H1{
+  font-family: 'Squada One', sans-serif;
+  color: #28376D;
+  font-size: 3vw;
+  margin-top: 20;
+  margin-bottom: 20px;
+}
+
+
+/*list*/
+.report_list_section{
+  margin-right: 5%;
+}
+
+.report_list_container{
+  font-family: 'Squada One', sans-serif;
+  background-color: beige;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  border-radius: 15px;
+  border: black 1px solid;
+}
+
+.report_list_container h2{
+  background-color: #28376D;
+  margin-top: 0;
+  padding: 20px;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  color: white;
+  font-size: 2.2vw;
+}
+
+table{
+  padding-bottom: 30px;
+}
+
+tbody td img{
+  width: 6vw;
+}
+
+tbody td{
+    padding-bottom: 15px;
+    padding-top: 15px;
+}
+
+tbody .name{
+  text-align: left;
+  font-size: 1.5vw;
+  font-family: 'Montserrat', sans-serif; 
+  
+}
+
+tbody .name p {
+  background-color: white;
+  border: black solid 1px;
+  padding: 5px;
+  border-radius: 10px;
+  width: 85%;
+}
+
+tbody td #delete_button img{
+  width: 1.7vw;
+  }
+
+tbody td #delete_button{
+  border-style: none;
+  background-color: #FC657E;
+  width: 12vw;
+  height: 3.3vw;
+  border-radius: 20px;
+  color: white;
+  font-size: 1.5vw;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+tbody td #view_button{
+    border-style: none;
+    background-color: #00C3FF;
+    width: 12vw;
+    height: 3.3vw;
+    border-radius: 20px;
+    color: white;
+    font-size: 1.5vw;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+  }
+
+  tbody td #view_button img{
+  width: 2vw;
+  }
+
+  tbody td #edit_button img{
+  width: 1.7vw;
+  }
+  tbody td #edit_button{
+    border-style: none;
+    background-color: #7FE842;
+    width: 12vw;
+    height: 3.3vw;
+    border-radius: 20px;
+    color: white;
+    font-size: 1.5vw;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .report_table tbody tr {
+    position: relative;
+  }
+  
+  .report_table tbody tr::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 5%; 
+    width: 90%; 
+    height: 2px;
+    background-color: black;
+  }
+
+
+
