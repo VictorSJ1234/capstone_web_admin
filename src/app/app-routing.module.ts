@@ -13,9 +13,9 @@ import { EditAdminInformationComponent } from './edit-admin-information/edit-adm
 import { EditUserProfileComponent } from './edit-user-profile/edit-user-profile.component';
 
 const routes: Routes = [
-  {component: AccountLoginComponent, path: 'account-login'},
+  {component: AccountLoginComponent, path: ''},
   {component: AccountRegistrationComponent, path: 'account-registration'},
-  {component: AdminDashboardComponent, path: ''},
+  {component: AdminDashboardComponent, path: 'admin-dashboard'},
   {component: AdminDashboardComponent, path: 'admin-dashboard'},
   {component: AccountManagementComponent, path: 'account-management'},
   {component: MobileUsersComponent, path: 'mobile-users'},
