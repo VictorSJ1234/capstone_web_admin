@@ -123,30 +123,37 @@
   .fields_container .column_1{ 
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 15px;
     width: 50%;
   } 
   .fields_container .column_2{ 
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 15px;
     width: 50%;
   } 
   
+  #firstname, #middlename, #lastname, #suffix, #username, #city, #barangay, #street, #email
+  ,#password, #birthday, #gender, #contactNumber, #landline, #districtNumber, #building, #floor
+  ,#houseNumber, #repeat_password{
+    height: 3vw;
+  }
 
   .buttons_container{
     text-align: center;
+    margin-top: 40px;
   }
 
   .buttons_container button{
     text-align: center;
     width: 20%;
     padding: 10px;
+    font-size: 1.5vw;
   }
 
   .invalid-tooltip {
     position: absolute;
-    margin-top: 3px;
+    margin-top: 2px;
     z-index: 1
   }
   
