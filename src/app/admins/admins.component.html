@@ -14,7 +14,7 @@
             <table class="report_table">
             <tbody>
                 <tr *ngFor="let information of Admin">
-                    <td><img [src]="information.image" alt="Report Image"></td>
+                    <td><img [src]="information.image" alt="Report Image" class="user_image"></td>
                     <td class="name"><p>{{ information.username }}</p></td>
                     <td><button (click)="editReport(information)" id="edit_button"><img src="../../assets/button_icons/edit_icon.png" alt="Edit">&nbsp;Edit</button></td>
                     <td><button (click)="deleteReport(information)" id="delete_button"><img src="../../assets/button_icons/delete_icon.png" alt="Delete">&nbsp;Delete</button></td>

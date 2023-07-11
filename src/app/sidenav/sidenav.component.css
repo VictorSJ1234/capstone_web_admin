@@ -49,7 +49,7 @@
   .side-nav button {
     display: block;
     width: 100%;
-    padding: 20px;
+    height: 5vw;
     background-color: #28376D;
     color: white;
     border: none;

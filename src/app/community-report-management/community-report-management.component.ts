@@ -39,7 +39,7 @@ export class CommunityReportManagementComponent {
       subject:'Report 2',
       date: '2023-07-07',
       barangay: 'Palitaw',
-      image: '../../assets/icons/leeann.jpg',
+      image: '../../assets/icons/robert.jpg',
       username: 'Rene Victor San Juan',
     },
     {
@@ -49,7 +49,7 @@ export class CommunityReportManagementComponent {
       subject:'This is a report',
       date: '2023-07-07',
       barangay: 'Palitaw',
-      image: '../../assets/icons/robert.jpg',
+      image: '../../assets/icons/rc.jpg',
       username: 'Rene Victor San Juan',
     },
     {
@@ -59,7 +59,7 @@ export class CommunityReportManagementComponent {
       subject:'Report 4',
       date: '2023-07-07',
       barangay: 'Palitaw',
-      image: '../../assets/icons/rc.jpg',
+      image: '../../assets/icons/leeann.jpg',
       username: 'Rene Victor San Juan',
     }
   ];

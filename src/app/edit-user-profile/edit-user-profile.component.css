@@ -57,8 +57,10 @@
 }
 
 .user_information_row img{
-    width: 5vw;
+    width: 6vw;
     margin-right: 30px;
+    border-radius: 180px;
+    border: solid black 1px;
 }
 
 .user_information_row .username_and_name{

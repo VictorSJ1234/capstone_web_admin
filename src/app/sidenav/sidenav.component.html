@@ -7,7 +7,8 @@
             <button [routerLink]="'/admin-dashboard'" routerLinkActive="active">Dashboard</button>
         </li>
         <li><h1>Management</h1></li>
-        <li class="image_and_label" [class.active]="isActive('/account-management') || isActive('/user-report') || isActive('/mobile-users') ||  isActive('/admins') ||  isActive('/edit-admin-information') ">
+        <li class="image_and_label" [class.active]="isActive('/account-management') || isActive('/user-report') || isActive('/mobile-users') 
+        ||  isActive('/admins') ||  isActive('/edit-admin-information') ||  isActive('/edit-user-profile') ||  isActive('/edit-admin-profile')">
             <img src="../../assets/sidenav_icons/account_management.png" alt="" [routerLink]="'/account-management'">
             <img src="../../assets/sidenav_icons/account_management_active.png"  class="active-img" alt="" [routerLink]="'/account-management'" routerLinkActive="active">
             <button [routerLink]="'/account-management'" routerLinkActive="active">Accounts Management</button>

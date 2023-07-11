@@ -49,8 +49,10 @@ table{
   font-size: 2.2vw;
 }
 
-tbody td img{
+tbody td .user_image{
   width: 6vw;
+  border-radius: 180px;
+  border: solid black 1px;
 }
 
 tbody td{

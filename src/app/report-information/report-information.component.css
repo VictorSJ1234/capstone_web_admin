@@ -73,6 +73,9 @@ table{
 .user_information_row img{
     width: 5vw;
     margin-right: 30px;
+    width: 6vw;
+    border-radius: 180px;
+    border: solid black 1px;
 }
 
 .user_information_row .username_and_name{

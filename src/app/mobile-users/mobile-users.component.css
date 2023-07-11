@@ -49,8 +49,10 @@ table{
   padding-bottom: 30px;
 }
 
-tbody td img{
+tbody td .user_image{
   width: 6vw;
+  border-radius: 180px;
+  border: solid black 1px;
 }
 
 tbody td{
