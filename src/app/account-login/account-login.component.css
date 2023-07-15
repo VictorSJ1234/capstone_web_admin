@@ -17,7 +17,6 @@
     background-color: rgba(255, 255, 255, 0.9);
     border-radius: 30px;
     width: 45%;
-    height: 80%;
     margin-left: 25%;
     display: flex;
     flex-direction: column;
@@ -125,6 +124,16 @@
     font-weight: bold;
     padding: 10px;
   }
+
+  .register_button_container{
+    margin-top: 20px;
+    text-align: center;
+    font-size: 1.2vw;
+  }
+
+  .register_button_container a{
+    text-decoration: underline;
+  }
     
     /*RESPONSIVENESS*/
     @media (max-width: 855px) {
@@ -147,6 +156,7 @@
         display: flex;
         flex-direction: column;
         align-items: center;
+        margin-left: 0;
       }
       
       .description_container h1{
@@ -174,8 +184,6 @@
       }
       
       #email, #password{
-        background-color: #D9D9D9;
-        border-radius: 30px;
         height: 5.5vw;
         margin-bottom: 30px;
         width: 35vw;
@@ -199,6 +207,9 @@
         font-size: 2vw;
         padding: 5px;
       }
+      .register_button_container{
+        font-size: 2vw;
+      }
     }
   
     @media (max-width: 550px) {  
@@ -212,11 +223,9 @@
     }
       
       #email, #password{
-        background-color: #D9D9D9;
-        border-radius: 30px;
         height: 7.5vw;
         margin-bottom: 30px;
-        width: 36vw;
+        width: 32vw;
       }
   
       .inquiry_title_container{
@@ -245,6 +254,9 @@
         border-radius: 20px;
         font-size: 3vw;
         padding: 5px;
+      }
+      .register_button_container{
+        font-size: 2.5vw;
       }
     }
     
