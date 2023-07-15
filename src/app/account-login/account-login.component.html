@@ -23,8 +23,15 @@
                       </div>
                     </div>
                     <div class="form-group">
-                        <input type="password" class="form-control" id="password" name="password" placeholder="Password" required [(ngModel)]="formData.password">
+                      <input type="password" class="form-control" id="password" name="password" placeholder="Password" required [(ngModel)]="formData.password"
+                        [ngClass]="{ 'is-invalid': myForm.submitted && myForm.controls['password'].invalid }">
+                      <div class="invalid-tooltip" *ngIf="myForm.submitted && myForm.controls['password'].invalid">
+                        <span class="tooltip-text">Password is required.</span>
                       </div>
+                      <div class="valid-tooltip">
+                        &nbsp;
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -42,7 +49,7 @@
               </div>
               <div class="register_button_container">
                 <p>Don't have an account yet?</p>
-                <a href="admin-dashboard">Register Here !</a>
+                <a routerLink="/account-registration">Register Here!</a>
               </div>
             </form>
         </div>

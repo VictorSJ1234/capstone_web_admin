@@ -1,1 +1,146 @@
-<p>account-registration works!</p>
+<body class="body">
+    <section class="login_section">
+        <div class="inquiry_title_container">
+            <h1 class="inquiry_title">Management Portal</h1>
+        </div>
+        <div class="description_container">
+            <h1 class="description">Add New Admin Account</h1>
+        </div>
+        <div class="form_container">
+            <form (ngSubmit)="register()" #myForm="ngForm">
+              <div class="form-row">
+                <div class="login_container">
+                  <div class="fields_container">
+                    <div class="column_1">
+                        <!--name-->
+                        <div class="form-group">
+                          <label for="firstname">First Name</label>
+                          <input type="text" class="form-control" id="firstname" name="firstname" placeholder="First Name" required
+                              [(ngModel)]="formData.firstname"
+                              [ngClass]="{ 'is-invalid': myForm.submitted && myForm.controls['firstname'].invalid }">
+                          <div class="invalid-tooltip" *ngIf="myForm.submitted && myForm.controls['firstname'].invalid">
+                              <span class="tooltip-text">Please enter your firstname.</span>
+                          </div>
+                          <div class="valid-tooltip">
+                              &nbsp;
+                          </div>
+                          </div> 
+                            
+                            <!--gender-->
+                            <div class="form-group">
+                              <label for="gender">Gender</label>
+                              <select class="form-control" id="gender" name="gender" required [(ngModel)]="formData.gender"
+                                  [ngClass]="{ 'is-invalid': myForm.submitted && myForm.controls['gender'].invalid }">
+                                  <option value="" disabled>Select gender</option>
+                                  <option value="male">Male</option>
+                                  <option value="female">Female</option>
+                              </select>
+                              <div class="invalid-tooltip" *ngIf="myForm.submitted && myForm.controls['gender'].invalid">
+                                  <span class="tooltip-text">Please select a gender.</span>
+                              </div>
+                              <div class="valid-tooltip">
+                                  &nbsp;
+                              </div>
+                          </div>
+
+                          <!--email-->
+                          <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" class="form-control" id="email" name="email" placeholder="Email" required
+                                [(ngModel)]="formData.email"
+                                [ngClass]="{ 'is-invalid': myForm.submitted && myForm.controls['email'].invalid }"
+                                pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}">
+                            <div class="invalid-tooltip" *ngIf="myForm.submitted && myForm.controls['email'].invalid">
+                                <span class="tooltip-text">Invalid Email.</span>
+                            </div>
+                            <div class="valid-tooltip">
+                                &nbsp;
+                            </div>
+                        </div>
+                            
+                          <!--password-->         
+                          <div class="form-group">
+                            <label for="password">Password</label>
+                              <input type="password" class="form-control" id="password" name="password" placeholder="Password" required [(ngModel)]="formData.password"
+                              [ngClass]="{ 'is-invalid': myForm.submitted && myForm.controls['password'].invalid }"
+                              pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*]).{8,}$">
+                            <div class="invalid-tooltip" *ngIf="myForm.submitted && myForm.controls['password'].invalid">
+                              <span class="tooltip-text">Password must include atleast one uppercase and lowercase letter, one digit, and one special character.</span>
+                            </div>
+                            <div class="valid-tooltip">
+                            &nbsp;
+                          </div>
+                        </div> 
+                      </div>
+
+                      <div class="column2">
+                        <!--name-->
+                        <div class="form-group">
+                          <label for="lastname">Last Name</label>
+                          <input type="text" class="form-control" id="lastname" name="lastname" placeholder="Last Name" required
+                              [(ngModel)]="formData.lastname"
+                              [ngClass]="{ 'is-invalid': myForm.submitted && myForm.controls['lastname'].invalid }">
+                          <div class="invalid-tooltip" *ngIf="myForm.submitted && myForm.controls['lastname'].invalid">
+                              <span class="tooltip-text">Please enter your lastname.</span>
+                          </div>
+                          <div class="valid-tooltip">
+                              &nbsp;
+                          </div>
+                        </div> 
+
+                        <!-- Username -->
+                        <div class="form-group">
+                          <label for="username">Username</label>
+                          <input type="text" class="form-control" id="username" name="username" placeholder="Username" required [(ngModel)]="formData.username"
+                              [ngClass]="{ 'is-invalid': myForm.submitted && myForm.controls['username'].invalid }">
+                          <div class="invalid-tooltip" *ngIf="myForm.submitted && myForm.controls['username'].invalid">
+                              <span class="tooltip-text">Please enter a username.</span>
+                          </div>
+                          <div class="valid-tooltip">
+                              &nbsp;
+                          </div>
+                        </div>
+
+                        <!--contact number-->
+                        <div class="form-group">
+                          <label for="contactNumber">Mobile Number</label>
+                          <input type="text" class="form-control" id="contactNumber" name="contactNumber" placeholder="Contact Number" required [(ngModel)]="formData.contactNumber"
+                              [ngClass]="{ 'is-invalid': myForm.submitted && myForm.controls['contactNumber'].invalid }"
+                              pattern="[0-9]+">
+                          <div class="invalid-tooltip" *ngIf="myForm.submitted && myForm.controls['contactNumber'].invalid">
+                              <span class="tooltip-text">Please enter a valid mobile number.</span>
+                          </div>
+                          <div class="valid-tooltip">
+                              &nbsp;
+                          </div>
+                      </div>
+
+                      <!--repeat password-->
+                      <div class="form-group">
+                        <label for="reapeat_password">Repeat Password</label>
+                          <input type="password" class="form-control" id="repeat_password" name="repeat_password" placeholder="Repeat Password" required [(ngModel)]="formData.repeat_password"
+                            [ngClass]="{ 'is-invalid': myForm.submitted && (myForm.controls['repeat_password'].invalid || passwordMismatch) }"
+                            (input)="checkPasswordMatch()">
+                            <div class="invalid-tooltip" *ngIf="myForm.submitted && (myForm.controls['repeat_password'].invalid || passwordMismatch)">
+                            <span class="tooltip-text" *ngIf="passwordMismatch">Passwords do not match.</span>
+                              <span class="tooltip-text" *ngIf="!passwordMismatch">Please repeat the password.</span>
+                            </div>
+                            <div class="valid-tooltip">
+                            &nbsp;
+                          </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="send_button_container">
+                <div class="form-row">
+                  <div class="col-md-12">
+                    <button type="submit" class="btn btn-primary mt-3">Create Account</button>
+                  </div>
+                </div>
+              </div>
+            </form>
+        </div>
+    </section>
+</body>
