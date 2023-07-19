@@ -11,24 +11,14 @@ export class EditUserProfileComponent {
   username: string;
 
   formData = {
-    firstname: '',
-    lastname: '',
-    middlename: '',
-    username: '',
+    fullname: '',
     email: '',
     password: '',
     repeat_password: '',
     birthday: '',
-    building: '',
     gender: '',
     contactNumber: '',
-    districtNumber: '',
-    floor: '',
-    landline: '',
-    suffix: '',
-    houseNumber: '',
     barangay: '',
-    street: '',
     city: 'Pasig City',
   };
   passwordMismatch = false;
@@ -45,11 +35,10 @@ export class EditUserProfileComponent {
       if (!this.isPasswordValid()) {
         console.log('Password does not follow the required pattern.');
       }
-      if (this.formData.firstname === '' || this.formData.email === '' || this.formData.username === '' 
-      || this.formData.password === '' || this.formData.repeat_password === '' || this.formData.lastname === ''
-      || this.formData.gender === '' || this.formData.contactNumber === '' || this.formData.middlename ===''
-      || this.formData.street === '' || this.formData.houseNumber === '' || this.formData.barangay === '' || this.formData.city === ''
-      || this.formData.birthday === '' || this.formData.landline === '' || this.formData.landline === '' || this.formData.building === '') {
+      if (this.formData.fullname === '' || this.formData.email === ''
+      || this.formData.password === '' || this.formData.repeat_password === '' 
+      || this.formData.gender === '' || this.formData.contactNumber === ''
+      || this.formData.barangay === '' || this.formData.city === '') {
         console.log('Please fill out all fields.');
       }
       if (this.isEmailInvalid()) {
@@ -70,26 +59,16 @@ export class EditUserProfileComponent {
 
   isFormValid(): boolean {
     return (
-      this.formData.firstname.trim() !== '' &&
-      this.formData.lastname.trim() !== '' &&
-      this.formData.username.trim() !== '' &&
+      this.formData.fullname.trim() !== '' &&
       this.formData.email.trim() !== '' &&
       this.formData.birthday.trim() !== '' &&
-      this.formData.building.trim() !== '' &&
       this.formData.password.trim() !== '' &&
       this.formData.repeat_password.trim() !== '' &&
       this.formData.gender.trim() !== '' &&
       this.formData.contactNumber.trim() !== '' &&
-      this.formData.landline.trim() !== '' &&
-      this.formData.districtNumber.trim() !== '' &&
-       this.formData.middlename.trim() !== '' &&
-       this.formData.suffix.trim() !== '' &&
       !this.passwordMismatch &&
-      this.formData.houseNumber.trim() !== '' &&
       this.formData.barangay.trim() !== '' &&
-      this.formData.street.trim() !== '' &&
       this.formData.city.trim() !== '' &&
-      this.formData.floor.trim() !== '' &&
       !this.isEmailInvalid()
     );
   }
@@ -107,7 +86,6 @@ export class EditUserProfileComponent {
     this.route.queryParams.subscribe(params => {
       this.username = params['username'];
       this.image = params['image'];
-      this.formData.username = this.username;
     });
     window.scrollTo(0, 0);
   }
