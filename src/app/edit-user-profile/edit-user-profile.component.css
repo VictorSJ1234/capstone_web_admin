@@ -133,7 +133,7 @@
     width: 50%;
   } 
   
-  #firstname, #middlename, #lastname, #suffix, #username, #city, #barangay, #street, #email
+  #fullname, #middlename, #lastname, #suffix, #username, #city, #barangay, #street, #email
   ,#password, #birthday, #gender, #contactNumber, #landline, #districtNumber, #building, #floor
   ,#houseNumber, #repeat_password{
     height: 3vw;
