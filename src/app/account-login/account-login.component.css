@@ -216,6 +216,7 @@
     /*for form*/
     .login_section {
         margin-left: 0;
+        width: 90%;
         display: flex;
         justify-content: center; 
         flex-direction: column;
@@ -223,9 +224,9 @@
     }
       
       #email, #password{
-        height: 7.5vw;
+        height: 10vw;
         margin-bottom: 30px;
-        width: 32vw;
+        width: 100%;
       }
   
       .inquiry_title_container{
@@ -235,7 +236,10 @@
       }
       
       .inquiry_title_container h1{
-        font-size: 6vw;
+        font-size: 8vw;
+      }
+      .description_container h1{
+        font-size: 5vw;
       }
       .tooltip-text {
         font-size: 1.5vw;
@@ -249,7 +253,7 @@
       
       .send_button_container button{
         background-color: #0384E9;
-        width: 30vw;
+        width: 50%;
         height: 45px;
         border-radius: 20px;
         font-size: 3vw;
