@@ -62,7 +62,119 @@
                          and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
                 </div>
             </div>
-            <button id="respond_button">Respond</button>
+            <button id="respond_button" (click)="openCarouselModal()">Respond</button>
         </div>
     </section> 
-<body>
+
+     <!-- Modal -->
+     <div id="response_modal" class="modal" [ngStyle]="{ display: carouselModalOpen ? 'block' : 'none' }">
+        <div class="modal-content">
+        <div class="modal-header" id="modal_header">
+            <h2>Dengue Task Force Response Form</h2>
+            <span class="close" id="close_carousel" (click)="closeCarouselModal()">&times;</span>
+        </div>
+        
+        <div class="modal-body">
+            <div class="form_container">
+                <form (ngSubmit)="register()" #myForm="ngForm">
+                  <div class="form-row">
+                    <div class="report_fields_container">
+                      <div class="fields_container">
+                        <div id="column_1_label">
+                            <!--status label-->
+                            <div class="form-group">
+                                <div>
+                                  <h5>Update Status:</h5>
+                                </div>
+                            </div>
+                                
+                                <!--action label-->
+                                <div class="form-group">
+                                  <div>
+                                    <h5>Action to do:</h5>
+                                  </div>
+                              </div>
+                          </div>
+                        <div class="column_1">
+                            <!--name-->
+                            <div class="form-group">
+                                <select class="form-control" id="status" name="status" required [(ngModel)]="formData.status"
+                                    [ngClass]="{ 'is-invalid': myForm.submitted && myForm.controls['status'].invalid }">
+                                    <option value="" disabled>Select Report Status</option>
+                                    <option value="New Report">New Report</option>
+                                    <option value="Resolved">Resolved</option>
+                                    <option value="Under Review">Under Review</option>
+                                </select>
+                                <div class="invalid-tooltip" *ngIf="myForm.submitted && myForm.controls['status'].invalid">
+                                    <span class="tooltip-text">Please select a report status.</span>
+                                </div>
+                                <div class="valid-tooltip">
+                                    &nbsp;
+                                </div>
+                            </div>
+                                
+                                <!--gender-->
+                                <div class="form-group">
+                                  <select class="form-control" id="action" name="action" required [(ngModel)]="formData.action"
+                                      [ngClass]="{ 'is-invalid': myForm.submitted && myForm.controls['action'].invalid }">
+                                      <option value="" disabled>Select Report Action</option>
+                                      <option value="Action 1">Action 1</option>
+                                      <option value="Action 2">Action 2</option>
+                                  </select>
+                                  <div class="invalid-tooltip" *ngIf="myForm.submitted && myForm.controls['action'].invalid">
+                                      <span class="tooltip-text">Please select an action.</span>
+                                  </div>
+                                  <div class="valid-tooltip">
+                                      &nbsp;
+                                  </div>
+                              </div>
+                          </div>
+
+                          <div id="column_2_label">
+                            <!--name-->
+                            <div class="form-group">
+                                <div>
+                                  <h5>Date:</h5>
+                                </div>
+                            </div>
+                          </div>
+    
+                          <div class="column2">
+                            <!--name-->
+                            <div class="form-group">
+                                <input type="date" class="form-control" id="date" name="date" placeholder="Date" required [(ngModel)]="formData.date"
+                                  [ngClass]="{ 'is-invalid': myForm.submitted && myForm.controls['date'].invalid }">
+                                <div class="invalid-tooltip" *ngIf="myForm.submitted && myForm.controls['date'].invalid">
+                                  <span class="tooltip-text">Please enter a valid date.</span>
+                                </div>
+                                <div class="valid-tooltip">
+                                  &nbsp;
+                                </div>
+                              </div>
+                        </div> 
+                      </div>
+                      <div class="form-group">
+                        <textarea class="form-control" id="response" name="response" placeholder="Response" required [(ngModel)]="formData.response"
+                            [ngClass]="{ 'is-invalid': myForm.submitted && myForm.controls['response'].invalid }"></textarea>
+                        <div class="invalid-tooltip" *ngIf="myForm.submitted && myForm.controls['response'].invalid">
+                            <span class="tooltip-text">Please enter your Response.</span>
+                        </div>
+                        <div class="valid-tooltip">
+                            &nbsp;
+                        </div>
+                    </div>
+                    </div>
+                  </div>
+                  <div class="send_button_container">
+                    <div class="form-row">
+                      <div class="col-md-12">
+                        <button type="submit" class="btn btn-primary mt-3">Send Response</button>
+                      </div>
+                    </div>
+                  </div>
+                </form>
+            </div>
+        </div>
+        </div>
+    </div>
+</body>

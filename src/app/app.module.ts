@@ -18,6 +18,7 @@ import { CommunityReportManagementComponent } from './community-report-managemen
 import { ReportInformationComponent } from './report-information/report-information.component';
 import { EditAdminInformationComponent } from './edit-admin-information/edit-admin-information.component';
 import { EditUserProfileComponent } from './edit-user-profile/edit-user-profile.component';
+import { MosquitopediaComponent } from './mosquitopedia/mosquitopedia.component';
 
 @NgModule({
   declarations: [
@@ -35,7 +36,8 @@ import { EditUserProfileComponent } from './edit-user-profile/edit-user-profile.
     CommunityReportManagementComponent,
     ReportInformationComponent,
     EditAdminInformationComponent,
-    EditUserProfileComponent
+    EditUserProfileComponent,
+    MosquitopediaComponent
   ],
   imports: [
     BrowserModule,

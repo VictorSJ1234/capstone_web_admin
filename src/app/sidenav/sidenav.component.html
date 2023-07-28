@@ -19,9 +19,10 @@
             <button [routerLink]="'/community-report-management'" routerLinkActive="active">Community Reports Management</button>
         </li>
         <li><h1>Posts</h1></li>
-        <li class="image_and_label" routerLinkActive="active">
-            <img src="../../assets/sidenav_icons/mosquitopedia.png" alt="">
-            <button [routerLink]="" routerLinkActive="active">Mosquitopedia</button>
+        <li class="image_and_label" [class.active]="isActive('/mosquitopedia') || isActive('/mosquitopedia')">
+            <img src="../../assets/sidenav_icons/mosquitopedia.png" alt="" [routerLink]="'/mosquitopedia'">
+            <img src="../../assets/sidenav_icons/mosquitopedia_active.png"  class="active-img" alt="" [routerLink]="'/mosquitopedia'" routerLinkActive="active">
+            <button [routerLink]="'/mosquitopedia'" routerLinkActive="active">Mosquitopedia</button>
         </li>
         <li class="image_and_label" routerLinkActive="active">
             <img src="../../assets/sidenav_icons/community_updates.png" alt="">
