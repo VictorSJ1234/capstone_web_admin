@@ -15,8 +15,8 @@
                     <img src="../../assets/admin_dashboard_images/usersNumber.png" alt="">
                 </div>
                 <div class="card_text_container">
-                    <h3>Mobile Users</h3>
-                    <p>Total No. of Users: {{number_of_users}}</p>
+                    <h3>Mobile<br> Users</h3>
+                    <p>{{number_of_users}}</p>
                 </div>
             </div>
 
@@ -25,8 +25,20 @@
                     <img src="../../assets/admin_dashboard_images/adminsNumber.png" alt="">
                 </div>
                 <div class="card_text_container">
-                    <h3>Admin Accounts</h3>
-                    <p>Total No. of Users: {{number_of_complaints}}</p>
+                    <h3>Received<br>Concerns</h3>
+                    <p>{{number_of_complaints}}</p>
+                </div>
+            </div>
+
+            <div class="info_card">
+                <div class="card_image_container">
+                    <img src="../../assets/admin_dashboard_images/dengue_cases_image.png" alt="">
+                </div>
+                <div class="card_text_container">
+                    <h3>Dengue<br> Cases</h3>
+                    <div class="cards_buttons_container">
+                       <p> <button [routerLink]="">Post Update</button></p>   
+                    </div>
                 </div>
             </div>
         </div>
@@ -34,7 +46,7 @@
     
     <section class="graph_1_section">
         <div class="title_and_button_container">
-            <h2>Mobile Users per Month</h2>
+            <h2>Mobile App Users per Barangay</h2>
             <button class="view_button">Manage</button>
         </div>
         <div class="graph_container">
@@ -44,7 +56,7 @@
 
     <section class="graph_2_section">
         <div class="title_and_button_container">
-            <h2>Community Report Status</h2>
+            <h2>Community Concern Status</h2>
             <button class="view_button">Manage</button>
         </div>
         <div class="graph_container">

@@ -6,7 +6,7 @@
             <img src="../../assets/sidenav_icons/dashboard.png"  class="active-img" alt="" [routerLink]="'/admin-dashboard'" routerLinkActive="active">
             <button [routerLink]="'/admin-dashboard'" routerLinkActive="active">Dashboard</button>
         </li>
-        <li><h1>Management</h1></li>
+        <li><h1>Information<br>Management</h1></li>
         <li class="image_and_label" [class.active]="isActive('/account-management') || isActive('/user-report') || isActive('/mobile-users') 
         ||  isActive('/admins') ||  isActive('/edit-admin-information') ||  isActive('/edit-user-profile') ||  isActive('/edit-admin-profile')">
             <img src="../../assets/sidenav_icons/account_management.png" alt="" [routerLink]="'/account-management'">
@@ -18,16 +18,18 @@
             <img src="../../assets/sidenav_icons/community_reports_active.png"  class="active-img" alt="" [routerLink]="'/community-report-management'" routerLinkActive="active">
             <button [routerLink]="'/community-report-management'" routerLinkActive="active">Community Reports Management</button>
         </li>
-        <li><h1>Posts</h1></li>
-        <li class="image_and_label" [class.active]="isActive('/mosquitopedia') || isActive('/mosquitopedia')">
-            <img src="../../assets/sidenav_icons/mosquitopedia.png" alt="" [routerLink]="'/mosquitopedia'">
-            <img src="../../assets/sidenav_icons/mosquitopedia_active.png"  class="active-img" alt="" [routerLink]="'/mosquitopedia'" routerLinkActive="active">
-            <button [routerLink]="'/mosquitopedia'" routerLinkActive="active">Mosquitopedia</button>
+        <!--<li><h1>Posts</h1></li>-->
+        <li class="image_and_label" [class.active]="isActive('/community-projects-management') || isActive('/community-projects-management')">
+            <img src="../../assets/sidenav_icons/community_reports.png" alt="" [routerLink]="'/community-projects-management'">
+            <img src="../../assets/sidenav_icons/community_reports_active.png"  class="active-img" alt="" [routerLink]="'/community-projects-management'" routerLinkActive="active">
+            <button [routerLink]="'/community-projects-management'" routerLinkActive="active">Community Projects Management</button>
         </li>
+        <!--
         <li class="image_and_label" routerLinkActive="active">
             <img src="../../assets/sidenav_icons/community_updates.png" alt="">
             <button [routerLink]="" routerLinkActive="active">Community Projects Update</button>
         </li>
+        -->
         </ul>
     </div>
 </div>

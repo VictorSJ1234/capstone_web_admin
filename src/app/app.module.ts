@@ -19,6 +19,7 @@ import { ReportInformationComponent } from './report-information/report-informat
 import { EditAdminInformationComponent } from './edit-admin-information/edit-admin-information.component';
 import { EditUserProfileComponent } from './edit-user-profile/edit-user-profile.component';
 import { MosquitopediaComponent } from './mosquitopedia/mosquitopedia.component';
+import { CommunityProjectsManagementComponent } from './community-projects-management/community-projects-management.component';
 
 @NgModule({
   declarations: [
@@ -37,7 +38,8 @@ import { MosquitopediaComponent } from './mosquitopedia/mosquitopedia.component'
     ReportInformationComponent,
     EditAdminInformationComponent,
     EditUserProfileComponent,
-    MosquitopediaComponent
+    MosquitopediaComponent,
+    CommunityProjectsManagementComponent
   ],
   imports: [
     BrowserModule,
