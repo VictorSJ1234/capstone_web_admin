@@ -142,6 +142,33 @@
   .register_button_container a{
     text-decoration: underline;
   }
+  .password-container {
+    position: relative;
+  }
+  
+  .password-icon {
+    position: absolute;
+    top: 53%;
+    right: 10px;
+    transform: translateY(0%);
+    cursor: pointer;
+  }
+  
+  /* Font Awesome Icons */
+  .fa {
+    font-family: 'FontAwesome';
+    font-size: 18px;
+  }
+  
+  /* Styling for the eye icons */
+  .fa-eye-slash:before {
+    content: '\f070'; 
+  }
+  
+  .fa-eye:before {
+    content: '\f06e'; 
+  }
+  
     
     /*RESPONSIVENESS*/
     @media (max-width: 855px) {

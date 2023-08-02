@@ -18,6 +18,8 @@ export class AccountRegistrationComponent {
   };
 
   passwordMismatch = false;
+  showPassword = false;
+
 
   register() {
     if (this.isFormValid()) {
@@ -69,5 +71,8 @@ export class AccountRegistrationComponent {
 
   checkPasswordMatch() {
     this.passwordMismatch = this.formData.password !== this.formData.repeat_password;
+  }
+  togglePasswordVisibility(): void {
+    this.showPassword = !this.showPassword;
   }
 }

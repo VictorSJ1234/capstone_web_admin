@@ -59,18 +59,21 @@
                         </div>
                             
                           <!--password-->         
-                          <div class="form-group">
+                          <div class="form-group password-container">
                             <label for="password">Password</label>
-                              <input type="password" class="form-control" id="password" name="password" placeholder="Password" required [(ngModel)]="formData.password"
-                              [ngClass]="{ 'is-invalid': myForm.submitted && myForm.controls['password'].invalid }"
-                              pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*]).{8,}$">
+                            <input type="{{ showPassword ? 'text' : 'password' }}" class="form-control" id="password" name="password"
+                              placeholder="Password" required [(ngModel)]="formData.password"
+                              [ngClass]="{ 'is-invalid': myForm.submitted && myForm.controls['password'].invalid }">
+                            <span class="password-icon" (click)="togglePasswordVisibility()">
+                              <i class="fa" [ngClass]="showPassword ? 'fa-eye-slash' : 'fa-eye'"></i>
+                            </span>
                             <div class="invalid-tooltip" *ngIf="myForm.submitted && myForm.controls['password'].invalid">
-                              <span class="tooltip-text">Password must include atleast one uppercase and lowercase letter, one digit, and one special character.</span>
+                              <span class="tooltip-text">Password is required.</span>
                             </div>
                             <div class="valid-tooltip">
-                            &nbsp;
+                              &nbsp;
+                            </div>
                           </div>
-                        </div> 
                       </div>
 
                       <div class="column2">

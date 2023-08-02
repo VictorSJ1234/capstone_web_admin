@@ -13,6 +13,7 @@ export class AccountLoginComponent {
     role: '' // Add role property to formData
   };
   showError = false;
+  showPassword = false;
 
   constructor(private router: Router) {}
 
@@ -65,5 +66,9 @@ export class AccountLoginComponent {
       (cred) =>
         cred.email === this.formData.email && cred.password === this.formData.password
     );
+  }
+
+  togglePasswordVisibility(): void {
+    this.showPassword = !this.showPassword;
   }
 }
