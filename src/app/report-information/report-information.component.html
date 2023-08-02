@@ -96,7 +96,7 @@
                               </div>
                           </div>
                         <div class="column_1">
-                            <!--name-->
+                            <!--status-->
                             <div class="form-group">
                                 <select class="form-control" id="status" name="status" required [(ngModel)]="formData.status"
                                     [ngClass]="{ 'is-invalid': myForm.submitted && myForm.controls['status'].invalid }">
@@ -113,7 +113,7 @@
                                 </div>
                             </div>
                                 
-                                <!--gender-->
+                                <!--action-->
                                 <div class="form-group">
                                   <select class="form-control" id="action" name="action" required [(ngModel)]="formData.action"
                                       [ngClass]="{ 'is-invalid': myForm.submitted && myForm.controls['action'].invalid }">
@@ -131,7 +131,7 @@
                           </div>
 
                           <div id="column_2_label">
-                            <!--name-->
+                            <!--date-->
                             <div class="form-group">
                                 <div>
                                   <h5>Date:</h5>
@@ -140,7 +140,7 @@
                           </div>
     
                           <div class="column2">
-                            <!--name-->
+                            <!--date-->
                             <div class="form-group">
                                 <input type="date" class="form-control" id="date" name="date" placeholder="Date" required [(ngModel)]="formData.date"
                                   [ngClass]="{ 'is-invalid': myForm.submitted && myForm.controls['date'].invalid }">

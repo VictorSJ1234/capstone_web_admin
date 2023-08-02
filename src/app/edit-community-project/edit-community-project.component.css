@@ -43,64 +43,6 @@
     text-align: center;
     margin-bottom: 0;
   }
-  .user_information_row{
-    font-family: 'Montserrat', sans-serif; 
-    flex-direction: row;
-    background-color: white ;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    font-size: 1.5vw;
-    padding: 25px;
-    border-bottom: solid black 2px;
-    text-align: center;
-    width: 100%;
-    margin-top: 0;
-}
-
-.user_information_row img{
-    width: 6vw;
-    margin-right: 30px;
-    border-radius: 180px;
-    border: solid black 1px;
-}
-
-.user_information_row .username_and_name{
-    display: flex;
-    flex-direction: column;
-    text-align: left;
-    width: 40%;
-}
-
-.user_information_row .username_and_name span{
-    display: flex;
-    background-color: white;
-    border: solid black 1px;
-    padding: 5px;
-    border-radius: 10px;
-}
-
-.user_information_row .barangay{
-    display: flex;
-    flex-direction: column;
-    text-align: left;
-    margin-left: 20px;
-    width: 50%;
-}
-
-.user_information_row .barangay p{
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-}
-
-.user_information_row .barangay span{
-    background-color: white;
-    border: solid black 1px;
-    padding: 5px;
-    border-radius: 10px;
-    width: 70%;
-}
 
   .form_container{
     width: 100%;
@@ -122,20 +64,42 @@
   .fields_container .column_1{ 
     display: flex;
     flex-direction: column;
-    gap: 15px;
-    width: 50%;
+    gap: 8px;
+    width: 40%;
   } 
   .fields_container .column_2{ 
     display: flex;
     flex-direction: column;
     gap: 15px;
-    width: 50%;
+    width: 60%;
   } 
 
-  #firstname, #middlename, #lastname, #suffix, #username, #city, #barangay, #street, #email
+  .custom-file input {
+    width: 100%;
+    background-color: white;
+    display: flex;
+    align-items: center;
+    border: solid #ced4da .5px;
+    border-radius: 3px;
+    padding-top: .45vw;
+    padding-left: 20px; 
+    cursor: pointer;
+    height: 3.5vw;
+  }
+  
+  #file_upload_container{
+      margin-bottom: 2.5vw;
+  }
+
+  #title, #middlename, #fileUpload, #fileDescription,#date, #time, #street, #email
   ,#password, #birthday, #gender, #contactNumber, #landline, #districtNumber, #building, #floor
   ,#houseNumber, #repeat_password{
     height: 3vw;
+    border: black solid 1px;
+  }
+
+  #postDescription{
+    height: 25vw;
     border: black solid 1px;
   }
   

@@ -20,6 +20,8 @@ import { EditAdminInformationComponent } from './edit-admin-information/edit-adm
 import { EditUserProfileComponent } from './edit-user-profile/edit-user-profile.component';
 import { MosquitopediaComponent } from './mosquitopedia/mosquitopedia.component';
 import { CommunityProjectsManagementComponent } from './community-projects-management/community-projects-management.component';
+import { CreateCommunityProjectComponent } from './create-community-project/create-community-project.component';
+import { EditCommunityProjectComponent } from './edit-community-project/edit-community-project.component';
 
 @NgModule({
   declarations: [
@@ -39,7 +41,9 @@ import { CommunityProjectsManagementComponent } from './community-projects-manag
     EditAdminInformationComponent,
     EditUserProfileComponent,
     MosquitopediaComponent,
-    CommunityProjectsManagementComponent
+    CommunityProjectsManagementComponent,
+    CreateCommunityProjectComponent,
+    EditCommunityProjectComponent
   ],
   imports: [
     BrowserModule,

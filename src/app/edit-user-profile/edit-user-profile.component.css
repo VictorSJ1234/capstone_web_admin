@@ -137,6 +137,7 @@
   ,#password, #birthday, #gender, #contactNumber, #landline, #districtNumber, #building, #floor
   ,#houseNumber, #repeat_password{
     height: 3vw;
+    border: black solid 1px;
   }
 
   .buttons_container{
