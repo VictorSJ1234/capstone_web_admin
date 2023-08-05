@@ -22,6 +22,7 @@ import { MosquitopediaComponent } from './mosquitopedia/mosquitopedia.component'
 import { CommunityProjectsManagementComponent } from './community-projects-management/community-projects-management.component';
 import { CreateCommunityProjectComponent } from './create-community-project/create-community-project.component';
 import { EditCommunityProjectComponent } from './edit-community-project/edit-community-project.component';
+import { DengueCasesPostComponent } from './dengue-cases-post/dengue-cases-post.component';
 
 @NgModule({
   declarations: [
@@ -43,7 +44,8 @@ import { EditCommunityProjectComponent } from './edit-community-project/edit-com
     MosquitopediaComponent,
     CommunityProjectsManagementComponent,
     CreateCommunityProjectComponent,
-    EditCommunityProjectComponent
+    EditCommunityProjectComponent,
+    DengueCasesPostComponent
   ],
   imports: [
     BrowserModule,

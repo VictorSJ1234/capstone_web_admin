@@ -1,7 +1,7 @@
 <div class="side-nav-container">
     <div class="side-nav">
         <ul>
-        <li class="image_and_label" routerLinkActive="active">
+        <li class="image_and_label" [class.active]="isActive('/admin-dashboard') || isActive('/dengue-post-component')">
             <img src="../../assets/sidenav_icons/dashboard.png" alt="" [routerLink]="'/admin-dashboard'">
             <img src="../../assets/sidenav_icons/dashboard.png"  class="active-img" alt="" [routerLink]="'/admin-dashboard'" routerLinkActive="active">
             <button [routerLink]="'/admin-dashboard'" routerLinkActive="active">Dashboard</button>
