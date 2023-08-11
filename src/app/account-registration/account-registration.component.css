@@ -186,6 +186,14 @@
       .inquiry_title_container h1{
         font-size: 5vw;
       }
+
+      .tooltip-text {
+        color: #fff;
+        padding: 5px;
+        border-radius: 5px;
+        font-size: 1.5vw;
+        z-index: 1;
+      }
       
       .description_container{
         display: flex;
@@ -229,10 +237,6 @@
         height: 5.5vw;
         margin-bottom: 30px;
         width: 35vw;
-      }
-    
-      .tooltip-text {
-        font-size: 1vw;
       }
       .send_button_container{
         text-align: center;
@@ -288,7 +292,11 @@
         font-size: 5vw;
       }
       .tooltip-text {
-        font-size: 1.5vw;
+        color: #fff;
+        padding: 5px;
+        border-radius: 5px;
+        font-size: 2.3vw;
+        z-index: 1
       }
       .send_button_container{
         text-align: center;
