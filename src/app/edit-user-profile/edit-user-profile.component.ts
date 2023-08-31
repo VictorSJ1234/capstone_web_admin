@@ -57,13 +57,10 @@ export class EditUserProfileComponent {
       this.userData.name.trim() !== '' &&
       this.userData.email.trim() !== '' &&
       this.userData.birthday.trim() !== '' &&
-      //this.userData.password.trim() !== '' &&
-      //this.userData.repeat_password.trim() !== '' &&
       this.userData.gender.trim() !== '' &&
       //this.userData.contactNumber.trim() !== '' &&
       //!this.passwordMismatch &&
       this.userData.barangay.trim() !== '' &&
-      //this.userData.city.trim() !== '' &&
       !this.isEmailInvalid()
     );
   }
