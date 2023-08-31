@@ -98,7 +98,7 @@ export class AccountRegistrationComponent {
             console.log('Registration successful:', response);
             this.showSuccessModal = true;
             this.openCarouselModal(); 
-            // Handle successful registration here
+            // successful registration
           },
           error => {
             console.error('Registration error:', error);
@@ -174,3 +174,4 @@ export class AccountRegistrationComponent {
     this.showPassword = !this.showPassword;
   }
 }
+//test test

@@ -37,13 +37,12 @@ export class ReportInformationComponent {
     private adminRegistrationService: AdminRegistrationService) {}
 
   deleteReport() {
-    // Handle the logic for responding to the selected report
     this.router.navigate(['/admin-chat']);
   }
   ngOnInit() {
     this.route.queryParams.subscribe(params => {
       this.reports = history.state.reports;
-      this.userId = this.reports.userId; // Assuming userId is a property in the report data.
+      this.userId = this.reports.userId; // userId is a property in the report data.
 
       // Fetch user data based on userId.
       this.adminRegistrationService.getUserData(this.userId).subscribe(
