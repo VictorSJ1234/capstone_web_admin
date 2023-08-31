@@ -32,7 +32,6 @@ export class CommunityReportManagementComponent {
     );
   }
 
-  //continue this
   openReport(report: any) {
     // Fetch userData based on report.userId
     this.adminService.getUserData(report.userId).subscribe(

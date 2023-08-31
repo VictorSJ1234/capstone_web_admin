@@ -43,7 +43,7 @@ export class ReportInformationComponent {
   ngOnInit() {
     this.route.queryParams.subscribe(params => {
       this.reports = history.state.reports;
-      this.userId = this.reports.userId; // Assuming userId is a property in your report data.
+      this.userId = this.reports.userId; // Assuming userId is a property in the report data.
 
       // Fetch user data based on userId.
       this.adminRegistrationService.getUserData(this.userId).subscribe(
