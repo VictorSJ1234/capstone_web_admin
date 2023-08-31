@@ -174,4 +174,4 @@ export class AccountRegistrationComponent {
     this.showPassword = !this.showPassword;
   }
 }
-//test test
+//test
