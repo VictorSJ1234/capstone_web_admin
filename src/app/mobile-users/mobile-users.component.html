@@ -13,9 +13,14 @@
             <h2 class="report_list_header">Mobile Users List</h2>
             <table class="report_table">
             <tbody>
-                <tr *ngFor="let user of users">
-                    <td><img [src]="user.image" alt="Report Image" class="user_image"></td>
-                    <td class="name"><p>{{ user.username }}</p></td>
+                <tr *ngIf="userData.length === 0">
+                    <td colspan="3" class="no-reports-cell">
+                        No reports yet
+                    </td>
+                </tr>
+                <tr *ngFor="let user of userData">
+                    <td><img [src]="convertToImage(user.profilePicture)" alt="Report Image" class="user_image"></td>
+                    <td class="name"><p>{{ user.name }}</p></td>
                     <td><button (click)="viewReports(user)" id="view_button"><img src="../../assets/button_icons/reports_icon.png" alt="View">&nbsp;Reports</button></td>
                     <td><button (click)="editReport(user)" id="edit_button"><img src="../../assets/button_icons/edit_icon.png" alt="Edit">&nbsp;Edit</button></td>
                     <td><button (click)="deleteReport(user)" id="delete_button"><img src="../../assets/button_icons/delete_icon.png" alt="Delete">&nbsp;Delete</button></td>

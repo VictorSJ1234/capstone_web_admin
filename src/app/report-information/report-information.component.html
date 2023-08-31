@@ -15,14 +15,14 @@
                 <h2>Mobile User Report</h2>
             </div>
             <div class="user_information_row">
-                <img [src]="userImage" alt="User Image">
+                <img [src]="image" alt="User Image">
                 <div class="username_and_name">
-                    @{{username}}
-                    <p><span>{{fullname}}</span></p>
+                   Name
+                    <p><span>{{name}}</span></p>
                 </div>
                 <div class="barangay">
                     &nbsp;
-                    <p><b>Barangay: </b><span>{{barangay}}</span></p>
+                    <p><b>Barangay: </b><span>{{reports.barangay}}</span></p>
                 </div>
 
             </div>
@@ -31,19 +31,19 @@
                     <tr>
                         <td class="first_column_container">
                             <div class="column1">
-                                <b>Report # {{reportNumber}}</b> 
+                                <b>Report # {{reports.report_number}}</b> 
                                 <img src="../../assets/user_report_images/report_icon.png" alt="Report Image">
                             </div>
                         </td>
                         <td>
                             <div class="column2">
-                                <p class="subject_text"><b>Subject:&nbsp;</b><span >{{ subject}}</span></p>
-                                <p class="report_id"><b>Report Id:&nbsp;</b><span class="reportId_text">{{reportId}}</span></p>
+                                <p class="subject_text"><b>Subject:&nbsp;</b><span >{{reports.report_subject}}</span></p>
+                                <p class="report_id"><b>Report Id:&nbsp;</b><span class="reportId_text">{{reports.reportId}}</span></p>
                             </div>
                         </td>
                         <td class="column3_container">
                             <div class="column3">
-                                <p class="date"><b>Subject:&nbsp;</b><span class="date_text">{{date}}</span></p>
+                                <p class="date"><b>Date:&nbsp;</b><span class="date_text">{{reports.formattedDate}}</span></p>
                                 <p class="status"><b>Status:&nbsp;</b><span class="status_text">New Report</span></p>
                             </div>
                         </td>
@@ -55,11 +55,7 @@
                     <h2>Report Content: </h2>
                 </div>
                 <div class="report_content_div">
-                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's 
-                        standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a
-                         type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining 
-                         essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, 
-                         and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+                    <p>{{reports.report_description}}</p>
                 </div>
             </div>
             <button id="respond_button" (click)="openCarouselModal()">Respond</button>

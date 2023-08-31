@@ -34,10 +34,15 @@
             </div>
             <table class="report_table">
                 <tbody>
+                    <tr *ngIf="reports.length === 0">
+                        <td colspan="3" class="no-reports-cell">
+                            No reports yet
+                        </td>
+                    </tr>
                     <tr *ngFor="let report of reports">
                         <td class="first_column">
                             <div class="column1">
-                                <b>Report # {{report.reportNumber}}</b> 
+                                <!--<b>Report # {{report.report_number}}</b>-->
                                 <img src="../../assets/user_report_images/report_icon.png" alt="Report Image">
                                 <b>Report ID#</b> <br>
                                 {{report.reportId}}
@@ -45,8 +50,8 @@
                         </td>
                         <td>
                             <div class="column2">
-                                <p class="subject_text"><b>Subject:&nbsp;</b><span >{{ report.subject}}</span></p>
-                                <p class="date_and_barangay"><b>Date:&nbsp;</b><span class="date_text">{{report.date}}</span>&nbsp;&nbsp;<b>Barangay:&nbsp;</b> <span class="date_text">{{report.barangay}}</span></p>
+                                <p class="subject_text"><b>Subject:&nbsp;</b><span >{{ report.report_subject}}</span></p>
+                                <p class="date_and_barangay"><b>Date:&nbsp;</b><span class="date_text">{{report.formattedDate}}</span>&nbsp;&nbsp;<b>Barangay:&nbsp;</b> <span class="date_text">{{report.barangay}}</span></p>
                             </div>
                         </td>
                         <td class="button_column">

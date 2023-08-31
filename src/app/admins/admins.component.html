@@ -13,11 +13,16 @@
             <h2 class="report_list_header">Admin Accounts List</h2>
             <table class="report_table">
             <tbody>
-                <tr *ngFor="let information of Admin">
-                    <td><img [src]="information.image" alt="Report Image" class="user_image"></td>
-                    <td class="name"><p>{{ information.username }}</p></td>
-                    <td><button (click)="editReport(information)" id="edit_button"><img src="../../assets/button_icons/edit_icon.png" alt="Edit">&nbsp;Edit</button></td>
-                    <td><button (click)="deleteReport(information)" id="delete_button"><img src="../../assets/button_icons/delete_icon.png" alt="Delete">&nbsp;Delete</button></td>
+                <tr *ngIf="adminData.length === 0">
+                    <td colspan="3" class="no-reports-cell">
+                        No admin yet
+                    </td>
+                </tr>
+                <tr *ngFor="let Admin of adminData">
+                    <td><img [src]="convertToImage(Admin.adminProfilePicture)" alt="Report Image" class="user_image"></td>
+                    <td class="name"><p>{{ Admin.firstname }}</p></td>
+                    <td><button (click)="editReport(Admin)" id="edit_button"><img src="../../assets/button_icons/edit_icon.png" alt="Edit">&nbsp;Edit</button></td>
+                    <td><button (click)="deleteReport(Admin)" id="delete_button"><img src="../../assets/button_icons/delete_icon.png" alt="Delete">&nbsp;Delete</button></td>
                 </tr>
             </tbody>
             </table>

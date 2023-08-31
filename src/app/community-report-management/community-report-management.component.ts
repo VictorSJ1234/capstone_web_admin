@@ -1,94 +1,64 @@
 import { Component } from '@angular/core';
 
 import { Router, ActivatedRoute } from '@angular/router';
-
-interface Report {
-  name: string;
-  reportNumber: Number;
-  reportId: string;
-  subject: string;
-  date: string;
-  barangay: string;
-  image: string;
-  username: string;
-}
-
+import { AdminRegistrationService } from '../shared/admin-registration.service'
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-community-report-management',
   templateUrl: './community-report-management.component.html',
-  styleUrls: ['./community-report-management.component.css']
+  styleUrls: ['./community-report-management.component.css'],
+  providers: [AdminRegistrationService, DatePipe]
 })
 export class CommunityReportManagementComponent {
+  userData: any;
+  reports: any[] = []; // Array to store all report data
 
-  reports: Report[] = [
-    {
-      name: 'Rene Victor San Juan',
-      reportNumber: 1,
-      reportId: '2023-07-07-000001',
-      subject:'This is a report',
-      date: '2023-07-07',
-      barangay: 'Palitaw',
-      image: '../../assets/icons/rj_.jpg',
-      username: 'Rene Victor San Juan',
-    },
-    {
-      name: 'Robert Jay Cruz',
-      reportNumber: 2,
-      reportId: '2023-07-07-000002',
-      subject:'Report 2',
-      date: '2023-07-07',
-      barangay: 'Palitaw',
-      image: '../../assets/icons/robert.jpg',
-      username: 'Rene Victor San Juan',
-    },
-    {
-      name: 'Ralph Christian Cristobal',
-      reportNumber: 3,
-      reportId: '2023-07-07-000003',
-      subject:'This is a report',
-      date: '2023-07-07',
-      barangay: 'Palitaw',
-      image: '../../assets/icons/rc.jpg',
-      username: 'Rene Victor San Juan',
-    },
-    {
-      name: 'Lee Ann Lo',
-      reportNumber: 4,
-      reportId: '2023-07-07-000004',
-      subject:'Report 4',
-      date: '2023-07-07',
-      barangay: 'Palitaw',
-      image: '../../assets/icons/leeann.jpg',
-      username: 'Rene Victor San Juan',
-    }
-  ];
+  constructor(private router: Router, private route: ActivatedRoute, private adminService: AdminRegistrationService, private datePipe: DatePipe) {
+  }
+
+  fetchAllReports() {
+    this.adminService.getAllReports().subscribe(
+      (response: any) => {
+        this.reports = response.allReportData;
+        // Format the postedDate to mm/dd/yy using DatePipe
+        this.reports.forEach(report => {
+          report.formattedDate = this.datePipe.transform(report.postedDate, 'MM/dd/yy');
+        });
+      },
+      (error) => {
+        console.error(error);
+      }
+    );
+  }
+
+  //continue this
+  openReport(report: any) {
+    // Fetch userData based on report.userId
+    this.adminService.getUserData(report.userId).subscribe(
+      (response: any) => {
+        this.userData =response.userInformationData;
+          // Pass userData and report data to the next page using state
+          this.router.navigateByUrl('/report-information', { state: { reports: report, userData: this.userData } });
+          console.log('Responding to report:', report);
+          console.log('User Barangay:', this.userData);
+      },
+      (error) => {
+        console.error(error);
+      }
+    );
+  }
   
-
-  constructor(private router: Router, private route: ActivatedRoute) {
-
-  }
-
-  openReport(report: Report) {
-    this.router.navigate(['/report-information'], 
-
-    //to pass information from this page to another
-    {queryParams:{ 
-      username: report.username, 
-      image: report.image, barangay: report.barangay, 
-      fullname: report.name,
-      subject: report.subject,
-      reportId: report.reportId,
-      date: report.date, 
-      reportNumber: report.reportNumber,
-     } });
-    console.log('Responding to report:', report);
-  }
   deleteReport(report: Report) {
     this.router.navigate(['/admin-chat']);
     console.log('Responding to report:', report);
   }
   ngOnInit() {
+    
+    this.route.queryParams.subscribe(params => {
+      // Load user reports after fetching user data
+      this.fetchAllReports();
+    });
     window.scrollTo(0, 0);
   }
 

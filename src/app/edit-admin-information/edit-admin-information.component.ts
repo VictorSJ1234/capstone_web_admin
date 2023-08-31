@@ -9,37 +9,29 @@ import { Router, ActivatedRoute } from '@angular/router';
   styleUrls: ['./edit-admin-information.component.css', '../../assets/bootstrap/bootstrap.min.css']
 })
 export class EditAdminInformationComponent {
+  adminData: any;
+  adminProfilePicture!: string; //! means undefined
 
-  image: string;
-  username: string;
+  //to store the converted image
+  image: string | ArrayBuffer | null = null;
 
-  formData = {
-    firstname: '',
-    lastname: '',
-    username: '',
-    email: '',
-    password: '',
-    repeat_password: '',
-    gender: '',
-    contactNumber: ''
-  };
+
   passwordMismatch = false;
 
   save() {
     if (this.isFormValid()) {
       // logged_in
-      console.log('data:', this.formData);
+      console.log('data:', this.adminData);
     } else {
       // Show error message
-      if (this.formData.password !== this.formData.repeat_password) {
+      if (this.adminData.password !== this.adminData.repeat_password) {
         console.log('Password and repeat password do not match.');
       }
       if (!this.isPasswordValid()) {
         console.log('Password does not follow the required pattern.');
       }
-      if (this.formData.firstname === '' || this.formData.email === '' || this.formData.username === '' 
-      || this.formData.password === '' || this.formData.repeat_password === '' || this.formData.lastname === ''
-      || this.formData.gender === '' || this.formData.contactNumber === '') {
+      if (this.adminData.firstname === '' || this.adminData.email === '' || this.adminData.username === '' || this.adminData.lastname === ''
+      || this.adminData.gender === '' || this.adminData.contactNumber === '') {
         console.log('Please fill out all fields.');
       }
       if (this.isEmailInvalid()) {
@@ -50,43 +42,44 @@ export class EditAdminInformationComponent {
 
   isPasswordValid(): boolean {
     const passwordPattern = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*]).{8,}$/;
-    return passwordPattern.test(this.formData.password);
+    return passwordPattern.test(this.adminData.password);
   }
 
   isEmailInvalid(): boolean {
     const emailPattern = /[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}/;
-    return !emailPattern.test(this.formData.email);
+    return !emailPattern.test(this.adminData.email);
   }
 
   isFormValid(): boolean {
     return (
-      this.formData.firstname.trim() !== '' &&
-      this.formData.lastname.trim() !== '' &&
-      this.formData.username.trim() !== '' &&
-      this.formData.email.trim() !== '' &&
-      this.formData.password.trim() !== '' &&
-      this.formData.repeat_password.trim() !== '' &&
-      this.formData.gender.trim() !== '' &&
-      this.formData.contactNumber.trim() !== '' &&
+      this.adminData.firstname.trim() !== '' &&
+      this.adminData.lastname.trim() !== '' &&
+      this.adminData.username.trim() !== '' &&
+      this.adminData.email.trim() !== '' &&
+      //this.adminData.password.trim() !== '' &&
+     //this.adminData.repeat_password.trim() !== '' &&
+      this.adminData.gender.trim() !== '' &&
+      this.adminData.contactNumber.trim() !== '' &&
       !this.passwordMismatch &&
       !this.isEmailInvalid()
     );
   }
 
   checkPasswordMatch() {
-    this.passwordMismatch = this.formData.password !== this.formData.repeat_password;
+    this.passwordMismatch = this.adminData.password !== this.adminData.repeat_password;
   }
 
-  constructor(private router: Router, private route: ActivatedRoute) {
-    this.username = '';
-    this.image = '';
-  }
+  constructor(private router: Router, private route: ActivatedRoute) {}
 
   ngOnInit() {
     this.route.queryParams.subscribe(params => {
-      this.username = params['username'];
-      this.image = params['image'];
-    });
-    window.scrollTo(0, 0);
-  }
+        this.adminData = history.state.adminData;
+        this.adminProfilePicture = this.adminData.adminProfilePicture;
+        // Convert the base64 image to a data URL
+        if (this.adminProfilePicture) {
+          this.image = 'data:image/jpeg;base64,' + this.adminProfilePicture;
+        }
+      });
+      window.scrollTo(0, 0);
+    }
 }

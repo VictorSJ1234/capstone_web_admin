@@ -13,7 +13,7 @@
         <div class="user_information_row">
             <img [src]="image" alt="User Image">
             <div class="username_and_name">
-                <p><span>{{username}}</span></p>
+                <p><span>{{userData.name}}</span></p>
             </div>
         </div>
         <div class="form_container">
@@ -25,7 +25,7 @@
                             <div class="form-group">
                                 <label for="fullname">Full Name</label>
                                 <input type="text" class="form-control" id="fullname" name="fullname" placeholder="Full Name" required
-                                    [(ngModel)]="formData.fullname"
+                                    [(ngModel)]="userData.name"
                                     [ngClass]="{ 'is-invalid': myForm.submitted && myForm.controls['fullname'].invalid }">
                                 <div class="invalid-tooltip" *ngIf="myForm.submitted && myForm.controls['fullname'].invalid">
                                     <span class="tooltip-text">Please enter your fullname.</span>
@@ -38,12 +38,11 @@
                             <!--gender-->
                             <div class="form-group">
                                 <label for="gender">Gender</label>
-                                <select class="form-control" id="gender" name="gender" required [(ngModel)]="formData.gender"
+                                <select class="form-control" id="gender" name="gender" required [(ngModel)]="userData.gender"
                                     [ngClass]="{ 'is-invalid': myForm.submitted && myForm.controls['gender'].invalid }">
-                                    <option value="" disabled>Select gender</option>
-                                    <option value="male">Male</option>
-                                    <option value="female">Female</option>
-                                    <option value="tagilid">Tagilid</option>
+                                    <option value="userData.gender" disabled>--Select Gender--</option>
+                                    <option value="Male">Male</option>
+                                    <option value="Female">Female</option>
                                 </select>
                                 <div class="invalid-tooltip" *ngIf="myForm.submitted && myForm.controls['gender'].invalid">
                                     <span class="tooltip-text">Please select a gender.</span>
@@ -57,7 +56,7 @@
                             <div class="form-group">
                                 <label for="email">Email</label>
                                 <input type="email" class="form-control" id="email" name="email" placeholder="Email" required
-                                    [(ngModel)]="formData.email"
+                                    [(ngModel)]="userData.email"
                                     [ngClass]="{ 'is-invalid': myForm.submitted && myForm.controls['email'].invalid }"
                                     pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}">
                                 <div class="invalid-tooltip" *ngIf="myForm.submitted && myForm.controls['email'].invalid">
@@ -68,7 +67,7 @@
                                 </div>
                             </div>
 
-                            <!--password-->         
+                            <!--     
                             <div class="form-group">
                                 <label for="password">Password</label>
                                 <input type="password" class="form-control" id="password" name="password" placeholder="Password" required [(ngModel)]="formData.password"
@@ -81,6 +80,7 @@
                                 &nbsp;
                                 </div>
                             </div>    
+                             -->
                         </div>
 
                         <div class="column_2">
@@ -88,7 +88,7 @@
                             <!--birthday-->
                             <div class="form-group">
                                 <label for="birthday">Birthday</label>
-                                <input type="date" class="form-control" id="birthday" name="birthday" placeholder="Birthday" required [(ngModel)]="formData.birthday"
+                                <input type="date" class="form-control" id="birthday" name="birthday" placeholder="Birthday" required [(ngModel)]="userData.birthday"
                                   [ngClass]="{ 'is-invalid': myForm.submitted && myForm.controls['birthday'].invalid }">
                                 <div class="invalid-tooltip" *ngIf="myForm.submitted && myForm.controls['birthday'].invalid">
                                   <span class="tooltip-text">Please enter a valid date.</span>
@@ -103,7 +103,7 @@
                             <!--contact number-->
                             <div class="form-group">
                                 <label for="contactNumber">Mobile Number</label>
-                                <input type="text" class="form-control" id="contactNumber" name="contactNumber" placeholder="Contact Number" required [(ngModel)]="formData.contactNumber"
+                                <input type="text" class="form-control" id="contactNumber" name="contactNumber" placeholder="Contact Number" required [(ngModel)]="userData.contact_number"
                                     [ngClass]="{ 'is-invalid': myForm.submitted && myForm.controls['contactNumber'].invalid }"
                                     pattern="[0-9]+">
                                 <div class="invalid-tooltip" *ngIf="myForm.submitted && myForm.controls['contactNumber'].invalid">
@@ -117,9 +117,9 @@
                             <!--barangay-->
                             <div class="form-group">
                                 <label for="barangay">Barangay</label>
-                                <select class="form-control" id="barangay" name="barangay" required [(ngModel)]="formData.barangay"
+                                <select class="form-control" id="barangay" name="barangay" required [(ngModel)]="userData.barangay"
                                   [ngClass]="{ 'is-invalid': myForm.submitted && myForm.controls['barangay'].invalid }">
-                                  <option value="">Select Barangay</option>
+                                  <option value="userData.barangay" disabled>--Select a Barangay--</option>
                                   <option value="Barangay 1">Barangay 1</option>
                                   <option value="Barangay 2">Barangay 2</option>
                                   <option value="Barangay 3">Barangay 3</option>
@@ -134,7 +134,7 @@
                                 </div>
                             </div>
         
-                            <!--repeat password-->
+                            <!--
                             <div class="form-group">
                                 <label for="reapeat_password">Repeat Password</label>
                                 <input type="password" class="form-control" id="repeat_password" name="repeat_password" placeholder="Repeat Password" required [(ngModel)]="formData.repeat_password"
@@ -148,6 +148,7 @@
                                 &nbsp;
                                 </div>
                             </div>
+                        -->
                         </div>     
                     </div> 
                 </div>

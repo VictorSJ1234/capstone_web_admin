@@ -7,7 +7,7 @@
             <h1 class="description">Add New Admin Account</h1>
         </div>
         <div class="form_container">
-            <form (ngSubmit)="register()" #myForm="ngForm">
+            <form (ngSubmit)="register(myForm)" #myForm="ngForm">
               <div class="form-row">
                 <div class="login_container">
                   <div class="fields_container">
@@ -57,23 +57,35 @@
                                 &nbsp;
                             </div>
                         </div>
-                            
-                          <!--password-->         
+        
+                          <!-- password -->
                           <div class="form-group password-container">
                             <label for="password">Password</label>
-                            <input type="{{ showPassword ? 'text' : 'password' }}" class="form-control" id="password" name="password"
-                              placeholder="Password" required [(ngModel)]="formData.password"
-                              [ngClass]="{ 'is-invalid': myForm.submitted && myForm.controls['password'].invalid }">
+                            <input
+                              type="{{ showPassword ? 'text' : 'password' }}"
+                              class="form-control"
+                              id="password"
+                              name="password"
+                              placeholder="Password"
+                              required
+                              [(ngModel)]="formData.password"
+                              [ngClass]="{ 'is-invalid': myForm.submitted && myForm.controls['password'].invalid }"
+                              pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*]).{8,}$"
+                            >
                             <span class="password-icon" (click)="togglePasswordVisibility()">
                               <i class="fa" [ngClass]="showPassword ? 'fa-eye-slash' : 'fa-eye'"></i>
                             </span>
                             <div class="invalid-tooltip" *ngIf="myForm.submitted && myForm.controls['password'].invalid">
-                              <span class="tooltip-text">Password is required.</span>
+                              <span class="tooltip-text">
+                              Password must have at least 1 uppercase and lowercase, 1 digit,
+                               1 special character(!@#$%^&*), and be 8+ characters long.
+                              </span>
                             </div>
                             <div class="valid-tooltip">
                               &nbsp;
                             </div>
                           </div>
+
                       </div>
 
                       <div class="column2">
@@ -106,11 +118,11 @@
 
                         <!--contact number-->
                         <div class="form-group">
-                          <label for="contactNumber">Mobile Number</label>
-                          <input type="text" class="form-control" id="contactNumber" name="contactNumber" placeholder="Contact Number" required [(ngModel)]="formData.contactNumber"
-                              [ngClass]="{ 'is-invalid': myForm.submitted && myForm.controls['contactNumber'].invalid }"
+                          <label for="contact_number">Mobile Number</label>
+                          <input type="text" class="form-control" id="contact_number" name="contact_number" placeholder="Contact Number" required [(ngModel)]="formData.contact_number"
+                              [ngClass]="{ 'is-invalid': myForm.submitted && myForm.controls['contact_number'].invalid }"
                               pattern="[0-9]+">
-                          <div class="invalid-tooltip" *ngIf="myForm.submitted && myForm.controls['contactNumber'].invalid">
+                          <div class="invalid-tooltip" *ngIf="myForm.submitted && myForm.controls['contact_number'].invalid">
                               <span class="tooltip-text">Please enter a valid mobile number.</span>
                           </div>
                           <div class="valid-tooltip">
@@ -136,6 +148,16 @@
                   </div>
                 </div>
               </div>
+              <div class="error-container">
+                <div *ngIf="showEmailError" class="alert alert-danger mt-2">
+                  Email Address Already Exist
+                </div>
+              </div>
+              <div class="error-container">
+                <div *ngIf="showUsernameError" class="alert alert-danger mt-2">
+                  Username Already Exist
+                </div>
+              </div>
               <div class="send_button_container">
                 <div class="form-row">
                   <div class="col-md-12">
@@ -150,4 +172,22 @@
             </form>
         </div>
     </section>
+
+    <!-- Modal -->
+    <div id="response_modal" class="modal" [ngStyle]="{ display: carouselModalOpen ? 'block' : 'none' }">
+      <div class="modal-content">
+        <div class="modal-header" id="modal_header">
+          <h2>Account Created Successfully</h2>
+          <span class="close" id="close_carousel" (click)="closeCarouselModal()">&times;</span>
+        </div>
+        
+        <div class="modal-body">
+          <p>Your admin account has been successfully created.</p>
+          <p>You can now log in using your new credentials.</p>
+          <div class="redirect-button-container">
+            <button class="btn btn-primary" (click)="redirectToLogin()">Go to Login</button>
+          </div>
+        </div>
+      </div>
+    </div>    
 </body>

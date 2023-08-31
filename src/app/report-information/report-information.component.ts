@@ -1,12 +1,28 @@
 import { Component } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
+import { AdminRegistrationService } from '../shared/admin-registration.service';
+
 
 @Component({
   selector: 'app-report-information',
   templateUrl: './report-information.component.html',
-  styleUrls: ['./report-information.component.css', '../../assets/bootstrap/bootstrap.min.css']
+  styleUrls: ['./report-information.component.css', '../../assets/bootstrap/bootstrap.min.css'],
+  providers: [AdminRegistrationService]
 })
 export class ReportInformationComponent {
+  //initialize data containers
+  //! means undefined
+  userData: any;
+  reports: any;
+  userId!: string;
+  name!: string;
+  
+
+  profilePicture!: string; //! means undefined
+
+  //to store the converted image
+  image: string | ArrayBuffer | null = null;
+
   carouselModalOpen = false;
 
   openCarouselModal() {
@@ -17,46 +33,36 @@ export class ReportInformationComponent {
     this.carouselModalOpen = false;
   }
 
-  
-  userImage: string;
-  fullname: string;
-  username: string;
-  barangay: string;
-  subject: string;
-  reportId: string;
-  date: string;
-  reportNumber: string;
+  constructor(private router: Router, private route: ActivatedRoute,
+    private adminRegistrationService: AdminRegistrationService) {}
 
-  constructor(private router: Router, private route: ActivatedRoute) {
-    this.userImage = '';
-    this.fullname = '';
-    this.barangay = 'Palitaw';
-    this.username ='username'
-    this.subject = '';
-    this.reportId ='';
-    this.date = '';
-    this.reportNumber = '';
-  }
-
-  openReport() {
-    // Handle the logic for responding to the selected report
-    this.router.navigate(['/report-information'], 
-    //to pass information from this page to another
-    {queryParams:{ username: this.username, image: this.userImage, barangay: this.barangay } });
-  }
   deleteReport() {
     // Handle the logic for responding to the selected report
     this.router.navigate(['/admin-chat']);
   }
   ngOnInit() {
     this.route.queryParams.subscribe(params => {
-      this.fullname = params['fullname'];
-      this.userImage = params['image'];
-      this.subject = params['subject'];
-      this.reportId = params['reportId'];
-      this.date = params['date'];
-      this.reportNumber = params['reportNumber'];
+      this.reports = history.state.reports;
+      this.userId = this.reports.userId; // Assuming userId is a property in your report data.
+
+      // Fetch user data based on userId.
+      this.adminRegistrationService.getUserData(this.userId).subscribe(
+        (data: any) => {
+          this.userData = data.userInformationData; // Assign fetched user data to userData.
+          // Convert the base64 image to a data URL
+          if (this.userData[0].profilePicture) {
+            this.image = 'data:image/jpeg;base64,' + this.userData[0].profilePicture;
+          }
+
+          console.log('User Reports:', this.userData[0].name);
+          this.name = this.userData[0].name;
+        },
+        error => {
+          console.error('Error fetching user data:', error);
+        }
+      );
     });
+
     window.scrollTo(0, 0);
   }
 

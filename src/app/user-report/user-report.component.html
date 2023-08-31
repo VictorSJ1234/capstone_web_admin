@@ -33,23 +33,28 @@
                 </div>
             </div>
             <div class="user_information_row">
-                <img [src]="userImage" alt="User Image">
+                <img [src]="image" alt="User Image">
                 <div class="username_and_name">
-                    @{{username}}
-                    <p><span>{{fullname}}</span></p>
+                    Name
+                    <p><span>{{userData.name}}</span></p>
                 </div>
                 <div class="barangay">
                     &nbsp;
-                    <p><b>Barangay: </b><span>{{barangay}}</span></p>
+                    <p><b>Barangay: </b><span>{{userData.barangay}}</span></p>
                 </div>
 
             </div>
             <table class="report_table">
                 <tbody>
+                    <tr *ngIf="reports.length === 0">
+                        <td colspan="3" class="no-reports-cell">
+                            No reports yet
+                        </td>
+                    </tr>
                     <tr *ngFor="let report of reports">
                         <td class="first_column">
                             <div class="column1">
-                                <b>Report # {{report.reportNumber}}</b> 
+                                <b>Report # {{report.report_number}}</b> 
                                 <img src="../../assets/user_report_images/report_icon.png" alt="Report Image">
                                 <b>Report ID#</b> <br>
                                 {{report.reportId}}
@@ -57,8 +62,8 @@
                         </td>
                         <td>
                             <div class="column2">
-                                <p class="subject_text"><b>Subject:&nbsp;</b><span >{{ report.subject}}</span></p>
-                                <p class="date"><b>Date:&nbsp;</b><span class="date_text">{{report.date}}</span></p>
+                                <p class="subject_text"><b>Subject:&nbsp;</b><span >{{ report.report_subject}}</span></p>
+                                <p class="date"><b>Date:&nbsp;</b><span class="date_text">{{report.formattedDate}}</span></p>
                             </div>
                         </td>
                         <td class="button_column">

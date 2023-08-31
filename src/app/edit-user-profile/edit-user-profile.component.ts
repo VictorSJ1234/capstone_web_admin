@@ -7,38 +7,33 @@ import { Router, ActivatedRoute } from '@angular/router';
   styleUrls: ['./edit-user-profile.component.css', '../../assets/bootstrap/bootstrap.min.css']
 })
 export class EditUserProfileComponent {
-  image: string;
-  username: string;
+  userData: any;
+  profilePicture!: string; //! means undefined
 
-  formData = {
-    fullname: '',
-    email: '',
-    password: '',
-    repeat_password: '',
-    birthday: '',
-    gender: '',
-    contactNumber: '',
-    barangay: '',
-    city: 'Pasig City',
-  };
+  //to store the converted image
+  image: string | ArrayBuffer | null = null;
+
+
   passwordMismatch = false;
 
   save() {
     if (this.isFormValid()) {
       // logged_in
-      console.log('data:', this.formData);
+      console.log('data:', this.userData);
     } else {
       // Show error message
-      if (this.formData.password !== this.formData.repeat_password) {
+      if (this.userData.password !== this.userData.repeat_password) {
         console.log('Password and repeat password do not match.');
       }
+      /** 
       if (!this.isPasswordValid()) {
         console.log('Password does not follow the required pattern.');
       }
-      if (this.formData.fullname === '' || this.formData.email === ''
-      || this.formData.password === '' || this.formData.repeat_password === '' 
-      || this.formData.gender === '' || this.formData.contactNumber === ''
-      || this.formData.barangay === '' || this.formData.city === '') {
+      */
+      if (this.userData.name === '' || this.userData.email === ''
+      //|| this.userData.password === '' || this.userData.repeat_password === '' 
+      || this.userData.gender === '' || this.userData.contactNumber === ''
+      || this.userData.barangay === '' || this.userData.city === '') {
         console.log('Please fill out all fields.');
       }
       if (this.isEmailInvalid()) {
@@ -49,43 +44,47 @@ export class EditUserProfileComponent {
 
   isPasswordValid(): boolean {
     const passwordPattern = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*]).{8,}$/;
-    return passwordPattern.test(this.formData.password);
+    return passwordPattern.test(this.userData.password);
   }
 
   isEmailInvalid(): boolean {
     const emailPattern = /[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}/;
-    return !emailPattern.test(this.formData.email);
+    return !emailPattern.test(this.userData.email);
   }
 
   isFormValid(): boolean {
     return (
-      this.formData.fullname.trim() !== '' &&
-      this.formData.email.trim() !== '' &&
-      this.formData.birthday.trim() !== '' &&
-      this.formData.password.trim() !== '' &&
-      this.formData.repeat_password.trim() !== '' &&
-      this.formData.gender.trim() !== '' &&
-      this.formData.contactNumber.trim() !== '' &&
-      !this.passwordMismatch &&
-      this.formData.barangay.trim() !== '' &&
-      this.formData.city.trim() !== '' &&
+      this.userData.name.trim() !== '' &&
+      this.userData.email.trim() !== '' &&
+      this.userData.birthday.trim() !== '' &&
+      //this.userData.password.trim() !== '' &&
+      //this.userData.repeat_password.trim() !== '' &&
+      this.userData.gender.trim() !== '' &&
+      //this.userData.contactNumber.trim() !== '' &&
+      //!this.passwordMismatch &&
+      this.userData.barangay.trim() !== '' &&
+      //this.userData.city.trim() !== '' &&
       !this.isEmailInvalid()
     );
   }
 
-  checkPasswordMatch() {
-    this.passwordMismatch = this.formData.password !== this.formData.repeat_password;
-  }
+  /** 
 
-  constructor(private router: Router, private route: ActivatedRoute) {
-    this.username = '';
-    this.image = '';
+  checkPasswordMatch() {
+    this.passwordMismatch = this.userData.password !== this.userData.repeat_password;
   }
+  */
+
+  constructor(private router: Router, private route: ActivatedRoute) {}
 
   ngOnInit() {
     this.route.queryParams.subscribe(params => {
-      this.username = params['username'];
-      this.image = params['image'];
+      this.userData = history.state.userData;
+      this.profilePicture = this.userData.profilePicture;
+      // Convert the base64 image to a data URL
+      if (this.profilePicture) {
+        this.image = 'data:image/jpeg;base64,' + this.profilePicture;
+      }
     });
     window.scrollTo(0, 0);
   }
