@@ -56,9 +56,7 @@ export class EditAdminInformationComponent {
       this.adminData.lastname.trim() !== '' &&
       this.adminData.username.trim() !== '' &&
       this.adminData.email.trim() !== '' &&
-      //
-      //this.adminData.password.trim() !== '' &&
-     //this.adminData.repeat_password.trim() !== '' &&
+
       this.adminData.gender.trim() !== '' &&
       this.adminData.contactNumber.trim() !== '' &&
       !this.passwordMismatch &&
