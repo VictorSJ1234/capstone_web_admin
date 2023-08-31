@@ -50,7 +50,7 @@ export class AccountRegistrationComponent {
   }
 
   redirectToLogin() {
-    this.router.navigate(['/']); // Replace '/' with the actual route of your login page
+    this.router.navigate(['/']); // route of the login page
   }
 
 
@@ -174,3 +174,4 @@ export class AccountRegistrationComponent {
     this.showPassword = !this.showPassword;
   }
 }
+//test
