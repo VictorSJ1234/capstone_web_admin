@@ -14,6 +14,11 @@ export class CommunityReportManagementComponent {
   userData: any;
   reports: any[] = []; // Array to store all report data
 
+  selectedReportId: string = ''; //container of selected id
+  selectedReportId2: string = ''; //container of seleted reportId
+  selectedUserName: string = ''; // container of selected name
+  carouselModalOpen = false;
+
   constructor(private router: Router, private route: ActivatedRoute, private adminService: AdminRegistrationService, private datePipe: DatePipe) {
   }
 
@@ -48,9 +53,35 @@ export class CommunityReportManagementComponent {
     );
   }
   
-  deleteReport(report: Report) {
-    this.router.navigate(['/admin-chat']);
-    console.log('Responding to report:', report);
+  openCarouselModal(report: any) {
+     // Store the selected reports's id to the initialized container "selectedReportId"
+    this.selectedReportId = report._id;
+    this.selectedReportId2 = report.reportId;
+    this.selectedUserName = report.name;
+
+    // Open the modal
+    this.carouselModalOpen = true;
+  }
+
+  // Function to close the delete modal
+  closeCarouselModal() {
+    this.carouselModalOpen = false;
+  }
+
+
+  // Function to confirm and delete the selected report
+  confirmDelete() {
+    // Call the admin service to delete the report
+    this.adminService.deleteUserReport(this.selectedReportId2).subscribe(
+      () => {
+        console.log('Deleted report:', this.selectedReportId2);
+        this.closeCarouselModal();
+        this.fetchAllReports();
+      },
+      (error) => {
+        console.error(error);
+      }
+    );
   }
   ngOnInit() {
     

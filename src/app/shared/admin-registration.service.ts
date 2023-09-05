@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 
-import { AdminRegistration } from './admin-registration.model';
+import { AdminRegistration, UserInformation } from './admin-registration.model';
 
 @Injectable({
   providedIn: 'root'
@@ -51,5 +51,30 @@ export class AdminRegistrationService {
    //get all admin data
    getAllAdmin(): Observable<any> {
     return this.http.post(`${this.baseURL}/getAllAdminData`, {});
+  }
+
+  // Function to delete a user using id
+  deleteUser(_id: string): Observable<any> {
+    return this.http.post(`${this.baseURL}/deleteUser`, { _id });
+  }
+
+  // Function to delete a user report usng reportId
+  deleteUserReport(reportId: string): Observable<any> {
+    return this.http.post(`${this.baseURL}/deleteUserReport`, { reportId });
+  }
+
+  // Function to delete an admin using id
+  deleteAdmin(_id: string): Observable<any> {
+    return this.http.post(`${this.baseURL}/deleteAdmin`, { _id });
+  }
+
+  // Function to edit an admin's account by Id
+  editAdmin(_id: string, admin: AdminRegistration): Observable<any> {
+    return this.http.put(`${this.baseURL}/editAdmin/${_id}`, admin);
+  }
+
+  // Function to edit a user's account by Id
+  editUser(_id: string, user: UserInformation): Observable<any> {
+    return this.http.put(`${this.baseURL}/editUser/${_id}`, user);
   }
 }

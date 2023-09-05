@@ -23,10 +23,29 @@
                     <td class="name"><p>{{ user.name }}</p></td>
                     <td><button (click)="viewReports(user)" id="view_button"><img src="../../assets/button_icons/reports_icon.png" alt="View">&nbsp;Reports</button></td>
                     <td><button (click)="editReport(user)" id="edit_button"><img src="../../assets/button_icons/edit_icon.png" alt="Edit">&nbsp;Edit</button></td>
-                    <td><button (click)="deleteReport(user)" id="delete_button"><img src="../../assets/button_icons/delete_icon.png" alt="Delete">&nbsp;Delete</button></td>
+                    <td><button (click)="openCarouselModal(user)" id="delete_button"><img src="../../assets/button_icons/delete_icon.png" alt="Delete">&nbsp;Delete</button></td>
                 </tr>
             </tbody>
             </table>
         </div>
     </section> 
+
+    <!-- Modal -->
+    <div id="response_modal" class="modal" [ngStyle]="{ display: carouselModalOpen ? 'block' : 'none' }">
+        <div class="modal-content">
+          <div class="modal-header" id="modal_header">
+            <span class="close" id="close_carousel" (click)="closeCarouselModal()">&times;</span>
+            <h2>Are you sure?</h2>
+          </div>
+          
+          <div class="modal-body">
+            <p>Confirm to delete user:</p>
+            <p>{{ selectedUserName }}</p>
+            <div class="redirect-button-container">
+                <button class="cancel-button" (click)="closeCarouselModal()">Cancel</button> <!-- Close modal on cancel -->
+                <button class="confirm-button" (click)="confirmDelete()">Confirm</button> <!-- Perform delete on confirm -->
+            </div>
+          </div>
+        </div>
+      </div>   
 <body>

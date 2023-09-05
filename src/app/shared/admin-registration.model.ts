@@ -10,3 +10,14 @@ export class AdminRegistration {
     role: string = '';
     adminProfilePicture: string = '';
 }
+
+export class UserInformation {
+    _id: string = '';
+    name: string = '';
+    birthday: string = '';
+    gender: string = '';
+    contact_number: string = '';
+    barangay: string = '';
+    email: string = '';
+    profilePicture: string = '';
+}

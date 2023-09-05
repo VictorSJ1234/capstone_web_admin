@@ -1,7 +1,9 @@
 // edit-admin-information.component.ts
 import { Component } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
-
+import { Location } from '@angular/common';
+import { AdminRegistrationService } from '../shared/admin-registration.service'
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-edit-admin-information',
@@ -9,6 +11,7 @@ import { Router, ActivatedRoute } from '@angular/router';
   styleUrls: ['./edit-admin-information.component.css', '../../assets/bootstrap/bootstrap.min.css']
 })
 export class EditAdminInformationComponent {
+
   adminData: any;
   adminProfilePicture!: string; //! means undefined
 
@@ -18,26 +21,48 @@ export class EditAdminInformationComponent {
 
   passwordMismatch = false;
 
-  save() {
+  carouselModalOpen = false;
+
+  openCarouselModal() {
+    this.carouselModalOpen = true;
+  }
+  
+  closeCarouselModal() {
+    this.carouselModalOpen = false;
+  }
+
+  save(form: NgForm) {
     if (this.isFormValid()) {
-      // logged_in
-      console.log('data:', this.adminData);
+      //open the confirmation modal
+      this.openCarouselModal();
+
     } else {
       // Show error message
-      if (this.adminData.password !== this.adminData.repeat_password) {
-        console.log('Password and repeat password do not match.');
-      }
-      if (!this.isPasswordValid()) {
-        console.log('Password does not follow the required pattern.');
-      }
       if (this.adminData.firstname === '' || this.adminData.email === '' || this.adminData.username === '' || this.adminData.lastname === ''
-      || this.adminData.gender === '' || this.adminData.contactNumber === '') {
+      || this.adminData.gender === '' || this.adminData.contact_number === '') {
         console.log('Please fill out all fields.');
       }
       if (this.isEmailInvalid()) {
         console.log('Invalid Email.');
       }
     }
+  }
+
+  confirmSave(form: NgForm) {
+    this.closeCarouselModal(); // Close the confirmation modal
+  
+    form.value.role = 'admin';
+    form.value.adminProfilePicture = this.adminData.adminProfilePicture;
+
+    // Call the service to edit admin data
+    this.adminService.editAdmin(this.adminData._id, form.value).subscribe(
+      (response) => {
+        console.log('Admin data updated successfully', response);
+      },
+      (error) => {
+        console.error('Error updating admin data', error);
+      }
+    );
   }
 
   isPasswordValid(): boolean {
@@ -58,8 +83,7 @@ export class EditAdminInformationComponent {
       this.adminData.email.trim() !== '' &&
 
       this.adminData.gender.trim() !== '' &&
-      this.adminData.contactNumber.trim() !== '' &&
-      !this.passwordMismatch &&
+      this.adminData.contact_number.trim() !== '' &&
       !this.isEmailInvalid()
     );
   }
@@ -68,7 +92,7 @@ export class EditAdminInformationComponent {
     this.passwordMismatch = this.adminData.password !== this.adminData.repeat_password;
   }
 
-  constructor(private router: Router, private route: ActivatedRoute) {}
+  constructor(private router: Router, private route: ActivatedRoute, private location: Location, private adminService: AdminRegistrationService,) {}
 
   ngOnInit() {
     this.route.queryParams.subscribe(params => {
@@ -81,4 +105,8 @@ export class EditAdminInformationComponent {
       });
       window.scrollTo(0, 0);
     }
+
+    cancel() {
+      this.location.back();
+    }  
 }

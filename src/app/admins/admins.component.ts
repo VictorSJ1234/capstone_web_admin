@@ -15,6 +15,10 @@ interface information {
 export class AdminsComponent implements OnInit{
   adminData: any[] = []; // Array to store admin data
 
+  selectedAdminId: string = ''; //container of seleted userId
+  selectedAdminName: string = ''; // container of selected name
+  carouselModalOpen = false;
+
   constructor(private router: Router, private adminService: AdminRegistrationService) {}
 
   ngOnInit() {
@@ -39,9 +43,33 @@ export class AdminsComponent implements OnInit{
      this.router.navigateByUrl('/edit-admin-information', { state: { adminData: Admin } });
      console.log('Responding to report:', Admin);
   }
-  deleteReport(Admin: information) {
-    this.router.navigate(['/admin-chat']);
-    console.log('Responding to report:', Admin);
+  openCarouselModal(Admin: any) {
+     // Store the selected admin's id to the initialized container "sekectedAdminId"
+    this.selectedAdminId = Admin._id;
+    this.selectedAdminName = Admin.firstname +" "+ Admin.lastname;
+
+    //open the modal
+    this.carouselModalOpen = true;
+  }
+
+  closeCarouselModal() {
+    this.carouselModalOpen = false;
+  }
+
+
+  // Function to confirm and delete the selected admin
+  confirmDelete() {
+     // Call the admin service to delete the admin
+    this.adminService.deleteAdmin(this.selectedAdminId).subscribe(
+      () => {
+        console.log('Deleted admin:', this.selectedAdminName);
+        this.closeCarouselModal(); // Close the modal
+        this.fetchAllAdmins(); // Reload admin data after deletion
+      },
+      (error) => {
+        console.error(error);
+      }
+    );
   }
   convertToImage(base64String: string): string {
     // Convert the base64 image to an image URL

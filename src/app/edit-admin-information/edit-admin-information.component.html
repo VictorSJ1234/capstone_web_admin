@@ -22,7 +22,7 @@
 
         </div>
         <div class="form_container">
-            <form (ngSubmit)="save()" #myForm="ngForm">
+            <form (ngSubmit)="save(myForm)" #myForm="ngForm">
                 <div class="form-row">
                     <div class="fields_container">
                         <div class="column_1">
@@ -104,10 +104,10 @@
                             <!--contact number-->
                             <div class="form-group">
                                 <label for="contactNumber">Contact Number</label>
-                                <input type="text" class="form-control" id="contactNumber" name="contactNumber" placeholder="Contact Number" required [(ngModel)]="adminData.contact_number"
-                                    [ngClass]="{ 'is-invalid': myForm.submitted && myForm.controls['contactNumber'].invalid }"
+                                <input type="text" class="form-control" id="contactNumber" name="contact_number" placeholder="Contact Number" required [(ngModel)]="adminData.contact_number"
+                                    [ngClass]="{ 'is-invalid': myForm.submitted && myForm.controls['contact_number'].invalid }"
                                     pattern="[0-9]+">
-                                <div class="invalid-tooltip" *ngIf="myForm.submitted && myForm.controls['contactNumber'].invalid">
+                                <div class="invalid-tooltip" *ngIf="myForm.submitted && myForm.controls['contact_number'].invalid">
                                     <span class="tooltip-text">Please enter a valid contact number.</span>
                                 </div>
                                 <div class="valid-tooltip">
@@ -152,7 +152,7 @@
                                 <button type="submit" class="btn btn-primary mt-3">Save</button>
                             </div>
                             <div class="col-md-12">
-                                <button type="submit" class="btn btn-danger mt-3">Cancel</button>
+                                <button type="button" class="btn btn-danger mt-3" (click)="cancel()">Back</button>
                             </div>
                         </div>
                     </div>
@@ -160,4 +160,23 @@
             </form>
         </div>
     </section>
+
+    <!-- Modal -->
+    <div id="response_modal" class="modal" [ngStyle]="{ display: carouselModalOpen ? 'block' : 'none' }">
+        <div class="modal-content">
+          <div class="modal-header" id="modal_header">
+            <h2>Are you sure?</h2>
+            <span class="close" id="close_carousel" (click)="closeCarouselModal()">&times;</span>
+          </div>
+          
+          <div class="modal-body">
+            <p>Confirm to edit user information:</p>
+            <p>{{ adminData.firstname }} {{adminData.lastname}}</p>
+            <div class="redirect-button-container">
+                <button class="cancel-button" (click)="closeCarouselModal()">Cancel</button> 
+                <button class="confirm-button" (click)="confirmSave(myForm)">Confirm</button> 
+            </div>
+          </div>
+        </div>
+      </div> 
 </body>

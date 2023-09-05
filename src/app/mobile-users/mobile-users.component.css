@@ -51,6 +51,7 @@ table{
 
 tbody td .user_image{
   width: 6vw;
+  height: 6vw;
   border-radius: 180px;
   border: solid black 1px;
 }
@@ -142,5 +143,102 @@ tbody td #view_button{
     background-color: black;
   }
 
+   /* for modal */
+   .modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.5);
+  }
+  
+  .modal-content {
+    margin: 0 auto;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 40%;
+    box-shadow: 0 5px 8px 0 rgba(0, 0, 0, 0.2), 0 7px 20px 0 rgba(0, 0, 0, 0.17);
+    animation-name: modalopen;
+    animation-duration: var(--modal-duration);
+  }
+  
+  .modal-header h2,
+  .modal-footer h3 {
+    margin: 0;
+    padding: 5px;
+  }
+  
+  #modal_header {
+    background: var(--modal-color);
+    padding: 15px;
+    background-color: #28376D;
+    color: white;
+    font-family: 'Squada One', sans-serif;
+    font-size: large;
+    text-align: center;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+  }
+
+  #modal_header h2{
+    margin-left: auto;
+  }
+  
+  .modal-body {
+    padding: 10px 20px;
+    background-color: white;
+    text-align: center;
+    font-family: 'Montserrat', sans-serif; 
+    font-size: larger; 
+  }
+  
+  #close_carousel {
+    color: white;
+    float: right;
+    font-size: 30px;
+  }
+  
+  #close_carousel:hover,
+  #close_carousel:focus {
+    color: red;
+    text-decoration: none;
+    cursor: pointer;
+  }
+
+  .cancel-button {
+    background-color: #FC657E;
+    color: white;
+    font-size: larger; 
+    padding: 10px 20px; 
+    border: none;
+    border-radius: 20px; 
+    cursor: pointer;
+    margin-right: 10px; 
+}
+
+.confirm-button {
+  background-color: #00C3FF;
+    color: white;
+    font-size: larger; 
+    padding: 10px 20px;
+    border: none;
+    border-radius: 20px; 
+    cursor: pointer;
+}
+  
+  @keyframes modalopen {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+  }
 
 

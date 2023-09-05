@@ -14,6 +14,10 @@ interface mobileUsers {
 export class MobileUsersComponent implements OnInit {
   userData: any[] = []; // Array to store user data, 'any' means any datatype.
 
+  selectedUserId: string = ''; //container of seleted userId
+  selectedUserName: string = ''; // container of selected name
+  carouselModalOpen = false;
+
   constructor(private router: Router, private adminService: AdminRegistrationService) {}
 
   ngOnInit() {
@@ -47,10 +51,33 @@ export class MobileUsersComponent implements OnInit {
     this.router.navigateByUrl('/edit-user-profile', { state: { userData: user } });
     console.log('Responding to report:', user);
   }
-  deleteReport(user: mobileUsers) {
-    // Handle the logic for responding to the selected report
-    this.router.navigate(['/admin-chat']);
-    console.log('Responding to report:', user);
+  openCarouselModal(user: any) {
+    // Store the selected user's id to the initialized container "selectedUserId"
+    this.selectedUserId = user._id;
+    this.selectedUserName = user.name;
+
+    // Open the modal
+    this.carouselModalOpen = true;
+  }
+
+  // Function to close the delete modal
+  closeCarouselModal() {
+    this.carouselModalOpen = false;
+  }
+
+  // Function to confirm and delete the selected user
+  confirmDelete() {
+    // Call the admin service to delete the user
+    this.adminService.deleteUser(this.selectedUserId).subscribe(
+      () => {
+        console.log('Deleted user:', this.selectedUserName);
+        this.closeCarouselModal(); // Close the modal
+        this.fetchAllUsers(); // Reload user data after deletion
+      },
+      (error) => {
+        console.error(error);
+      }
+    );
   }
   convertToImage(base64String: string): string {
     // Convert the base64 image to an image URL

@@ -14,6 +14,11 @@ export class UserReportComponent {
   userData: any;
   reports: any[] = []; // Array to store user data
 
+  selectedReportId: string = ''; //container of selected id
+  selectedReportId2: string = ''; //container of seleted reportId
+  selectedUserName: string = ''; // container of selected name
+  carouselModalOpen = false;
+
   profilePicture!: string; //! means undefined
 
   //to store the converted image
@@ -53,11 +58,37 @@ export class UserReportComponent {
    this.router.navigateByUrl('/report-information', { state: { reports: report} });
    console.log('Responding to report:', report);
   }
-  deleteReport(report: Report) {
-    // Handle the logic for responding to the selected report
-    this.router.navigate(['/admin-chat']);
-    console.log('Responding to report:', report);
-  }
+  openCarouselModal(report: any) {
+    // Store the selected reports's id to the initialized container "selectedReportId"
+   this.selectedReportId = report._id;
+   this.selectedReportId2 = report.reportId;
+   this.selectedUserName = report.name;
+
+   // Open the modal
+   this.carouselModalOpen = true;
+ }
+
+ // Function to close the delete modal
+ closeCarouselModal() {
+   this.carouselModalOpen = false;
+ }
+
+
+ // Function to confirm and delete the selected report
+ confirmDelete() {
+   // Call the admin service to delete the report
+   this.adminService.deleteUserReport(this.selectedReportId2).subscribe(
+     () => {
+       console.log('Deleted report:', this.selectedReportId2);
+       this.closeCarouselModal();
+       this.loadUserReports();
+     },
+     (error) => {
+       console.error(error);
+     }
+   );
+ }
+
   ngOnInit() {
     this.route.queryParams.subscribe(params => {
       // Retrieve passed data from the previous page

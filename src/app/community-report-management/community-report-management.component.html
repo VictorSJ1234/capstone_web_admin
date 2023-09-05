@@ -57,7 +57,7 @@
                         <td class="button_column">
                             <div class="column3">
                                 <button (click)="openReport(report)" id="open_button">Open</button>
-                                <button (click)="deleteReport(report)" id="delete_button">Delete</button>
+                                <button (click)="openCarouselModal(report)" id="delete_button">Delete</button>
                             </div>
                         </td>
                     </tr>
@@ -65,4 +65,23 @@
             </table>
         </div>
     </section> 
+    
+    <!-- Modal -->
+    <div id="response_modal" class="modal" [ngStyle]="{ display: carouselModalOpen ? 'block' : 'none' }">
+        <div class="modal-content">
+          <div class="modal-header" id="modal_header">
+            <span class="close" id="close_carousel" (click)="closeCarouselModal()">&times;</span>
+            <h2>Are you sure?</h2>
+          </div>
+          
+          <div class="modal-body">
+            <p>Confirm to delete report:</p>
+            <p>{{ selectedReportId2 }}</p>
+            <div class="redirect-button-container">
+                <button class="cancel-button" (click)="closeCarouselModal()">Cancel</button> <!-- Close modal on cancel -->
+                <button class="confirm-button" (click)="confirmDelete()">Confirm</button> <!-- Perform delete on confirm -->
+            </div>
+          </div>
+        </div>
+      </div>   
 <body>
