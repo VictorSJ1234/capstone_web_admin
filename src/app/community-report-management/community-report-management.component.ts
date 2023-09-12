@@ -45,7 +45,7 @@ export class CommunityReportManagementComponent {
           // Pass userData and report data to the next page using state
           this.router.navigateByUrl('/report-information', { state: { reports: report, userData: this.userData } });
           console.log('Responding to report:', report);
-          console.log('User Barangay:', this.userData);
+          console.log('user:', this.userData);
       },
       (error) => {
         console.error(error);

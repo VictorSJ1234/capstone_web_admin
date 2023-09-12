@@ -24,7 +24,6 @@ export class DengueCasesPostComponent {
       // logged_in
       console.log('data:', this.formData);
       if (this.selectedFile) {
-        // Handle file upload logic here
         console.log('File selected:', this.selectedFile);
       }
     } else {
@@ -34,6 +33,18 @@ export class DengueCasesPostComponent {
         console.log('Please fill out all fields.');
       }
     }
+  }
+
+  removeSelectedFile() {
+    this.selectedFile = null;
+    this.selectedFileName = 'No Chosen File';
+  }
+
+  openFileInput() {
+      const fileInput = document.getElementById('fileUpload');
+      if (fileInput) {
+          fileInput.click();
+      }
   }
 
 

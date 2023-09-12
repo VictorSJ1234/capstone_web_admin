@@ -7,16 +7,18 @@ import { NgForm } from '@angular/forms';
 @Component({
   selector: 'app-edit-user-profile',
   templateUrl: './edit-user-profile.component.html',
-  styleUrls: ['./edit-user-profile.component.css', '../../assets/bootstrap/bootstrap.min.css']
+  styleUrls: ['./edit-user-profile.component.css', '../../assets/bootstrap/bootstrap.min.css'],
+  providers: [AdminRegistrationService]
 })
 export class EditUserProfileComponent {
   
   userData: any;
+  fetchedUserData: any;
+  userId: any; //container of userId
   profilePicture!: string; //! means undefined
 
   //to store the converted image
   image: string | ArrayBuffer | null = null;
-
 
   passwordMismatch = false;
 
@@ -39,7 +41,7 @@ export class EditUserProfileComponent {
       this.openCarouselModal();
     } else {
       // Show error message
-      if (this.userData.password !== this.userData.repeat_password) {
+      if (this.fetchedUserData[0].password !== this.fetchedUserData[0].repeat_password) {
         console.log('Password and repeat password do not match.');
       }
       /** 
@@ -47,10 +49,10 @@ export class EditUserProfileComponent {
         console.log('Password does not follow the required pattern.');
       }
       */
-      if (this.userData.name === '' || this.userData.email === ''
+      if (this.fetchedUserData[0].name === '' || this.fetchedUserData[0].email === ''
       //|| this.userData.password === '' || this.userData.repeat_password === '' 
-      || this.userData.gender === '' || this.userData.contact_number === ''
-      || this.userData.barangay === '' || this.userData.city === '') {
+      || this.fetchedUserData[0].gender === '' || this.fetchedUserData[0].contact_number === ''
+      || this.fetchedUserData[0].barangay === '' || this.fetchedUserData[0].city === '') {
         console.log('Please fill out all fields.');
       }
       if (this.isEmailInvalid()) {
@@ -63,10 +65,10 @@ export class EditUserProfileComponent {
     this.closeCarouselModal(); // Close the confirmation modal
   
     // Call the service to edit admin data
-    form.value.profilePicture = this.userData.profilePicture;
+    form.value.profilePicture = this.fetchedUserData[0].profilePicture;
 
       // Call the service to edit admin data
-      this.adminService.editUser(this.userData._id, form.value).subscribe(
+      this.adminService.editUser(this.fetchedUserData[0]._id, form.value).subscribe(
         (response) => {
           console.log('Admin data updated successfully', response);
         },
@@ -78,23 +80,23 @@ export class EditUserProfileComponent {
 
   isPasswordValid(): boolean {
     const passwordPattern = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*]).{8,}$/;
-    return passwordPattern.test(this.userData.password);
+    return passwordPattern.test(this.fetchedUserData[0].password);
   }
 
   isEmailInvalid(): boolean {
     const emailPattern = /[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}/;
-    return !emailPattern.test(this.userData.email);
+    return !emailPattern.test(this.fetchedUserData[0].email);
   }
 
   isFormValid(): boolean {
     return (
-      this.userData.name.trim() !== '' &&
-      this.userData.email.trim() !== '' &&
-      this.userData.birthday.trim() !== '' &&
-      this.userData.gender.trim() !== '' &&
-      this.userData.contact_number.trim() !== '' &&
+      this.fetchedUserData[0].name.trim() !== '' &&
+      this.fetchedUserData[0].email.trim() !== '' &&
+      this.fetchedUserData[0].birthday.trim() !== '' &&
+      this.fetchedUserData[0].gender.trim() !== '' &&
+      this.fetchedUserData[0].contact_number.trim() !== '' &&
       //!this.passwordMismatch &&
-      this.userData.barangay.trim() !== '' &&
+      this.fetchedUserData[0].barangay.trim() !== '' &&
       !this.isEmailInvalid()
     );
   }
@@ -111,11 +113,21 @@ export class EditUserProfileComponent {
   ngOnInit() {
     this.route.queryParams.subscribe(params => {
       this.userData = history.state.userData;
-      this.profilePicture = this.userData.profilePicture;
-      // Convert the base64 image to a data URL
-      if (this.profilePicture) {
-        this.image = 'data:image/jpeg;base64,' + this.profilePicture;
-      }
+      this.userId = this.userData._id;
+
+      this.adminService.getUserData(this.userId).subscribe(
+        (response: any) => {
+          this.fetchedUserData = response.userInformationData; // Assign fetched data to userData
+
+          // Convert the base64 image to a data URL
+          if (this.fetchedUserData[0].profilePicture) {
+            this.image = 'data:image/jpeg;base64,' + this.fetchedUserData[0].profilePicture;
+          }
+        },
+        (error) => {
+          console.error('Error fetching user data', error);
+        }
+      );
     });
     window.scrollTo(0, 0);
   }

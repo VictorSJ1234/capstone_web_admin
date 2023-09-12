@@ -50,12 +50,28 @@
                                     &nbsp;
                                 </div>
                             </div>
-                              <div class="form-group" id="file_upload_container">
+                            <!--
+                            <div class="form-group" id="file_upload_container">
                                 <label for="fileUpload">File Upload</label>
                                 <div class="custom-file">
-                                  <input type="file" id="fileUpload" name="fileUpload" (change)="handleFileUpload($event)">
+                                    <input type="file" id="fileUpload" name="fileUpload" (change)="handleFileUpload($event)">
+                                    <p>Selected File: {{ selectedFileName }}</p>
+                                    <button *ngIf="selectedFile" class="btn btn-danger btn-sm" (click)="removeSelectedFile()">Remove</button>
                                 </div>
-                            </div> 
+                            </div>
+                            -->
+
+                            <div class="form-group" id="file_upload_container">
+                                <label for="fileUpload">File Upload</label>
+                                <div class="custom-file">
+                                    <button class="btn btn-light" (click)="openFileInput()" id="file_button">Choose File</button>
+                                    <p>Selected File: {{ selectedFileName }}</p> <!-- Display the selected file name -->
+                                    <button *ngIf="selectedFile" class="btn btn-warning btn-sm" (click)="removeSelectedFile()">Remove Selected File</button>
+                                    <input type="file" id="fileUpload" name="fileUpload" style="display: none;" (change)="handleFileUpload($event)">
+                                </div>
+                            </div>
+                            
+                            
                             <div class="form-group">
                                 <label for="fileDescription">Attachment Description</label>
                                 <input type="text" class="form-control" id="fileDescription" name="fileDescription" placeholder="File Description" required

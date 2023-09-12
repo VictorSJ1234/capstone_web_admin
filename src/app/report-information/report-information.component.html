@@ -17,7 +17,7 @@
             <div class="user_information_row">
                 <img [src]="image" alt="User Image">
                 <div class="username_and_name">
-                   Name
+                   {{email}}
                     <p><span>{{name}}</span></p>
                 </div>
                 <div class="barangay">
@@ -44,7 +44,10 @@
                         <td class="column3_container">
                             <div class="column3">
                                 <p class="date"><b>Date:&nbsp;</b><span class="date_text">{{reports.formattedDate}}</span></p>
-                                <p class="status"><b>Status:&nbsp;</b><span class="status_text">New Report</span></p>
+                                <p class="status"><b>Status:&nbsp;</b><span class="status_text" [ngStyle]="{'background-color': getStatusBackgroundColor(latestResponseStatus)}">
+                                    {{ latestResponseStatus || 'New Report' }}
+                                  </span></p>
+                                  
                             </div>
                         </td>
                     </tr>
@@ -52,15 +55,50 @@
             </table>
             <div class="report_content_container">
                 <div class="report_content_label"> 
-                    <h2>Report Content: </h2>
+                    <h2>Report Description: </h2>
                 </div>
                 <div class="report_content_div">
                     <p>{{reports.report_description}}</p>
                 </div>
             </div>
-            <button id="respond_button" (click)="openCarouselModal()">Respond</button>
+            <button id="respond_button" (click)="openCarouselModal()" *ngIf="adminResponseData.length === 0">Take Action</button>
         </div>
     </section> 
+    <section class="report_list_section" *ngIf="adminResponseData.length > 0">
+        <div class="status_list_container">
+            <div class="status_list_header">
+                <h2>Concern Status</h2>
+            </div>
+            <table class="report_table" id="status_table">
+                <thead>
+                    <tr>
+                        <th>Date & Time</th>
+                        <th>Status</th>
+                        <th>Description</th>
+                        <th>Update</th>
+                    </tr>
+                </thead>
+                <tbody id="status_table_body">
+                    <tr *ngFor="let response of adminResponseData">
+                        <td>{{ response.formattedDate }}</td>
+                        <td [ngStyle]="{'color': getStatusColor(response.report_status)}">{{ response.report_status }}</td>
+                        <td>{{ response.response_description }}</td>
+                        <td>
+                            <button
+                            id="update_status_button"
+                            (click)="openCarouselModal()"
+                            [disabled]="!isLatestResponse(response)"
+                          >
+                            Update Status
+                          </button>
+                        </td>
+                    </tr>
+                   
+                </tbody>
+            </table>
+        </div>
+    </section>
+    
 
      <!-- Modal -->
      <div id="response_modal" class="modal" [ngStyle]="{ display: carouselModalOpen ? 'block' : 'none' }">
@@ -72,7 +110,7 @@
         
         <div class="modal-body">
             <div class="form_container">
-                <form (ngSubmit)="register()" #myForm="ngForm">
+                <form (ngSubmit)="register(myForm)" #myForm="ngForm">
                   <div class="form-row">
                     <div class="report_fields_container">
                       <div class="fields_container">
@@ -94,14 +132,14 @@
                         <div class="column_1">
                             <!--status-->
                             <div class="form-group">
-                                <select class="form-control" id="status" name="status" required [(ngModel)]="formData.status"
-                                    [ngClass]="{ 'is-invalid': myForm.submitted && myForm.controls['status'].invalid }">
+                                <select class="form-control" id="action_to_do" name="report_status" required [(ngModel)]="formData.report_status"
+                                    [ngClass]="{ 'is-invalid': myForm.submitted && myForm.controls['report_status'].invalid }">
                                     <option value="" disabled>Select Report Status</option>
                                     <option value="New Report">New Report</option>
-                                    <option value="Resolved">Resolved</option>
                                     <option value="Under Review">Under Review</option>
+                                    <option value="Resolved">Resolved</option>
                                 </select>
-                                <div class="invalid-tooltip" *ngIf="myForm.submitted && myForm.controls['status'].invalid">
+                                <div class="invalid-tooltip" *ngIf="myForm.submitted && myForm.controls['report_status'].invalid">
                                     <span class="tooltip-text">Please select a report status.</span>
                                 </div>
                                 <div class="valid-tooltip">
@@ -111,13 +149,14 @@
                                 
                                 <!--action-->
                                 <div class="form-group">
-                                  <select class="form-control" id="action" name="action" required [(ngModel)]="formData.action"
-                                      [ngClass]="{ 'is-invalid': myForm.submitted && myForm.controls['action'].invalid }">
+                                  <select class="form-control" id="action_to_do" name="action_to_do" required [(ngModel)]="formData.action_to_do"
+                                      [ngClass]="{ 'is-invalid': myForm.submitted && myForm.controls['action_to_do'].invalid }">
                                       <option value="" disabled>Select Report Action</option>
                                       <option value="Action 1">Action 1</option>
                                       <option value="Action 2">Action 2</option>
+                                      <option value="Action 3">Action 3</option>
                                   </select>
-                                  <div class="invalid-tooltip" *ngIf="myForm.submitted && myForm.controls['action'].invalid">
+                                  <div class="invalid-tooltip" *ngIf="myForm.submitted && myForm.controls['action_to_do'].invalid">
                                       <span class="tooltip-text">Please select an action.</span>
                                   </div>
                                   <div class="valid-tooltip">
@@ -150,9 +189,9 @@
                         </div> 
                       </div>
                       <div class="form-group">
-                        <textarea class="form-control" id="response" name="response" placeholder="Response" required [(ngModel)]="formData.response"
-                            [ngClass]="{ 'is-invalid': myForm.submitted && myForm.controls['response'].invalid }"></textarea>
-                        <div class="invalid-tooltip" *ngIf="myForm.submitted && myForm.controls['response'].invalid">
+                        <textarea class="form-control" id="response_description" name="response_description" placeholder="Response" required [(ngModel)]="formData.response_description"
+                            [ngClass]="{ 'is-invalid': myForm.submitted && myForm.controls['response_description'].invalid }"></textarea>
+                        <div class="invalid-tooltip" *ngIf="myForm.submitted && myForm.controls['response_description'].invalid">
                             <span class="tooltip-text">Please enter your Response.</span>
                         </div>
                         <div class="valid-tooltip">
@@ -173,4 +212,20 @@
         </div>
         </div>
     </div>
+
+    <!-- Modal -->
+    <div id="SuccessModal" class="SuccessModal" class="modal" [ngStyle]="{ display: carouselModalSuccess ? 'block' : 'none' }">
+        <div class="modal-content">
+          <div class="modal-header" id="modal_header">
+            <h2>Submitted Successfully!</h2>
+          </div>
+          
+          <div class="modal-body">
+            <p>Your response has been successfully submitted</p>
+            <div class="redirect-button-container">
+                <button class="done-button" (click)="responseSent()">Done</button> 
+            </div>
+          </div>
+        </div>
+      </div> 
 </body>

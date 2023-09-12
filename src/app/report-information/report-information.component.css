@@ -33,8 +33,21 @@
   justify-content: center;
   text-align: center;
   border-radius: 15px;
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
   border: black 1px solid;
 }
+
+.status_list_container{
+  font-family: 'Montserrat', sans-serif; 
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  border: black 1px solid;
+}
+
 
 /*table*/
 
@@ -54,8 +67,24 @@ table{
     align-items: center;
 }
 
+.status_list_header{
+  background-color: #445180;
+  margin-top: 0;
+  padding-left: 30px;
+  padding-right: 30px;
+  border-top-left-radius: 0px;
+  border-top-right-radius: 0px;
+  color: white;
+  justify-content: space-between;
+  align-items: center;
+}
 .report_list_header h2{
    font-size: 3vw;
+}
+
+.status_list_header h2{
+  font-size: 3vw;
+  font-family: 'Squada One', sans-serif;
 }
 
 .user_information_row{
@@ -139,6 +168,13 @@ table{
     align-items: center;
 }
 
+.subject_text span {
+  max-width: 30vw; 
+  white-space: normal;
+  word-wrap: break-word;
+  display: block; 
+}
+
 .report_table tbody .column2 span{
     font-size: 1.3vw;
     background-color: white;
@@ -168,6 +204,11 @@ table{
   font-size: 1.3vw;
   align-items: center;
 }
+.status{
+  display: flex;
+  font-size: 1.3vw;
+  align-items: center;
+}
 
 .report_table tbody .column3 .date_text{
   text-align: left;
@@ -180,7 +221,7 @@ table{
   width: 80%;
 }
 
-.status{
+.report_status{
   display: flex;
   font-size: 1.3vw;
   align-items: center;
@@ -242,7 +283,8 @@ tbody .subject{
   border-bottom-right-radius: 15px ;
 }
 
-.report_content_container .report_content_label{
+.report_content_container h2{
+  font-weight: bold;
   font-size: 1.5vw;
 }
 
@@ -254,10 +296,14 @@ tbody .subject{
   border: solid black 1px;
   margin-bottom: 20px;
   background-color: white;
+  height: 15vw;
 }
 
 .report_content_container .report_content_div p {
-  line-height: 1.5;
+  max-width: 100%; 
+  white-space: normal;
+  word-wrap: break-word;
+  display: block; 
 }
 
 #respond_button{
@@ -269,10 +315,66 @@ tbody .subject{
   color: white;
   font-size: 1.5vw;
   cursor: pointer;
-  margin-bottom: 30px;
+  margin-bottom: 20px;
   align-self: flex-end;
   margin-right: 30px;
 }
+
+#update_status_button{
+  border-style: none;
+  background-color: #0384E9;
+  width: 10vw;
+  height: 3.3vw;
+  border-radius: 20px;
+  color: white;
+  font-size: 1.3vw;
+  cursor: pointer;
+}
+
+#update_status_button:disabled {
+  background-color: gray;
+  cursor: not-allowed; 
+}
+
+
+
+#status_table th {
+  padding-top: 10px;
+  padding-bottom: 10px;
+  font-size: 1.5vw;
+  background-color: #f2f2f2;
+  border: 1.5px solid gray; 
+}
+
+
+#status_table{
+  font-size: 1.3vw;
+  border-collapse: collapse;
+}
+
+#status_table tbody td{
+  border: 1.5px solid gray; 
+  padding: 8px;
+}
+
+#status_table tbody td:nth-child(1) {
+  min-width: 20%;
+}
+
+#status_table tbody td:nth-child(2) {
+  min-width: 20%;
+}
+
+#status_table tbody td:nth-child(3) {
+  min-width: 40%;
+  text-align: justify;
+}
+
+#status_table tbody td:nth-child(4) {
+  min-width: 20%;
+}
+
+
 
   /* for modal */
   .modal {
@@ -400,7 +502,7 @@ tbody .subject{
 }
 
 
-#action, #date, #status{
+#action_to_do, #date, #report_status{
   background-color: white;
   border-radius: 10px;
   height: 3.5vw;
@@ -409,7 +511,7 @@ tbody .subject{
   border: solid black 1px;
 }
 
-#action, #status{
+#action_to_do, #report_status{
   background-color: #00C3FF;
 }
 
@@ -486,5 +588,99 @@ tbody .subject{
 .register_button_container a{
   text-decoration: underline;
 }
+
+
+/* for modal */
+#SuccessModal {
+  padding-left: 30%;
+  padding-right: 30%;
+}
+
+.modal-content {
+  margin: 0 auto;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 40%;
+  box-shadow: 0 5px 8px 0 rgba(0, 0, 0, 0.2), 0 7px 20px 0 rgba(0, 0, 0, 0.17);
+  animation-name: modalopen;
+  animation-duration: var(--modal-duration);
+}
+
+.modal-header h2,
+.modal-footer h3 {
+  margin: 0;
+  padding: 5px;
+}
+
+#modal_header {
+  background: var(--modal-color);
+  padding: 15px;
+  background-color: #28376D;
+  color: white;
+  font-family: 'Squada One', sans-serif;
+  font-size: large;
+  text-align: center;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+}
+
+#modal_header h2{
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.modal-body {
+  padding: 10px 20px;
+  background-color: white;
+  text-align: center;
+  font-family: 'Montserrat', sans-serif; 
+  font-size: larger; 
+}
+
+#close_carousel {
+  color: white;
+  float: right;
+  font-size: 30px;
+}
+
+#close_carousel:hover,
+#close_carousel:focus {
+  color: red;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.done-button {
+  background-color: #00C3FF;
+  color: white;
+  font-size: larger; 
+  padding: 10px 20px; 
+  border: none;
+  border-radius: 20px; 
+  cursor: pointer;
+  margin-right: 10px; 
+}
+
+.confirm-button {
+background-color: #00C3FF;
+  color: white;
+  font-size: larger; 
+  padding: 10px 20px;
+  border: none;
+  border-radius: 20px; 
+  cursor: pointer;
+}
+
+@keyframes modalopen {
+  from {
+      opacity: 0;
+  }
+  to {
+      opacity: 1;
+  }
+}
+
 
 

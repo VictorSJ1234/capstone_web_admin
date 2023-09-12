@@ -149,6 +149,13 @@ table{
     align-items: center;
 }
 
+.subject_text span {
+  max-width: 33vw; 
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: inline-block; 
+}
 .report_table tbody .column2 span{
     font-size: 1.3vw;
     background-color: white;

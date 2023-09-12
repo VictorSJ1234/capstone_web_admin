@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 
-import { AdminRegistration, UserInformation } from './admin-registration.model';
+import { AdminRegistration, UserInformation, AdminResponse } from './admin-registration.model';
 
 @Injectable({
   providedIn: 'root'
@@ -77,4 +77,24 @@ export class AdminRegistrationService {
   editUser(_id: string, user: UserInformation): Observable<any> {
     return this.http.put(`${this.baseURL}/editUser/${_id}`, user);
   }
+
+
+  //for admin response
+
+  //function for admin response
+  adminResponse(response: AdminResponse): Observable<any> {
+    // Make a POST request to the admin registration endpoint
+    return this.http.post(`${this.baseURL}/createAdminResponse`, response)
+      .pipe(
+        catchError(error => {
+          throw error;
+        })
+      );
+  }
+
+  // Function to fetch admin response by reportId
+  getAdminResponse(reportId: string): Observable<any> {
+    return this.http.post(`${this.baseURL}/getAdminResponse`, { reportId });
+  }
+
 }

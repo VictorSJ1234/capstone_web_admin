@@ -21,3 +21,14 @@ export class UserInformation {
     email: string = '';
     profilePicture: string = '';
 }
+
+export class AdminResponse {
+    _id: string = '';
+    reportVersion: string = '';
+    reportId: string = '';
+    userId: string = '';
+    report_status: string = '';
+    action_to_do: string = '';
+    response_description: string = '';
+    date_responded: string = '';
+}
