@@ -36,6 +36,18 @@ export class CreateCommunityProjectComponent {
     }
   }
 
+  removeSelectedFile() {
+    this.selectedFile = null;
+    this.selectedFileName = 'No Chosen File';
+  }
+
+  openFileInput() {
+      const fileInput = document.getElementById('fileUpload');
+      if (fileInput) {
+          fileInput.click();
+      }
+  }
+
 
   isFormValid(): boolean {
     return (
