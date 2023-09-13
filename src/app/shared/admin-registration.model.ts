@@ -32,3 +32,14 @@ export class AdminResponse {
     response_description: string = '';
     date_responded: string = '';
 }
+
+export class CommunityProjects {
+    _id: string = '';
+    project_title: string = '';
+    project_date: string = '';
+    project_time: string = '';
+    uploaded_file: string = '';
+    attachment_description: string = '';
+    post_description: string = '';
+    date_created: string = '';
+}
