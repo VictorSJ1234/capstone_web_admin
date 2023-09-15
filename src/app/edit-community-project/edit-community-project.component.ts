@@ -1,38 +1,132 @@
 import { Component } from '@angular/core';
+import { Router, ActivatedRoute } from '@angular/router';
+import { Location } from '@angular/common';
+import { AdminRegistrationService } from '../shared/admin-registration.service'
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-edit-community-project',
   templateUrl: './edit-community-project.component.html',
-  styleUrls: ['./edit-community-project.component.css',  '../../assets/bootstrap/bootstrap.min.css']
+  styleUrls: ['./edit-community-project.component.css',  '../../assets/bootstrap/bootstrap.min.css'],
+  providers: [AdminRegistrationService]
 })
 export class EditCommunityProjectComponent {
 
   formData = {
-    title: '',
-    date: '',
-    fileDescription: '',
-    postDescription: '',
-    time: '',
+    project_title: '',
+    project_date: '',
+    project_time: '',
+    attachment_description: '',
+    post_description: '',
   };
+
+  projectData: any;
+  fetchedProjectData: any;
+  projectId: any; //container of project_id
+
+  projectImage!: string; //! means undefined
+
+  //to store the converted image
+  image: string | ArrayBuffer | null = null;
+  imageBase64!: string;
+
   passwordMismatch = false;
 
   selectedFile: File | null = null;
-  selectedFileName = 'Choose file';
+  selectedFileName = 'No Selected File';
 
-  save() {
+  isImageFetched: boolean = false;
+
+  carouselModalOpen = false;
+  carouselModalSuccess = false;
+
+  base64container!: string;
+
+  openCarouselModal() {
+    this.carouselModalOpen = true;
+  }
+
+  responseSent() {
+    this.carouselModalSuccess = false;
+    this.carouselModalOpen = false;
+    this.ngOnInit();
+  }
+
+  openCarouselModalSuccess() {
+    this.carouselModalSuccess = true;
+  }
+  
+  closeCarouselModal() {
+    this.carouselModalOpen = false;
+  }
+  
+  save(form: NgForm) {
     if (this.isFormValid()) {
-      // logged_in
-      console.log('data:', this.formData);
+
+      //open the confirmation modal
+      this.openCarouselModal();
+
       if (this.selectedFile) {
         console.log('File selected:', this.selectedFile);
       }
+      if (this.fetchedProjectData[0].uploaded_file) {
+        this.imageBase64 = this.fetchedProjectData[0].uploaded_file;
+        console.log('File selected:', this.imageBase64);
+      }
     } else {
       // Show error message
-      if (this.formData.title === '' || this.formData.postDescription === '' || this.formData.fileDescription === '' 
-      || this.formData.time === '' || this.formData.date === '') {
+      if (this.fetchedProjectData[0].project_title === '' || this.fetchedProjectData[0].post_description === '' || this.fetchedProjectData[0].attachment_description === '' 
+      || this.fetchedProjectData[0].project_time === '' || this.fetchedProjectData[0].project_date === '') {
         console.log('Please fill out all fields.');
       }
     }
+  }
+
+  confirmSave(form: NgForm) {
+    if (this.selectedFile) {
+      // Convert selected file to Base64
+      this.convertFileToBase64(this.selectedFile, (base64String) => {
+        form.value.uploaded_file = base64String; // Set uploaded_file to base64
+        // Call the service to edit admin data
+        this.adminService.editProject(this.fetchedProjectData[0]._id, form.value).subscribe(
+          (response) => {
+            this.openCarouselModalSuccess();
+            console.log('Admin data updated successfully', response);
+          },
+          (error) => {
+            console.error('Error updating admin data', error);
+          }
+        );
+      });
+    } else if (this.fetchedProjectData[0].uploaded_file && !this.isImageFetched) {
+      // If there's a fetched uploaded_file and it wasn't removed
+      form.value.uploaded_file = this.fetchedProjectData[0].uploaded_file; // Set uploaded_file to fetched image
+      // Call the service to edit admin data
+      this.adminService.editProject(this.fetchedProjectData[0]._id, form.value).subscribe(
+        (response) => {
+          this.openCarouselModalSuccess();
+          console.log('Admin data updated successfully', response);
+        },
+        (error) => {
+          console.error('Error updating admin data', error);
+        }
+      );
+    } else {
+      // No selected file and no fetched image
+      form.value.uploaded_file = ''; // Set to an empty string
+      // Call the service to edit admin data
+      this.adminService.editProject(this.fetchedProjectData[0]._id, form.value).subscribe(
+        (response) => {
+          this.openCarouselModalSuccess();
+          console.log('Admin data updated successfully', response);
+        },
+        (error) => {
+          console.error('Error updating admin data', error);
+        }
+      );
+    }
+
+    this.closeCarouselModal(); // Close the confirmation modal
   }
 
   removeSelectedFile() {
@@ -50,11 +144,11 @@ export class EditCommunityProjectComponent {
 
   isFormValid(): boolean {
     return (
-      this.formData.title.trim() !== '' &&
-      this.formData.date.trim() !== '' &&
-      this.formData.fileDescription.trim() !== '' &&
-      this.formData.postDescription.trim() !== '' &&
-      this.formData.time.trim() !== '' &&
+      this.fetchedProjectData[0].project_title.trim() !== '' &&
+      this.fetchedProjectData[0].project_date.trim() !== '' &&
+      this.fetchedProjectData[0].attachment_description.trim() !== '' &&
+      this.fetchedProjectData[0].post_description.trim() !== '' &&
+      this.fetchedProjectData[0].project_time.trim() !== '' &&
       !this.passwordMismatch 
     );
   }
@@ -64,8 +158,65 @@ export class EditCommunityProjectComponent {
     this.selectedFileName = event.target.files[0].name;
   }
 
+  constructor(private router: Router, private route: ActivatedRoute, private location: Location, private adminService: AdminRegistrationService,) {}
+
   ngOnInit() {
+    this.route.queryParams.subscribe(params => {
+      this.projectData = history.state.communityProjectsData;
+      this.projectId = this.projectData._id;
+
+      this.adminService.getAdminResponseById(this.projectId).subscribe(
+        (response: any) => {
+          this.fetchedProjectData = response.communityProjectsData; // Assign fetched data to userData
+
+          // Convert the base64 image to a data URL
+          if (this.fetchedProjectData[0].uploaded_file) {
+            this.image = 'data:image/jpeg;base64,' + this.fetchedProjectData[0].uploaded_file;
+            this.imageBase64 = this.fetchedProjectData[0].uploaded_file;
+            this.isImageFetched = true; // Image is fetched from the DB
+          }
+        },
+        (error) => {
+          console.error('Error fetching user data', error);
+        }
+      );
+    });
     window.scrollTo(0, 0);
   }
 
+   // Function to convert a File to Base64
+   convertFileToBase64(file: File, callback: (base64String: string) => void) {
+    const reader = new FileReader();
+    reader.onload = (e) => {
+      let base64String = reader.result as string;
+      const prefixIndex = base64String.indexOf(';base64,');
+      if (prefixIndex !== -1) {
+        base64String = base64String.slice(prefixIndex + 8);
+      }
+
+      callback(base64String);
+    };
+    reader.readAsDataURL(file);
+  }
+
+  cancel() {
+    this.location.back();
+  } 
+
+  removeImage() {
+    this.image = '';
+    
+    if (this.isImageFetched) {
+      // If the image was fetched, clear imageBase64 before updating the database
+      this.imageBase64 = ''; // Set to an empty string or null, depending on your needs
+    } else {
+      // If the image was uploaded by the user, clear selectedFile and selectedFileName
+      this.selectedFile = null;
+      this.selectedFileName = 'No Chosen File';
+    }
+
+    this.fetchedProjectData[0].uploaded_file="";
+    
+    this.isImageFetched = false; // Enable the file input
+  }
 }

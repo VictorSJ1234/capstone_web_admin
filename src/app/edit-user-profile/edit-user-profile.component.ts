@@ -23,10 +23,21 @@ export class EditUserProfileComponent {
   passwordMismatch = false;
 
   carouselModalOpen = false;
+  carouselModalSuccess = false;
 
 
   openCarouselModal() {
     this.carouselModalOpen = true;
+  }
+
+  responseSent() {
+    this.carouselModalSuccess = false;
+    this.carouselModalOpen = false;
+    this.ngOnInit();
+  }
+
+  openCarouselModalSuccess() {
+    this.carouselModalSuccess = true;
   }
   
   closeCarouselModal() {
@@ -70,6 +81,7 @@ export class EditUserProfileComponent {
       // Call the service to edit admin data
       this.adminService.editUser(this.fetchedUserData[0]._id, form.value).subscribe(
         (response) => {
+          this.openCarouselModalSuccess();
           console.log('Admin data updated successfully', response);
         },
         (error) => {

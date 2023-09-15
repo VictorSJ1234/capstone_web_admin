@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
+import { Location } from '@angular/common';
 
 import { AdminRegistrationService } from '../shared/admin-registration.service';
 
@@ -12,7 +13,7 @@ import { AdminRegistrationService } from '../shared/admin-registration.service';
 })
 export class CreateCommunityProjectComponent {
 
-  constructor(private adminService: AdminRegistrationService, private router: Router) {}
+  constructor(private adminService: AdminRegistrationService, private router: Router, private location: Location) {}
   
   formData = {
     project_title: '',
@@ -126,6 +127,9 @@ export class CreateCommunityProjectComponent {
     reader.readAsDataURL(file);
   }
 
+  cancel() {
+    this.location.back();
+  } 
 
   ngOnInit() {
     window.scrollTo(0, 0);

@@ -61,6 +61,7 @@
 
 .user_information_row img{
     width: 6vw;
+    height: 6vw;
     margin-right: 30px;
     border-radius: 180px;
     border: solid black 1px;
@@ -282,6 +283,28 @@
           opacity: 1;
       }
     }
+
+    /*done modal*/
+
+  #SuccessModal {
+    padding-left: 30%;
+    padding-right: 30%;
+  }
+  .done-button {
+    background-color: #00C3FF;
+    color: white;
+    font-size: larger; 
+    padding: 10px 20px; 
+    border: none;
+    border-radius: 20px; 
+    cursor: pointer;
+    margin-right: 10px; 
+  }
+
+  #SuccessModal  #modal_header h2{
+    margin-left: auto;
+    margin-right: auto;
+  }
   
 
 

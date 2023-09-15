@@ -22,9 +22,20 @@ export class EditAdminInformationComponent {
   passwordMismatch = false;
 
   carouselModalOpen = false;
+  carouselModalSuccess = false;
 
   openCarouselModal() {
     this.carouselModalOpen = true;
+  }
+
+  responseSent() {
+    this.carouselModalSuccess = false;
+    this.carouselModalOpen = false;
+    this.ngOnInit();
+  }
+
+  openCarouselModalSuccess() {
+    this.carouselModalSuccess = true;
   }
   
   closeCarouselModal() {
@@ -57,6 +68,7 @@ export class EditAdminInformationComponent {
     // Call the service to edit admin data
     this.adminService.editAdmin(this.adminData._id, form.value).subscribe(
       (response) => {
+        this.openCarouselModalSuccess();
         console.log('Admin data updated successfully', response);
       },
       (error) => {
