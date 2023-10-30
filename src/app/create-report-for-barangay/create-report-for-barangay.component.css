@@ -287,8 +287,7 @@
     flex-direction: row;
     text-align: center;
     padding: 10px;
-    justify-content: end;
-    
+    justify-content: flex-end;
   }
 
   .invalid-tooltip {
