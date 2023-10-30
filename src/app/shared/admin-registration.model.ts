@@ -1,15 +1,19 @@
 export class AdminRegistration {
     _id: string = '';
-    firstname: string = '';
-    lastname: string = '';
+    fullname: string = '';
     gender: string = '';
-    username: string = '';
-    email: string = '';
+    birthday: string = '';
     contact_number: string = '';
+    office: string = '';
+    selected_role: string = '';
+    email: string = '';
+    uploaded_file: string[] = [];
     password: string = '';
-    role: string = '';
     adminProfilePicture: string = '';
+    official_role: string = '';
+    postedDate: string = '';
 }
+
 
 export class UserInformation {
     _id: string = '';
@@ -17,10 +21,21 @@ export class UserInformation {
     birthday: string = '';
     gender: string = '';
     contact_number: string = '';
+    street_name: string = '';
+    house_number: string = '';
+    floor: string = '';
+    building_name: string = '';
     barangay: string = '';
+    district: string = '';
+    city: string = '';
+    uploaded_file: string = '';
     email: string = '';
+    password: string = '';
     profilePicture: string = '';
+    postedDate: string = '';
+    accountStatus: string = '';
 }
+
 
 export class AdminResponse {
     _id: string = '';
@@ -31,6 +46,7 @@ export class AdminResponse {
     action_to_do: string = '';
     response_description: string = '';
     date_responded: string = '';
+    uploaded_file: string[] = [];
 }
 
 export class CommunityProjects {
@@ -39,7 +55,94 @@ export class CommunityProjects {
     project_date: string = '';
     project_time: string = '';
     uploaded_file: string = '';
-    attachment_description: string = '';
-    post_description: string = '';
+    project_type: string = '';
+    location: string = '';
+    details: string = '';
     date_created: string = '';
+}
+
+export class userReportStatus {
+    report_status: string = '';
+}
+
+export class ReportToBarangay {
+    _id: string = '';
+    reportId: string = '';
+    report_number: string = '';
+    barangay: string = '';
+    status: string = '';
+    report_subject: string = '';
+    uploaded_file: string[] = [];
+    details: string = '';
+    date_created: string = '';
+}
+
+
+export class denguePost {
+    _id: string = '';
+    project_title: string = '';
+    project_date: string = '';
+    project_time: string = '';
+    uploaded_file: string = '';
+    details: string = '';
+    date_created: string = '';
+}
+
+
+export class BarangayResponse {
+    _id: string = '';
+    responseVersion: string = '';
+    reportId: string = '';
+    userId: string = '';
+    sender: string = '';
+    recipient: string = '';
+    report_status: string = '';
+    action_to_do: string = '';
+    response_description: string = '';
+    date_responded: string = '';
+    uploaded_file: string[] = [];
+}
+
+export class AdminResponseToBarangay {
+    _id: string = '';
+    responseVersion: string = '';
+    reportId: string = '';
+    userId: string = '';
+    sender: string = '';
+    recipient: string = '';
+    status: string = '';
+    action_to_do: string = '';
+    response_description: string = '';
+    date_responded: string = '';
+    uploaded_file: string[] = [];
+}
+
+export class inquiry {
+    _id: string = '';
+    email: string = '';
+    response_subject: string = '';
+    uploaded_file: string[] = [];
+    inquiry_response: string = '';
+}
+
+export class notification{
+    _id: string = '';
+    projectId: string = '';
+    userId: string = '';
+    reportId: string = '';
+    title: string = '';
+    message: string = '';
+    notificationStatus: string = '';
+}
+
+export class adminNotification{
+    _id: string = '';
+    projectId: string = '';
+    userId: string = '';
+    adminId: string = '';
+    recipient: string = '';
+    reportId: string = '';
+    title: string = '';
+    message: string = '';
+    notificationStatus: string = '';
 }

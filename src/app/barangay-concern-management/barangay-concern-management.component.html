@@ -1,0 +1,73 @@
+<app-header></app-header>
+
+<app-barangay-sidenav></app-barangay-sidenav>
+<app-navbar></app-navbar>
+
+<body>
+    <div class="loading-overlay" *ngIf="isLoading">
+        <div class="loading-spinner"></div>
+    </div>
+    <section class="label_section">
+        <div class="label_container">
+            <h1>Reports Management</h1>
+        </div>
+        <div class="search_report">
+            <div class="search_input">
+                <input type="text" placeholder="Search" [(ngModel)]="searchQuery" (input)="onSearch()">
+                <button class="search_button">
+                    <img src="../../assets/user_report_images/search1.png" alt="Search">
+                </button>
+            </div> 
+        </div>
+    </section>
+    <section class="report_list_section">
+        <div class="report_list_container">
+            <div class="table_header">
+                <h2 class="report_list_header">Reports from Dengue Task Force</h2>
+                <div class="dropdown_container">
+                    <label for="number_dropdown">Show:</label>
+                    <select id="number_dropdown" (change)="onItemsPerPageChange($event)">
+                        <option value="5">5</option>
+                        <option value="10" selected>10</option>
+                        <option value="15">15</option>
+                        <option value="20">20</option>
+                    </select> 
+                </div>
+            </div>
+            <table class="report_table" id="report_table">
+                <thead>
+                    <tr>
+                        <th><input type="checkbox" class="row-checkbox"></th>
+                        <th>Report Id</th>
+                        <th>Subject of Concern</th>
+                        <th>Recieved on</th>
+                        <th>Dengue Task Force Recommended Action</th>
+                        <th>Respond Status</th>
+                    </tr>
+                </thead>
+                <tbody id="report_table_body">
+                    <tr *ngIf="reports.length === 0">
+                        <td colspan="7">No reports available.</td>
+                    </tr>
+                    <tr *ngFor="let report of reports | slice:(currentPage - 1) * itemsPerPage:currentPage * itemsPerPage">
+                        <td><input type="checkbox" class="row-checkbox"></td>
+                        <td>{{report.reportId}} </td>
+                        <td>{{report.report_subject}}</td>
+                        <td>{{report.formattedDate}}</td>
+                        <td>
+                            <button class="view-button" (click)="openReport(report)">View & Respond</button>
+                        </td>
+                        <td>
+                            <span>{{report.status}}</span>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="pagination">
+            <button (click)="previousPage()">◄</button>
+            <button *ngFor="let page of getPages()" (click)="setPage(page)"  [ngClass]="{'active': page === currentPage}">{{ page }}</button>
+            <button (click)="nextPage()">►</button>
+        </div>
+    </section> 
+<body>

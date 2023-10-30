@@ -1,0 +1,271 @@
+<app-header></app-header>
+<app-sidenav></app-sidenav>
+<app-navbar></app-navbar>
+
+
+<body>
+    <div class="loading-overlay" *ngIf="isLoading">
+        <div class="loading-spinner"></div>
+    </div>
+    <section class="label_section">
+        <div class="label_container">
+            <h1>Barangay Report</h1>
+        </div>
+    </section>
+    <section class="edit_section">
+        <h2 class="report_list_header">Dengue Task Force Report</h2>
+        <div class="user_information_row">
+            <img src="../../assets/logo/pasig_logo.png" alt="User Image">
+            <div class="username_and_address">
+                <span id="name">Dengue Task Force</span>
+                <span id="address">{{name}}</span>
+            </div>
+        </div>
+        <div class="form_container">
+            <form>
+                <div class="form-row">
+                    <div class="fields_container_row1">
+                        <div class="column_1">
+                            <label for="reportId">Report Id</label>
+                            <div class="form-group">
+                                <p id="reportId" name="reportId" disabled><i class="fa fa-id-card p-icon"></i>{{reports.reportId}}</p>
+                            </div> 
+                        </div>  
+                        <div class="column_2">
+                            <label for="barangay">Barangay</label>
+                            <div class="form-group">
+                                <p id="barangay" name="barangay" disabled><i class="fa fa-map-marker p-icon"></i>{{reports.barangay}}</p>
+                            </div> 
+                        </div>   
+                        <div class="column_3">
+                            <!--name-->
+                            <label for="status">Status</label>
+                            <div class="form-group">
+                                <p id="status" name="status" disabled><i class="fa fa-info-circle p-icon"></i>{{latestResponseStatus}}</p>
+                            </div> 
+                        </div> 
+                    </div> 
+                </div>
+
+                <div class="form-row">
+                    <div class="fields_container_row2">
+                        <div class="column_1">
+                            <!--name-->
+                            <label for="subject">Report Subject</label>
+                            <div class="form-group">
+                                <p id="subject" name="subject" disabled><i class="fa fa-pencil p-icon"></i>{{reports.report_subject}}</p>
+                            </div> 
+                        </div>    
+                    </div> 
+                </div>
+                
+                <div class="form-row">
+                    <div class="fields_container_row3">
+                        <div class="column_1">
+                            <!--name-->
+                            <label for="report_description">Post Description</label>
+                            <div class="form-group">
+                                <textarea class="form-control disabled-input" id="report_description" name="report_description" placeholder="Post Description" [(ngModel)]="reports.details " disabled></textarea>
+                            </div>
+                        </div> 
+                        <div class="column_2" *ngIf="reports.uploaded_file && reports.uploaded_file.length == 0">
+                            <label for="uploaded_file">Attachments: </label>
+                            <div class="form-group">
+                                <div id="file_attachment">
+                                  <i class="fa fa-download icon"></i>
+                                  <button id="download_button" disabled>No Uploaded File</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="column_2" *ngIf="reports.uploaded_file && reports.uploaded_file.length > 0">
+                            <label for="uploaded_file">Attachments: </label>
+                            <div *ngFor="let uploadedFile of reports.uploaded_file; let i = index">
+                              <!--name-->
+                              
+                              <div class="form-group">
+                                <div id="file_attachment">
+                                  <i class="fa fa-download icon"></i>
+                                  <button id="download_button" *ngIf="uploadedFile" (click)="openFileInNewTab(i)">View Attached File {{ i + 1 }}</button>
+                                </div>
+                              </div>
+                            </div>
+                          </div>   
+                    </div> 
+                </div>
+            </form>
+        </div>
+    </section>
+
+    <section class="user_list_section" *ngIf="mergedResponseData.length == 0">
+        <div class="user_list_container">
+            <div class="table_header">
+                <h2 class="report_list_header">Status and Responses to Report</h2>
+            </div>
+            <table class="user_table" id="user_table">
+                <thead>
+                    <tr *ngIf="mergedResponseData.length === 0">
+                        <th colspan="7">No respond from barangay yet.</th>
+                    </tr>
+                </thead>
+            </table>
+        </div>
+    </section>
+
+    <section class="user_list_section" *ngIf="mergedResponseData.length > 0">
+        <div class="user_list_container">
+            <div class="table_header">
+                <h2 class="report_list_header">Status and Responses to Report</h2>
+                <button class="edit-button" (click)="openCarouselModal()">Update</button>
+            </div>
+            <table class="user_table" id="user_table">
+                <thead>
+                    <tr>
+                        <th>Sender</th>
+                        <th>Status</th>
+                        <th>Response</th>
+                        <th>Date and Time</th>
+                        <th>Uploaded File</th>
+                    </tr>
+                </thead>
+                <tbody id="user_table_body">
+                    <tr *ngFor="let response of mergedResponseData" [ngStyle]="{'backgroundColor': rowColor(response)}">
+                        <td>{{ response.sender }}</td>
+                        <td>{{ response.report_status }}</td>
+                        <td>{{ response.response_description }}</td>
+                        <td>{{ response.formattedDate }}</td>
+                        <td>
+                            <div *ngFor="let uploadedFile of response.uploaded_file; let i = index">
+                                <div id="view_file_attachment">
+                                    <button id="view_button" *ngIf="uploadedFile" (click)="openResponseFileInNewTab(response, i)">Attached File {{ i + 1 }}</button>
+                                </div>
+                            </div>
+                            <div *ngIf="!(response.uploaded_file && response.uploaded_file.length > 0)">
+                                No Uploaded File
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+    
+
+   <!-- Modal -->        
+   <div id="validation_modal" class="modal" [ngStyle]="{ display: carouselModalOpen ? 'block' : 'none' }">
+        <div class="modal-content">
+            <div class="modal-header" id="response_modal_header">
+                <h2>Dengue Task Force Response Form</h2>
+                <span class="close" id="close_carousel" (click)="closeCarouselModal()">&times;</span>
+            </div>
+        
+            <div class="modal-body">
+                <div class="form_container_modal">
+                    <form (ngSubmit)="respond(myForm)" #myForm="ngForm">
+                        <div class="user_information_row">
+                            <img src="../../assets/logo/pasig_logo.png" alt="pasig logo">
+                            <div class="username_and_role">
+                                <span id="name">Dengue Task Force</span>
+                                <span id="header_email">email</span>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="report_fields_container">
+                                <div class="fields_container_modal_row1">
+                                    <div class="column_1">
+                                        
+                                        <label for="recipient">Replying to</label>
+                                        <!--status-->
+                                        <div class="form-group">
+                                            <i class="fa fa-user icon"></i>
+                                            <input type="text" class="form-control" id="recipient" name="recipient" placeholder="Pasig Dengue Task Force" disabled>
+                                        </div> 
+
+                                        <!--action-->
+                                        <div class="form-group">
+                                            <textarea class="form-control disabled-input" id="response_description" name="response_description" placeholder="Response" required [(ngModel)]="formData.response_description"
+                                                [ngClass]="{ 'is-invalid': myForm.submitted && myForm.controls['response_description'].invalid }"></textarea>
+                                            <div class="invalid-tooltip" *ngIf="myForm.submitted && myForm.controls['response_description'].invalid">
+                                                <span class="tooltip-text">Please enter your Response.</span>
+                                            </div>
+                                            <div class="valid-tooltip">
+                                                &nbsp;
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+                                    <div class="column_2">
+
+                                        <label for="report_status">Status</label>
+                                        <!--status-->
+                                        <div class="form-group">
+                                            <i class="fa fa-info-circle icon"></i>
+                                            <select class="form-control disabled-input" id="report_status" name="report_status" required [(ngModel)]="formData.report_status"
+                                                [ngClass]="{ 'is-invalid': myForm.submitted && myForm.controls['report_status'].invalid }">
+                                                <option value="" disabled>Select Report Status</option>
+                                                <option value="New Report">New Report</option>
+                                                <option value="Under Review">Under Review</option>
+                                                <option value="Action in Progress">Action in Progress</option>
+                                                <option value="Resolved">Resolved</option>
+                                                <option value="Cancel">Cancel</option>
+                                                <option value="Follow Up">Follow Up</option>
+                                            </select>
+                                            <div class="invalid-tooltip" *ngIf="myForm.submitted && myForm.controls['report_status'].invalid">
+                                                <span class="tooltip-text">Please select a report status.</span>
+                                            </div>
+                                            <div class="valid-tooltip">
+                                                &nbsp;
+                                            </div>
+                                        </div>
+                                        
+                                        <!-- file upload -->
+                                        <label for="fileUpload">File Upload (Optional)</label>
+                                        <div class="form-group" id="file_upload_container">
+                                            
+                                            <div class="custom-file">
+                                            <i class="fa fa-upload icon"></i>
+                                            <button type="button" class="btn btn-light" (click)="openFileInput()" id="file_button">Choose File</button>
+                                            <span *ngIf="selectedFiles.length > 0">Selected Files:</span>
+                                            <div *ngFor="let selectedFile of selectedFiles; let i = index">
+                                                <div class="selected-file">
+                                                <span>{{ selectedFile.name !== 'No Chosen File' ? (selectedFile.name | slice:0:16) + (selectedFile.name.length > 15 ? '...' : '') : 'No Selected File' }}</span>
+                                                <button class="btn btn-danger btn-sm" (click)="removeSelectedFile(i)">Delete</button>
+                                                </div>
+                                            </div>
+                                            <input type="file" id="fileUpload" name="fileUpload" accept=".pdf, .jpg, .jpeg, .png" style="display: none;" (change)="handleFileUpload($event)" multiple>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                                                    
+                            </div>
+                        </div>
+                        <div class="send_button_container">
+                            <div class="form-row">
+                                <div class="col-md-12">
+                                    <button type="submit" class="btn btn-primary mt-3">Send Response</button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>  
+    </div>
+
+    <!-- Modal -->
+    <div id="SuccessModal" class="SuccessModal" class="modal" [ngStyle]="{ display: carouselModalSuccess ? 'block' : 'none' }">
+        <div class="modal-content-success">
+          <div class="modal-header" id="modal_header">
+            <h2>Submitted Successfully!</h2>
+          </div>
+          
+          <div class="modal-body">
+            <p>Your response has been successfully submitted</p>
+            <div class="redirect-button-container">
+                <button class="done-button" (click)="responseSent()">Done</button> 
+            </div>
+          </div>
+        </div>
+      </div> 
+</body>

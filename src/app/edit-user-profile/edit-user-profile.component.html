@@ -1,19 +1,24 @@
 <app-header></app-header>
+<app-super-admin-sidenav></app-super-admin-sidenav>
 <app-navbar></app-navbar>
-<app-sidenav></app-sidenav>
 
 <body>
+    <div class="loading-overlay" *ngIf="isLoading">
+        <div class="loading-spinner"></div>
+    </div>
     <section class="label_section">
         <div class="label_container">
-            <h1>Accounts Management > Edit User Account</h1>
+            <h1>Accounts Management</h1>
         </div>
     </section>
     <section class="edit_section">
-        <h2 class="report_list_header">User Profile</h2>
+        <h2 class="report_list_header">Mobile User Information</h2>
         <div class="user_information_row">
             <img [src]="image" alt="User Image">
-            <div class="username_and_name">
-                <p><span>{{userData.name}}</span></p>
+            <div class="username_and_address">
+                <span id="name">{{fetchedUserData[0].name}}</span>
+                <span id="address">{{fetchedUserData[0].barangay}}</span>
+                <span id="header_email">{{fetchedUserData[0].email}}</span>
             </div>
         </div>
         <div class="form_container">
@@ -21,145 +26,103 @@
                 <div class="form-row">
                     <div class="fields_container">
                         <div class="column_1">
-                            <!--name-->
-                            <div class="form-group">
-                                <label for="fullname">Full Name</label>
-                                <input type="text" class="form-control" id="fullname" name="name" placeholder="Full Name" required
-                                    [(ngModel)]="fetchedUserData[0].name"
-                                    [ngClass]="{ 'is-invalid': myForm.submitted && myForm.controls['name'].invalid }">
-                                <div class="invalid-tooltip" *ngIf="myForm.submitted && myForm.controls['name'].invalid">
-                                    <span class="tooltip-text">Please enter your fullname.</span>
-                                </div>
-                                <div class="valid-tooltip">
-                                    &nbsp;
-                                </div>
-                            </div> 
-
                             <!--gender-->
+                            <label for="gender">Gender</label>
                             <div class="form-group">
-                                <label for="gender">Gender</label>
-                                <select class="form-control" id="gender" name="gender" required [(ngModel)]="fetchedUserData[0].gender"
-                                    [ngClass]="{ 'is-invalid': myForm.submitted && myForm.controls['gender'].invalid }">
-                                    <option value="fetchedUserData[0].gender" disabled>--Select Gender--</option>
-                                    <option value="Male">Male</option>
-                                    <option value="Female">Female</option>
-                                </select>
-                                <div class="invalid-tooltip" *ngIf="myForm.submitted && myForm.controls['gender'].invalid">
-                                    <span class="tooltip-text">Please select a gender.</span>
-                                </div>
-                                <div class="valid-tooltip">
-                                    &nbsp;
-                                </div>
+                                <i class="fa fa-venus-mars icon"></i>
+                                <input type="text" class="form-control" id="gender" name="gender" placeholder="Gender" disabled
+                                    [(ngModel)]="fetchedUserData[0].gender">
                             </div>
-
-                            <!--email-->
-                            <div class="form-group">
-                                <label for="email">Email</label>
-                                <input type="email" class="form-control" id="email" name="email" placeholder="Email" required
-                                    [(ngModel)]="fetchedUserData[0].email"
-                                    [ngClass]="{ 'is-invalid': myForm.submitted && myForm.controls['email'].invalid }"
-                                    pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}">
-                                <div class="invalid-tooltip" *ngIf="myForm.submitted && myForm.controls['email'].invalid">
-                                    <span class="tooltip-text">Invalid Email.</span>
-                                </div>
-                                <div class="valid-tooltip">
-                                    &nbsp;
-                                </div>
-                            </div>
-
-                            <!--     
-                            <div class="form-group">
-                                <label for="password">Password</label>
-                                <input type="password" class="form-control" id="password" name="password" placeholder="Password" required [(ngModel)]="formData.password"
-                                [ngClass]="{ 'is-invalid': myForm.submitted && myForm.controls['password'].invalid }"
-                                pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*]).{8,}$">
-                                <div class="invalid-tooltip" *ngIf="myForm.submitted && myForm.controls['password'].invalid">
-                                <span class="tooltip-text">Password must include atleast one uppercase and lowercase letter, one digit, and one special character.</span>
-                                </div>
-                                <div class="valid-tooltip">
-                                &nbsp;
-                                </div>
-                            </div>    
-                             -->
                         </div>
 
                         <div class="column_2">
-
                             <!--birthday-->
+                            <label for="birthday">Birthday</label>
                             <div class="form-group">
-                                <label for="birthday">Birthday</label>
-                                <input type="date" class="form-control" id="birthday" name="birthday" placeholder="Birthday" required [(ngModel)]="fetchedUserData[0].birthday"
-                                  [ngClass]="{ 'is-invalid': myForm.submitted && myForm.controls['birthday'].invalid }">
-                                <div class="invalid-tooltip" *ngIf="myForm.submitted && myForm.controls['birthday'].invalid">
-                                  <span class="tooltip-text">Please enter a valid date.</span>
-                                </div>
-                                <div class="valid-tooltip">
-                                  &nbsp;
-                                </div>
-                              </div>
-
-                            
-                            
+                                <i class="fa fa-calendar icon"></i>
+                                <input type="text" class="form-control" id="birthday" name="birthday" placeholder="mm/dd/yyy" disabled
+                                    [(ngModel)]="fetchedUserData[0].birthday">
+                            </div>
+                        </div>
+                        <div class="column_3">
                             <!--contact number-->
+                            <label for="contactNumber">Mobile Number</label>
                             <div class="form-group">
-                                <label for="contactNumber">Mobile Number</label>
-                                <input type="text" class="form-control" id="contactNumber" name="contact_number" placeholder="Contact Number" required [(ngModel)]="fetchedUserData[0].contact_number"
-                                    [ngClass]="{ 'is-invalid': myForm.submitted && myForm.controls['contact_number'].invalid }"
+                                <i class="fa fa-phone icon"></i>
+                                <input type="text" class="form-control" id="contactNumber" name="contact_number" placeholder="Contact Number" disabled
+                                    [(ngModel)]="fetchedUserData[0].contact_number"
                                     pattern="[0-9]+">
-                                <div class="invalid-tooltip" *ngIf="myForm.submitted && myForm.controls['contact_number'].invalid">
-                                    <span class="tooltip-text">Please enter a valid mobile number.</span>
-                                </div>
-                                <div class="valid-tooltip">
-                                    &nbsp;
-                                </div>
                             </div>
-
-                            <!--barangay-->
-                            <div class="form-group">
-                                <label for="barangay">Barangay</label>
-                                <select class="form-control" id="barangay" name="barangay" required [(ngModel)]="fetchedUserData[0].barangay"
-                                  [ngClass]="{ 'is-invalid': myForm.submitted && myForm.controls['barangay'].invalid }">
-                                  <option value="fetchedUserData[0].barangay" disabled>--Select a Barangay--</option>
-                                  <option value="Barangay 1">Barangay 1</option>
-                                  <option value="Barangay 2">Barangay 2</option>
-                                  <option value="Barangay 3">Barangay 3</option>
-                                  <option value="Barangay 4">Barangay 4</option>
-                                  <option value="Barangay 5">Barangay 5</option>
-                                </select>
-                                <div class="invalid-tooltip" *ngIf="myForm.submitted && myForm.controls['barangay'].invalid">
-                                  <span class="tooltip-text">Please select a barangay.</span>
-                                </div>
-                                <div class="valid-tooltip">
-                                  &nbsp;
-                                </div>
-                            </div>
-        
-                            <!--
-                            <div class="form-group">
-                                <label for="reapeat_password">Repeat Password</label>
-                                <input type="password" class="form-control" id="repeat_password" name="repeat_password" placeholder="Repeat Password" required [(ngModel)]="formData.repeat_password"
-                                [ngClass]="{ 'is-invalid': myForm.submitted && (myForm.controls['repeat_password'].invalid || passwordMismatch) }"
-                                (input)="checkPasswordMatch()">
-                                <div class="invalid-tooltip" *ngIf="myForm.submitted && (myForm.controls['repeat_password'].invalid || passwordMismatch)">
-                                <span class="tooltip-text" *ngIf="passwordMismatch">Passwords do not match.</span>
-                                <span class="tooltip-text" *ngIf="!passwordMismatch">Please repeat the password.</span>
-                                </div>
-                                <div class="valid-tooltip">
-                                &nbsp;
-                                </div>
-                            </div>
-                        -->
-                        </div>     
-                    </div> 
+                        </div>
+                    </div>
                 </div>
-                <div class="buttons_container">
-                    <div class="send_button_container">
-                        <div class="form-row">
-                            <div class="col-md-12">
-                                <button type="submit" class="btn btn-primary mt-3">Save</button>
+                <div class="form-row">
+                    <div class="fields_container">
+                        <div class="column_1">
+                            <!--street_name-->
+                            <label for="street_name">Street Name</label>
+                            <div class="form-group">
+                                <i class="fa fa-road icon"></i>
+                                <input type="text" class="form-control" id="street_name" name="street_name" placeholder="Street Name" disabled
+                                    [(ngModel)]="fetchedUserData[0].street_name">
                             </div>
-                            <div class="col-md-12">
-                                <button type="button" class="btn btn-danger mt-3" (click)="cancel()">Back</button>
+                        </div>
+                        <div class="column_2">
+                            <!--address_number-->
+                            <label for="address_number">House / Unit / Apartment No.</label>
+                            <div class="form-group">
+                                <i class="fa fa-home icon"></i>
+                                <input type="text" class="form-control" id="address_number" name="address_number" placeholder="N/A" disabled
+                                    [(ngModel)]="fetchedUserData[0].house_number">
+                            </div>
+                        </div>
+                        <div class="column_3">
+                            <!--address_number-->
+                            <label for="floor">Floor</label>
+                            <div class="form-group">
+                                <i class="fa fa-home icon"></i>
+                                <input type="text" class="form-control" id="floor" name="floor" placeholder="N/A" disabled
+                                    [(ngModel)]="fetchedUserData[0].floor">
+                            </div>
+                        </div>
+                        <div class="column_4">
+                            <!--building_name-->
+                            <label for="building_name">Building Name</label>
+                            <div class="form-group">
+                                <i class="fa fa-building icon"></i>
+                                <input type="text" class="form-control" id="building_name" name="building_name" placeholder="N/A" disabled
+                                    [(ngModel)]="fetchedUserData[0].building_name">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="fields_container">
+                        <div class="column_2">
+                            <!--barangay-->
+                            <label for="barangay">Barangay</label>
+                            <div class="form-group">
+                                <i class="fa fa-map-marker icon"></i>
+                                <input type="text" class="form-control" id="barangay" name="barangay" placeholder="Barangay" disabled
+                                    [(ngModel)]="fetchedUserData[0].barangay">
+                            </div>
+                        </div>
+                        <div class="column_3">
+                            <!--district-->
+                            <label for="district">District</label>
+                            <div class="form-group">
+                                <i class="fa fa-map icon"></i>
+                                <input type="text" class="form-control" id="district" name="district" placeholder="District" disabled
+                                    [(ngModel)]="fetchedUserData[0].district">
+                            </div>
+                        </div>
+                        <div class="column_4">
+                            <!--city-->
+                            <label for="city">City</label>
+                            <div class="form-group">
+                                <i class="fa fa-building icon"></i>
+                                <input type="text" class="form-control" id="city" name="city" placeholder="City" disabled
+                                    [(ngModel)]="fetchedUserData[0].city">
                             </div>
                         </div>
                     </div>
@@ -167,39 +130,39 @@
             </form>
         </div>
     </section>
-    
+
     <!-- Modal -->
     <div id="response_modal" class="modal" [ngStyle]="{ display: carouselModalOpen ? 'block' : 'none' }">
         <div class="modal-content">
-          <div class="modal-header" id="modal_header">
-            <h2>Are you sure?</h2>
-            <span class="close" id="close_carousel" (click)="closeCarouselModal()">&times;</span>
-          </div>
-          
-          <div class="modal-body">
-            <p>Confirm to edit user information:</p>
-            <p>{{ userData.name }}</p>
-            <div class="redirect-button-container">
-                <button class="cancel-button" (click)="closeCarouselModal()">Cancel</button>
-                <button class="confirm-button" (click)="confirmSave(myForm)">Confirm</button>
+            <div class="modal-header" id="modal_header">
+                <h2>Are you sure?</h2>
+                <span class="close" id="close_carousel" (click)="closeCarouselModal()">&times;</span>
             </div>
-          </div>
-        </div>
-      </div> 
 
-       <!-- Modal -->
+            <div class="modal-body">
+                <p>Confirm to edit user information:</p>
+                <p>{{ userData.name }}</p>
+                <div class="redirect-button-container">
+                    <button class="cancel-button" (click)="closeCarouselModal()">Cancel</button>
+                    <button class="confirm-button" (click)="confirmSave(myForm)">Confirm</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal -->
     <div id="SuccessModal" class="SuccessModal" class="modal" [ngStyle]="{ display: carouselModalSuccess ? 'block' : 'none' }">
         <div class="modal-content">
-        <div class="modal-header" id="modal_header">
-            <h2>Submitted Successfully!</h2>
-        </div>
-        
-        <div class="modal-body">
-            <p>Your response has been successfully submitted</p>
-            <div class="redirect-button-container">
-                <button class="done-button" (click)="responseSent()">Done</button> 
+            <div class="modal-header" id="modal_header">
+                <h2>Submitted Successfully!</h2>
+            </div>
+
+            <div class="modal-body">
+                <p>Your response has been successfully submitted</p>
+                <div class="redirect-button-container">
+                    <button class="done-button" (click)="responseSent()">Done</button>
+                </div>
             </div>
         </div>
-        </div>
-    </div> 
+    </div>
 </body>

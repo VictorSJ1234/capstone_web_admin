@@ -1,0 +1,96 @@
+<app-header></app-header>
+<app-sidenav></app-sidenav>
+<app-navbar></app-navbar>
+
+<body>
+    <div class="loading-overlay" *ngIf="isLoading">
+        <div class="loading-spinner"></div>
+    </div>
+    
+    <section class="label_section">
+        <div class="label_container">
+            <h1></h1>
+        </div>
+    </section>
+
+    <section class="info_section">
+        <div class="info_container">
+            <div class="info_card" id="add_post_card">
+                <div class="column1">
+                    <div class="card_image_container">
+                        <img src="../../assets/mosquitopedia/mosquitopedia.png" alt="">
+                    </div>
+                </div>
+                <div class="cards_buttons_container">
+                    <button [routerLink]="'/dengue-post-component'">+  Create Post</button>
+                </div>
+            </div>
+        </div>
+    </section> 
+    <hr id="line">
+    
+    <section class="label_section">
+        <div class="label_container">
+            <h1>Dengue Cases</h1>
+        </div>
+    </section>
+
+    <section class="project_list_section">
+        <div class="project_list_container">
+            <div class="table_header">
+                <h2 class="report_list_header">List of Posted Dengue Cases</h2>
+                <div class="dropdown_container">
+                    <label for="number_dropdown">Show:</label>
+                    <select id="number_dropdown">
+                        <option value="10">5</option>
+                        <option value="20">10</option>
+                        <option value="50">15</option>
+                        <option value="100">20</option>
+                    </select>
+                </div>
+            </div>
+            <table class="report_table" id="report_table">
+                <thead>
+                    <tr>
+                        <th><input type="checkbox" class="row-checkbox"></th>
+                        <th>Title of Post</th>
+                        <th>Date & Time</th>
+                        <th>Actions Time</th>
+                    </tr>
+                </thead>
+                <tbody id="user_table_body">
+                    <tr *ngFor="let post of denguePostData; let i = index" [ngClass]="{ 'even-row': i % 2 === 0, 'odd-row': i % 2 !== 0 }">
+                        <td><input type="checkbox" class="row-checkbox"></td>
+                        <td>{{post.project_title}} </td>
+                        <td>{{post.project_date}}</td>
+                        <td>
+                            <button class="view-button" (click)="editPost(post)">View</button>
+                            <button class="hide-button" (click)="openCarouselModal(post)" >Delete</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            
+        </div>
+    </section>   
+
+     <!-- Modal -->
+     <div id="response_modal" class="modal" [ngStyle]="{ display: carouselModalOpen ? 'block' : 'none' }">
+        <div class="modal-content">
+          <div class="modal-header" id="modal_header">
+            <span class="close" id="close_carousel" (click)="closeCarouselModal()">&times;</span>
+            <h2>Are you sure?</h2>
+          </div>
+          
+          <div class="modal-body">
+            <p>Confirm to delete project:</p>
+            <p>{{selectedProjectTitle}}</p>
+            <p></p>
+            <div class="redirect-button-container">
+                <button class="cancel-button" (click)="closeCarouselModal()">Cancel</button> <!-- Close modal on cancel -->
+                <button class="confirm-button" (click)="confirmDelete()">Confirm</button> <!-- Perform delete on confirm -->
+            </div>
+          </div>
+        </div>
+      </div>   
+<body>

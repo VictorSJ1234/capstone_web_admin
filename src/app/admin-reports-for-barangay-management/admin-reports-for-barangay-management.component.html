@@ -1,0 +1,119 @@
+<app-header></app-header>
+<app-sidenav></app-sidenav>
+<app-navbar></app-navbar>
+
+
+<body>
+    <div class="loading-overlay" *ngIf="isLoading">
+        <div class="loading-spinner"></div>
+    </div>
+    <section class="label_section">
+        <div class="label_container">
+            <h1>Reports Management for Barangay</h1>
+        </div>
+    </section>
+
+    <section class="info_section">
+        <div class="info_container">
+            <div class="info_card" id="add_post_card">
+                <div class="column1">
+                    <div class="card_image_container">
+                        <img src="../../assets/mosquitopedia/mosquitopedia.png" alt="">
+                    </div>
+                </div>
+                <div class="cards_buttons_container">
+                    <button [routerLink]="'/create-report-for-barangay'">+  Create Post</button>
+                </div>
+            </div>
+        </div>
+    </section> 
+    <hr id="line">
+
+    <section class="label_section">
+        <div class="label_container">
+            <h1>Report List</h1>
+        </div>
+        <div class="search_report">
+            <div class="search_input">
+                <input type="text" placeholder="Search" [(ngModel)]="searchQuery" (input)="onSearch()">
+                <button class="search_button">
+                    <img src="../../assets/user_report_images/search1.png" alt="Search">
+                </button>
+            </div> 
+        </div>
+    </section>
+    <section class="report_list_section">
+        <div class="report_list_container">
+            <div class="table_header">
+                <h2 class="report_list_header">Created Reports</h2>
+                <div class="dropdown_container">
+                    <label for="number_dropdown">Show:</label>
+                    <select id="number_dropdown" (change)="onItemsPerPageChange($event)">
+                        <option value="5">5</option>
+                        <option value="10" selected>10</option>
+                        <option value="15">15</option>
+                        <option value="20">20</option>
+                    </select> 
+                </div>
+            </div>
+            <table class="report_table" id="report_table">
+                <thead>
+                    <tr>
+                        <th><input type="checkbox" class="row-checkbox"></th>
+                        <th>Report Id</th>
+                        <th>Subject of Report</th>
+                        <th>Sent on</th>
+                        <th>Area of Concen</th>
+                        <th>Status</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead> 
+                <tbody id="report_table_body">
+                    <tr *ngIf="reports.length === 0">
+                        <td colspan="7">No reports available.</td>
+                    </tr>
+                    <tr *ngFor="let report of reports | slice:(currentPage - 1) * itemsPerPage:(currentPage * itemsPerPage); let i = index">
+                        <td><input type="checkbox" class="row-checkbox"></td>
+                        <td>{{report.reportId}} </td>
+                        <td>{{report.report_subject}}</td>
+                        <td>{{report.formattedDate}}</td>
+                        <td>{{report.barangay}}</td>
+                        <td>
+                            <span>{{report.status}}</span>
+                        </td>
+                        <td>
+                            <button class="open-button" (click)="openReport(report)">Open</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="pagination">
+            <button (click)="previousPage()">◄</button>
+            <button *ngFor="let page of getPages()" (click)="setPage(page)"  [ngClass]="{'active': page === currentPage}">{{ page }}</button>
+            <button (click)="nextPage()">►</button>
+        </div>
+    </section> 
+
+    
+    <!-- Modal -->
+    <!--
+    <div id="response_modal" class="modal" [ngStyle]="{ display: carouselModalOpen ? 'block' : 'none' }">
+        <div class="modal-content">
+          <div class="modal-header" id="modal_header">
+            <span class="close" id="close_carousel" (click)="closeCarouselModal()">&times;</span>
+            <h2>Are you sure?</h2>
+          </div>
+          
+          <div class="modal-body">
+            <p>Confirm to delete report:</p>
+            <p>{{ selectedReportId2 }}</p>
+            <div class="redirect-button-container">
+                <button class="cancel-button" (click)="closeCarouselModal()">Cancel</button>
+                <button class="confirm-button" (click)="confirmDelete()">Confirm</button> 
+            </div>
+          </div>
+        </div>
+      </div>   
+    -->
+<body>

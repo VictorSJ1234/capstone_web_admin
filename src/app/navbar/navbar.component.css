@@ -1,111 +1,61 @@
-@import url('https://fonts.googleapis.com/css2?family=Squada+One&display=swap');
-
-/*nav*/
 .header {
-    background-color: #28376D;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    z-index: 2;
-    height: 7.3vw;
-    padding-left: 25px;
-    padding-right: 25px;
-  }
+  background-color: #28376D;
+}
 
-  
-  .logo-container {
-    display: flex;
-    align-items: center;
-    margin-left: 10px;
-  }
-  
-  .logo {
-    width: 5.5vw
-  }
+.nav_container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 2;
+  height: 6.5vw;
+  padding-left: 25px;
+  padding-right: 25px;
+  margin-left: auto;
+  width: 82%;
+}
 
-  h2{
-    font-family: 'Squada One', sans-serif;
-    font-size: 2.5vw;
-    color: white;
-    margin-left: 10px;
-  }
-  
-  #profilepic {
-    width: 5.5vw;
-    border-radius: 180px;
-  }
-  
-  
-  .right-icons {
-    display: flex;
-    align-items: center;
-  }
-  
-  .right-icons img {
-    width: 5.5vw;
-    margin-left: 10px;
-  }
-  
-  @media screen and (max-width: 1000px) {
-    .header {
-      height: 100px;
-    }
-  
-    .logo-container {
-      display: flex;
-      align-items: center;
-      margin-left: 10px;
-    }
-    h2{
-        font-size: 3.5vw;
-      }
-  
-    .logo {
-      width: 7vw;
-    }
-  
-    .right-icons {
-      display: flex;
-      align-items: center;
-    }
-  
-    .right-icons img {
-      width: 7vw;
-      margin-left: 10px;
-    }
-  }
-    
-    @media screen and (max-width: 720px) {
-        .header {
-          height: 100px;
-      }
-  
-      .logo-container {
-        display: flex;
-        align-items: center;
-        margin-left: 10px;
-      }
+.logo-container {
+  display: flex;
+  align-items: center;
+  margin-left: 10px;
+}
 
-      h2{
-        font-size: 4.5vw;
-      }
-  
-      .logo {
-        width: 10vw;
-      }
-  
-      .right-icons {
-        display: flex;
-        align-items: center;
-      }
-  
-      .right-icons img {
-        width: 10vw;
-        margin-left: 10px;
-      }
-    }
-    /*nav*/
-    
-  
-    
-    
+h2 {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 300;
+  font-size: 1.2vw;
+  color: white;
+  margin-left: 2.5vw;
+}
+
+.notification-container {
+  position: relative;
+}
+
+.notification-count {
+  position: absolute;
+  top: -4px;
+  right: 0;
+  background-color: red;
+  color: white;
+  border-radius: 50%;
+  padding: 1px 5px;
+  font-size: 1vw;
+}
+
+#bell_icon {
+  width: 2vw;
+  height: 2vw;
+  border-radius: 180px;
+  cursor: pointer;
+}
+
+.right-icons {
+  display: flex;
+  align-items: center;
+}
+
+.right-icons img {
+  width: 5.5vw;
+  margin-left: 10px;
+}

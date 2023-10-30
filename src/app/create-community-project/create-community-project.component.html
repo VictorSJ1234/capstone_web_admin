@@ -1,24 +1,32 @@
 <app-header></app-header>
-<app-navbar></app-navbar>
 <app-sidenav></app-sidenav>
+<app-navbar></app-navbar>
+
 
 <body>
+    <div class="loading-overlay" *ngIf="isLoading">
+        <div class="loading-spinner"></div>
+    </div>
+    
     <section class="label_section">
         <div class="label_container">
-            <h1>Community Projects Management > Create Post</h1>
+            <h1>Community Projects Management</h1>
         </div>
     </section>
     <section class="edit_section">
-        <h2 class="report_list_header">Create Community Project</h2>
+        <div class="table_header">
+            <h2 class="report_list_header">Community Project Details</h2>
+        </div>
         <div class="form_container">
             <form (ngSubmit)="save(myForm)" #myForm="ngForm">
                 <div class="form-row">
                     <div class="fields_container">
                         <div class="column_1">
                             <!--name-->
+                            <label for="project_title">Title</label>
                             <div class="form-group">
-                                <label for="project_title">Title</label>
-                                <input type="text" class="form-control" id="project_title" name="project_title" placeholder="Project Title" required
+                                <i class="fa fa-pencil icon"></i>
+                                <input type="text" class="form-control" id="project_title" name="project_title" placeholder="Project Title" required 
                                     [(ngModel)]="formData.project_title"
                                     [ngClass]="{ 'is-invalid': myForm.submitted && myForm.controls['project_title'].invalid }">
                                 <div class="invalid-tooltip" *ngIf="myForm.submitted && myForm.controls['project_title'].invalid">
@@ -28,9 +36,35 @@
                                     &nbsp;
                                 </div>
                             </div> 
+                        </div>  
+                        <div class="column_2">
+                            <!--name-->
+                            <label for="type_of_project">Type of Project</label>
                             <div class="form-group">
-                                <label for="project_date">Date</label>
-                                <input type="date" class="form-control" id="project_date" name="project_date" placeholder="Date" required [(ngModel)]="formData.project_date"
+                                <i class="fa fa-pencil icon"></i>
+                                <input type="text" class="form-control" id="type_of_project" name="type_of_project" placeholder="Type of Project" required 
+                                    [(ngModel)]="formData.type_of_project"
+                                    [ngClass]="{ 'is-invalid': myForm.submitted && myForm.controls['type_of_project'].invalid }">
+                                <div class="invalid-tooltip" *ngIf="myForm.submitted && myForm.controls['type_of_project'].invalid">
+                                    <span class="tooltip-text">Please enter the title.</span>
+                                </div>
+                                <div class="valid-tooltip">
+                                    &nbsp;
+                                </div>
+                            </div> 
+                        </div>  
+                    </div> 
+                </div>
+
+                <div class="form-row">
+                    <div class="fields_container_row2">
+                        <div class="column_1">
+                            <!--name-->
+                            <label for="project_date">Date</label>
+                            <div class="form-group">
+                               
+                                <input type="date" class="form-control" id="project_date" name="project_date" placeholder="Date" required  
+                                [(ngModel)]="formData.project_date"
                                   [ngClass]="{ 'is-invalid': myForm.submitted && myForm.controls['project_date'].invalid }">
                                 <div class="invalid-tooltip" *ngIf="myForm.submitted && myForm.controls['project_date'].invalid">
                                   <span class="tooltip-text">Please enter a valid date.</span>
@@ -38,10 +72,15 @@
                                 <div class="valid-tooltip">
                                   &nbsp;
                                 </div>
-                              </div>
-                              <div class="form-group">
-                                <label for="project_time">Time</label>
-                                <input type="time" class="form-control" id="project_time" name="project_time" required [(ngModel)]="formData.project_time"
+                            </div> 
+                        </div>  
+                        <div class="column_2">
+                            <!--name-->
+                            <label for="project_time">Time</label>
+                            <div class="form-group">
+                                <i class="fa fa-clock-o icon"></i>
+                                <input type="time" class="form-control" id="project_time" name="project_time" required 
+                                [(ngModel)]="formData.project_time"
                                     [ngClass]="{ 'is-invalid': myForm.submitted && myForm.controls['project_time'].invalid }">
                                 <div class="invalid-tooltip" *ngIf="myForm.submitted && myForm.controls['project_time'].invalid">
                                     <span class="tooltip-text">Please enter a valid time.</span>
@@ -50,6 +89,49 @@
                                     &nbsp;
                                 </div>
                             </div>
+                        </div>  
+                        <div class="column_3">
+                            <!--name-->
+                            <label for="location">Location</label>
+                            <div class="form-group">
+                                <i class="fa fa-map-marker icon"></i>
+                                <select class="form-control" id="location" name="location" required [(ngModel)]="formData.location"
+                                    [ngClass]="{ 'is-invalid': myForm.submitted && myForm.controls['location'].invalid }">
+                                    <option value="" disabled>Select Location</option>
+                                    <option value="Barangay 1">Barangay 1</option>
+                                    <option value="Barangay 2">Barangay 2</option>
+                                    <option value="Barangay 3">Barangay 3</option>
+                                </select>
+                                <div class="invalid-tooltip" *ngIf="myForm.submitted && myForm.controls['location'].invalid">
+                                    <span class="tooltip-text">Please select a role.</span>
+                                </div>
+                                <div class="valid-tooltip">
+                                    &nbsp;
+                                </div>
+                            </div>
+                        </div>
+                    </div> 
+                </div>
+                
+                <div class="form-row">
+                    <div class="fields_container_row3">
+                        <div class="column_1">
+                            <!--name-->
+                            <label for="details">Post Description</label>
+                            <div class="form-group">
+                                <textarea class="form-control" id="details" name="details" placeholder="Post Desctiption" required 
+                                [(ngModel)]="formData.details"
+                                    [ngClass]="{ 'is-invalid': myForm.submitted && myForm.controls['details'].invalid }"></textarea>
+                                <div class="invalid-tooltip" *ngIf="myForm.submitted && myForm.controls['details'].invalid">
+                                    <span class="tooltip-text">Please enter your Post Description.</span>
+                                </div>
+                                <div class="valid-tooltip">
+                                    &nbsp;
+                                </div>
+                            </div>
+                        </div>  
+                        <div class="column_2">
+                            <!--name-->
                             <!--
                               <div class="form-group" id="file_upload_container">
                                 <label for="fileUpload">File Upload</label>
@@ -58,57 +140,25 @@
                                 </div>
                             </div> 
                             -->
-
+                            <label for="fileUpload">File Upload</label>
                             <div class="form-group" id="file_upload_container">
-                                <label for="fileUpload">File Upload</label>
+                               
                                 <div class="custom-file">
+                                    <i class="fa fa-upload icon"></i>
                                     <button type="button" class="btn btn-light" (click)="openFileInput()" id="file_button">Choose File</button>
                                     <p>Selected File: {{ selectedFileName }}</p> <!-- Display the selected file name -->
                                     <button *ngIf="selectedFile" class="btn btn-warning btn-sm" (click)="removeSelectedFile()">Remove Selected File</button>
-                                    <input type="file" id="fileUpload" name="fileUpload" style="display: none;" (change)="handleFileUpload($event)">
+                                    <input type="file" id="fileUpload"  accept=".jpg, .jpeg, .png" name="fileUpload" style="display: none;" (change)="handleFileUpload($event)">
                                 </div>
                             </div>
-                            
-                            
-                            <div class="form-group">
-                                <label for="attachment_description">Attachment Description</label>
-                                <input type="text" class="form-control" id="fileDescription" name="attachment_description" placeholder="File Description" required
-                                    [(ngModel)]="formData.attachment_description"
-                                    [ngClass]="{ 'is-invalid': myForm.submitted && myForm.controls['attachment_description'].invalid }">
-                                <div class="invalid-tooltip" *ngIf="myForm.submitted && myForm.controls['attachment_description'].invalid">
-                                    <span class="tooltip-text">Please enter the file description.</span>
-                                </div>
-                                <div class="valid-tooltip">
-                                    &nbsp;
-                                </div>
-                            </div> 
-                        </div>
-                       
-
-                        <div class="column_2">
-                            <div class="form-group">
-                                <label for="post_description">Post Description</label>
-                                <textarea class="form-control" id="post_description" name="post_description" placeholder="Post Desctiption" required [(ngModel)]="formData.post_description"
-                                    [ngClass]="{ 'is-invalid': myForm.submitted && myForm.controls['post_description'].invalid }"></textarea>
-                                <div class="invalid-tooltip" *ngIf="myForm.submitted && myForm.controls['post_description'].invalid">
-                                    <span class="tooltip-text">Please enter your Post Description.</span>
-                                </div>
-                                <div class="valid-tooltip">
-                                    &nbsp;
-                                </div>
-                            </div>
-                        </div>     
+                        </div>  
                     </div> 
                 </div>
                 <div class="buttons_container">
                     <div class="send_button_container">
                         <div class="form-row">
-                            <div class="col-md-12">
-                                <button type="submit" class="btn btn-primary mt-3">Post</button>
-                            </div>
-                            <div class="col-md-12">
-                                <button class="btn btn-danger mt-3" (click)="cancel()">Cancel</button>
-                            </div>
+                            <button type="submit" class="btn btn-danger mt-3" (click)="cancel()" id="cancel_sending">Cancel</button>
+                            <button type="submit" class="btn btn-success mt-3" id="send_report_button">Save</button>    
                         </div>
                     </div>
                 </div>
@@ -116,7 +166,7 @@
         </div>
     </section>
 
-    <!-- Modal -->
+     <!-- Modal -->
     <div id="SuccessModal" class="SuccessModal" class="modal" [ngStyle]="{ display: carouselModalSuccess ? 'block' : 'none' }">
         <div class="modal-content">
           <div class="modal-header" id="modal_header">

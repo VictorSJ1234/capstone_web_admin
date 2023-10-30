@@ -1,0 +1,36 @@
+<app-header></app-header>
+
+<app-barangay-sidenav></app-barangay-sidenav>
+<app-navbar></app-navbar>
+<body>
+    <div class="loading-overlay" *ngIf="isLoading">
+        <div class="loading-spinner"></div>
+    </div>
+      
+    <section class="label_section">
+        <div class="label_container">
+            <h1>Welcome, Admin</h1>
+        </div>
+    </section>
+    <section class="info_section">
+        <div class="info_container">
+            <div class="info_card">
+                <div class="card_image_container">
+                    <img src="../../assets/admin_dashboard_images/reports.png" alt="">
+                </div>
+                <div class="card_text_container">
+                    <h3>Recieved Reports</h3>
+                    <p>{{totalReportsByBarangay}}</p>
+                </div>
+            </div>
+        </div>
+    </section>   
+    <section class="graph_2_section">
+        <div class="title_and_button_container">
+            <h2>Community Concern Status</h2>
+        </div>
+        <div class="graph_container">
+            <img src="../../assets/admin_dashboard_images/Graph 2.png" alt="graph1">
+        </div>
+    </section> 
+<body>

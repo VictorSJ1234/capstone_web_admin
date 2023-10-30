@@ -1,35 +1,73 @@
+<div class="loading-overlay" *ngIf="isLoading">
+    <div class="loading-spinner"></div>
+</div>
 <div class="side-nav-container">
     <div class="side-nav">
+        <div class="logo_and_label">
+            <img src="../../assets/logo/pasig_logo.png" alt="pasig logo">
+            <span class="logo_label">Pasig Dengue Task Force</span>
+        </div>  
+        <div class="user_profile">
+            <img [src]="image" alt="User Avatar" (click)="editReport(fetchedUserData)">
+            <span class="user_name" (click)="editReport(fetchedUserData)">{{username}}</span>
+        </div>
         <ul>
-        <li class="image_and_label" [class.active]="isActive('/admin-dashboard') || isActive('/dengue-post-component')">
-            <img src="../../assets/sidenav_icons/dashboard.png" alt="" [routerLink]="'/admin-dashboard'">
-            <img src="../../assets/sidenav_icons/dashboard.png"  class="active-img" alt="" [routerLink]="'/admin-dashboard'" routerLinkActive="active">
-            <button [routerLink]="'/admin-dashboard'" routerLinkActive="active">Dashboard</button>
-        </li>
-        <li><h1>Information<br>Management</h1></li>
-        <li class="image_and_label" [class.active]="isActive('/account-management') || isActive('/user-report') || isActive('/mobile-users') 
-        ||  isActive('/admins') ||  isActive('/edit-admin-information') ||  isActive('/edit-user-profile') ||  isActive('/edit-admin-profile')">
-            <img src="../../assets/sidenav_icons/account_management.png" alt="" [routerLink]="'/account-management'">
-            <img src="../../assets/sidenav_icons/account_management_active.png"  class="active-img" alt="" [routerLink]="'/account-management'" routerLinkActive="active">
-            <button [routerLink]="'/account-management'" routerLinkActive="active">Accounts Management</button>
-        </li>
-        <li class="image_and_label" [class.active]="isActive('/community-report-management') || isActive('/report-information')">
-            <img src="../../assets/sidenav_icons//community_reports.png" alt="" [routerLink]="'/community-report-management'">
-            <img src="../../assets/sidenav_icons/community_reports_active.png"  class="active-img" alt="" [routerLink]="'/community-report-management'" routerLinkActive="active">
-            <button [routerLink]="'/community-report-management'" routerLinkActive="active">Community Reports Management</button>
-        </li>
-        <!--<li><h1>Posts</h1></li>-->
-        <li class="image_and_label" [class.active]="isActive('/community-projects-management') || isActive('/create-community-project') || isActive('/edit-community-project')">
-            <img src="../../assets/sidenav_icons/community_reports.png" alt="" [routerLink]="'/community-projects-management'">
-            <img src="../../assets/sidenav_icons/community_reports_active.png"  class="active-img" alt="" [routerLink]="'/community-projects-management'" routerLinkActive="active">
-            <button [routerLink]="'/community-projects-management'" routerLinkActive="active">Community Projects Management</button>
-        </li>
-        <!--
-        <li class="image_and_label" routerLinkActive="active">
-            <img src="../../assets/sidenav_icons/community_updates.png" alt="">
-            <button [routerLink]="" routerLinkActive="active">Community Projects Update</button>
-        </li>
-        -->
+            <li class="image_and_label" [class.active]="isActive('/admin-dashboard') || isActive('/dengue-post-component')">
+                <img src="../../assets/sidenav_icons/dashboard.png" alt="" [routerLink]="'/admin-dashboard'">
+                <img src="../../assets/sidenav_icons/dashboard.png"  class="active-img" alt="" [routerLink]="'/admin-dashboard'" routerLinkActive="active">
+                <button [routerLink]="'/admin-dashboard'" routerLinkActive="active">Dashboard</button>
+            </li>
+            <li><h1>Management</h1></li>
+            <!--
+            <li class="image_and_label" [class.active]="isActive('/edit-taskforce-profile')  ||  isActive('/account-management')">
+                <img src="../../assets/sidenav_icons/account_management.png" alt="" [routerLink]="'/account-management'">
+                <img src="../../assets/sidenav_icons/account_management_active.png"  class="active-img" alt="" [routerLink]="'/account-management'" routerLinkActive="active">
+                <button [routerLink]="'/account-management'" routerLinkActive="active">Account Management</button>
+            </li>
+            -->
+            <li class="image_and_label" [class.active]="isActive('/community-report-management') || isActive('/report-information') || isActive('/report-information')">
+                <img src="../../assets/sidenav_icons/residents_concerns.png" alt="" [routerLink]="'/community-report-management'">
+                <img src="../../assets/sidenav_icons/blue_residents_concerns.png"  class="active-img" alt="" [routerLink]="'/community-report-management'" routerLinkActive="active">
+                <button [routerLink]="'/community-report-management'" routerLinkActive="active">Received Barangay Residents Concerns</button>
+            </li>
+            <li class="image_and_label" [class.active]="isActive('/admin-reports-for-barangay-management')
+            || isActive('/create-report-for-barangay') || isActive('/admin-report-to-barangay-information') || isActive('/barangay-response-view')">
+                <img src="../../assets/sidenav_icons/barangay_reports.png" alt="" [routerLink]="'//admin-reports-for-barangay-management'">
+                <img src="../../assets/sidenav_icons/dark_barangay_reportss.png"  class="active-img" alt="" [routerLink]="'//admin-reports-for-barangay-management'" routerLinkActive="active">
+                <button [routerLink]="'//admin-reports-for-barangay-management'" routerLinkActive="active">Reports for Barangays on Receive Concerns</button>
+            </li>
+
+            <li class="image_and_label" [class.active]="isActive('/community-projects-management') || isActive('/create-community-project') || isActive('/edit-community-project')">
+                <img src="../../assets/sidenav_icons/community_projects.png" alt="" [routerLink]="'/community-projects-management'">
+                <img src="../../assets/sidenav_icons/blue_community_projects.png"  class="active-img" alt="" [routerLink]="'/community-projects-management'" routerLinkActive="active">
+                <button [routerLink]="'/community-projects-management'" routerLinkActive="active">Community Projects Announcement</button>
+            </li>
+            
+            <!--<li><h1>Posts</h1></li>-->
+            <li class="image_and_label" [class.active]="isActive('/inquiry-information') || isActive('/inquiries-management')">
+                <img src="../../assets/sidenav_icons/inquiries.png" alt="" [routerLink]="'/inquiries-management'">
+                <img src="../../assets/sidenav_icons/dard_inquies.png"  class="active-img" alt="" [routerLink]="'/inquiries-management'" routerLinkActive="active">
+                <button [routerLink]="'/inquiries-management'" routerLinkActive="active">Web Inquiries</button>
+            </li>
+
+            <li class="image_and_label" [class.active]="isActive('/edit-dengue-cases') || isActive('/manage-dengue-cases')">
+                <img src="../../assets/sidenav_icons/dengue_cases.png" alt="" [routerLink]="'/manage-dengue-cases'">
+                <img src="../../assets/sidenav_icons/blue_dengue_cases.png"  class="active-img" alt="" [routerLink]="'/manage-dengue-cases'" routerLinkActive="active">
+                <button [routerLink]="'/manage-dengue-cases'" routerLinkActive="active">Dengue Cases Announcement</button>
+            </li>
+            <li class="image_and_label">
+                <img src="../../assets/sidenav_icons/icons8-logout-96 (1) 1.png" alt="" (click)="logout()">
+                <button (click)="logout()">Logout</button>
+            </li>
+              
+
+            
+            <!--
+            <li class="image_and_label" routerLinkActive="active">
+                <img src="../../assets/sidenav_icons/community_updates.png" alt="">
+                <button [routerLink]="" routerLinkActive="active">Community Projects Update</button>
+            </li>
+            -->
         </ul>
     </div>
 </div>

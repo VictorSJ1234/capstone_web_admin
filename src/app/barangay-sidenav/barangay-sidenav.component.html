@@ -1,0 +1,40 @@
+<div class="loading-overlay" *ngIf="isLoading">
+    <div class="loading-spinner"></div>
+</div>
+  
+<div class="side-nav-container">
+    <div class="side-nav">
+        <div class="logo_and_label">
+            <img src="../../assets/logo/pasig_logo.png" alt="pasig logo">
+            <span class="logo_label">Pasig Dengue Task Force</span>
+        </div>  
+        <div class="user_profile">
+            <img [src]="image" alt="User Avatar" (click)="editReport(fetchedUserData)">
+            <span class="user_name" (click)="editReport(fetchedUserData)">{{username}}</span>
+        </div>
+        <ul>
+            <li class="image_and_label" [class.active]="isActive('/barangay-dashboard')">
+                <img src="../../assets/sidenav_icons/dashboard.png" alt="" [routerLink]="'/barangay-dashboard'">
+                <img src="../../assets/sidenav_icons/dashboard.png"  class="active-img" alt="" [routerLink]="'/barangay-dashboard'" routerLinkActive="active">
+                <button [routerLink]="'/barangay-dashboard'" routerLinkActive="active">Dashboard</button>
+            </li>
+            <li><h1>Management</h1></li>
+            <li class="image_and_label"  [class.active]="isActive('/barangay-concern-management')  || isActive('/admin-report-barangay-view')">
+                <img src="../../assets/sidenav_icons//community_reports.png" alt="" [routerLink]="'/barangay-concern-management'" routerLinkActive="active">
+                <img src="../../assets/sidenav_icons/community_reports_active.png"  class="active-img" alt="">
+                <button [routerLink]="'/barangay-concern-management'"  routerLinkActive="active">Reports Management</button>
+            </li>
+            <li class="image_and_label">
+                <img src="../../assets/sidenav_icons/icons8-logout-96 (1) 1.png" alt="" (click)="logout()">
+                <button (click)="logout()">Logout</button>
+            </li>
+            <!--
+            <li class="image_and_label" routerLinkActive="active">
+                <img src="../../assets/sidenav_icons/community_updates.png" alt="">
+                <button [routerLink]="" routerLinkActive="active">Community Projects Update</button>
+            </li>
+            -->
+        </ul>
+    </div>
+</div>
+  

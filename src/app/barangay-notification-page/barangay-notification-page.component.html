@@ -1,0 +1,57 @@
+<app-header></app-header>
+
+<app-barangay-sidenav></app-barangay-sidenav>
+<app-navbar></app-navbar>
+
+<body>
+    <div class="loading-overlay" *ngIf="isLoading">
+        <div class="loading-spinner"></div>
+    </div>
+    <section class="label_section">
+        <div class="label_container">
+            <h1>Notifications</h1>
+        </div>
+    </section>
+
+    <div class="tab-buttons">
+        <button (click)="showUnreadCards()" [ngClass]="{'active-tab': unreadSelected}">Unread</button>
+        <button (click)="showReadCards()" [ngClass]="{'active-tab': readSelected}">Read</button>
+        
+    </div>
+
+    <section class="info_section" id="second_section">
+        <div class="info_container">
+            <div  *ngIf="unreadSelected">
+                <div class="info_card" *ngFor="let notification of unreadNotifications">
+                    <div class="row1">
+                        <div class="card_image_container">
+                            <img src="../../assets/icons/bell_2.png" alt="">
+                        </div>
+                        <div class="card_text_container">
+                            <h3>{{notification.title}}</h3>
+                            <p>Report Subject: {{notification.message}}</p>
+                        </div>
+                    </div>
+                    <div class="cards_buttons_container">
+                        <button [routerLink]="'/admins'">Read</button>
+                    </div>
+                </div>
+            </div>
+
+            <div *ngIf="readSelected">
+                <div class="info_card" *ngFor="let notification of readNotifications">
+                    <div class="row1">
+                        <div class="card_text_container">
+                            <h3>Read Notification</h3>
+                            <p>{{ notification._id }}</p>
+                        </div>
+                    </div>
+                    <div class="cards_buttons_container">
+                        <button [routerLink]="'/mobile-users'">Read</button>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+    </section>  
+</body>

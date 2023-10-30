@@ -1,48 +1,74 @@
 @import url('https://fonts.googleapis.com/css2?family=Squada+One&display=swap');
 
 .label_section{
-    padding: 0;
-    margin-top: 20px;
-    width: 78%;
-    margin-left: auto;
+  padding: 0;
+  margin-top: 20px;
+  width: 80%;
+  margin-left: auto;
 }
 
 .label_section H1{
   font-family: 'Squada One', sans-serif;
   color: #28376D;
-  font-size: 3vw;
+  font-size: 2.5vw;
   margin-top: 20;
   margin-bottom: 20px;
 }
 
 /*for form*/
 .edit_section {
-    border-radius: 30px;
-    width: 70%;
-    margin-right: 5%;
-    margin-left: auto;
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-    align-items: center;
-    background-color: wh7ite;
-    border-radius: 15px;
-    border: black 1px solid;
-  }
+  width: 78%;
+  margin-left: auto;
+  margin-right: 2%;
+  font-family: 'Open Sans', sans-serif;
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  border: black 1px solid;
+  box-shadow: 0px 5px 5px rgba(0, 0, 0, 0.5);
+  margin-bottom: 5vw;
+}
 
   .edit_section h2{
-    font-family: 'Squada One', sans-serif;
-    background-color: #445180;
+    font-family: 'Open Sans', sans-serif;
+    background-color: #28376D;
     margin-top: 0;
     padding: 20px;
-    border-top-left-radius: 10px;
-    border-top-right-radius: 10px;
     color: white;
-    font-size: 2.2vw;
+    font-size: 1.7vw;
+  font-weight: 700;
     width: 100%;
-    text-align: center;
     margin-bottom: 0;
+    text-align: left;
   }
+  .edit-button {
+    margin-top: auto;
+    margin-bottom: auto;
+    background-color: white;
+    color:#0384E9; 
+    border: 2px solid white; 
+    border-radius: 5px;
+    margin-right: 2vw; 
+    height: 3vw;
+    cursor: pointer;
+    width: 5vw;
+    font-size: 1vw;
+    font-weight: bold;
+  }
+  
+  .edit-button:hover {
+    background-color: #0384E9;
+    color: white;
+  }
+
+  .table_header{
+    background-color: #28376D;
+    display: flex;
+    justify-content: space-around;
+  }
+  
 
   .form_container{
     width: 100%;
@@ -50,9 +76,11 @@
   }
 
   .form_container label{
-    font-size: 1.5vw;
+    font-size: 1.2vw;
     font-family: 'Montserrat', sans-serif; 
     color: #28376D;
+    margin-bottom: -0.7vw;
+    text-align: left;
   }
 
   .fields_container{
@@ -65,14 +93,66 @@
     display: flex;
     flex-direction: column;
     gap: 8px;
-    width: 40%;
+    width: 69.7%;
   } 
   .fields_container .column_2{ 
     display: flex;
     flex-direction: column;
-    gap: 15px;
-    width: 60%;
+    gap: 8px;
+    width: 33.3%;
   } 
+  .fields_container .column_3{ 
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    width: 35%;
+  } 
+
+  .fields_container_row2{
+    display: flex;
+    flex-direction: row;
+    gap: 30px;
+    width: 100%;
+  } 
+  .fields_container_row2 .column_1{ 
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    width: 33.3%;
+  } 
+  .fields_container_row2 .column_2{ 
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    width: 33.3%;
+  } 
+  .fields_container_row2 .column_3{ 
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    width: 33.3%;
+  } 
+
+  .fields_container_row3{
+    display: flex;
+    flex-direction: row;
+    gap: 30px;
+    width: 100%;
+  } 
+  .fields_container_row3 .column_1{ 
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    width: 69.7%;
+  } 
+  .fields_container_row3 .column_2{ 
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    width: 33.3%;
+  } 
+
+  
 
   .custom-file input {
     width: 100%;
@@ -93,35 +173,76 @@
 
   #file_button{
     width: 100%;
-    height: 3.5vw;
-    font-size: 1.2vw;
-    align-content: center;
-    border: black 1px solid;
+    height: 3.3vw;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.5);
+    font-size: 1.1vw;;
   }
-
-  #project_title, #middlename, #fileUpload, #attachment_description,#project_date, #project_time, #street, #email
+  #project_title, #location, #fileUpload, #attachment_description,#project_date, #project_time, #type_of_project, #email
   ,#password, #birthday, #gender, #contactNumber, #landline, #districtNumber, #building, #floor
   ,#houseNumber, #repeat_password{
-    height: 3vw;
-    border: black solid 1px;
+    height: 3.3vw;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.5);
+    padding-left: 35px;
+    font-size: 1.1vw;;
   }
 
-  #post_description{
+  .icon {
+    position: absolute;
+    left: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #8898AA; 
+    font-size: 20px;
+  }
+
+  .fa {
+    font-family: 'FontAwesome';
+    font-size: 18px;
+    font-size: 1.2vw
+  }
+  #details{
     height: 25vw;
-    border: black solid 1px;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.5);
+    font-size: 1.1vw;
   }
   
 
   .buttons_container{
     text-align: center;
-    margin-top: 40px;
   }
 
-  .buttons_container button{
+  .buttons_container{
+    display: flex;
+    flex-direction: row;
     text-align: center;
-    width: 20%;
     padding: 10px;
+    justify-content: right;
+  }
+  #send_report_button{
+    border-style: none;
+    background-color: #0384E9;
+    width: 12vw;
+    height: 3.3vw;
+    border-radius: 5px;
+    color: white;
     font-size: 1.5vw;
+    cursor: pointer;
+    margin-bottom: 20px;
+    align-self: flex-end;
+  }
+  
+  #cancel_sending{
+    border-style: none;
+    background-color: #dc3545;
+    width: 12vw;
+    height: 3.3vw;
+    border-radius: 5px;
+    color: white;
+    font-size: 1.5vw;
+    cursor: pointer;
+    margin-bottom: 20px;
+    align-self: flex-end;
+    margin-right: 20px;
   }
 
   .invalid-tooltip {
@@ -155,7 +276,6 @@
     z-index: 1
   }
 
-  
 /* for modal */
 .modal {
   display: none;
@@ -261,3 +381,33 @@ background-color: #00C3FF;
       opacity: 1;
   }
 }
+
+ /*for loading*/
+ .loading-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+}
+
+.loading-spinner {
+  border: 4px solid rgba(255, 255, 255, 0.3);
+  border-top: 4px solid white; 
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  animation: spin 2s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+

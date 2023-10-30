@@ -13,7 +13,7 @@ import { NgForm } from '@angular/forms';
 export class EditUserProfileComponent {
   
   userData: any;
-  fetchedUserData: any;
+  fetchedUserData: any = {};
   userId: any; //container of userId
   profilePicture!: string; //! means undefined
 
@@ -24,6 +24,8 @@ export class EditUserProfileComponent {
 
   carouselModalOpen = false;
   carouselModalSuccess = false;
+
+  isLoading: boolean = true;
 
 
   openCarouselModal() {
@@ -73,6 +75,7 @@ export class EditUserProfileComponent {
   }
 
   confirmSave(form: NgForm) {
+    this.isLoading = true;
     this.closeCarouselModal(); // Close the confirmation modal
   
     // Call the service to edit admin data
@@ -81,6 +84,7 @@ export class EditUserProfileComponent {
       // Call the service to edit admin data
       this.adminService.editUser(this.fetchedUserData[0]._id, form.value).subscribe(
         (response) => {
+          this.isLoading = false; 
           this.openCarouselModalSuccess();
           console.log('Admin data updated successfully', response);
         },
@@ -120,15 +124,19 @@ export class EditUserProfileComponent {
   }
   */
 
-  constructor(private router: Router, private route: ActivatedRoute, private location: Location, private adminService: AdminRegistrationService,) {}
+  constructor(private router: Router, private route: ActivatedRoute, private location: Location, private adminService: AdminRegistrationService,) {
+    this.fetchedUserData = [0];
+  }
 
   ngOnInit() {
+    this.isLoading = true;
     this.route.queryParams.subscribe(params => {
       this.userData = history.state.userData;
       this.userId = this.userData._id;
 
       this.adminService.getUserData(this.userId).subscribe(
         (response: any) => {
+          this.isLoading = false; 
           this.fetchedUserData = response.userInformationData; // Assign fetched data to userData
 
           // Convert the base64 image to a data URL

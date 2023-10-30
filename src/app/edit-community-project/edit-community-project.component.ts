@@ -16,15 +16,16 @@ export class EditCommunityProjectComponent {
     project_title: '',
     project_date: '',
     project_time: '',
-    attachment_description: '',
-    post_description: '',
+    details: '',
   };
 
   projectData: any;
-  fetchedProjectData: any;
+  fetchedProjectData: any = {};
   projectId: any; //container of project_id
 
-  projectImage!: string; //! means undefined
+  projectImage!: string; //! means undefineds
+
+  isLoading: boolean = false;
 
   //to store the converted image
   image: string | ArrayBuffer | null = null;
@@ -42,6 +43,12 @@ export class EditCommunityProjectComponent {
 
   base64container!: string;
 
+  editMode = false; // Initially, edit mode is disabled
+
+  toggleEditMode() {
+    this.editMode = !this.editMode;
+  }
+
   openCarouselModal() {
     this.carouselModalOpen = true;
   }
@@ -53,7 +60,9 @@ export class EditCommunityProjectComponent {
   }
 
   openCarouselModalSuccess() {
+    this.isLoading = false; 
     this.carouselModalSuccess = true;
+
   }
   
   closeCarouselModal() {
@@ -75,7 +84,7 @@ export class EditCommunityProjectComponent {
       }
     } else {
       // Show error message
-      if (this.fetchedProjectData[0].project_title === '' || this.fetchedProjectData[0].post_description === '' || this.fetchedProjectData[0].attachment_description === '' 
+      if (this.fetchedProjectData[0].project_title === '' || this.fetchedProjectData[0].details === ''
       || this.fetchedProjectData[0].project_time === '' || this.fetchedProjectData[0].project_date === '') {
         console.log('Please fill out all fields.');
       }
@@ -83,6 +92,7 @@ export class EditCommunityProjectComponent {
   }
 
   confirmSave(form: NgForm) {
+    this.isLoading = true; 
     if (this.selectedFile) {
       // Convert selected file to Base64
       this.convertFileToBase64(this.selectedFile, (base64String) => {
@@ -146,8 +156,8 @@ export class EditCommunityProjectComponent {
     return (
       this.fetchedProjectData[0].project_title.trim() !== '' &&
       this.fetchedProjectData[0].project_date.trim() !== '' &&
-      this.fetchedProjectData[0].attachment_description.trim() !== '' &&
-      this.fetchedProjectData[0].post_description.trim() !== '' &&
+      this.fetchedProjectData[0].details.trim() !== '' &&
+      this.fetchedProjectData[0].type_of_project.trim() !== '' &&
       this.fetchedProjectData[0].project_time.trim() !== '' &&
       !this.passwordMismatch 
     );
@@ -158,7 +168,9 @@ export class EditCommunityProjectComponent {
     this.selectedFileName = event.target.files[0].name;
   }
 
-  constructor(private router: Router, private route: ActivatedRoute, private location: Location, private adminService: AdminRegistrationService,) {}
+  constructor(private router: Router, private route: ActivatedRoute, private location: Location, private adminService: AdminRegistrationService,) {
+    this.fetchedProjectData = [0];
+  }
 
   ngOnInit() {
     this.route.queryParams.subscribe(params => {
@@ -208,7 +220,7 @@ export class EditCommunityProjectComponent {
     
     if (this.isImageFetched) {
       // If the image was fetched, clear imageBase64 before updating the database
-      this.imageBase64 = ''; // Set to an empty string or null, depending on your needs
+      this.imageBase64 = ''; 
     } else {
       // If the image was uploaded by the user, clear selectedFile and selectedFileName
       this.selectedFile = null;

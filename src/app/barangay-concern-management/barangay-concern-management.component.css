@@ -1,0 +1,386 @@
+@import url('https://fonts.googleapis.com/css2?family=Squada+One&display=swap');
+body{
+    width: 80%;
+    margin-left: auto;
+    margin-top: 0;
+}
+
+
+.label_section{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  margin-right: 2%;
+  padding: 0;
+}
+
+.label_section H1{
+  font-family: 'Squada One', sans-serif;
+  color: #28376D;
+  font-size: 2.5vw;
+}
+
+
+/*list*/
+.report_list_section{
+  margin-right: 2%;
+}
+
+.report_list_container{
+  font-family: 'Open Sans', sans-serif;
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  border: black 1px solid;
+  box-shadow: 0px 5px 5px rgba(0, 0, 0, 0.5);
+}
+
+.table_header{
+  background-color: #28376D;
+  display: flex;
+  justify-content: space-around;
+}
+
+.report_list_container h2{
+  margin-top: 0;
+  padding: 20px;
+  color: white;
+  font-size: 1.7vw;
+  font-weight: 700;
+  margin-bottom: auto;
+  margin-right: auto;
+}
+
+.report_list_container .dropdown_container label{
+  margin-right: 5px;
+  font-size: 1.5vw;
+}
+
+.report_list_container .dropdown_container{
+  margin-top: 0;
+  padding: 20px;
+  color: white;
+  font-size: 2vw;
+  margin-bottom: auto;
+  margin-left: auto;
+}
+
+.search_report{
+  text-align: left;
+  font-size: 1.5vw;
+}
+
+.search_input{
+  border: solid black 1px;
+  display: flex;
+  align-items: center;
+}
+
+.search_input input{
+  width:15vw;
+  height: 2vw;
+  border-style: none;
+}
+
+.search_input img{
+  height: 1.9vw;
+}
+
+.search_input button{
+  background-color: white;
+  border-style: none;
+}
+
+.search_input button:hover{
+  background-color: #00C3FF;
+  border-style: none;
+  cursor: pointer;
+}
+
+.report_table {
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 600;
+  font-size: 1.1vw;
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.report_table tbody tr:nth-child(odd) {
+  background-color: #C4C4C4; 
+}
+
+.report_table tbody tr:nth-child(even) {
+  background-color: white; 
+}
+
+.report_table th {
+  background-color: white;
+  color: black;
+  font-size: 1vw;
+  font-weight:bold;
+}
+
+.report_table th,
+.report_table td {
+  padding: 8px;
+  text-align: center;
+  border-bottom: 1px solid white;
+}
+
+.report_table td{
+  font-size: 1vw;
+}
+
+/*
+#report_table tbody td{
+  border: 1.5px solid gray; 
+  padding: 8px;
+}
+*/
+
+#report_table tbody td:nth-child(1) {
+  min-width: 4%;
+}
+
+#report_table tbody td:nth-child(2) {
+  min-width: 15%;
+}
+
+#report_table tbody td:nth-child(3) {
+  min-width: 16%;
+}
+
+#report_table tbody td:nth-child(4) {
+  min-width: 14%;
+}
+#report_table tbody td:nth-child(5) {
+  min-width: 14%;
+}
+#report_table tbody td:nth-child(6) {
+  min-width: 14%;
+}
+#report_table tbody td:nth-child(7) {
+  min-width: 14%;
+}
+/* Styles for the concenr button */
+#report_table_body span {
+  background-color: white;
+  color: green; 
+  border: 2px green solid;
+  border-radius: 5px;
+  padding: 5px 10px;
+  margin-right: 10px; 
+  width: 8vw;
+  font-size: 1vw;
+}
+/* Styles for the view button */
+.view-button {
+  background-color: #0384E9;
+  color: white; 
+  border: 2px solid #0384E9;; 
+  border-radius: 5px;
+  padding: 5px 5px;
+  margin-right: 10px; 
+  cursor: pointer;
+  width: 9vw;
+  font-size: 0.9vw;
+}
+
+.view-button:hover {
+  background-color: white;
+  color: #0384E9;
+}
+
+/* Styles for the actions buttons */
+.edit-button {
+  background-color: white;
+  color: #0384E9; 
+  border: 2px solid #0384E9; 
+  border-radius: 5px;
+  padding: 5px 10px;
+  margin-right: 10px; 
+  cursor: pointer;
+  width: 4vw;
+  font-size: 1vw;
+}
+
+.edit-button:hover {
+  background-color: #0384E9;
+  color: white;
+}
+
+.hide-button {
+  background-color: white;
+  color: #E9B603; 
+  border: 2px solid #E9B603; 
+  border-radius: 5px;
+  padding: 5px 10px;
+  cursor: pointer;
+  width: 4vw;
+  font-size: 1vw;
+}
+.hide-button:hover {
+  background-color: #E9B603;
+  color: white;
+}
+
+
+.report_table tbody tr td:last-child button {
+  display: inline-block;
+}
+
+.pagination {
+  text-align: right;
+  margin-top: 10px;
+  font-weight: bold;
+  margin-bottom: 5vw;
+}
+
+.pagination button {
+  margin: 2px;
+  padding: 5px 10px;
+  border: 1px solid #ccc;
+  cursor: pointer;
+}
+
+.pagination button:hover {
+  background-color: #f2f2f2;
+}
+
+.pagination button.active {
+  background-color: #28376D;
+  color: #fff;
+}
+
+   /* for modal */
+   .modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.5);
+  }
+  
+  .modal-content {
+    margin: 0 auto;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 40%;
+    box-shadow: 0 5px 8px 0 rgba(0, 0, 0, 0.2), 0 7px 20px 0 rgba(0, 0, 0, 0.17);
+    animation-name: modalopen;
+    animation-duration: var(--modal-duration);
+  }
+  
+  .modal-header h2,
+  .modal-footer h3 {
+    margin: 0;
+    padding: 5px;
+  }
+  
+  #modal_header {
+    background: var(--modal-color);
+    padding: 15px;
+    background-color: #28376D;
+    color: white;
+    font-family: 'Squada One', sans-serif;
+    font-size: large;
+    text-align: center;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+  }
+
+  #modal_header h2{
+    margin-left: auto;
+  }
+  
+  .modal-body {
+    padding: 10px 20px;
+    background-color: white;
+    text-align: center;
+    font-family: 'Montserrat', sans-serif; 
+    font-size: larger; 
+  }
+  
+  #close_carousel {
+    color: white;
+    float: right;
+    font-size: 30px;
+  }
+  
+  #close_carousel:hover,
+  #close_carousel:focus {
+    color: red;
+    text-decoration: none;
+    cursor: pointer;
+  }
+
+  .cancel-button {
+    background-color: #FC657E;
+    color: white;
+    font-size: larger; 
+    padding: 10px 20px; 
+    border: none;
+    border-radius: 20px; 
+    cursor: pointer;
+    margin-right: 10px; 
+}
+
+.confirm-button {
+  background-color: #00C3FF;
+    color: white;
+    font-size: larger; 
+    padding: 10px 20px;
+    border: none;
+    border-radius: 20px; 
+    cursor: pointer;
+}
+  
+@keyframes modalopen {
+  from {
+      opacity: 0;
+  }
+  to {
+      opacity: 1;
+  }
+}
+
+ /*for loading*/
+ .loading-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+}
+
+.loading-spinner {
+  border: 4px solid rgba(255, 255, 255, 0.3);
+  border-top: 4px solid white; 
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  animation: spin 2s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+
+
+

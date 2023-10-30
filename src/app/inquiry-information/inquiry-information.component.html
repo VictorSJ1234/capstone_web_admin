@@ -1,0 +1,237 @@
+<app-header></app-header>
+<app-sidenav></app-sidenav>
+<app-navbar></app-navbar>
+
+
+<body>
+    <div class="loading-overlay" *ngIf="isLoading">
+        <div class="loading-spinner"></div>
+    </div>
+    
+    <section class="label_section">
+        <div class="label_container">
+            <h1>Community Concern Management</h1>
+        </div>
+    </section>
+    <section class="edit_section">
+        <div class="table_header">
+            <h2 class="report_list_header">User Concern Details</h2>
+        </div>
+        <div class="form_container">
+            <form>
+                <div class="form-row">
+                    <div class="fields_container_row1">
+                        <div class="column_1">
+                            <!--name-->
+                            <label for="email">Concerned User</label>
+                            <div class="form-group">
+                                
+                                <p id="email" name="email" disabled><i class="fa fa-envelope p-icon"></i>{{inquiries.email}}</p>
+                            </div> 
+
+                            
+                        </div>   
+                        <div class="column_3">
+                            <label for="date">Date Posted</label>
+                            <div class="form-group">
+                                
+                                <p id="date" name="date" disabled><i class="fa fa-calendar p-icon"></i>{{inquiries.formattedDate}}</p>
+                            </div> 
+                        </div> 
+                    </div> 
+                </div>
+
+                <div class="form-row">
+                    <div class="fields_container_row3">
+                        <div class="column_1">
+                            <!--name-->
+                            <label for="subject">Inquiry Subject</label>
+                            <div class="form-group">
+                                
+                                <p id="subject" name="subject" disabled><i class="fa fa-pencil p-icon"></i>{{inquiries.subject}}</p>
+                            </div> 
+                        </div>  
+                    </div> 
+                </div>
+
+                
+                
+                <div class="form-row">
+                    <div class="fields_container_row4">
+                        <div class="column_1">
+                            <!--name-->
+                            <label for="inquiry">Inquiry</label>
+                            <div class="form-group">
+                                <textarea class="form-control disabled-input" id="inquiry" name="inquiry" placeholder="Inquiry" [(ngModel)]="inquiries.inquiry " disabled></textarea>
+                            </div>
+                        </div> 
+
+                       
+                        <div class="column_2" *ngIf="inquiries.uploaded_file && inquiries.uploaded_file.length == 0">
+                            <label for="uploaded_file">Attachments: </label>
+                            <div class="form-group">
+                                <div id="file_attachment">
+                                  <i class="fa fa-download icon"></i>
+                                  <button id="download_button" disabled>No Uploaded File</button>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="column_2" *ngIf="inquiries.uploaded_file && inquiries.uploaded_file.length > 0">
+                            <label for="uploaded_file">Attachments: </label>
+                            <div *ngFor="let uploadedFile of inquiries.uploaded_file; let i = index">
+                              <!--name-->
+                              
+                              <div class="form-group">
+                                <div id="file_attachment">
+                                  <i class="fa fa-download icon"></i>
+                                  <button id="download_button" *ngIf="uploadedFile" (click)="openFileInNewTab(i)">View User Attached File {{ i + 1 }}</button>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          
+                    </div> 
+                </div>
+            </form>
+        </div>
+        <button id="respond_button" (click)="openCarouselModal()" *ngIf="adminResponseData.length === 0">Take Action</button>
+    </section>
+
+    <section class="user_list_section" *ngIf="adminResponseData.length > 0">
+        <div class="user_list_container">
+            <div class="table_header">
+                <h2 class="report_list_header">Status and Responses to Concern</h2>
+                <button class="edit-button" (click)="openCarouselModal()">Update Response</button>
+            </div>
+            <table class="user_table" id="user_table">
+                <thead>
+                    <tr>
+                        <th>Status</th>
+                        <th>Response</th>
+                        <th>Date and Time</th>
+                    </tr>
+                </thead>
+                <tbody id="user_table_body">
+                    <tr *ngFor="let response of adminResponseData">
+                        <td [ngStyle]="{'color': getStatusColor(response.inquiry)}">{{ response.inquiry }}</td>
+                        <td>{{ response.inquiry_response }}</td>
+                        <td>{{ response.formattedDate }}</td>
+
+                    </tr>
+                </tbody>
+            </table>
+            
+        </div>
+    </section> 
+    
+
+    <!-- Modal -->        
+   <div id="validation_modal" class="modal" [ngStyle]="{ display: carouselModalOpen ? 'block' : 'none' }">
+    <div class="modal-content">
+        <div class="modal-header" id="response_modal_header">
+            <h2>Dengue Task Force Response Form</h2>
+            <span class="close" id="close_carousel" (click)="closeCarouselModal()">&times;</span>
+        </div>
+    
+        <div class="modal-body">
+            <div class="form_container_modal">
+                <form (ngSubmit)="respond(myForm)" #myForm="ngForm">
+                    <div class="user_information_row">
+                        <img src="../../assets/logo/pasig_logo.png" alt="pasig logo">
+                        <div class="username_and_role">
+                            <span id="name">Dengue Task Force</span>
+                            <span id="header_email">email</span>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="report_fields_container">
+                            <div class="fields_container_modal_row1">
+                                <div class="column_1">
+                                    
+                                    <label for="recipient">Replying to</label>
+                                    <div class="form-group">
+                                        <i class="fa fa-user icon"></i>
+                                        <input type="text" class="form-control" id="recipient" name="recipient" placeholder="{{inquiries.email}}" disabled>
+                                    </div> 
+
+                                    <div class="form-group">
+                                        <i class="fa fa-pencil icon"></i>
+                                        <input type="text" class="form-control" id="response_subject" name="response_subject" placeholder="Response Subject" required
+                                            [(ngModel)]="formData.response_subject"
+                                            [ngClass]="{ 'is-invalid': myForm.submitted && myForm.controls['response_subject'].invalid }">
+                                        <div class="invalid-tooltip" *ngIf="myForm.submitted && myForm.controls['response_subject'].invalid">
+                                            <span class="tooltip-text">Please enter your response_subject.</span>
+                                        </div>
+                                        <div class="valid-tooltip">
+                                            &nbsp;
+                                        </div>
+                                        </div> 
+
+                                    <!--action-->
+                                    <div class="form-group">
+                                        <textarea class="form-control disabled-input" id="inquiry_response" name="inquiry_response" placeholder="Response" required [(ngModel)]="formData.inquiry_response"
+                                            [ngClass]="{ 'is-invalid': myForm.submitted && myForm.controls['inquiry_response'].invalid }"></textarea>
+                                        <div class="invalid-tooltip" *ngIf="myForm.submitted && myForm.controls['inquiry_response'].invalid">
+                                            <span class="tooltip-text">Please enter your Response.</span>
+                                        </div>
+                                        <div class="valid-tooltip">
+                                            &nbsp;
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                                <div class="column_2">
+                                    
+                                    <!-- file upload -->
+                                    <label for="fileUpload">File Upload (Optional)</label>
+                                    <div class="form-group" id="file_upload_container">
+                                        
+                                        <div class="custom-file">
+                                        <i class="fa fa-upload icon"></i>
+                                        <button type="button" class="btn btn-light" (click)="openFileInput()" id="file_button">Choose File</button>
+                                        <span *ngIf="selectedFiles.length > 0">Selected Files:</span>
+                                        <div *ngFor="let selectedFile of selectedFiles; let i = index">
+                                            <div class="selected-file">
+                                            <span>{{ selectedFile.name !== 'No Chosen File' ? (selectedFile.name | slice:0:16) + (selectedFile.name.length > 15 ? '...' : '') : 'No Selected File' }}</span>
+                                            <button class="btn btn-danger btn-sm" (click)="removeSelectedFile(i)">Delete</button>
+                                            </div>
+                                        </div>
+                                        <input type="file" id="fileUpload" name="fileUpload" accept=".pdf, .jpg, .jpeg, .png" style="display: none;" (change)="handleFileUpload($event)" multiple>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                                                                
+                        </div>
+                    </div>
+                    <div class="send_button_container">
+                        <div class="form-row">
+                            <div class="col-md-12">
+                                <button type="submit" class="btn btn-primary mt-3">Send Response</button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>  
+</div>
+
+<!-- Modal -->
+<div id="SuccessModal" class="SuccessModal" class="modal" [ngStyle]="{ display: carouselModalSuccess ? 'block' : 'none' }">
+    <div class="modal-content-success">
+      <div class="modal-header" id="modal_header">
+        <h2>Submitted Successfully!</h2>
+      </div>
+      
+      <div class="modal-body">
+        <p>Your response has been successfully submitted</p>
+        <div class="redirect-button-container">
+            <button class="done-button" (click)="responseSent()">Done</button> 
+        </div>
+      </div>
+    </div>
+  </div> 
+</body>

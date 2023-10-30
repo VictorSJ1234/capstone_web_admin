@@ -1,8 +1,11 @@
 <app-header></app-header>
-<app-navbar></app-navbar>
-<app-sidenav></app-sidenav>
 
+<app-sidenav></app-sidenav>
+<app-navbar></app-navbar>
 <body>
+    <div class="loading-overlay" *ngIf="isLoading">
+        <div class="loading-spinner"></div>
+      </div>
     <section class="label_section">
         <div class="label_container">
             <h1>Welcome, Admin</h1>
@@ -12,55 +15,109 @@
         <div class="info_container">
             <div class="info_card">
                 <div class="card_image_container">
-                    <img src="../../assets/admin_dashboard_images/usersNumber.png" alt="">
+                    <img src="../../assets/admin_dashboard_images/mobile_users.png" alt="">
                 </div>
                 <div class="card_text_container">
-                    <h3>Mobile<br> Users</h3>
-                    <p>{{number_of_users}}</p>
+                    <h3>Mobile  Users</h3>
+                    <p>{{totalUserInformationCount}}</p>
                 </div>
             </div>
 
             <div class="info_card">
                 <div class="card_image_container">
-                    <img src="../../assets/admin_dashboard_images/adminsNumber.png" alt="">
+                    <img src="../../assets/admin_dashboard_images/recieved_concerns.png" alt="">
                 </div>
                 <div class="card_text_container">
-                    <h3>Received<br>Concerns</h3>
-                    <p>{{number_of_complaints}}</p>
+                    <h3>Received Concerns</h3>
+                    <p>{{totalReportCount}}</p>
                 </div>
             </div>
 
             <div class="info_card">
+              <div class="card_image_container">
+                  <img src="../../assets/admin_dashboard_images/mobile_users.png" alt="">
+              </div>
+              <div class="card_text_container">
+                  <h3>Web Inquiries</h3>
+                  <p>{{totalInquiryCount}}</p>
+              </div>
+          </div>
+
+          <!--
+          <div class="info_card">
+              <div class="card_image_container">
+                  <img src="../../assets/admin_dashboard_images/recieved_concerns.png" alt="">
+              </div>
+              <div class="card_text_container">
+                  <h3>Dengue Cases Post</h3>
+                  <p>{{totalReportCount}}</p>
+              </div>
+          </div>
+          -->
+
+            <!--
+            <div class="info_card">
                 <div class="card_image_container">
-                    <img src="../../assets/admin_dashboard_images/dengue_cases_image.png" alt="">
+                    <img src="../../assets/admin_dashboard_images/inquires.png" alt="">
                 </div>
                 <div class="card_text_container">
-                    <h3>Dengue<br> Cases</h3>
+                    <h3>Inquiries</h3>
                     <div class="cards_buttons_container">
-                       <p> <button [routerLink]="'/dengue-post-component'">Post Update</button></p>   
+                       <p> <button [routerLink]="'/inquiries-management'">Manage</button></p>   
                     </div>
                 </div>
             </div>
+
+            <div class="info_card">
+                <div class="card_image_container">
+                    <img src="../../assets/admin_dashboard_images/inquires.png" alt="">
+                </div>
+                <div class="card_text_container">
+                    <h3>Dengue Cases</h3>
+                    <div class="cards_buttons_container">
+                       <p> <button [routerLink]="'/manage-dengue-cases'">Manage</button></p>   
+                    </div>
+                </div>
+            </div>
+          -->
         </div>
-    </section>   
+    </section> 
+    
+    <section class="graph_section">
+        <div class="title_and_button_container">
+          <h2>User Reports per Barangay</h2>
+        </div>
+        <div class="graph_container">
+          <canvas #barChartCanvasForReport width="100%" height="60%"></canvas>
+        </div>
+      </section>
+
+      <section class="graph_1_section">
+        <div class="title_and_button_container">
+          <h2>Mobile Users Reports per Month</h2>
+        </div>
+        <div class="graph_container">
+          <canvas #barChartCanvasForReportPerMonth width="100%" height="60%"></canvas>
+        </div>
+      </section>
     
     <section class="graph_1_section">
         <div class="title_and_button_container">
-            <h2>Mobile App Users per Barangay</h2>
-            <button class="view_button">Manage</button>
+          <h2>Mobile App Users per Barangay</h2>
         </div>
         <div class="graph_container">
-            <img src="../../assets/admin_dashboard_images/Graph 1.png" alt="graph1">
+          <canvas #barChartCanvas width="100%" height="60%"></canvas>
         </div>
-    </section>  
+      </section>
+       
 
-    <section class="graph_2_section">
+      <section class="graph_2_section">
         <div class="title_and_button_container">
             <h2>Community Concern Status</h2>
-            <button class="view_button">Manage</button>
         </div>
-        <div class="graph_container">
-            <img src="../../assets/admin_dashboard_images/Graph 2.png" alt="graph1">
+        <div class="pie-chart-container">
+          <canvas #pieChartCanvas id="pieChart" width="70%" height="60%"></canvas>
         </div>
-    </section> 
+      </section>
+      
 <body>

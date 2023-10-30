@@ -16,22 +16,81 @@ export class AccountRegistrationComponent {
   constructor(private adminService: AdminRegistrationService, private router: Router) {}
 
 
-  //initialize form data for validation
   formData = {
-    firstname: '',
-    lastname: '',
+    fullname: '',
     gender: '',
+    birthday: '',
     contact_number: '', 
+    office: '',
+    selected_role: '',
     email: '',
-    username: '',
     password: '',
     repeat_password: '',
-    role: '',
     adminProfilePicture: '',
+    official_role: '',
+    postedDate:''  
   };
 
+  isLoading: boolean = false;
+
+  selectedFiles: File[] = [];
+
+  openFileInput() {
+    const fileInput = document.getElementById('fileUpload');
+    if (fileInput) {
+      fileInput.click();
+    }
+  }
+
+  removeSelectedFile(index: number) {
+    if (index >= 0 && index < this.selectedFiles.length) {
+      this.selectedFiles.splice(index, 1);
+    }
+  }
+
+  handleFileUpload(event: any) {
+    const files = event.target.files;
+    if (files) {
+      if (this.selectedFiles.length + files.length > 2) {
+        console.log('You can upload a maximum of 2 files.');
+        return;
+      }
+  
+
+      for (let i = 0; i < files.length; i++) {
+        this.selectedFiles.push(files[i]);
+      }
+    }
+  }
+  
+  
+
+
+  convertFilesToBase64(files: File[], callback: (base64Array: string[]) => void) {
+    const base64Array: string[] = [];
+    let remainingFiles = files.length;
+
+    files.forEach((file) => {
+      const reader = new FileReader();
+      reader.onload = () => {
+        let base64String = reader.result as string;
+        const prefixIndex = base64String.indexOf(';base64,');
+        if (prefixIndex !== -1) {
+          base64String = base64String.slice(prefixIndex + 8);
+        }
+        base64Array.push(base64String);
+
+        // Check if all files have been processed
+        remainingFiles--;
+        if (remainingFiles === 0) {
+          callback(base64Array);
+        }
+      };
+      reader.readAsDataURL(file);
+    });
+  }
+  
   showEmailError = false;
-  showUsernameError = false;
 
   passwordMismatch = false;
   showPassword = false;
@@ -40,6 +99,7 @@ export class AccountRegistrationComponent {
 
 
   carouselModalOpen = false;
+  
   
   openCarouselModal() {
     this.carouselModalOpen = true;
@@ -56,10 +116,18 @@ export class AccountRegistrationComponent {
 
   // Function to handle the registration process
   register(form: NgForm) {
+    this.isLoading = true; 
     if (this.isFormValid()) {
 
-      //initial rolee
-      form.value.role = 'admin';
+      if (this.selectedFiles.length === 0) {
+        console.log('Please select at least one file.');
+        this.isLoading = false;
+        return;
+      }
+
+      const selectedFiles = this.selectedFiles;
+
+      this.convertFilesToBase64(selectedFiles, (base64Array) => {
       form.value.adminProfilePicture = '/9j/4AAQSkZJRgABAQACWAJYAAD/2wCEAAgGBgcGB'
       +'QgHBwcJCQgKDBQNDAsLDBkSEw8UHRofHh0aHBwgJC4nICIsIxwcKDcpLD'
       +'AxNDQ0Hyc5PTgyPC4zNDIBCQkJDAsMGA0NGDIhHCEyMjIyMjIyMjIyMjIyM'
@@ -91,31 +159,39 @@ export class AccountRegistrationComponent {
      +'EABQRAQAAAAAAAAAAAAAAAAAAAHD/2gAIAQIBAT8AKf/EABoRAAICAwAAAAAAAAAAAAAAAAARAVAQME'
       +'D/2gAIAQMBAT8ArGPomoYx186Iz//Z'.toString();
 
+
+      form.value.uploaded_file = base64Array;
+
       //passing the value to adminService to sshared file
       this.adminService.registerAdmin(form.value)
         .subscribe(
           response => {
             console.log('Registration successful:', response);
             this.showSuccessModal = true;
+            this.isLoading = false; 
             this.openCarouselModal(); 
             // successful registration
           },
           error => {
             console.error('Registration error:', error);
             if (error.status === 400) {
+              this.isLoading = false; 
               if (error.error && error.error.error === 'Email must be unique.') {
                 // Show the email error message
                 this.showEmailError = true;
               }
-              if (error.error && error.error.error === 'Username must be unique.') {
-                this.showUsernameError = true; // Show the username error message
-              }
+            }
+            else{
+              this.isLoading = false; 
+              console.log('helo');
             }
           }
         );
       //data sent to console
       console.log('data:', this.formData);
+    });
     } else {
+      this.isLoading = false; 
       // Show error message
       if (this.formData.password !== this.formData.repeat_password) {
         console.log('Password and repeat password do not match.');
@@ -123,9 +199,9 @@ export class AccountRegistrationComponent {
       if (!this.isPasswordValid()) {
         console.log('Password does not follow the required pattern.');
       }
-      if (this.formData.firstname === '' || this.formData.email === '' || this.formData.username === '' 
-      || this.formData.password === '' || this.formData.repeat_password === '' || this.formData.lastname === ''
-      || this.formData.gender === '' || this.formData.contact_number === '') {
+      if (this.formData.fullname === '' || this.formData.email === '' || this.formData.office === ''
+      || this.formData.password === '' || this.formData.repeat_password === '' || this.formData.birthday === '' || this.formData.selected_role === ''
+      || this.formData.gender === '' || this.formData.contact_number === '' || !this.selectedFiles) {
         console.log('Please fill out all fields.');
       }
       if (this.isEmailInvalid()) {
@@ -151,9 +227,10 @@ export class AccountRegistrationComponent {
   //checks if data are not empty or followed the right functions
   isFormValid(): boolean {
     return (
-      this.formData.firstname.trim() !== '' &&
-      this.formData.lastname.trim() !== '' &&
-      this.formData.username.trim() !== '' &&
+      this.formData.fullname.trim() !== '' &&
+      this.formData.office.trim() !== '' &&
+      this.formData.selected_role.trim() !== '' &&
+      this.formData.birthday.trim() !== '' &&
       this.formData.email.trim() !== '' &&
       this.formData.password.trim() !== '' &&
       this.formData.repeat_password.trim() !== '' &&

@@ -1,18 +1,15 @@
 header {
-    height: 55px;
+    height: 50px;
     padding: 3px;
     font-family: 'Montserrat', sans-serif; 
     font-weight: 600;
-}
-
-.main_div {
     display: flex;
-    flex-direction: row;
     align-items: center;
 }
 
 .date_time_container {
-    margin-left: 2%;
+    text-align: center;
+    margin-left: 10px;
 }
 
 .icons_container {

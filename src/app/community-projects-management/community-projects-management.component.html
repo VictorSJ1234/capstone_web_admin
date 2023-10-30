@@ -1,33 +1,22 @@
 <app-header></app-header>
-<app-navbar></app-navbar>
 <app-sidenav></app-sidenav>
+<app-navbar></app-navbar>
 
 <body>
+    <div class="loading-overlay" *ngIf="isLoading">
+        <div class="loading-spinner"></div>
+    </div>
+    
     <section class="label_section">
         <div class="label_container">
             <h1>Community Projects Management</h1>
         </div>
     </section>
+
     <section class="info_section">
         <div class="info_container">
-            <div class="info_card" *ngFor="let project of communityProjectsData; let i = index">
-                <div class="row1">
-                    <div class="card_image_container">
-                        <img src="../../assets/mosquitopedia/mosquitopedia.png" alt="">
-                    </div>
-                    <div class="card_text_container">
-                        <h3>{{ project.project_title }}</h3>
-                    </div>
-                </div>
-                <div class="cards_buttons_container">
-                    <button (click)="editPost(project)">Edit</button>
-                </div>
-                <div class="cards_buttons_container">
-                    <button id="delete" (click)="openCarouselModal(project)" >Delete</button>
-                </div>
-            </div>
             <div class="info_card" id="add_post_card">
-                <div class="row1">
+                <div class="column1">
                     <div class="card_image_container">
                         <img src="../../assets/mosquitopedia/mosquitopedia.png" alt="">
                     </div>
@@ -37,7 +26,64 @@
                 </div>
             </div>
         </div>
-    </section>  
+    </section> 
+    <hr id="line">
+    
+    <section class="label_section">
+        <div class="label_container">
+            <h1>Current Projects</h1>
+        </div>
+    </section>
+
+    <section class="project_list_section">
+        <div class="project_list_container">
+            <div class="table_header">
+                <h2 class="report_list_header">Community Project Details</h2>
+                <div class="dropdown_container">
+                    <label for="number_dropdown">Show:</label>
+                    <select id="number_dropdown">
+                        <option value="10">5</option>
+                        <option value="20">10</option>
+                        <option value="50">15</option>
+                        <option value="100">20</option>
+                    </select>
+                </div>
+            </div>
+            <table class="report_table" id="report_table">
+                <thead>
+                    <tr>
+                        <th><input type="checkbox" class="row-checkbox"></th>
+                        <th>Title of Post</th>
+                        <th>Type of Project</th>
+                        <th>Location</th>
+                        <th>Schedule</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody id="user_table_body">
+                    <tr *ngIf="communityProjectsData.length === 0">
+                        <td colspan="7">Currently, there are no community projects that have been posted.</td>
+                    </tr>
+                    <tr *ngFor="let project of communityProjectsData | slice:(currentPage - 1) * itemsPerPage:currentPage * itemsPerPage; let i = index" [ngClass]="{ 'even-row': i % 2 === 0, 'odd-row': i % 2 !== 0 }">
+                        <td><input type="checkbox" class="row-checkbox"></td>
+                        <td>{{ project.project_title }}</td>
+                        <td>{{project.type_of_project}}</td>
+                        <td>{{project.location}}</td>
+                        <td>{{project.project_date}} {{ formatTime(project.project_time) }}</td>
+                        <td>
+                            <button class="view-button" (click)="editPost(project)">View</button>
+                            <button class="delete-button" (click)="openCarouselModal(project)" >Delete</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="pagination">
+            <button (click)="previousPage()">◄</button>
+            <button *ngFor="let page of getPages()" (click)="setPage(page)"  [ngClass]="{'active': page === currentPage}">{{ page }}</button>
+            <button (click)="nextPage()">►</button>
+        </div>
+    </section>   
 
      <!-- Modal -->
      <div id="response_modal" class="modal" [ngStyle]="{ display: carouselModalOpen ? 'block' : 'none' }">

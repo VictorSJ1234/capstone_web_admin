@@ -1,41 +1,80 @@
 <app-header></app-header>
+<app-super-admin-sidenav></app-super-admin-sidenav>
 <app-navbar></app-navbar>
-<app-sidenav></app-sidenav>
+
 
 <body>
+    <div class="loading-overlay" *ngIf="isLoading">
+        <div class="loading-spinner"></div>
+    </div>
+      
     <section class="label_section">
         <div class="label_container">
-            <h1>Accounts Management > Mobile Users</h1>
+            <h1>Accounts Management</h1>
+        </div>
+        <div class="search_report">
+            <div class="search_input">
+                <input type="text" placeholder="Search" [(ngModel)]="searchQuery" (input)="onSearch()">
+                <button class="search_button">
+                    <img src="../../assets/user_report_images/search1.png" alt="Search">
+                </button>
+            </div> 
         </div>
     </section>
-    <section class="report_list_section">
-        <div class="report_list_container">
-            <h2 class="report_list_header">Mobile Users List</h2>
-            <table class="report_table">
-            <tbody>
-                <tr *ngIf="userData.length === 0">
-                    <td colspan="3" class="no-reports-cell">
-                        No reports yet
-                    </td>
-                </tr>
-                <tr *ngFor="let user of userData">
-                    <td><img [src]="convertToImage(user.profilePicture)" alt="Report Image" class="user_image"></td>
-                    <td class="name"><p>{{ user.name }}</p></td>
-                    <td><button (click)="viewReports(user)" id="view_button"><img src="../../assets/button_icons/reports_icon.png" alt="View">&nbsp;Reports</button></td>
-                    <td><button (click)="editReport(user)" id="edit_button"><img src="../../assets/button_icons/edit_icon.png" alt="Edit">&nbsp;Edit</button></td>
-                    <td><button (click)="openCarouselModal(user)" id="delete_button"><img src="../../assets/button_icons/delete_icon.png" alt="Delete">&nbsp;Delete</button></td>
-                </tr>
-            </tbody>
+    <section class="user_list_section">
+        <div class="user_list_container">
+            <div class="table_header"> 
+                <h2 class="user_list_header">Mobile Users List</h2>
+                <div class="dropdown_container">
+                    <label for="number_dropdown">Show:</label>
+                    <select id="number_dropdown" (change)="onItemsPerPageChange($event)">
+                        <option value="5">5</option>
+                        <option value="10" selected>10</option>
+                        <option value="15">15</option>
+                        <option value="20">20</option>
+                    </select>                    
+                </div>
+            </div>
+            <table class="user_table" id="user_table">
+                <thead>
+                    <tr>
+                        <th>Username</th>
+                        <th>Email</th>
+                        <th>Registration Time</th>
+                        <th>Confirmation</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody id="user_table_body">
+                    <tr *ngFor="let user of userData | slice:(currentPage - 1) * itemsPerPage:(currentPage * itemsPerPage); let i = index">
+                        <td>{{ user.name }} </td>
+                        <td>{{ user.email }}</td>
+                        <td>{{ user.formattedDate }}</td>
+                        <td>
+                            <button class="confirmation-button" (click)="openValidation(user)" [disabled]="user.accountStatus == 'Validated'"> {{ user.accountStatus }}</button>
+                        </td>                        
+                        <td>
+                            <button class="edit-button" (click)="editReport(user)" >Profile</button>
+                            <button class="hide-button" (click)="openCarouselModal(user)" id="delete_button">Delete</button>
+                        </td>
+                    </tr>
+                </tbody>
             </table>
+        </div>
+        <div id="pagination">
+            <button (click)="previousPage()">◄</button>
+            <button *ngFor="let page of getPages()" (click)="setPage(page)"  [ngClass]="{'active': page === currentPage}">{{ page }}</button>
+            <button (click)="nextPage()">►</button>
         </div>
     </section> 
 
     <!-- Modal -->
-    <div id="response_modal" class="modal" [ngStyle]="{ display: carouselModalOpen ? 'block' : 'none' }">
+    <div id="delete_modal" class="modal" [ngStyle]="{ display: carouselModalOpen ? 'block' : 'none' }">
         <div class="modal-content">
           <div class="modal-header" id="modal_header">
-            <span class="close" id="close_carousel" (click)="closeCarouselModal()">&times;</span>
+          
             <h2>Are you sure?</h2>
+            <span class="close" id="close_carousel" (click)="closeCarouselModal()">&times;</span>
           </div>
           
           <div class="modal-body">
@@ -48,4 +87,66 @@
           </div>
         </div>
       </div>   
+      <div id="validation_modal" class="modal" [ngStyle]="{ display: validationModal ? 'block' : 'none' }">
+        <div class="modal-content">
+        <div class="modal-header" id="modal_header">
+            <h2>Dengue Task Force Response Form</h2>
+            <span class="close" id="close_carousel" (click)="closeValidationModal()">&times;</span>
+        </div>
+        
+        <div class="modal-body">
+            <div class="form_container">
+                <form>
+                    <div class="user_information_row">
+                        <img [src]="convertToImage(selectedUser.profilePicture)" alt="User Image">
+                        <div class="username_and_role">
+                            <span id="name">{{ selectedUser.name }}</span>
+                            <!--<span id="header_role">Account Status: {{ selectedUser.accountStatus }}</span>-->
+                            <span id="header_email">{{ selectedUser.email }}</span>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="report_fields_container">
+                          <div class="fields_container">
+
+
+                            <div class="column_2" *ngIf="selectedUser.uploaded_file && selectedUser.uploaded_file.length > 0">
+                                <label for="uploaded_file">Attachments: </label>
+                                <div *ngFor="let uploadedFile of selectedUser.uploaded_file; let i = index">
+                                    <!--name-->
+                                    
+                                    <div class="form-group">
+                                    <div id="file_attachment">
+                                        <i class="fa fa-download icon"></i>
+                                        <button id="download_button" *ngIf="uploadedFile" (click)="openFileInNewTab(i)">View Attached File</button>
+                                    </div>
+                                    </div>
+                                </div>
+                            </div>                          
+                          </div>
+                          <!--
+                          <label for="file_content">File Content</label>
+                          <div class="form-group">
+                            <img [src]="convertBase64ToUrl(selectedUser.uploaded_file)" id="file_content" alt="User Image">
+                        </div>
+                        -->
+                      </div>
+                    </div>
+                  <div class="validation_button_container">
+                    <div class="form-row">
+                      <div class="col-md-12">
+                        <button type="submit" id="cancel_validation_button" class="btn btn-alert mt-3"  (click)="closeValidationModal()">Decline</button>
+                      </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="col-md-12">
+                            <button type="submit" class="btn btn-primary mt-3" (click)="confirmValidation()">Confirm</button>
+                        </div>
+                      </div>
+                  </div>
+                </form>
+            </div>
+        </div>
+        </div>
+    </div>  
 <body>

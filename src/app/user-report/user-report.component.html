@@ -1,83 +1,81 @@
 <app-header></app-header>
-<app-navbar></app-navbar>
 <app-sidenav></app-sidenav>
+<app-navbar></app-navbar>
+
 
 <body>
+    <div class="loading-overlay" *ngIf="isLoading">
+        <div class="loading-spinner"></div>
+    </div>
     <section class="label_section">
         <div class="label_container">
-            <h1>Accounts Managements > User Reports</h1>
+            <h1>Community Concern Management</h1>
+        </div>
+        <div class="search_report">
+            <div class="search_input">
+                <input type="text" placeholder="Search" [(ngModel)]="searchQuery" (input)="onSearch()">
+                <button class="search_button">
+                    <img src="../../assets/user_report_images/search1.png" alt="Search">
+                </button>
+            </div> 
         </div>
     </section>
+    
     <section class="report_list_section">
         <div class="report_list_container">
-            <div class="report_list_header">
-                <h2>User Reports List</h2>
-                <div class="search_report">
-                    Search Report
-                    <div class="search_input">
-                        <input type="text">
-                        <button class="search_button">
-                            <img src="../../assets/user_report_images/search1.png" alt="Search">
-                        </button>
-                    </div>
-                </div>
-                <div class="sort_report">
-                    Sort Report
-                    <div class="sort_input">
-                        <select class="sort-select">
-                            <option value="date">Date</option>
-                            <option value="status">Status</option>
-                            <option value="name">Name</option>
-                        </select>
-                    </div>
+            <div class="table_header">
+                <h2 class="report_list_header">Mobile User Concerns</h2>
+                <div class="dropdown_container">
+                    <label for="number_dropdown">Show:</label>
+                    <select id="number_dropdown" (change)="onItemsPerPageChange($event)">
+                        <option value="5">5</option>
+                        <option value="10" selected>10</option>
+                        <option value="15">15</option>
+                        <option value="20">20</option>
+                    </select>  
                 </div>
             </div>
-            <div class="user_information_row">
-                <img [src]="image" alt="User Image">
-                <div class="username_and_name">
-                    Name
-                    <p><span>{{userData.name}}</span></p>
-                </div>
-                <div class="barangay">
-                    &nbsp;
-                    <p><b>Barangay: </b><span>{{userData.barangay}}</span></p>
-                </div>
-
-            </div>
-            <table class="report_table">
-                <tbody>
-                    <tr *ngIf="reports.length === 0">
-                        <td colspan="3" class="no-reports-cell">
-                            No reports yet
-                        </td>
+            <table class="report_table" id="report_table">
+                <thead>
+                    <tr>
+                        <th><input type="checkbox" class="row-checkbox"></th>
+                        <th>Concern Id</th>
+                        <th>Subject of Report</th>
+                        <th>Recieved on</th>
+                        <th>Report Location</th>
+                        <th>Status</th>
+                        <th>Actions</th>
                     </tr>
-                    <tr *ngFor="let report of reports; ; let i = index">
-                        <td class="first_column">
-                            <div class="column1">
-                                <b>Report #{{ i + 1 }}</b> 
-                                <img src="../../assets/user_report_images/report_icon.png" alt="Report Image">
-                                <b>Report ID#</b> <br>
-                                {{report.reportId}}
-                            </div>
+                </thead>
+                <tbody id="report_table_body">
+                    <tr *ngIf="reports.length === 0">
+                        <td colspan="7">No reports available.</td>
+                    </tr>
+                    <tr *ngFor="let report of reports | slice:(currentPage - 1) * itemsPerPage:(currentPage * itemsPerPage); let i = index">
+                        <td><input type="checkbox" class="row-checkbox"></td>
+                        <td>{{report.reportId}} </td>
+                        <td>{{report.report_subject}}</td>
+                        <td>{{report.formattedDate}}</td>
+                        <td>{{report.barangay}}</td>
+                        <td>
+                            <span>{{report.report_status}}</span>
                         </td>
                         <td>
-                            <div class="column2">
-                                <p class="subject_text"><b>Subject:&nbsp;</b><span >{{ report.report_subject}}</span></p>
-                                <p class="date"><b>Date:&nbsp;</b><span class="date_text">{{report.formattedDate}}</span></p>
-                            </div>
-                        </td>
-                        <td class="button_column">
-                            <div class="column3">
-                                <button (click)="openReport(report)" id="open_button">Open</button>
-                                <button (click)="openCarouselModal(report)" id="delete_button">Delete</button>
-                            </div>
+                            <button class="open-button" (click)="openReport(report)">Open</button>
+                            <button class="hide-button" (click)="openCarouselModal(report)">Delete</button>
                         </td>
                     </tr>
                 </tbody>
             </table>
         </div>
+        <div class="pagination">
+            <button (click)="previousPage()">◄</button>
+            <button *ngFor="let page of getPages()" (click)="setPage(page)"  [ngClass]="{'active': page === currentPage}">{{ page }}</button>
+            <button (click)="nextPage()">►</button>
+        </div>
     </section> 
 
+    
     <!-- Modal -->
     <div id="response_modal" class="modal" [ngStyle]="{ display: carouselModalOpen ? 'block' : 'none' }">
         <div class="modal-content">

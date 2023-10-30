@@ -1,10 +1,15 @@
 <body class="body">
+  <div class="loading-overlay" *ngIf="isLoading">
+    <div class="loading-spinner"></div>
+  </div>
+
     <section class="login_section">
         <div class="inquiry_title_container">
-            <h1 class="inquiry_title">Management Portal</h1>
+            <img src="../../assets/logo/pasig_logo.png" alt="pasig logo">
+            <h1 class="inquiry_title">Pasig Dengue Task Force<br>Online Management</h1>
         </div>
         <div class="description_container">
-            <h1 class="description">Login</h1>
+            <h1 class="description">Admin Login</h1>
         </div>
         <div class="form_container">
             <form (ngSubmit)="login()" #myForm="ngForm">
@@ -12,6 +17,7 @@
                 <div class="login_container">
                   <div class="row_1">
                     <div class="form-group">
+                      <i class="fa fa-envelope icon"></i>
                       <input type="email" class="form-control" id="email" name="email" placeholder="Email" required [(ngModel)]="formData.email"
                         [ngClass]="{ 'is-invalid': myForm.submitted && myForm.controls['email'].invalid }"
                         pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}">
@@ -23,6 +29,7 @@
                       </div>
                     </div>
                     <div class="form-group password-container">
+                      <i class="fa fa-lock icon"></i>
                       <input type="{{ showPassword ? 'text' : 'password' }}" class="form-control" id="password" name="password"
                         placeholder="Password" required [(ngModel)]="formData.password"
                         [ngClass]="{ 'is-invalid': myForm.submitted && myForm.controls['password'].invalid }">
@@ -40,14 +47,19 @@
                 </div>
               </div>
               <div class="error-container">
-                <div *ngIf="showError" class="alert alert-danger mt-3">
+                <div *ngIf="showError" class="alert alert-danger">
                   Invalid login credentials.
+                </div>
+              </div>
+              <div class="error-container">
+                <div *ngIf="showConnectionError" class="alert alert-danger">
+                  There is a connection error, please check you internet connection and try again.
                 </div>
               </div>
               <div class="send_button_container">
                 <div class="form-row">
                   <div class="col-md-12">
-                    <button type="submit" class="btn btn-primary mt-3">Sign Up</button>
+                    <button type="submit" class="btn btn-primary" id="send_button">Login</button>
                   </div>
                 </div>
               </div>
@@ -55,7 +67,29 @@
                 <p>Don't have an account yet?</p>
                 <a routerLink="/account-registration">Register Here!</a>
               </div>
+              <hr>
+              <div class="forgot_password_container">
+                <a routerLink="/forgot-password">Forgot Password?</a>
+              </div>
             </form>
         </div>
     </section>
+
+     <!-- Modal -->
+     <div id="response_modal" class="modal" [ngStyle]="{ display: carouselModalOpen ? 'block' : 'none' }">
+      <div class="modal-content">
+        <div class="modal-header" id="modal_header">
+          <h2>Account Validation Pending</h2>
+          <span class="close" id="close_carousel" (click)="closeCarouselModal()">&times;</span>
+        </div>
+        
+        <div class="modal-body">
+          <p>Your account is not yet validated. Please wait for the approval of your account from the Pasig City Anti-Dengue Task Force. We will also send you an email once your account has been validated.</p>
+          <div class="redirect-button-container">
+            <button class="btn btn-primary" (click)="closeModal()">Back</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
 </body>

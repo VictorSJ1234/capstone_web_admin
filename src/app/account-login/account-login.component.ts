@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { AdminRegistrationService } from '../shared/admin-registration.service';
+import { AuthService } from '../authService/auth.service';
 
 @Component({
   selector: 'app-account-login',
@@ -15,11 +16,14 @@ export class AccountLoginComponent {
     role: '' 
   };
   showError = false;
+  showConnectionError = false;
   showPassword = false;
+  isLoading: boolean = false;
 
-  constructor(private adminService: AdminRegistrationService, private router: Router) {}
+  constructor(private adminService: AdminRegistrationService, private router: Router, private authService: AuthService) {}
 
   async login() {
+    this.isLoading = true; 
     if (this.isFormValid()) {
       try {
         const response = await this.adminService.login(
@@ -28,37 +32,72 @@ export class AccountLoginComponent {
         ).toPromise();
 
         if (response.status && response.token) {
-          // Save the token in local storage or a secure storage mechanism
           localStorage.setItem('token', response.token);
+          localStorage.setItem('userRole', response.official_role);
+          this.authService.login(response._id, response.official_role);
+          console.log(response._id);
 
-          if (response.role === 'admin') {
+          if (response.official_role === 'Dengue Task Force') {
+            this.isLoading = false; 
             this.router.navigate(['/admin-dashboard']);
-          } else {
-            this.router.navigate(['/account-registration']);
+          } 
+          else if (response.official_role === 'Barangay Admin') {
+            this.isLoading = false; 
+            this.router.navigate(['/barangay-dashboard']);
+          } 
+          else if (response.official_role === 'Admin') {
+            this.isLoading = false; 
+            this.router.navigate(['/super-admin-dashboard']);
+          } 
+          else {
+            this.isLoading = false; 
+            this.openCarouselModal();
           }
         } else {
+          this.isLoading = false; 
           console.log('Invalid login credentials.');
           this.showError = true;
         }
       } catch (error) {
+        this.isLoading = false; 
         console.error('An error occurred during login:', error);
-        this.showError = true;
+        this.showConnectionError = true;
       }
     }else {
-      // Show error message
       if (this.formData.email === '' || this.formData.password === '') {
+        this.isLoading = false; 
         console.log('Please fill out all fields.');
       }
       if (this.isEmailInvalid()) {
+        this.isLoading = false; 
         console.log('Invalid Email.');
       }
     }
+  }
+
+  showSuccessModal = false;
+
+
+  carouselModalOpen = false;
+  
+  
+  openCarouselModal() {
+    this.carouselModalOpen = true;
+  }
+
+  closeCarouselModal() {
+    this.carouselModalOpen = false;
   }
 
   isEmailInvalid(): boolean {
     const emailPattern = /[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}/;
     return !emailPattern.test(this.formData.email);
   }
+
+  closeModal() {
+    this.closeCarouselModal();
+  }
+
 
   isFormValid(): boolean {
     return (

@@ -1,6 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Squada+One&display=swap');
 body{
-    width: 77%;
+    width: 80%;
     margin-left: auto;
     margin-top: 0;
 }
@@ -10,11 +10,15 @@ body{
   padding: 0;
 }
 
+.info_section_projects{
+  margin-bottom: 5vw;
+}
+
 .label_section H1{
   font-family: 'Squada One', sans-serif;
   color: #28376D;
-  font-size: 3vw;
-  margin-top: 20;
+  font-size: 2.5vw;
+  margin-top: 2vw;
   margin-bottom: 20px;
 }
 
@@ -23,21 +27,29 @@ body{
     flex-direction: row;
     gap: 30px;
   }
+
+  #line{
+    margin-top: 30px;
+    margin-bottom: 30px;
+    background-color: #28376D;
+    height: .2vw;
+  }
+  
   
   /*cards*/
   .info_container{
     display: flex;
     flex-wrap: wrap;
-    justify-content: center;
+    justify-content: left;
   }
   .info_card{
-    background-color: #445180;
-    width:30vw;
-    border-radius: 20px;
+    background-color: white;
+    width:23vw;
+    border-radius: 8px;
     display: flex;
-    flex-direction: column;
-    padding: 25px;
-    gap: 5px;
+    flex-direction: row;
+    padding: 10px;
+    border: solid #28376D 4px;
     box-shadow: 0px 5px 8px rgba(0, 0, 0, 0.5);
   }
   
@@ -46,75 +58,338 @@ body{
     border: solid #28376D 4px;
   }
 
-  .info_card .row1{
+  .info_card .column1{
       display: flex;
       flex-direction: row;
       gap: 20px;
   }
+
+    .info_card .column2{
+      display: flex;
+      flex-direction: column;
+      margin-left: auto;
+      gap: 10px;
+  }
+
   
   .info_card .card_text_container{
     font-family: 'Montserrat', sans-serif; 
     color:  white;
-    text-align: left;
-    font-size: 1.3vw;
+    font-size: 1.1vw;
     max-width: 23vw; 
     white-space: normal;
     word-wrap: break-word;
     display: block; 
+    color:#28376D;
   }
   
   .info_card .card_image_container img{
    width: 7vw;
   }
   
+  .info_card .cards_buttons_container{
+    display: flex;
+    flex-direction: row;
+    margin-left: auto;
+    gap: 0.8vw;
+  }
   .info_card .cards_buttons_container button{
       font-family: 'Montserrat', sans-serif; 
       border-style: none;
-      border-radius: 10px;
-      width: 10vw;
-      padding: 10px;
-      background-color: #D9EDFC;
+      border-radius: 5px;
+      width: 6vw;
+      padding: 7px;
+      background-color: white;
+      color: #0384E9;
+      border: solid #0384E9 2px;
       float: right;
-      font-size: 1.3vw;
+      font-size: 1vw;
   }
   
   .info_card .cards_buttons_container button:hover{
       background-color: #00C3FF;
+      color: white;
       cursor: pointer;
   }
 
   .info_card .cards_buttons_container #delete{
     font-family: 'Montserrat', sans-serif; 
     border-style: none;
-    border-radius: 10px;
-    width: 10vw;
-    padding: 10px;
-    background-color: rgb(255, 109, 109);
+    border-radius: 5px;
+    width: 6vw;
+    padding: 7px;
+    background-color: white;
+    color: #E9B603;
+    border: solid #E9B603 2px;
     float: right;
-    font-size: 1.3vw;
+    font-size: 1vw;
 }
 
 .info_card .cards_buttons_container #delete:hover{
     background-color: red;
+    color: white;
     cursor: pointer;
 }
 
   #add_post_card .cards_buttons_container button{
       font-family: 'Montserrat', sans-serif; 
       border-style: none;
-      border-radius: 10px;
-      width: 10vw;
-      padding: 10px;
+      border-radius: 5px;
+      width: 9vw;
+      height: 3vw;
+      padding: 9px;
       background-color: #28376D;
       float: right;
-      font-size: 1.3vw;
+      font-size: 1vw;
       color: white;
   }
   
   #add_post_card .cards_buttons_container button:hover{
       background-color: #00C3FF;
+      border: solid #28376D 2px;
       cursor: pointer;
   }
+
+  /*list*/
+.project_list_section{
+  margin-right: 2%;
+  margin-bottom: 10vw;
+}
+
+.project_list_container{
+  font-family: 'Open Sans', sans-serif;
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  border: black 1px solid;
+  box-shadow: 0px 5px 5px rgba(0, 0, 0, 0.5);
+}
+
+.table_header{
+  background-color: #28376D;
+  display: flex;
+  justify-content: space-around;
+}
+
+.project_list_container h2{
+  margin-top: 0;
+  padding: 20px;
+  color: white;
+  font-size: 1.7vw;
+  font-weight: 700;
+  margin-bottom: auto;
+  margin-right: auto;
+}
+
+.project_list_container .dropdown_container label{
+  margin-right: 5px;
+  font-size: 1.5vw;
+}
+
+.project_list_container .dropdown_container{
+  margin-top: 0;
+  padding: 20px;
+  color: white;
+  font-size: 2vw;
+  margin-bottom: auto;
+  margin-left: auto;
+}
+
+.search_report{
+  text-align: left;
+  font-size: 1.5vw;
+}
+
+.search_input{
+  border: solid black 1px;
+  display: flex;
+  align-items: center;
+}
+
+.search_input input{
+  width:15vw;
+  height: 2vw;
+  border-style: none;
+}
+
+.search_input img{
+  height: 1.9vw;
+}
+
+.search_input button{
+  background-color: white;
+  border-style: none;
+}
+
+.search_input button:hover{
+  background-color: #00C3FF;
+  border-style: none;
+  cursor: pointer;
+}
+
+.report_table {
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 600;
+  font-size: 1.1vw;
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.report_table tbody tr.even-row {
+  background-color: #C4C4C4; 
+}
+
+.report_table tbody tr.odd-row {
+  background-color: white; 
+}
+
+
+.report_table th {
+  background-color: white;
+  color: black;
+  font-size: 1vw;
+  font-weight:bold;
+}
+
+.report_table th,
+.report_table td {
+  padding: 8px;
+  text-align: center;
+  border-bottom: 1px solid white;
+}
+
+.report_table td{
+  font-size: 1vw;
+}
+
+/*
+#report_table tbody td{
+  border: 1.5px solid gray; 
+  padding: 8px;
+}
+*/
+
+#report_table tbody td:nth-child(1) {
+  min-width: 4%;
+}
+
+#report_table tbody td:nth-child(2) {
+  min-width: 20%;
+  max-width: 0;
+  white-space: nowrap; 
+  overflow: hidden;  
+  text-overflow: ellipsis;
+}
+
+#report_table tbody td:nth-child(3) {
+  min-width: 20%;
+  max-width: 0;
+  white-space: nowrap; 
+  overflow: hidden;  
+  text-overflow: ellipsis;
+}
+
+#report_table tbody td:nth-child(4) {
+  min-width: 20%;
+}
+#report_table tbody td:nth-child(5) {
+  min-width: 20%;
+}
+#report_table tbody td:nth-child(7) {
+  min-width: 20%;
+}
+/* Styles for the concenr button */
+.concerns-button {
+  background-color: #0384E9;
+  color: white; 
+  border-radius: 5px;
+  padding: 5px 10px;
+  margin-right: 10px; 
+  cursor: pointer;
+  width: 8vw;
+  font-size: 1vw;
+  border-style: none;
+}
+
+.concerns-button:hover {
+  background-color: white;
+  color: #0384E9;
+  border: 2px solid #0384E9; 
+}
+
+/* Styles for the confirmation */
+#report_table_body span {
+  background-color: white;
+  color: #4AC900; 
+  border: 2px solid #4AC900; 
+  border-radius: 5px;
+  padding: 5px 10px;
+  width: 8.5vw;
+  font-size: 1vw;
+}
+
+/* Styles for the actions buttons */
+.view-button {
+  background-color: #0384E9;
+  color: white; 
+  border: 2px solid #0384E9; 
+  border-radius: 5px;
+  padding: 5px 10px;
+  margin-right: 10px; 
+  cursor: pointer;
+  width: 5vw;
+  font-size: 1vw;
+}
+
+.view-button:hover {
+  background-color: white;
+  color: #0384E9;
+}
+
+.delete-button {
+  background-color: white;
+  color: #FC657E; 
+  border: 2px solid #FC657E; 
+  border-radius: 5px;
+  padding: 5px 10px;
+  cursor: pointer;
+  width: 5vw;
+  font-size: 1vw;
+}
+.delete-button:hover {
+  background-color: #FC657E;
+  color: white;
+}
+
+
+.report_table tbody tr td:last-child button {
+  display: inline-block;
+}
+
+.pagination {
+  text-align: right;
+  margin-top: 10px;
+  font-weight: bold;
+}
+
+.pagination button {
+  margin: 2px;
+  padding: 5px 10px;
+  border: 1px solid #ccc;
+  cursor: pointer;
+}
+
+.pagination button:hover {
+  background-color: #f2f2f2;
+}
+
+.pagination button.active {
+  background-color: #28376D;
+  color: #fff;
+}
+
 
   /* for modal */
   .modal {
@@ -205,14 +480,43 @@ body{
     cursor: pointer;
 }
   
-  @keyframes modalopen {
-    from {
-        opacity: 0;
-    }
-    to {
-        opacity: 1;
-    }
+@keyframes modalopen {
+  from {
+      opacity: 0;
   }
+  to {
+      opacity: 1;
+  }
+}
+
+ /*for loading*/
+ .loading-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+}
+
+.loading-spinner {
+  border: 4px solid rgba(255, 255, 255, 0.3);
+  border-top: 4px solid white; 
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  animation: spin 2s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
 
 
 

@@ -1,0 +1,359 @@
+<app-header></app-header>
+
+<app-barangay-sidenav></app-barangay-sidenav>
+<app-navbar></app-navbar>
+
+<body>
+    <div class="loading-overlay" *ngIf="isLoading">
+        <div class="loading-spinner"></div>
+    </div>
+    <section class="label_section">
+        <div class="label_container">
+            <h1>Accounts Management</h1>
+        </div>
+    </section> 
+    <section class="edit_section">
+        <div class="table_header">
+            <h2 class="report_list_header">Admin Information</h2>
+            <button class="edit-button" (click)="toggleEditMode()">Edit</button>
+        </div>
+        <div class="user_information_row">
+            <img [src]="image" alt="User Image">
+            <div class="username_and_role">
+                <span id="name">{{fetchedAdminData[0].fullname}}</span>
+                <span id="header_role">Role: {{fetchedAdminData[0].official_role}}</span>
+                <span id="header_email">{{fetchedAdminData[0].email}}</span>
+            </div>
+            <div class="user_buttons">
+                <input type="file" id="imageUpload" (change)="onImageSelected($event)" accept="image/*" style="display: none">
+
+                <button class="upload_image" [disabled]="!editMode" (click)="openImageUploader()">Upload New Photo</button>
+                <button class="delete_image" [disabled]="!editMode" (click)="onDeleteButtonClicked()">Delete</button>
+            </div>
+        </div>
+        <div class="form_container">
+            <form (ngSubmit)="save(myForm)" #myForm="ngForm">
+                <div class="form-row">
+                    <div class="fields_container">
+                        <div class="column_1">
+                            <!--name-->
+                            <label for="fullname">First Name</label>
+                            <div class="form-group">
+                                <i class="fa fa-user icon"></i>
+                                <input type="text" class="form-control" id="fullname" name="fullname" placeholder="Fullname" required [disabled]="!editMode"
+                                    [(ngModel)]="fetchedAdminData[0].fullname"
+                                    [ngClass]="{ 'is-invalid': myForm.submitted && myForm.controls['fullname'].invalid }">
+                                <div class="invalid-tooltip" *ngIf="myForm.submitted && myForm.controls['fullname'].invalid">
+                                    <span class="tooltip-text">Please enter your Fullname.</span>
+                                </div>
+                                <div class="valid-tooltip">
+                                    &nbsp;
+                                </div>
+                            </div> 
+                            <!--gender-->
+                            <label for="gender">Gender</label>
+                            <div class="form-group">
+                                <i class="fa fa-venus-mars icon"></i>
+                                <select class="form-control" id="gender" name="gender" required [(ngModel)]="fetchedAdminData[0].gender" [disabled]="!editMode"
+                                    [ngClass]="{ 'is-invalid': myForm.submitted && myForm.controls['gender'].invalid }">
+                                    <option value="" disabled>Select gender</option>
+                                    <option value="male">Male</option>
+                                    <option value="female">Female</option>
+                                    <option value="tagilid">Tagilid</option>
+                                </select>
+                                <div class="invalid-tooltip" *ngIf="myForm.submitted && myForm.controls['gender'].invalid">
+                                    <span class="tooltip-text">Please select a gender.</span>
+                                </div>
+                                <div class="valid-tooltip">
+                                    &nbsp;
+                                </div>
+                            </div>
+                            <!--email-->
+                            <label for="email">Email</label>
+                            <div class="form-group">
+                                <i class="fa fa-envelope icon"></i>
+                                <input type="email" class="form-control" id="email" name="email" placeholder="Email" required [disabled]="!editMode"
+                                    [(ngModel)]="fetchedAdminData[0].email"
+                                    [ngClass]="{ 'is-invalid': myForm.submitted && myForm.controls['email'].invalid }"
+                                    pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}">
+                                <div class="invalid-tooltip" *ngIf="myForm.submitted && myForm.controls['email'].invalid">
+                                    <span class="tooltip-text">Invalid Email.</span>
+                                </div>
+                                <div class="valid-tooltip">
+                                    &nbsp;
+                                </div>
+                            </div>
+
+                            <!--     
+                            <div class="form-group">
+                                <label for="password">Password</label>
+                                <input type="password" class="form-control" id="password" name="password" placeholder="Password" required [(ngModel)]="formData.password"
+                                [ngClass]="{ 'is-invalid': myForm.submitted && myForm.controls['password'].invalid }"
+                                pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*]).{8,}$">
+                                <div class="invalid-tooltip" *ngIf="myForm.submitted && myForm.controls['password'].invalid">
+                                <span class="tooltip-text">Password must include atleast one uppercase and lowercase letter, one digit, and one special character.</span>
+                                </div>
+                                <div class="valid-tooltip">
+                                &nbsp;
+                                </div>
+                            </div> 
+                        
+                        -->
+                        </div>
+                        <div class="column_2">
+                            <!--birthday-->
+                            <label for="birthday">Birthday</label>
+                            <div class="form-group">
+                                <input type="date" class="form-control" id="birthday" name="birthday" placeholder="Birthday" required [(ngModel)]="fetchedAdminData[0].birthday" [disabled]="!editMode"
+                                  [ngClass]="{ 'is-invalid': myForm.submitted && myForm.controls['birthday'].invalid }">
+                                <div class="invalid-tooltip" *ngIf="myForm.submitted && myForm.controls['birthday'].invalid">
+                                  <span class="tooltip-text">Please enter a valid date.</span>
+                                </div>
+                                <div class="valid-tooltip">
+                                  &nbsp;
+                                </div>
+                            </div>
+
+
+                            <!--
+                            <label for="office">office</label>
+                            <div class="form-group">
+                                <i class="fa fa-building icon"></i>
+                                <select class="form-control" id="office" name="office" required [(ngModel)]="adminData.office" disabled
+                                    [ngClass]="{ 'is-invalid': myForm.submitted && myForm.controls['office'].invalid }">
+                                    <option value="adminData.office" disabled>Work | Office</option>
+                                    <option value="Pasig Dengue Task Force">Pasig Dengue Task Force</option>
+                                    <option value="Barangay 1">Barangay 1</option>
+                                    <option value="Barangay 2">Barangay 2</option>
+                                    <option value="Barangay 3">Barangay 3</option>
+                                </select>
+                                <div class="invalid-tooltip" *ngIf="myForm.submitted && myForm.controls['office'].invalid">
+                                    <span class="tooltip-text">Please select a office/work.</span>
+                                </div>
+                                <div class="valid-tooltip">
+                                    &nbsp;
+                                </div>
+                            </div>
+                            -->
+                            
+                            <!--contact number-->
+                            <label for="contactNumber">Contact Number</label>
+                            <div class="form-group">
+                                <i class="fa fa-phone icon"></i>
+                                <input type="text" class="form-control" id="contactNumber" name="contact_number" placeholder="Contact Number" required [disabled]="!editMode"
+                                [(ngModel)]="fetchedAdminData[0].contact_number"
+                                    [ngClass]="{ 'is-invalid': myForm.submitted && myForm.controls['contact_number'].invalid }"
+                                    pattern="[0-9]+">
+                                <div class="invalid-tooltip" *ngIf="myForm.submitted && myForm.controls['contact_number'].invalid">
+                                    <span class="tooltip-text">Please enter a valid contact number.</span>
+                                </div>
+                                <div class="valid-tooltip">
+                                    &nbsp;
+                                </div>
+                            </div>
+
+                            <label for="change_password_button">Change Password</label>
+                            <button type="button" class="change-password-button" id="change_password_button" name="change_password_button" (click)="openChangePassword()" [disabled]="!editMode">Click here to change password</button>
+
+
+                            <!--
+                            <div class="form-group">
+                                <label for="reapeat_password">Repeat Password</label>
+                                <input type="password" class="form-control" id="repeat_password" name="repeat_password" placeholder="Repeat Password" required [(ngModel)]="formData.repeat_password"
+                                [ngClass]="{ 'is-invalid': myForm.submitted && (myForm.controls['repeat_password'].invalid || passwordMismatch) }"
+                                (input)="checkPasswordMatch()">
+                                <div class="invalid-tooltip" *ngIf="myForm.submitted && (myForm.controls['repeat_password'].invalid || passwordMismatch)">
+                                <span class="tooltip-text" *ngIf="passwordMismatch">Passwords do not match.</span>
+                                <span class="tooltip-text" *ngIf="!passwordMismatch">Please repeat the password.</span>
+                                </div>
+                                <div class="valid-tooltip">
+                                &nbsp;
+                                </div>
+                            </div>
+                            repeat password-->
+                        </div>     
+                    </div> 
+                </div>
+                <div class="buttons_container">
+                    <div class="send_button_container">
+                        <div class="form-row justify-content-end">
+                            <button type="button" class="btn btn-danger mt-3" (click)="cancel()">Back</button>
+                            <button type="submit" class="btn btn-primary mt-3" [disabled]="!editMode">Save</button>
+                        </div>
+                    </div>
+                </div>                
+            </form>
+        </div>
+    </section>
+
+    <!--change password modal-->
+    <div id="change_password_modal" class="modal" [ngStyle]="{ display: changePasswordModal ? 'block' : 'none' }">
+        <div class="modal-content">
+        <div class="modal-header" id="modal_header">
+            <h2>Change Password Form</h2>
+            <span class="close" id="close_carousel" (click)="closeChangePasswordModal()">&times;</span>
+        </div>
+        
+        <div class="modal-body">
+            <div class="form_container">
+                <form (ngSubmit)="savePassword(passwordForm)" #passwordForm="ngForm">
+                        <div class="form-row">
+                            <div class="report_fields_container">
+                                <div class="fields_container">
+                                        <!-- current pass -->
+                                        <div class="form-group password-container">
+                                            <i class="fa fa-lock password_field_icon"></i>
+                                            <input
+                                            type="{{ showPassword ? 'text' : 'currentPassword' }}"
+                                            class="form-control"
+                                            id="currentPassword"
+                                            name="currentPassword"
+                                            placeholder="Old Password"
+                                            required
+                                            [(ngModel)]="formData.currentPassword"
+                                            [ngClass]="{ 'is-invalid': passwordForm.submitted && passwordForm.controls['currentPassword'].invalid }">
+                                            <span class="password-icon" (click)="togglePasswordVisibility()">
+                                            <i class="fa" [ngClass]="showPassword ? 'fa-eye-slash' : 'fa-eye'"></i>
+                                            </span>
+                                            <div class="invalid-tooltip" *ngIf="passwordForm.submitted && passwordForm.controls['currentPassword'].invalid">
+                                            <span class="tooltip-text">
+                                            Please enter you current password
+                                            </span>
+                                            </div>
+                                        <div class="valid-tooltip">
+                                        &nbsp;
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="form-row">
+                            <div class="report_fields_container">
+                            <div class="fields_container">
+                                <!-- password -->
+                                <div class="form-group password-container">
+                                    <i class="fa fa-lock password_field_icon"></i>
+                                    <input
+                                    type="{{ showPassword ? 'text' : 'password' }}"
+                                    class="form-control"
+                                    id="password"
+                                    name="password"
+                                    placeholder="Password"
+                                    required
+                                    [(ngModel)]="formData.password"
+                                    [ngClass]="{ 'is-invalid': passwordForm.submitted && passwordForm.controls['password'].invalid }"
+                                    pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*]).{8,}$"
+                                    >
+                                    <span class="password-icon" (click)="togglePasswordVisibility()">
+                                    <i class="fa" [ngClass]="showPassword ? 'fa-eye-slash' : 'fa-eye'"></i>
+                                    </span>
+                                    <div class="invalid-tooltip" *ngIf="passwordForm.submitted && passwordForm.controls['password'].invalid">
+                                    <span class="tooltip-text">
+                                    Password must have at least 1 uppercase and lowercase, 1 digit,
+                                    1 special character(!@#$%^&*), and be 8+ characters long.
+                                    </span>
+                                    </div>
+                                    <div class="valid-tooltip">
+                                    &nbsp;
+                                    </div>
+                                </div>
+                          </div>
+                      </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="report_fields_container">
+                            <div class="fields_container">
+                            <!--repeat password-->
+                            <div class="form-group">
+                                <i class="fa fa-lock password_field_icon"></i>
+                                <input type="password" class="form-control" id="repeat_password" name="repeat_password" placeholder="Repeat Password" required [(ngModel)]="formData.repeat_password"
+                                [ngClass]="{ 'is-invalid': passwordForm.submitted && (passwordForm.controls['repeat_password'].invalid || passwordMismatch) }"
+                                (input)="checkPasswordMatch()">
+                                <div class="invalid-tooltip" *ngIf="passwordForm.submitted && (passwordForm.controls['repeat_password'].invalid || passwordMismatch)">
+                                <span class="tooltip-text" *ngIf="passwordMismatch">Passwords do not match.</span>
+                                    <span class="tooltip-text" *ngIf="!passwordMismatch">Please repeat the password.</span>
+                                </div>
+                                <div class="valid-tooltip">
+                                &nbsp;
+                                </div>
+                            </div>
+                      </div>
+                  </div>
+                </div>
+                <div class="error-container">
+                    <div *ngIf="showPasswordError" class="alert alert-danger mt-2">
+                      Your current password is incorrect
+                    </div>
+                  </div>
+                  <div class="change_password_button_container">
+                    <div class="form-row">
+                      <div class="col-md-12">
+                        <button type="submit" id="cancel_change_password_button" class="btn btn-alert mt-3"  (click)="closeChangePasswordModal()">Cancel</button>
+                      </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="col-md-12">
+                            <button type="submit" class="btn btn-primary mt-3">Confirm</button>
+                        </div>
+                      </div>
+                  </div>
+                </form>
+            </div>
+        </div>
+        </div>
+    </div>  
+
+    <!-- Modal -->
+    <div id="response_modal" class="modal" class="modal" [ngStyle]="{ display: carouselModalOpen ? 'block' : 'none' }">
+        <div class="modal-content">
+          <div class="modal-header" id="modal_header">
+            <h2>Are you sure?</h2>
+            <span class="close" id="close_carousel" (click)="closeCarouselModal()">&times;</span>
+          </div>
+          
+          <div class="modal-body">
+            <p>Confirm to edit user information:</p>
+            <p>{{ adminData.firstname }} {{adminData.lastname}}</p>
+            <div class="redirect-button-container">
+                <button class="cancel-button" (click)="closeCarouselModal()">Cancel</button> 
+                <button class="confirm-button" (click)="confirmSave(myForm)">Confirm</button> 
+            </div>
+          </div>
+        </div>
+    </div> 
+
+    <div id="response_modal" class="modal" class="modal" [ngStyle]="{ display: confirmSavePasswordModal ? 'block' : 'none' }">
+        <div class="modal-content">
+          <div class="modal-header" id="modal_header">
+            <h2>Are you sure?</h2>
+            <span class="close" id="close_carousel" (click)="closeCarouselModal()">&times;</span>
+          </div>
+          
+          <div class="modal-body">
+            <p>Confirm to edit user password for:</p>
+            <p>{{ fetchedAdminData[0].fullname }} </p>
+            <div class="redirect-button-container">
+                <button class="cancel-button" (click)="closeCarouselModal()">Cancel</button> 
+                <button class="confirm-button" (click)="confirmSavePassword(myForm)">Confirm</button> 
+            </div>
+          </div>
+        </div>
+    </div>
+
+     <!-- Modal -->
+     <div id="SuccessModal" class="SuccessModal" class="modal" [ngStyle]="{ display: carouselModalSuccess ? 'block' : 'none' }">
+        <div class="modal-content">
+          <div class="modal-header" id="modal_header">
+            <h2>Submitted Successfully!</h2>
+          </div>
+          
+          <div class="modal-body">
+            <p>Your response has been successfully submitted</p>
+            <div class="redirect-button-container">
+                <button class="done-button" (click)="responseSent()">Done</button> 
+            </div>
+          </div>
+        </div>
+      </div> 
+</body>
