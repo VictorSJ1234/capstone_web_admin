@@ -305,7 +305,7 @@ body{
   min-width: 14%;
 }
 /* Styles for the concenr button */
-#report_table_body span {
+#report_table_body p {
   background-color: white;
   color: green; 
   border: 2px green solid;

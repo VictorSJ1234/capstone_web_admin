@@ -1,0 +1,448 @@
+@import url('https://fonts.googleapis.com/css2?family=Squada+One&display=swap');
+
+header{
+    display: flex;
+    height: 7.5vw;
+    margin-bottom: 10px;
+    text-align: center;
+    justify-content: center;
+}
+
+header h1{
+    font-family: 'Squada One', sans-serif;
+    font-size: 3.5vw;
+    color: #28376D;
+}
+
+.information_section{
+    background-color: white;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    padding-top: 30px;
+    padding-bottom: 100px;
+    padding-top: 100px;
+}
+
+.alternate-color {
+    background-color: #28376D; 
+}
+
+/*schedules*/
+  
+.schedule_section{
+    background-color: #28376D;
+}
+
+.announcements_container{
+    padding-top: 50px;
+    padding-bottom: 50px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.announcements_container h2{
+    color: #28376D;
+    font-family: 'Squada One', sans-serif;
+    font-size: 5vw;
+    margin-bottom: 0;
+    background-color: white;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-right: 20px;
+    padding-left: 20px;
+    border-radius: 30px;
+}
+
+.header_text_container{
+    text-align: center;
+    margin-bottom: -11vw;
+    z-index: 0;
+}
+
+.announcements_container h4{
+    margin-top: 0;
+    color: white;
+    font-family: 'Squada One', sans-serif;
+    font-size: 3.5vw;
+}
+
+table{
+    padding: 20px;
+    padding-top: 8vw;
+    width: 50%;
+    font-family: 'Montserrat', sans-serif; 
+    border-spacing: 5px 10px;
+    border:  solid white 4px;
+    border-radius: 30px;
+}
+
+table tbody{
+    text-align: center;
+}
+
+table tbody tr td{
+    background-color:white;
+    color: #28376D;
+    padding: 10px;
+    border-radius: 20px;
+    font-weight: 600;
+}
+table tbody tr .date_column{
+    font-size: 1.4vw;
+}
+table tbody tr .date_column .date{
+    font-size: 1.3;
+    color: #0384E9;
+}
+table tbody tr .project_column{
+    font-size: 1.4vw;
+}
+table tbody tr .project_column .barangay_name{
+    font-size: 1.2vw;
+    color: #0384E9;
+}
+
+.image_container{
+    display: flex;
+    justify-content: right;
+    width: 50%;
+    margin-right: 40px;
+    background-color: #28376D;
+    border-top-right-radius: 30px;
+    border-bottom-right-radius: 30px;
+    padding: 30px;
+}
+.information_section .alternate-image-container{
+    background-color: white;
+}
+
+#project_image{
+    width: 80%;
+    border-radius: 30px;
+}
+
+.information_container{
+    width: 50%;
+    margin-right: 120px;
+}
+
+
+.information_and_barangay{
+    padding: 30px;
+    border: solid #28376D 4px;
+    border-radius: 20px;
+}
+.information_container .project_name .alternate-project-name{
+    background-color: white;
+    color: #28376D;
+}
+
+.alternate-border-color {
+    border: solid white 4px; 
+}
+
+.information_container .project_name h2{
+    width: max-content;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-left: 20px;
+    padding-right: 20px;
+    color: white;
+    font-family: 'Montserrat', sans-serif; 
+    font-size: 3vw;
+    font-weight: bold;
+    text-align: left;
+    font-size: 3vw;
+    background-color: #28376D;
+    border-radius: 25px;
+    margin-bottom: -2vw;
+    margin-left: 30px;
+}
+.project_name h2 {
+    white-space: nowrap;     
+    overflow: hidden;      
+    text-overflow: ellipsis; 
+    max-width: 34vw;       
+    font-size: 1rem;         
+  }
+.information_container .project_information p{
+    font-size: 1.5vw;
+    word-spacing: 2px;
+    text-align: justify;
+    color: black;
+    font-family: 'Montserrat', sans-serif; 
+}
+
+.information_container .info_source p{
+    font-size: 1.2vw;
+    color: black;
+    font-family: 'Montserrat', sans-serif; 
+}
+
+.buttons_container {
+    margin-top: 30px;
+    text-align: center;
+  }
+  
+  .button-1 {
+    border-style: hidden;
+    border-radius: 30px;
+    text-align: center;
+    display: inline-block;
+    padding: 20px 20px 20px 20px;
+    font-size: 1.2vw;
+    font-weight: bold;
+    margin: 4px 2px;
+    transition-duration: 0.4s;
+    cursor: pointer;
+    width: 12.5vw;
+    width: 40%;
+  }
+  
+  .buttons {
+    background-color: #28376D;
+    color: white;
+  }
+  
+  .buttons:hover {
+    border: 2px solid white;
+    background-color: #0384E9;
+    color: white;
+  }
+
+  .alternate-color .information_container h2{
+    color: white;
+  }
+  .alternate-color .information_container p{
+    color:white;
+  }
+
+  .alternate-color .information_container .buttons{
+    background-color:  White;
+    color: black;
+  }
+
+  .alternate-color .information_container .buttons:hover {
+    border: 2px solid black;
+    background-color: #0384E9;
+    color: white;
+  }
+
+  /*for responsiveness*/
+
+  @media (max-width: 900px) {
+    .image_container{
+         width: 75%;
+    }
+    .information_section .alternate-image-container{
+        width: 75%;
+    }
+    .header_text_container{
+    text-align: center;
+    margin-bottom: -12vw;
+}
+  }
+  @media (max-width: 800px) {
+    .header_text_container{
+    text-align: center;
+    margin-bottom: -13vw;
+}
+  }
+  @media (max-width: 855px) {
+    .image_container{
+         background-color: white;
+    }
+    .information_section .alternate-image-container{
+        background-color: #28376D;
+    }
+    .header_text_container{
+    text-align: center;
+    margin-bottom: -12vw;
+}
+    header{
+        height: 8.5vw;
+    }
+    
+    header h1{
+        font-size: 4vw;
+    }
+    
+    .information_section{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        padding-bottom: 100px;
+        padding-top: 70px;
+    }
+        
+    .image_container{
+        display: flex;
+        justify-content: center;
+        margin-right: 0px;
+    }
+    
+    #project_image{
+        width: 60%;
+        border-radius: 30px;
+    }
+    
+    .information_container{
+        width: 60%;
+        margin-right: 0px;
+    }
+    
+    .information_container .project_name h2{
+        text-align: center;
+        font-size: 4.5vw;
+        margin-bottom: -3.5vw;
+    }
+    .project_name h2 {
+        white-space: nowrap;     
+        overflow: hidden;      
+        text-overflow: ellipsis; 
+        max-width: 200px;       
+        font-size: 1rem;         
+      }
+    
+    .information_container .project_information p{
+        font-size: 2.5vw;
+        word-spacing: 2px;
+        text-align: justify;
+    }
+    
+    .information_container .info_source p{
+        font-size: 2vw;
+    }
+    
+    .buttons_container {
+        margin-top: 30px;
+        text-align: center;
+      }
+      
+      .button-1 {
+        padding: 10px;
+        font-size: 2vw;
+        width: 25vw;
+      }
+  }
+
+  @media (max-width: 600px) {  
+
+    header{
+        height: 9.5vw;
+    }
+    
+    header h1{
+        font-size: 5vw;
+    }
+
+    table{
+    width: 80%;
+    }
+    table tbody tr .date_column{
+        font-size: 2.5vw;
+    }
+    table tbody tr .date_column .date{
+        font-size: 2.5;
+
+    }
+    table tbody tr .project_column{
+        font-size: 2.5vw;
+    }
+    table tbody tr .project_column .barangay_name{
+      font-size: 2vw;
+
+    }
+    
+    .information_section{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        padding-bottom: 100px;
+        padding-top: 70px;
+    }
+        
+    .image_container{
+        display: flex;
+        justify-content: center;
+        margin-right: 0px;
+    }
+    
+    #project_image{
+        width: 80%;
+        border-radius: 30px;
+    }
+    
+    .information_container{
+        width: 80%;
+        margin-right: 0px;
+    }
+    
+    .information_container .project_name h2{
+        text-align: center;
+        font-size: 5vw;
+        margin-bottom: -4vw;
+    }
+    .project_name h2 {
+        white-space: nowrap;     
+        overflow: hidden;      
+        text-overflow: ellipsis; 
+        max-width: 200px;       
+        font-size: 1rem;         
+      }
+    
+    .information_container .project_information p{
+        font-size: 3vw;
+        word-spacing: 2px;
+        text-align: justify;
+    }
+    
+    .information_container .info_source p{
+        font-size: 2.5vw;
+    }
+    
+    .buttons_container {
+        margin-top: 30px;
+        text-align: center;
+      }
+      
+      .button-1 {
+        padding: 10px;
+        font-size: 2vw;
+        width: 40vw;
+      }
+  }
+
+   /*for loading*/
+ .loading-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+  }
+  
+  .loading-spinner {
+    border: 4px solid rgba(255, 255, 255, 0.3);
+    border-top: 4px solid white; 
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    animation: spin 2s linear infinite;
+  }
+  
+  @keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+  

@@ -1,0 +1,223 @@
+@import url('https://fonts.googleapis.com/css2?family=Squada+One&display=swap');
+
+header{
+    display: flex;
+    height: 12vw;
+    margin-bottom: 10px;
+    text-align: center;
+    justify-content: center;
+}
+
+header h1{
+    font-family: 'Squada One', sans-serif;
+    font-size: 3.5vw;
+    color: #28376D;
+}
+
+
+header h1 span{
+    font-size: 2.5vw;
+}
+
+.image_section{
+    width: 100%;
+    margin-bottom: -10px;
+}
+.image_section img{
+    width: 100%;
+}
+
+.information_section{
+    display: flex;
+    flex-direction: column;
+    background-color: #9cba7c;
+    padding-top: 3vw;
+}
+
+.row{
+    display: flex;
+    flex-direction: row;
+    padding-left: 2vw;
+    padding-right: 2vw;
+}
+
+.image_container{
+    width: 50%;
+    padding: 20px;
+    background-color: #28376D;
+    border-top-right-radius: 40px;
+    border-bottom-right-radius: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: -2vw;
+    margin-right: 2vw;
+}
+
+.image_container img{
+    width: 50%;
+
+}
+
+.text_container{
+    width: 50%;
+    padding: 20px;
+}
+
+.image_and_title{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-bottom: -6.5vw;
+    margin-left: -2vw;
+}
+
+.image_and_title img{
+   width: 15%;
+   border: solid #28376D 4px;
+   border-radius: 50%;
+   position: relative;
+   z-index: 1;
+   background-color: #28376D;
+}
+.text_container h1{
+    font-family: 'Squada One', sans-serif;
+    border-radius: 30px;
+    color: white;
+   background-color: #28376D;
+   max-width: max-content;
+   padding-top: 10px;
+   padding-bottom: 10px;
+   padding-right: 30px;
+   padding-left: 4vw;
+   font-size: 3vw;
+   margin-left: -3vw;
+    
+}
+
+.text_container p{
+    width: 90%;
+    font-family: 'Montserrat', sans-serif; 
+    background-color: white;
+    border: solid #28376D 4px;
+    border-radius: 25px;
+    padding-top: 5vw;
+    padding-bottom: 20px;
+    padding-left: 20px;
+    padding-right: 20px;
+    font-size: 1.5vw;
+    text-align: justify;
+    margin-left: auto;
+    margin-right: auto;
+}
+  /*for responsiveness*/
+
+  @media (max-width: 855px) {
+    header{
+        height: 12.5;
+    }
+    
+    header h1{
+        font-size: 4vw;
+    }
+
+    header h1 span{
+    font-size: 3vw;
+    }
+    
+    .row{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .image_container{
+        width: 70%;
+        padding: 20px;
+        border-radius: 40px;
+        margin-left: 0;
+        margin-right: 0;
+    }
+    
+    .image_container img{
+        width: 50%;
+    
+    }
+    
+    .text_container{
+        width: 80%;
+        padding: 20px;
+    }
+    
+    .image_and_title{
+        margin-bottom: -8.5vw;
+        margin-left: -5vw;
+    }
+    
+    .image_and_title img{
+       width: 13%;
+    }
+    .text_container h1{
+       font-size: 3vw;
+    }
+    
+    .text_container p{
+        padding-top: 6.5vw;
+        font-size: 2vw;
+    }
+  }
+
+  @media (max-width: 600px) {  
+
+    header{
+        height: 13.5vw;
+    }
+    
+    header h1{
+        font-size: 5vw;
+    }
+    header h1 span{
+    font-size: 3vw;
+    }
+    .row{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .image_container{
+        width: 50%;
+        padding: 20px;
+        border-radius: 40px;
+        margin-left: 0;
+        margin-right: 0;
+    }
+    
+    .image_container img{
+        width: 50%;
+    
+    }
+    
+    .text_container{
+        width: 82%;
+        padding: 20px;
+    }
+    
+    .image_and_title{
+        margin-bottom: -9vw;
+        margin-left: -5vw;
+    }
+    
+    .image_and_title img{
+       width: 15%;
+    }
+    .text_container h1{
+       font-size: 4vw;
+    }
+    
+    .text_container p{
+        padding-top: 7vw;
+        font-size: 3vw;
+    }
+    
+  }

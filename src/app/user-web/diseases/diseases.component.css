@@ -1,0 +1,272 @@
+@import url('https://fonts.googleapis.com/css2?family=Squada+One&display=swap');
+
+header{
+    display: flex;
+    height: 7.5vw;
+    margin-bottom: 10px;
+    text-align: center;
+    justify-content: center;
+}
+
+header h1{
+    font-family: 'Squada One', sans-serif;
+    font-size: 3.5vw;
+    color: #28376D;
+}
+
+.information_section{
+    background-color: #28376D;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    padding-top: 30px;
+    padding-bottom: 100px;
+    padding-top: 100px;
+}
+
+.alternate-color {
+    background-color: white; 
+}
+  
+  
+
+.image_container{
+    display: flex;
+    justify-content: right;
+    width: 50%;
+    margin-right: 3vw;
+    margin-left: 4vw;
+}
+
+#disease_image{
+    width: 100%;
+    border-radius: 30px;
+}
+
+.information_container{
+    width: 50%;
+    margin-right: 4vw;
+}
+
+.information_container .disease_name h2{
+    width: max-content;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-left: 20px;
+    padding-right: 20px;
+    background-color: white;
+    color: #28376D;
+    font-family: 'Montserrat', sans-serif; 
+    font-size: 3vw;
+    font-weight: bold;
+    text-align: center;
+    font-size: 3vw;
+    border-radius: 30px;
+    margin-bottom: -2vw;
+    margin-left: 30px;
+}
+
+.information_container .disease_name .alternate-disease-name{
+    background-color: #28376D;
+    color: white;
+}
+
+.information_and_source{
+    padding: 30px;
+    border: solid white 4px;
+    border-radius: 30px;
+}
+
+.alternate-border-color {
+    border: solid #28376D 4px; 
+}
+
+.information_container .disease_information p{
+    font-size: 1.5vw;
+    word-spacing: 2px;
+    text-align: justify;
+    color: white;
+    font-family: 'Montserrat', sans-serif; 
+}
+
+.information_container .info_source p{
+    font-size: 1.2vw;
+    color: white;
+    font-family: 'Montserrat', sans-serif; 
+}
+
+.buttons_container {
+    margin-top: 30px;
+    text-align: center;
+  }
+  
+  .button-1 {
+    border-style: hidden;
+    border-radius: 30px;
+    text-align: center;
+    display: inline-block;
+    padding: 20px 20px 20px 20px;
+    font-size: 1.2vw;
+    font-weight: bold;
+    margin: 4px 2px;
+    transition-duration: 0.4s;
+    cursor: pointer;
+    width: 40%;
+  }
+  
+  .buttons {
+    background-color: white;
+    color: #28376D;
+  }
+  
+  .buttons:hover {
+    border: 2px solid white;
+    background-color: #0384E9;
+    color: white;
+  }
+
+  .alternate-color .information_container h2{
+    color:#28376D;
+  }
+  .alternate-color .information_container p{
+    color:black;
+  }
+
+  .alternate-color .information_container .buttons{
+    background-color:  #28376D;
+    color: white;
+  }
+
+  .alternate-color .information_container .buttons:hover {
+    border: 2px solid black;
+    background-color: #0384E9;
+    color: white;
+  }
+
+  /*for responsiveness*/
+
+  @media (max-width: 855px) {
+    header{
+        height: 8.5vw;
+    }
+    
+    header h1{
+        font-size: 4vw;
+    }
+    
+    .information_section{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        padding-bottom: 100px;
+        padding-top: 70px;
+    }
+        
+    .image_container{
+        display: flex;
+        justify-content: center;
+        width: 70%;
+    }
+    
+    #disease_image{
+        width: 60%;
+        border-radius: 30px;
+    }
+    
+    .information_container{
+        width: 60%;
+        margin-right: 0px;
+    }
+    
+    .information_container .disease_name h2{
+        text-align: center;
+        font-size: 4.5vw;
+        margin-bottom: -3.5vw;
+    }
+    
+    .information_container .disease_information p{
+        font-size: 2.5vw;
+        word-spacing: 2px;
+        text-align: justify;
+    }
+    
+    .information_container .info_source p{
+        font-size: 2vw;
+    }
+    
+    .buttons_container {
+        margin-top: 30px;
+        text-align: center;
+      }
+      
+      .button-1 {
+        padding: 10px;
+        font-size: 2vw;
+        width: 25vw;
+      }
+  }
+
+  @media (max-width: 600px) {  
+
+    header{
+        height: 9.5vw;
+    }
+    
+    header h1{
+        font-size: 5vw;
+    }
+    
+    .information_section{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        padding-bottom: 100px;
+        padding-top: 70px;
+    }
+        
+    .image_container{
+        display: flex;
+        justify-content: center;
+        width: 70%;
+        margin-right: 0px;
+    }
+    
+    #disease_image{
+        width: 80%;
+        border-radius: 30px;
+    }
+    
+    .information_container{
+        width: 80%;
+        margin-right: 0px;
+    }
+    
+    .information_container .disease_name h2{
+        text-align: center;
+        font-size: 5vw;
+        margin-bottom: -4vw;
+    }
+    
+    .information_container .disease_information p{
+        font-size: 3vw;
+        word-spacing: 2px;
+        text-align: justify;
+    }
+    
+    .information_container .info_source p{
+        font-size: 2.5vw;
+    }
+    
+    .buttons_container {
+        margin-top: 30px;
+        text-align: center;
+      }
+      
+      .button-1 {
+        padding: 10px;
+        font-size: 2vw;
+        width: 40vw;
+      }
+  }

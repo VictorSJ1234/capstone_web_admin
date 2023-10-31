@@ -1,0 +1,156 @@
+footer {
+    position: sticky;
+    top: 100%;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: #28376D; 
+    display: flex;
+    justify-content: center;
+    align-items: center; 
+    font-family: 'Montserrat', sans-serif; 
+    color: white;
+  }
+  
+  footer ul{
+    padding: 0;
+
+    text-align: center;
+    width: 90%;
+  }
+  
+  #links_li{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+  }
+  #apps_li{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    align-items: center;
+  }
+  #logo_li{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  #support_li{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    align-items: center;
+  }
+  #devs_li{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    align-items: center;
+  }
+  
+  #apps_li #apps #icons .footer_icons{
+    width: 4vw;
+  }
+  
+  #logo_li #logo a img{
+    width: 7vw;
+  }
+  
+  footer a{
+    text-decoration: none;
+    color: white;
+    font-size: 1.5vw;
+  }
+  
+  #links span,
+  #apps span,
+  #support span,
+  #developers span{
+    font-size: 1.5vw;
+    font-weight: bold;
+  }
+  
+  @media screen and (max-width: 950px) {
+    #links span,
+    #apps span,
+    #support span,
+    #developers span{
+      font-size: 2vw;
+    }
+  
+    footer a {
+      font-size: 2vw;
+    }
+  }
+  
+  @media screen and (max-width: 720px) {
+    footer ul {
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+  
+    #links span,
+    #apps span,
+    #support span,
+    #developers span{
+      font-size: 3vw;
+    }
+  
+    footer a {
+      font-size: 3vw;
+    }
+  
+    #apps_li #apps #icons .footer_icons{
+      width: 6vw;
+    }
+    
+    #logo_li #logo a img{
+      width: 10vw;
+    }
+    
+    footer li {
+      width: 100%;
+      text-align: center;
+      padding: 10px 0;
+    }
+  }
+  
+  @media screen and (max-width: 440px) {
+    footer ul {
+      flex-direction: column;
+      align-items: center;
+    }
+    
+    footer li {
+      width: 100%;
+      text-align: center;
+      padding: 10px 0;
+    }
+  
+    #links span,
+    #apps span,
+    #support span,
+    #developers span{
+      font-size: 3vw;
+    }
+  
+    footer a {
+      font-size: 4vw;
+    }
+  
+    #apps_li #apps #icons .footer_icons{
+      width: 7vw;
+    }
+    
+    #logo_li #logo a img{
+      width: 12vw;
+    }
+    
+    footer li {
+      width: 100%;
+      text-align: center;
+      padding: 10px 0;
+    }
+  }
+  

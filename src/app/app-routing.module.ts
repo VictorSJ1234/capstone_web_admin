@@ -40,9 +40,16 @@ import { ForgotPasswordComponent } from './forgot-password/forgot-password.compo
 import { NotificationPageComponent } from './notification-page/notification-page.component';
 import { BarangayNotificationPageComponent } from './barangay-notification-page/barangay-notification-page.component';
 import { AdminNotificationPageComponent } from './admin-notification-page/admin-notification-page.component';
+import { HomeComponent } from './user-web/home/home.component';
+import { DiseasesComponent } from './user-web/diseases/diseases.component';
+import { DiseasesSecondPageComponent } from './user-web/diseases-second-page/diseases-second-page.component';
+import { AboutComponent } from './user-web/about/about.component';
+import { ProjectUpdateComponent } from './user-web/project-update/project-update.component';
+import { PasigDengueTaskForceComponent } from './user-web/pasig-dengue-task-force/pasig-dengue-task-force.component';
+import { DengueFiveSComponent } from './user-web/dengue-five-s/dengue-five-s.component';
 
 const routes: Routes = [
-  {component: AccountLoginComponent, path: ''},
+  {component: AccountLoginComponent, path: 'account-login'},
   {component: AccountRegistrationComponent, path: 'account-registration'},
   {component: AdminDashboardComponent, path: 'admin-dashboard', canActivate: [DengueTaskForceGuard] },
   {component: AdminDashboardComponent, path: 'admin-dashboard', canActivate: [DengueTaskForceGuard] },
@@ -79,6 +86,13 @@ const routes: Routes = [
    {component: NotificationPageComponent, path:'notification-page', canActivate: [DengueTaskForceGuard]},
    {component: AdminNotificationPageComponent, path:'admin-notification-page', canActivate: [AdminGuard] },
    {component: BarangayNotificationPageComponent, path:'barangay-notification-page', canActivate: [BarangayAdminGuard] },
+   {component: HomeComponent, path: 'home'},
+   {component: DiseasesComponent, path: 'diseases'},
+   {component: AboutComponent, path: 'about'},
+    {component: ProjectUpdateComponent, path: 'project-update'},
+   {component: DiseasesSecondPageComponent, path: 'diseases-second-page/:name'},
+    {component: PasigDengueTaskForceComponent, path: ''},
+   {component: DengueFiveSComponent, path: 'dengue-five-s'},
    {component: ForgotPasswordComponent, path:'forgot-password'},
    
 ];

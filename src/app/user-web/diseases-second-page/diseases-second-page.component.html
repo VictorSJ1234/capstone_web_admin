@@ -1,0 +1,119 @@
+<app-web-header></app-web-header>
+<app-web-navbar></app-web-navbar>
+
+<body>
+  <header>
+    <h1>Mosquito Borne-Diseases</h1>
+  </header>
+
+  <div class="buttons_and_name">
+    <div class="image_button"  (click)="prevDisease()">
+      <img src="../../../assets/diseases_2/back.png" alt="Left Button" />
+    </div>
+    
+    <div class="disease_name_container" *ngIf="selectedDisease">
+      {{ selectedDisease.name }}
+    </div>
+    
+    <div class="image_button"   (click)="nextDisease()">
+      <img src="../../../assets/diseases_2/next.png" alt="Right Button"/>
+    </div>
+  </div>
+  
+  <section class="disease_information_section" *ngIf="selectedDisease">
+    <div class="column_1">
+      <div class="disease_image_container">
+        <img [src]="selectedDisease.imageSrc" alt="">
+      </div>
+
+      <div class="scientific_name_and_location">
+        <h4><span>Scientific Name of Vector: </span>{{ scientificName }}</h4>
+        <h4><span>Location: </span> Tropical and sub-tropical climates worldwide, mostly in urban and semi-urban areas</h4>
+      </div>
+    </div>
+    <div class="column_2">
+        <div class="disease_description_container">
+            <p>{{ info }}</p>
+            <p>{{ additionalInfo }}</p>
+            <br>
+            <p>{{ source }}</p>
+        </div>          
+    </div>
+  </section>
+
+  <section class="symptoms_information_section" *ngIf="selectedDisease">
+    <div class="column_1">
+      <div class="symptoms_description">
+        <h1>Symptoms</h1>
+        <p>{{ symptoms }}</p>
+        <div class="buttons_container">
+        </div>
+      </div>
+    </div>
+  
+    <div class="column_2">
+      <div class="card_container">
+        <div class="info_card" *ngFor="let card of cardInfo; let i = index">
+          <div class="card_header">
+            <h2 class="card_header">Symptom {{ i + 1 }}</h2>
+          </div>
+          <div class="img_and_symptom_container">
+            <div class="img_container">
+              <img src="../../../assets/diseases_2/symptom_alert.png" alt="complain">
+            </div>
+            <div class="symptoms_info">
+              <p class="symptoms_info_p">{{ card.symptom }}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!--
+  
+  <section class="cases_information_section">
+    <div class="column_1">
+        <div class="cases_description">
+            <h1>Cases</h1>
+            <p>{{ cases }}</p>
+        </div>
+    </div>
+    <div class="column_2">
+        <div class="statistic_container">
+            <img src="../../assets/diseases_2/statistic_sample.png" alt="statistic" id="statistic_image">
+        </div>
+    </div>
+
+  </section>
+-->
+
+  <section class="prevention_information_section">
+    <div class="column_1">
+        <div class="prevention_description">
+          <h1>Preventions</h1>
+          <p>{{ prevention }}</p>
+        </div>
+      </div>
+    
+      <div class="column_2">
+        <div class="card_container">
+          <div class="info_card" *ngFor="let card of cardInfoPrevention; let i = index">
+            <div class="card_header">
+              <h2 class="card_header">Prevention {{ i + 1 }}</h2>
+            </div>
+            <div class="img_and_prevention_container">
+              <div class="img_container">
+                <img src="../../../assets/diseases_2/symptom_alert.png" alt="complain">
+              </div>
+              <div class="prevention">
+                <p class="prevention_info_p">{{ card.prevention }}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+  </section>
+
+  <app-footer></app-footer>
+</body>

@@ -1,0 +1,322 @@
+@import url('https://fonts.googleapis.com/css2?family=Squada+One&display=swap');
+  .about {
+    background-color: #28376D; 
+    padding: 50px;
+    padding-top: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Montserrat', sans-serif; 
+  }
+  
+  #phone_image_container {
+    width: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  #phone_image {
+    width: 80%;
+    height: auto;
+  }
+  
+  #text_container {
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    overflow: auto;
+    padding: 10px;
+    color: white;
+  }
+  
+  #home_about {
+    font-size: 3vw;
+    font-weight: bold;
+    text-align: left;
+    max-width: 100%;
+    margin-bottom: -5px;
+  }
+  
+  #home_about_p {
+    text-align: justify;
+    font-size: 2vw;
+  }
+  
+  .buttons_container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+  }
+  
+  .button-1 {
+    border-style: hidden;
+    border-radius: 30px;
+    text-align: center;
+    display: inline-block;
+    padding: 16px 32px;
+    font-size: 2.2vw;
+    font-weight: bold;
+    margin: 4px 2px;
+    transition-duration: 0.4s;
+    cursor: pointer;
+  }
+  
+  .buttons {
+    background-color: white;
+    color:#28376D;
+    margin-right: 30px;
+    margin-left: 30px;
+    font-family: 'Montserrat', sans-serif; 
+  }
+  
+  .buttons:hover {
+    border: 2px solid white;
+    background-color: #0384E9;
+    color: white;
+  }
+  
+  .info {
+    padding-left: 50px;
+    padding-right: 50px;
+    padding-top: 70px;
+    padding-bottom: 70px;
+    text-align: center;
+    font-family: 'Montserrat', sans-serif; 
+    color: #28376D;
+  }
+  
+  #info_text_container {
+    display: inline-block;
+    margin-bottom: -10px;
+  }
+  
+  #info_text_container #info_title{
+    font-family: 'Squada One', sans-serif;
+    font-size: 7.5vw;
+  }
+  
+  #info_text_container #info_tagline{
+    margin-top: 80px;
+    font-size: 2vw;
+    margin-bottom: 0px;
+  }
+  
+  #info_text_container #info_description{
+    font-size: 2vw;
+  }
+  
+  #buttons_container2 {
+    display: flex;
+    justify-content: center;
+  }
+  
+  .button {
+    display: inline-flex;
+    height: 90px;
+    width: 25vw;
+    border: 2px solid white;
+    margin: 20px 20px 20px 20px;
+    background-color: #28376D;
+    color:white;
+    text-transform: uppercase;
+    text-decoration: none;
+    font-size: 2.5vh;
+    letter-spacing: 1.5px;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+  }
+  
+  a {
+    font-weight: bold;
+    color:white;
+    text-decoration: none;
+    letter-spacing: 1px;
+  }
+  
+  #button-2 {
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+  }
+  
+  #button-2 a {
+    position: relative;
+    transition: all .35s ease-Out;
+  }
+  
+  #slide {
+    width: 100%;
+    height: 100%;
+    left: -40vw;
+    background: #0384E9;
+    position: absolute;
+    transition: all .35s ease-Out;
+    bottom: 0;
+  }
+  
+  #button-2:hover #slide {
+    left: 0;
+  }
+  
+  #button-2:hover a {
+    color:  white;
+  }
+  
+  /*RESPONSIVENESS*/
+  @media (max-width: 855px) {
+    .top, .about, .info {
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+  
+    #phone_image {
+      width: 100%;
+      max-width: 400px;
+    }
+
+    #text_container {
+      width: 95%;
+    }
+
+    #info_text_container #info_title{
+      margin-top: 0px;
+      font-size: 6vw;
+    }
+    
+    #info_text_container #info_tagline{
+      font-size: 3vw;
+    }
+    
+    #info_text_container #info_description{
+      font-size: 3vw;
+    }
+  
+    .home_title{
+      text-align: center; 
+      font-size: 10vw;
+    }
+  
+    .buttons_container {
+      flex-direction: column-reverse;
+      margin-top: 10px;
+    }
+  
+    .button-1 {
+      padding: 12px 24px;
+      font-size: 3.3vw;
+      margin: 2px;
+      width: 50%;
+      height: 30%;
+      margin-top: 15px;
+    }
+  
+    .button {
+      width: 30vw;
+      max-width: 200px;
+      margin: 10px 5;
+    }
+    .button {
+      font-size: 1.5vh;
+      letter-spacing: 1.5px;
+    }
+  }
+  
+  @media (max-width: 600px) {  
+  
+    #home_about {
+    font-size: 4vw;
+  }
+  
+  #home_about_p {
+    text-align: justify;
+    font-size: 3vw;
+  }
+  }
+  
+  /* for modal */
+  .modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.5);
+  }
+  
+  .modal-content {
+    margin: 0 auto;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 70%;
+    box-shadow: 0 5px 8px 0 rgba(0, 0, 0, 0.2), 0 7px 20px 0 rgba(0, 0, 0, 0.17);
+    animation-name: modalopen;
+    animation-duration: var(--modal-duration);
+  }
+  
+  .modal-header h2,
+  .modal-footer h3 {
+    margin: 0;
+    padding: 5px;
+  }
+  
+  .modal-header {
+    background: var(--modal-color);
+    padding: 15px;
+    background-color: rgba(255, 255, 255, 0.9); 
+    color: #0384E9;
+    font-size: large;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    text-align: center;
+  }
+  
+  .modal-body {
+    padding: 10px 20px;
+    background-color: #0384E9;
+  
+  }
+  
+  .modal-footer {
+    background: var(--modal-color);
+    padding: 10px;
+    color: #fff;
+    text-align: center;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+    background-color: rgba(255, 255, 255, 0.9); 
+    color: #0384E9;
+  }
+  
+  .close {
+    color: black;
+    float: right;
+    font-size: 30px;
+    color: black;
+  }
+  
+  .close:hover,
+  .close:focus {
+    color: red;
+    text-decoration: none;
+    cursor: pointer;
+  }
+  
+  @keyframes modalopen {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+  }
+  
+  

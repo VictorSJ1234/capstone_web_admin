@@ -47,6 +47,16 @@ import { ForgotPasswordComponent } from './forgot-password/forgot-password.compo
 import { NotificationPageComponent } from './notification-page/notification-page.component';
 import { AdminNotificationPageComponent } from './admin-notification-page/admin-notification-page.component';
 import { BarangayNotificationPageComponent } from './barangay-notification-page/barangay-notification-page.component';
+import { AboutComponent } from './user-web/about/about.component';
+import { DengueFiveSComponent } from './user-web/dengue-five-s/dengue-five-s.component';
+import { DiseasesComponent } from './user-web/diseases/diseases.component';
+import { DiseasesSecondPageComponent } from './user-web/diseases-second-page/diseases-second-page.component';
+import { FooterComponent } from './user-web/footer/footer.component';
+import { WebHeaderComponent } from './user-web/web-header/web-header.component';
+import { HomeComponent } from './user-web/home/home.component';
+import { WebNavbarComponent } from './user-web/web-navbar/web-navbar.component';
+import { PasigDengueTaskForceComponent } from './user-web/pasig-dengue-task-force/pasig-dengue-task-force.component';
+import { ProjectUpdateComponent } from './user-web/project-update/project-update.component';
 
 @NgModule({
   declarations: [
@@ -93,6 +103,16 @@ import { BarangayNotificationPageComponent } from './barangay-notification-page/
     NotificationPageComponent,
     AdminNotificationPageComponent,
     BarangayNotificationPageComponent,
+    AboutComponent,
+    DengueFiveSComponent,
+    DiseasesComponent,
+    DiseasesSecondPageComponent,
+    FooterComponent,
+    WebHeaderComponent,
+    HomeComponent,
+    WebNavbarComponent,
+    PasigDengueTaskForceComponent,
+    ProjectUpdateComponent,
   ],
   imports: [
     BrowserModule,

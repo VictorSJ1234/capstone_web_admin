@@ -1,0 +1,32 @@
+<app-web-header></app-web-header>
+<app-web-navbar></app-web-navbar>
+
+<body>
+  <header>
+    <h1>Mosquito Borne-Diseases</h1>
+  </header>
+
+  <section class="information_section" *ngFor="let information of diseases; let i = index" [ngClass]="{ 'alternate-color': i % 2 !== 0 }">
+    <div class="image_container">
+      <img [src]="information.imageSrc" id="disease_image" alt="">
+    </div>
+    <div class="information_container" >
+      <div class="disease_name">
+        <h2 [ngClass]="{ 'alternate-disease-name': i % 2 !== 0 }">{{ information.name }}</h2>
+      </div>
+      <div class="information_and_source" [ngClass]="{ 'alternate-border-color': i % 2 !== 0 }"> 
+        <div class="disease_information">
+          <p>{{ information.description }}</p>
+        </div>
+        <div class="info_source">
+          <p>{{ information.source }}</p>
+        </div>
+      </div>
+      <div class="buttons_container">
+        <button (click)="respondToDisease(information)" class="button-1 buttons">Read More</button>
+      </div>
+    </div>
+  </section>
+
+  <app-footer></app-footer>
+</body>

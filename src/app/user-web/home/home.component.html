@@ -1,0 +1,72 @@
+<app-web-header></app-web-header>
+<app-web-navbar></app-web-navbar>
+
+<body>
+    <section class="info">
+        <div id="info_text_container">
+            <span id="info_tagline">Be informed and provide help to the community using</span>
+            <br>
+            <span id="info_title">Mosquinator</span>
+            <br><br>
+            <span id="info_description">A mobile application and web platform of Pasig Dengue Task Force that aims to
+                <br>provide community based reporting platform to Barangays of Pasig and campaign 
+                <br>about awareness and prevention of Mosquito Borne-Diseases
+            </span>
+        </div>
+
+        <br><br><br>
+      
+        <div id="buttons_container2">
+          <!--
+            <div class="view_app_button_container">
+              <div class="button" id="button-2" (click)="openCarouselModal()">
+                <div id="slide"></div>
+                <a>View Application <i class="fa-solid fa-arrow-right"></i> </a>
+              </div>
+            </div>
+            -->
+            <div class="login_button_container">
+              <a href="about"><div class="button" id="button-2">
+                <div id="slide"></div>
+                <a href="about">Developers </a>
+              </div></a>
+            </div>
+          </div>
+    </section>
+
+    <section class="about">
+      <div id="phone_image_container">
+        <img src="../../../assets/home_images/App Design 1.png" alt="app overview" id="phone_image">
+      </div>
+    
+      <div id="text_container">
+        <h2 id="home_about">About the Mobile App</h2>
+        <p id="home_about_p">Mosquinator is a mobile application that aims to help users to determine different kinds of mosquito species and the diseases
+           that it can cause. The application aims to help people to be aware of different mosquito borne-diseases and as well as to provide them a community based 
+           reporting platform that can be used for reporting related cases of mosquito diseases or an intel for maintaining cleanliness around area that could be possible 
+           breeding grounds of mosquitoes.</p>
+        <div class="buttons_container">
+          <button class="button-1 buttons">Play Store</button>
+          <!--<button class="button-1 buttons">App Store</button>-->
+        </div>
+      </div>
+  </section>
+
+    <!-- Modal -->
+    <div id="carousel_modal" class="modal" [ngStyle]="{ display: carouselModalOpen ? 'block' : 'none' }">
+        <div class="modal-content">
+        <div class="modal-header">
+            <span class="close" id="close_carousel" (click)="closeCarouselModal()">&times;</span>
+            <h2>Application Overview</h2>
+        </div>
+        <div class="modal-body">
+            <!-- carousel-->
+            <h2>carousel</h2>
+        </div>
+        <div class="modal-footer">
+            <h3>THE LAST SON OF KRYPTON</h3>
+        </div>
+        </div>
+    </div>
+    <app-footer></app-footer>
+</body>

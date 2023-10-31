@@ -100,7 +100,7 @@ export class ForgotPasswordComponent {
   }
 
   redirectToLogin() {
-    this.router.navigate(['/']); // route of the login page
+    this.router.navigate(['/account-login']); // route of the login page
   }
 
 

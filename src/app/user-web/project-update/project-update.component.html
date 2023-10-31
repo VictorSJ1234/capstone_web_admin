@@ -1,0 +1,63 @@
+<app-web-header></app-web-header>
+<app-web-navbar></app-web-navbar>
+
+<body>
+  <div class="loading-overlay" *ngIf="isLoading">
+    <div class="loading-spinner"></div>
+  </div>
+  <header>
+    <h1>Community Projects Update</h1>
+  </header>
+
+  <section class="schedule_section">
+    <div class="calendar_container">
+      <!-- Real calendar code goes here -->
+      <div id="calendar"></div>
+    </div>
+    <div class="announcements_container">
+      <div class="header_text_container">
+        <h2>Announcements</h2>
+        <h4>Dates to Remember</h4>
+      </div>
+      <table>
+        <tbody>
+          <tr *ngFor="let project of communityProjectsData">
+            <td class="date_column">
+              {{ project.project_date | date: 'MMM' }} <br>
+              <span class="date">{{ project.project_date | date: 'dd' }}</span>
+            </td>
+            <td class="project_column">
+              {{ project.project_title }}<br>
+              <span class="barangay_name">Location: {{ project.location }}</span>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section class="information_section" *ngFor="let project of communityProjectsData; let i = index" [ngClass]="{ 'alternate-color': i % 2 !== 0 }">
+    <div class="image_container" [ngClass]="{ 'alternate-image-container': i % 2 !== 0 }">
+      <img [src]="convertToImage(project.uploaded_file)" id="project_image" alt="project_image">
+    </div>
+    <div class="information_container">
+      <div class="project_name" [ngClass]="{ 'alternate-project-name': i % 2 !== 0 }">
+        <h2 [ngClass]="{ 'alternate-project-name': i % 2 !== 0 }">{{ project.project_title }}</h2>
+      </div>
+      <div class="information_and_barangay" [ngClass]="{ 'alternate-border-color': i % 2 !== 0 }">
+        <div class="project_information">
+          <p>Description:&nbsp;{{project.details}}</p>
+        </div>
+        <div class="info_source">
+          <p>Location: Barangay&nbsp;{{project.location}}</p>
+          <p>Date and Time:&nbsp;{{project.project_date}} {{ formatTime(project.project_time) }}</p>
+        </div>
+      </div>
+      <div class="buttons_container">
+        <!--<button (click)="respondToDisease(information)" class="button-1 buttons">View FB Post</button>-->
+      </div>
+    </div>
+  </section>
+
+  <app-footer></app-footer>
+</body>

@@ -1,0 +1,197 @@
+<app-web-header></app-web-header>
+<app-web-navbar></app-web-navbar>
+
+<body>
+    <div class="loading-overlay" *ngIf="isLoading">
+        <div class="loading-spinner"></div>
+      </div>
+    <div class="loading-overlay" *ngIf="isLoading">
+        <div class="loading-spinner"></div>
+    </div>
+    <section class="top">
+        <div class="pasig_logo_container">
+          <img src="../../../assets/home_images/pasig_logo.png" class="pasig_logo" alt="pasig anti dengue task force logo">
+          <p class="home_title">Mosquinator:</p>
+          <h4 class="home_title_2">Pasig Dengue Task Force</h4>
+        </div>
+    </section>
+
+    <section class="services_section">
+      <div class="services_title">
+        <span>Services to Community</span>
+      </div>
+
+      <!--<img src="../../assets/home_images/slant bars 1.png" class="slantbars" alt="slantbars">-->
+
+      <div class="services">
+        <div class="row">
+          <div class="services_image_and_text">
+            <img src="../../../assets/home_images/services.png" alt="services_img">
+            <span>Clean-Up Drive</span>
+          </div>
+          <div class="services_image_and_text">
+            <img src="../../../assets/home_images/services.png" alt="services_img">
+            <span>Fumigation</span>
+          </div>
+          <div class="services_image_and_text">
+            <img src="../../../assets/home_images/services.png" alt="services_img">
+            <span>Community Teaching: Larvae Control of Infestation
+            </span>
+          </div>
+        </div>
+        <!--
+        <div class="row">
+          <div class="services_image_and_text_top">
+            <img src="../../assets/home_images/services.png" alt="services_img">
+            <span>Community Teaching: <br> Larvae Control of Infestation
+            </span>
+          </div>
+          <div class="services_image_and_text">
+            <img src="../../assets/home_images/services.png" alt="services_img">
+            <span>Service 4</span>
+          </div>
+        </div>
+        -->
+      </div>
+    </section>
+
+    <section class="dengue_section">
+      <div class="dengue_title">
+        <span>Latest Post About Dengue Cases</span>
+      </div>
+        <div class="row_2">
+            <div class="img_container">
+                <img *ngIf="latestDenguePost && latestDenguePost.uploaded_file" [src]="convertToImage(latestDenguePost.uploaded_file)" alt="image">
+            </div>
+            <div id="text_container">
+                <h2 id="about_dengue">Dengue Cases</h2>
+                <p id="about_dengue_p">
+                    {{latestDenguePost && latestDenguePost.details ? latestDenguePost.details : 'No post yet'}}
+                </p>
+            </div>
+        </div>
+    </section>
+    
+
+    <section class="inquiry_section">
+        <header>
+            <h1>Inquiry</h1>
+        </header>
+        <div class="form_container">
+            <form (ngSubmit)="submit(myForm)" #myForm="ngForm">
+                <div class="form-row">
+                    <div class="fields_container">
+                        <div class="form-group">
+                            <input type="email" class="form-control" id="email" name="email" placeholder="Email" required [(ngModel)]="formData.email"
+                                [ngClass]="{ 'is-invalid': myForm.submitted && myForm.controls['email'].invalid }"
+                                pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}">
+                            <div class="invalid-tooltip" *ngIf="myForm.submitted && myForm.controls['email'].invalid">
+                                <span class="tooltip-text">Invalid Email.</span>
+                            </div>
+                            <div class="valid-tooltip">
+                                &nbsp;
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <input type="text" class="form-control" id="subject" name="subject" placeholder="Subject" required [(ngModel)]="formData.subject"
+                                [ngClass]="{ 'is-invalid': myForm.submitted && myForm.controls['subject'].invalid }">
+                            <div class="invalid-tooltip" *ngIf="myForm.submitted && myForm.controls['subject'].invalid">
+                                <span class="tooltip-text">Please enter the subject.</span>
+                            </div>
+                            <div class="valid-tooltip">
+                                &nbsp;
+                            </div>
+                        </div>                                                                                                                                                         
+                        <div class="form-group" id="file_upload_container">
+                               
+                            <div class="custom-file">
+                              <button type="button" class="btn btn-light" (click)="openFileInput()" id="file_button">Choose File</button>
+                              <span *ngIf="selectedFiles.length > 0" class="selected-file-label">Selected Files:</span>
+                              <div *ngFor="let selectedFile of selectedFiles; let i = index">
+                                <div class="selected-file">
+                                  <span>{{ selectedFile.name !== 'No Chosen File' ? (selectedFile.name | slice:0:30) + (selectedFile.name.length > 15 ? '...' : '') : 'No Selected File' }}</span>
+                                  <button class="btn btn-danger btn-sm" (click)="removeSelectedFile(i)">Delete</button>
+                                  <hr>
+                                </div>
+                              </div>
+                              <div class="file-tooltip-text" *ngIf="selectedFiles.length >= 2">
+                                <span class="tooltip-text">You can upload a maximum of 2 files.</span>
+                              </div>
+                              <input type="file" id="fileUpload" name="fileUpload" accept=".pdf, .jpg, .jpeg, .png" style="display: none;" (change)="handleFileUpload($event)" multiple>
+                            </div>
+                          </div>
+                        <div class="form-group">
+                            <textarea class="form-control" id="inquiry" name="inquiry" placeholder="Inquiry" required [(ngModel)]="formData.inquiry"
+                                [ngClass]="{ 'is-invalid': myForm.submitted && myForm.controls['inquiry'].invalid }"></textarea>
+                            <div class="invalid-tooltip" *ngIf="myForm.submitted && myForm.controls['inquiry'].invalid">
+                                <span class="tooltip-text">Please enter your Inquiry.</span>
+                            </div>
+                            <div class="valid-tooltip">
+                                &nbsp;
+                            </div>
+                        </div>                                                                                                                      
+                     
+                    </div> 
+                </div>
+                <div class="buttons_container">
+                    <div class="send_button_container">
+                        <div class="form-row">
+                            <div class="col-md-12">
+                                <button type="submit" class="btn btn-primary mt-3">Send Inquiry</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </section>
+
+    <section class="client_section">
+        <div id="row_1">
+            <h2 id="about_client">Pasig Anti-Dengue Task Force</h2>
+        </div>
+        <div class="row_2">
+            <div class="buttons_container">
+                <div class="mail_and_button">
+                    <a href="client" ><img src="../../../assets/icons/mail.png" alt="mail icon" id="mail_icon"></a>
+                    <button class="button-1 buttons">pasigdenguetaskforce@gmail.com</button>
+                </div>
+                <div class="mail_and_button">
+                    <a href="client" ><img src="../../../assets/aboutPage_images/phone.png" alt="mail icon" id="mail_icon"></a>
+                    <button class="button-1 buttons">(02) 8643 8047</button>
+                </div>
+                <div class="mail_and_button">
+                    <a href="client" ><img src="../../../assets/aboutPage_images/location.png" alt="mail icon" id="mail_icon"></a>
+                    <button class="button-1 buttons">Pasig City Hall</button>
+                </div>
+            </div>
+            <div id="text_container">
+                <p id="about_client_p">Pasig Anti-Dengue Task Force is tasked to clean, fumigate, 
+                    and monitor high-risk areas in the city against dengue-causing mosquitoes. The primary
+                     initiative of having them as a client is to create a unique educational-entertainment  
+                     and community based inquirying in mobile and web application platform respectively that will 
+                     aid them  to disseminate information among the youths and adults about awareness and prevention 
+                     of Mosquito Borne-Diseases.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Modal -->
+    <div id="SuccessModal" class="SuccessModal" class="modal" [ngStyle]="{ display: carouselModalSuccess ? 'block' : 'none' }">
+        <div class="modal-content">
+          <div class="modal-header" id="modal_header">
+            <h2>Created Successfully!</h2>
+          </div>
+          
+          <div class="modal-body" id="modal_body">
+            <p>The inquiry has been successfully sent. We will send you an email once we have a response to your inquiry.</p>
+            <div class="redirect-button-container">
+                <button class="done-button" (click)="done()">Done</button> 
+            </div>
+          </div>
+        </div>
+      </div> 
+
+    <app-footer></app-footer>
+</body>
