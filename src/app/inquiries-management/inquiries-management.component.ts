@@ -17,6 +17,7 @@ export class InquiriesManagementComponent {
   selectedInquiryId: string = ''; //container of selected id
   selectedInquiryId2: string = ''; //container of seleted inquiryId
   selectedUserName: string = ''; // container of selected name
+  selectedEmail: string = '';
   carouselModalOpen = false;
 
   currentPage: number = 1; // Current page number of the pagination
@@ -133,6 +134,7 @@ export class InquiriesManagementComponent {
      // Store the selected inquiries's id to the initialized container "selectedInquiryId"
     this.selectedInquiryId = inquiry._id;
     this.selectedInquiryId2 = inquiry.inquiryId;
+    this.selectedEmail = inquiry.email;
     this.selectedUserName = inquiry.name;
 
     // Open the modal
@@ -148,9 +150,9 @@ export class InquiriesManagementComponent {
   // Function to confirm and delete the selected inquiry
   confirmDelete() {
     // Call the admin service to delete the inquiry
-    this.adminService.deleteInquiry(this.selectedInquiryId2).subscribe(
+    this.adminService.deleteInquiry(this.selectedInquiryId).subscribe(
       () => {
-        console.log('Deleted inquiry:', this.selectedInquiryId2);
+        console.log('Deleted inquiry:', this.selectedInquiryId);
         this.closeCarouselModal();
         this.fetchAllInquiries();
       },

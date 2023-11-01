@@ -53,7 +53,8 @@
                         <td>{{inquiry.subject}} </td>
                         <td>{{inquiry.formattedDate}}</td>
                         <td>
-                            <button class="open-button" (click)="openInquiry(inquiry)">View & Respond</button>
+                            <button class="open-button" (click)="openInquiry(inquiry)">Respond</button>
+                            <button class="hide-button" (click)="openCarouselModal(inquiry)" >Delete</button>
                         </td>
                     </tr>
                 </tbody>
@@ -68,7 +69,6 @@
 
     
     <!-- Modal -->
-    <!--
     <div id="response_modal" class="modal" [ngStyle]="{ display: carouselModalOpen ? 'block' : 'none' }">
         <div class="modal-content">
           <div class="modal-header" id="modal_header">
@@ -77,8 +77,8 @@
           </div>
           
           <div class="modal-body">
-            <p>Confirm to delete inquiry:</p>
-            <p>{{ selectedReportId2 }}</p>
+            <p>Confirm to delete inquiry from:</p>
+            <p>{{ selectedEmail }}</p>
             <div class="redirect-button-container">
                 <button class="cancel-button" (click)="closeCarouselModal()">Cancel</button>
                 <button class="confirm-button" (click)="confirmDelete()">Confirm</button> 
@@ -86,5 +86,4 @@
           </div>
         </div>
       </div>   
-    -->
 <body>

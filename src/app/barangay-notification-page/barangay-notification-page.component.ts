@@ -21,6 +21,8 @@ export class BarangayNotificationPageComponent {
   username: string = ''; 
   userEmail: string = ''; 
   office: string = '';
+
+  report: any; // Array to store all report data
   notifications: any[] = [];
   readNotifications: any[] = [];
   unreadNotifications: any[] = [];
@@ -77,6 +79,34 @@ export class BarangayNotificationPageComponent {
       );
   }
 
+  markNotificationAsRead(notification: any) {
+    this.isLoading = true;
+    this.adminService.updateReportNotificationStatus(notification._id, this.userId, 'Read')
+      .subscribe(
+        (response: any) => {
+          console.log('Update notification status response:', response);
+          notification.status = 'Read';
+
+          // Get the report data
+          this.adminService.getReportToBarangay(notification.recipient)
+            .subscribe(
+              (reportResponse: any) => {
+                this.report = reportResponse.reportToBarangayData;
+                this.router.navigateByUrl('/admin-report-barangay-view', { state: { reports: this.report, reportId: notification.reportId } });
+              },
+              (reportError) => {
+                console.error('Error fetching report data', reportError);
+              }
+            );
+        },
+        (error) => {
+          console.error('Error updating notification status', error);
+        }
+      );
+  }
+
+  
+
   readSelected: boolean = false;
   unreadSelected: boolean = true;
 
@@ -95,7 +125,7 @@ export class BarangayNotificationPageComponent {
   }
   
   isReadNotification(notification: any): boolean {
-    return notification.status === 'read';
+    return notification.status === 'Read' && notification.recipient === this.office && notification.userId === this.userId;
   }
 
 }

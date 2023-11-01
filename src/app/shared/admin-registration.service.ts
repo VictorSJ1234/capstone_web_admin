@@ -375,4 +375,9 @@ export class AdminRegistrationService {
     return this.http.post(`${this.baseURL}/getAdminNotificationStatus`, { adminId, recipient, notificationStatus });
   }
 
+  // Function to update notification status by userId and _id
+  updateReportNotificationStatus(_id: string, adminId: string, newStatus: string): Observable<any> {
+    return this.http.put(`${this.baseURL}/updateAdminReportNotificationStatus`, { _id, adminId, newStatus });
+  }
+
 }

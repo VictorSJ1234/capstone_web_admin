@@ -33,7 +33,7 @@
                         </div>
                     </div>
                     <div class="cards_buttons_container">
-                        <button [routerLink]="'/admins'">Read</button>
+                        <button (click)="markNotificationAsRead(notification)">Read</button>
                     </div>
                 </div>
             </div>
@@ -41,9 +41,12 @@
             <div *ngIf="readSelected">
                 <div class="info_card" *ngFor="let notification of readNotifications">
                     <div class="row1">
+                        <div class="card_image_container">
+                            <img src="../../assets/icons/bell_2.png" alt="">
+                        </div>
                         <div class="card_text_container">
-                            <h3>Read Notification</h3>
-                            <p>{{ notification._id }}</p>
+                            <h3>{{notification.title}}</h3>
+                            <p>{{ notification.message }}</p>
                         </div>
                     </div>
                     <div class="cards_buttons_container">
