@@ -35,6 +35,8 @@ export class AccountRegistrationComponent {
 
   selectedFiles: File[] = [];
 
+  uploaded_file: string = '';
+
   openFileInput() {
     const fileInput = document.getElementById('fileUpload');
     if (fileInput) {
@@ -91,6 +93,8 @@ export class AccountRegistrationComponent {
   }
   
   showEmailError = false;
+  showTermsError = false;
+  isTermsChecked: boolean = false;
 
   passwordMismatch = false;
   showPassword = false;
@@ -118,6 +122,12 @@ export class AccountRegistrationComponent {
   register(form: NgForm) {
     this.isLoading = true; 
     if (this.isFormValid()) {
+
+      if (!this.isTermsChecked) {
+        this.isLoading = false;
+        this.showTermsError = true;
+        return;
+      }
 
       if (this.selectedFiles.length === 0) {
         console.log('Please select at least one file.');
@@ -207,6 +217,17 @@ export class AccountRegistrationComponent {
       if (this.isEmailInvalid()) {
         console.log('Invalid Email.');
       }
+      if (!this.isTermsChecked) {
+        this.showTermsError = true;
+      }
+    }
+  }
+
+  toggleTermsCheckbox() {
+    this.isTermsChecked = !this.isTermsChecked;
+    // Hide the terms error message when the checkbox is checked
+    if (this.isTermsChecked) {
+      this.showTermsError = false;
     }
   }
 
@@ -249,6 +270,11 @@ export class AccountRegistrationComponent {
   // Function to toggle password visibility
   togglePasswordVisibility(): void {
     this.showPassword = !this.showPassword;
+  }
+
+  openPdfInNewTab() {
+    const pdfUrl = '../assets/terms_conditions/TERMS AND CONDITIONS_Mosquinator 2.pdf'; // Replace with the actual path to your PDF file
+    window.open(pdfUrl, '_blank');
   }
 }
 //test

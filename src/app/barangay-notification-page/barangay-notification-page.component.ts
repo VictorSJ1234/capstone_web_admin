@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { AdminRegistrationService } from '../shared/admin-registration.service'
 import { AuthService } from '../authService/auth.service';
+import { interval } from 'rxjs';
+import { switchMap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-barangay-notification-page',
@@ -57,11 +59,18 @@ export class BarangayNotificationPageComponent {
   // Function to fetch notifications
   fetchNotifications() {
     this.isLoading = true;
-    this.adminService.getNotificationsByUserAndStatus(this.userId, this.office, 'Unread')
+    interval(2000) // Poll every 2 seconds 
+    .pipe(
+      switchMap(() =>this.adminService.getNotificationsByUserAndStatus(this.userId, this.office, 'Unread'))
+    )
       .subscribe(
         (response: any) => {
           this.unreadNotifications = response.notifications;
-          this.isLoading = false;
+          this.unreadNotifications.sort((a, b) => {
+            const dateA = new Date(a.dateCreated).getTime();
+            const dateB = new Date(b.dateCreated).getTime();
+            return dateB - dateA;
+          });
         },
         (error) => {
           console.error('Error fetching unread notifications', error);
@@ -72,6 +81,11 @@ export class BarangayNotificationPageComponent {
       .subscribe(
         (response: any) => {
           this.readNotifications = response.notifications;
+          this.readNotifications.sort((a, b) => {
+            const dateA = new Date(a.dateCreated).getTime();
+            const dateB = new Date(b.dateCreated).getTime();
+            return dateB - dateA;
+          });
         },
         (error) => {
           console.error('Error fetching read notifications', error);
@@ -88,11 +102,12 @@ export class BarangayNotificationPageComponent {
           notification.status = 'Read';
 
           // Get the report data
-          this.adminService.getReportToBarangay(notification.recipient)
+          this.adminService.getReportToBarangay(notification.reportId)
             .subscribe(
               (reportResponse: any) => {
                 this.report = reportResponse.reportToBarangayData;
-                this.router.navigateByUrl('/admin-report-barangay-view', { state: { reports: this.report, reportId: notification.reportId } });
+                console.log(this.report)
+                this.router.navigateByUrl('/admin-report-barangay-view', { state: { reports: this.report} });
               },
               (reportError) => {
                 console.error('Error fetching report data', reportError);

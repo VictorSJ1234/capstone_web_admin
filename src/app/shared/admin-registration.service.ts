@@ -380,4 +380,12 @@ export class AdminRegistrationService {
     return this.http.put(`${this.baseURL}/updateAdminReportNotificationStatus`, { _id, adminId, newStatus });
   }
 
+  // Function to get all report to Barangay data
+  getTerms(): Observable<any> {
+    return this.http.post(`${this.baseURL}/getTerms`, {});
+  }
+  getTermsById(id: string): Observable<any> {
+    return this.http.get(`${this.baseURL}/getByIdTerms/${id}`);
+  }
+
 }

@@ -199,12 +199,17 @@
               </div>
 
               <div id="checkbox_container">
-                <input type="checkbox" id="termsCheckbox">
-                <label for="termsCheckbox">I agree to the <a href="terms.html">Terms and Conditions</a> and <a href="privacy.html">Privacy Policy</a></label>
+                <input type="checkbox" id="termsCheckbox" [(ngModel)]="isTermsChecked" (change)="toggleTermsCheckbox()">
+                <label for="termsCheckbox">I agree to the <a href="javascript:void(0)" (click)="openPdfInNewTab()">Terms and Conditions</a> and <a href="javascript:void(0)" (click)="openPdfInNewTab()">Privacy Policy</a></label>
               </div>
               <div class="error-container">
                 <div *ngIf="showEmailError" class="alert alert-danger mt-2">
                   Email Address Already Exist
+                </div>
+              </div>
+              <div class="error-container">
+                <div *ngIf="showTermsError" class="alert alert-danger mt-2">
+                  Please agree to our terms and conditions.
                 </div>
               </div>
               <div class="send_button_container">
@@ -231,7 +236,7 @@
         </div>
         
         <div class="modal-body">
-          <p>Your admin account has been successfully created.</p>
+          <p>Your account has been successfully created.</p>
           <p>We will send you an email once your account has been validated.</p>
           <div class="redirect-button-container">
             <button class="btn btn-primary" (click)="redirectToLogin()">Go to Login</button>

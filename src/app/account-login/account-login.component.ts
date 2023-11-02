@@ -58,11 +58,25 @@ export class AccountLoginComponent {
           console.log('Invalid login credentials.');
           this.showError = true;
         }
-      } catch (error) {
-        this.isLoading = false; 
-        console.error('An error occurred during login:', error);
+      } catch (error: any) {
+        console.error('An error occurred:', error);
+
+      if (error.status === 404) {
+        if (error.error && error.error.error === 'USER_NOT_FOUND') {
+          this.isLoading = false; 
+          this.showError = true;
+        }
+      } else if (error.status === 401) {
+        if (error.error && error.error.error === 'INVALID_CREDENTIALS') {
+          this.isLoading = false; 
+          this.showError = true;
+        }
+      }
+      else{
+        this.isLoading = false;
         this.showConnectionError = true;
       }
+    }
     }else {
       if (this.formData.email === '' || this.formData.password === '') {
         this.isLoading = false; 
