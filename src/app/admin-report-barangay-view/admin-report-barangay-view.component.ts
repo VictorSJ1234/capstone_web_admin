@@ -175,11 +175,7 @@ export class AdminReportBarangayViewComponent {
       );
     });
 
-    //fetch admin response based on report's id
-    interval(2000) // Poll every 2 seconds 
-      .pipe(
-        switchMap(() => this.adminRegistrationService.getBarangayResponse(this.reportId))
-      )
+    this.adminRegistrationService.getBarangayResponse(this.reportId)
     .subscribe(
       (data: any) => {
         if (data && data.barangayResponseData) {
@@ -227,10 +223,7 @@ export class AdminReportBarangayViewComponent {
 
         //fetch admin response based on report's id
         //fetch admin response based on report's id
-    interval(2000) // Poll every 2 seconds 
-    .pipe(
-      switchMap(() =>this.adminRegistrationService.getAdminResponseToBarangay(this.reportId))
-    )
+      this.adminRegistrationService.getAdminResponseToBarangay(this.reportId)
         .subscribe(
           (data: any) => {
             if (data && data.adminResponseData) {
@@ -310,6 +303,15 @@ export class AdminReportBarangayViewComponent {
               response => {
                 this.isLoading = false; 
                 this.openCarouselModalSuccess();
+
+                this.formData = {
+                  report_status: '',
+                  action_to_do: '',
+                  recipient: '',
+                  date: '',
+                  response_description: '',
+                };
+                this.selectedFiles = [];
                 console.log('Responded successfully:', response);
                 // successful registration
               },
@@ -341,6 +343,13 @@ export class AdminReportBarangayViewComponent {
             response => {
               this.isLoading = false; 
               this.openCarouselModalSuccess();
+              this.formData = {
+                report_status: '',
+                action_to_do: '',
+                recipient: '',
+                date: '',
+                response_description: '',
+              };
               console.log('Responded successfully:', response);
               // successful registration
             },

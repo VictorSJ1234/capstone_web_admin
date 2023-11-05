@@ -57,7 +57,7 @@ export class EditDengueCasesComponent {
   responseSent() {
     this.carouselModalSuccess = false;
     this.carouselModalOpen = false;
-    this.ngOnInit();
+    this.router.navigate(['/manage-dengue-cases']);
   }
 
   openCarouselModalSuccess() {

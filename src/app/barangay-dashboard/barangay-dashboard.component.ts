@@ -4,6 +4,8 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { AdminRegistrationService } from '../shared/admin-registration.service'
 import { DatePipe } from '@angular/common';
 import { AuthService } from '../authService/auth.service';
+import { interval } from 'rxjs';
+import { switchMap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-barangay-dashboard',
@@ -47,7 +49,10 @@ export class BarangayDashboardComponent implements OnInit {
 
   getTotalReportsByBarangay() {
     this.isLoading = true;
-    this.adminService.getTotalReportsByBarangay(this.barangay)
+    interval(2000) // Poll every 2 seconds 
+    .pipe(
+      switchMap(() =>this.adminService.getTotalReportsByBarangay(this.barangay))
+    )
       .subscribe(
         (data: any) => {
           this.isLoading = false;

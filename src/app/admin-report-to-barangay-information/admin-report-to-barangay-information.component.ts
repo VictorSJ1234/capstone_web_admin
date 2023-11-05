@@ -171,11 +171,7 @@ export class AdminReportToBarangayInformationComponent {
       );
     });
 
-    //fetch admin response based on report's id
-    interval(2000) // Poll every 2 seconds 
-      .pipe(
-        switchMap(() => this.adminRegistrationService.getBarangayResponse(this.reportId))
-      )
+    this.adminRegistrationService.getBarangayResponse(this.reportId)
     .subscribe(
       (data: any) => {
         if (data && data.barangayResponseData) {
@@ -220,12 +216,8 @@ export class AdminReportToBarangayInformationComponent {
         console.error('Error fetching admin response data:', error);
       }
     );
-
-        //fetch admin response based on report's id
-        interval(2000) // Poll every 2 seconds 
-      .pipe(
-        switchMap(() => this.adminRegistrationService.getAdminResponseToBarangay(this.reportId))
-      )
+    
+    this.adminRegistrationService.getAdminResponseToBarangay(this.reportId)
         .subscribe(
           (data: any) => {
             if (data && data.adminResponseData) {
@@ -274,6 +266,7 @@ export class AdminReportToBarangayInformationComponent {
 
     // Format and set the reports.postedDate
     if (this.reports && this.reports.postedDate) {
+      this.isLoading = false; 
       this.reports.formattedPostedDate = this.datePipe.transform(this.reports.postedDate, 'MM/dd/yy');
       this.reports.formattedTime = this.datePipe.transform(this.reports.postedDate, 'h:mm a');
     }
@@ -308,6 +301,15 @@ export class AdminReportToBarangayInformationComponent {
               response => {
                 this.isLoading = false; 
                 this.openCarouselModalSuccess();
+
+                this.formData = {
+                  report_status: '',
+                  action_to_do: '',
+                  date: '',
+                  response_description: '',
+                };
+
+                this.selectedFiles = [];
                 console.log('Responded successfully:', response);
                 // successful registration
               },
@@ -339,6 +341,12 @@ export class AdminReportToBarangayInformationComponent {
             response => {
               this.isLoading = false; 
               this.openCarouselModalSuccess();
+              this.formData = {
+                report_status: '',
+                action_to_do: '',
+                date: '',
+                response_description: '',
+              };
               console.log('Responded successfully:', response);
               // successful registration
             },

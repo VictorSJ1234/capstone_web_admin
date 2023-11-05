@@ -231,6 +231,7 @@ export class ReportInformationComponent {
                   date: '',
                   response_description: '',
                 };
+                this.selectedFiles = [];
                 console.log('Responded successfully:', response);
                 // successful registration
               },
