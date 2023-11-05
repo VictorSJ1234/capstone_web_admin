@@ -9,10 +9,10 @@ export class BarangayAdminGuard implements CanActivate {
   constructor(private authService: AuthService, private router: Router) {}
 
   canActivate(): boolean {
-    if (this.authService.isAuthenticatedUser() && this.authService.getUserRole() === 'Barangay Admin') {
+    if (this.authService.isAuthenticatedUser() && this.authService.getUserRole() === 'Barangay Health Officer') {
       return true;
     } else {
-      this.router.navigate(['/']);
+      this.router.navigate(['account-login']);
       return false;
     }
   }

@@ -162,9 +162,6 @@ body{
 #report_table tbody td:nth-child(6) {
   min-width: 14%;
 }
-#report_table tbody td:nth-child(7) {
-  min-width: 14%;
-}
 /* Styles for the concenr button */
 #report_table_body p {
   background-color: white;
@@ -172,8 +169,9 @@ body{
   border: 2px green solid;
   border-radius: 5px;
   padding: 5px 10px;
-  margin-right: 10px; 
-  width: 8vw;
+  margin-right: auto; 
+  margin-left: auto;
+  width: 10vw;
   font-size: 1vw;
 }
 /* Styles for the view button */
@@ -183,7 +181,8 @@ body{
   border: 2px solid #0384E9;; 
   border-radius: 5px;
   padding: 5px 5px;
-  margin-right: 10px; 
+  margin-right: auto;
+  margin-left: auto; 
   cursor: pointer;
   width: 9vw;
   font-size: 0.9vw;

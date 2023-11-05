@@ -23,6 +23,7 @@ export class BarangaySidenavComponent {
   fetchedUserData: any;
   username: string = ''; 
   userEmail: string = ''; 
+  barangay: string = '';
 
   adminProfilePicture!: string;
   image: string | ArrayBuffer | null = null;
@@ -43,6 +44,7 @@ export class BarangaySidenavComponent {
           this.username = this.fetchedUserData[0].fullname;
           this.userEmail = this.fetchedUserData[0].email;
           this.adminProfilePicture = this.fetchedUserData[0].adminProfilePicture;
+          this.barangay = this.fetchedUserData[0].office;
           if (this.adminProfilePicture) {
             this.image = 'data:image/jpeg;base64,' + this.adminProfilePicture;
           }

@@ -11,7 +11,7 @@ export class AuthService {
     // Check if the user is authenticated upon initialization
     this.isAuthenticated = !!sessionStorage.getItem('token');
 
-    this.official_role = sessionStorage.getItem('userRole') || 'Barangay Admin';
+    this.official_role = sessionStorage.getItem('userRole') || 'Barangay Health Officer';
   }
 
   // Simulate a login
@@ -29,7 +29,7 @@ export class AuthService {
     sessionStorage.removeItem('token');
     sessionStorage.removeItem('userId');
     sessionStorage.clear();
-    window.location.replace('/');
+    window.location.replace('account-login');
   }
 
   // Check if the user is authenticated

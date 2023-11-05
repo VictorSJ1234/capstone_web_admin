@@ -10,7 +10,7 @@ import { AdminRegistration, UserInformation, AdminResponse, CommunityProjects, u
 })
 export class AdminRegistrationService {
   public  loggedIn = false;
-  private baseURL = 'http://localhost:3000'; 
+  private baseURL = 'https://mosquinator-fbd24e41f56d.herokuapp.com/'; 
 
   constructor(private http: HttpClient) { }
 
@@ -386,6 +386,10 @@ export class AdminRegistrationService {
   }
   getTermsById(id: string): Observable<any> {
     return this.http.get(`${this.baseURL}/getByIdTerms/${id}`);
+  }
+
+  deleteReportToBarangay(_id: string): Observable<any> {
+    return this.http.post(`${this.baseURL}/deleteReportToBarangay`, { _id });
   }
 
 }

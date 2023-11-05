@@ -9,10 +9,10 @@ export class DengueTaskForceGuard implements CanActivate {
   constructor(private authService: AuthService, private router: Router) {}
 
   canActivate(): boolean {
-    if (this.authService.isAuthenticatedUser() && this.authService.getUserRole() === 'Dengue Task Force') {
+    if (this.authService.isAuthenticatedUser() && this.authService.getUserRole() === 'Dengue Task Force Staff') {
       return true;
     } else {
-      this.router.navigate(['/']);
+      this.router.navigate(['account-login']);
       return false;
     }
   }

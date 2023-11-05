@@ -63,7 +63,7 @@
                         <th>Report Id</th>
                         <th>Subject of Report</th>
                         <th>Sent on</th>
-                        <th>Area of Concen</th>
+                        <th>Area of Concern</th>
                         <th>Status</th>
                         <th>Actions</th>
                     </tr>
@@ -83,6 +83,7 @@
                         </td>
                         <td>
                             <button class="open-button" (click)="openReport(report)">Open</button>
+                            <button class="hide-button" (click)="openCarouselModal(report)">Delete</button>
                         </td>
                     </tr>
                 </tbody>
@@ -96,8 +97,6 @@
     </section> 
 
     
-    <!-- Modal -->
-    <!--
     <div id="response_modal" class="modal" [ngStyle]="{ display: carouselModalOpen ? 'block' : 'none' }">
         <div class="modal-content">
           <div class="modal-header" id="modal_header">
@@ -115,5 +114,4 @@
           </div>
         </div>
       </div>   
-    -->
-<body>
+    <body>

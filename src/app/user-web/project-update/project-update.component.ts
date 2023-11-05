@@ -46,7 +46,7 @@ export class ProjectUpdateComponent {
         this.communityProjectsData.sort((a, b) => {
           const dateA = new Date(a.project_date).getTime();
           const dateB = new Date(b.project_date).getTime();
-          this.isLoading = false;
+          
 
           // Compare project_date first
           if (dateA > dateB) {
@@ -60,6 +60,7 @@ export class ProjectUpdateComponent {
             return timeA > timeB ? -1 : timeA < timeB ? 1 : 0;
           }
         });
+        this.isLoading = false;
       },
       (error) => {
         console.error(error);

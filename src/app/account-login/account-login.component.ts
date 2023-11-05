@@ -37,11 +37,11 @@ export class AccountLoginComponent {
           this.authService.login(response._id, response.official_role);
           console.log(response._id);
 
-          if (response.official_role === 'Dengue Task Force') {
+          if (response.official_role === 'Dengue Task Force Staff') {
             this.isLoading = false; 
             this.router.navigate(['/admin-dashboard']);
           } 
-          else if (response.official_role === 'Barangay Admin') {
+          else if (response.official_role === 'Barangay Health Officer') {
             this.isLoading = false; 
             this.router.navigate(['/barangay-dashboard']);
           } 

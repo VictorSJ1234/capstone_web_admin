@@ -225,6 +225,12 @@ export class ReportInformationComponent {
             .subscribe(
               response => {
                 this.openCarouselModalSuccess();
+                this.formData = {
+                  report_status: '',
+                  action_to_do: '',
+                  date: '',
+                  response_description: '',
+                };
                 console.log('Responded successfully:', response);
                 // successful registration
               },
@@ -273,6 +279,12 @@ export class ReportInformationComponent {
             .subscribe(
               response => {
                 this.openCarouselModalSuccess();
+                this.formData = {
+                  report_status: '',
+                  action_to_do: '',
+                  date: '',
+                  response_description: '',
+                };
                 console.log('Responded successfully:', response);
                 // successful registration
               },

@@ -148,9 +148,9 @@ export class AdminReportsForBarangayManagementComponent {
   // Function to confirm and delete the selected report
   confirmDelete() {
     // Call the admin service to delete the report
-    this.adminService.deleteUserReport(this.selectedReportId2).subscribe(
+    this.adminService.deleteReportToBarangay(this.selectedReportId).subscribe(
       () => {
-        console.log('Deleted report:', this.selectedReportId2);
+        console.log('Deleted report:', this.selectedReportId);
         this.closeCarouselModal();
         this.fetchAllReports();
       },

@@ -90,8 +90,8 @@
                                 <select class="form-control" id="official_role" name="official_role" required [(ngModel)]="fetchedAdminData[0].official_role" [disabled]="!editMode"
                                     [ngClass]="{ 'is-invalid': myForm.submitted && myForm.controls['official_role'].invalid }">
                                     <option value="fetchedAdminData[0].official_role" disabled>Select Role</option>
-                                    <option value="Barangay Admin">Barangay Admin</option>
-                                    <option value="Dengue Task Force">Dengue Task Force</option>
+                                    <option value="Barangay Health Officer">Barangay Health Officer</option>
+                                    <option value="Dengue Task Force Staff">Dengue Task Force Staff</option>
                                     <option value="Admin">Admin</option>
                                 </select>
                                 <div class="invalid-tooltip" *ngIf="myForm.submitted && myForm.controls['office'].invalid">
@@ -140,9 +140,36 @@
                                     [ngClass]="{ 'is-invalid': myForm.submitted && myForm.controls['office'].invalid }">
                                     <option value="fetchedAdminData[0].office" disabled>Work | Office</option>
                                     <option value="Pasig Dengue Task Force">Pasig Dengue Task Force</option>
-                                    <option value="Barangay 1">Barangay 1</option>
-                                    <option value="Barangay 2">Barangay 2</option>
-                                    <option value="Barangay 3">Barangay 3</option>
+                                    <option value="Bagong Ilog">Bagong Ilog</option>
+                                    <option value="Bagong Katipunan">Bagong Katipunan</option>
+                                    <option value="Bambang">Bambang</option>
+                                    <option value="Buting">Buting</option>
+                                    <option value="Caniogan">Caniogan</option>
+                                    <option value="Dela Paz">Dela Paz</option>
+                                    <option value="Kalawaan">Kalawaan</option>
+                                    <option value="Kapasigan">Kapasigan</option>
+                                    <option value="Kapitolyo">Kapitolyo</option>
+                                    <option value="Malinao">Malinao</option>
+                                    <option value="Manggahan (incl. Napico)">Manggahan (incl. Napico)</option>
+                                    <option value="Maybunga">Maybunga</option>
+                                    <option value="Oranbo">Oranbo</option>
+                                    <option value="Palatiw">Palatiw</option>
+                                    <option value="Pinagbuhatan">Pinagbuhatan</option>
+                                    <option value="Pineda">Pineda</option>
+                                    <option value="Rosario">Rosario</option>
+                                    <option value="Sagad">Sagad</option>
+                                    <option value="San Antonio">San Antonio</option>
+                                    <option value="San Joaquin">San Joaquin</option>
+                                    <option value="San Jose">San Jose</option>
+                                    <option value="San Miguel">San Miguel</option>
+                                    <option value="San Nicolas">San Nicolas</option>
+                                    <option value="Santa Cruz">Santa Cruz</option>
+                                    <option value="Santa Lucia">Santa Lucia</option>
+                                    <option value="Santa Rosa">Santa Rosa</option>
+                                    <option value="Santolan">Santolan</option>
+                                    <option value="Santo Tomas">Santo Tomas</option>
+                                    <option value="Sumilang">Sumilang</option>
+                                    <option value="Ugong">Ugong</option>
                                 </select>
                                 <div class="invalid-tooltip" *ngIf="myForm.submitted && myForm.controls['office'].invalid">
                                     <span class="tooltip-text">Please select a office/work.</span>
