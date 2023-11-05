@@ -10,7 +10,7 @@ import { CommunityProjects, denguePost, inquiry } from './inquiry.model';
   providedIn: 'root'
 })
 export class InquiryService {
-  private baseURL = 'https://mosquinator-fbd24e41f56d.herokuapp.com/'; 
+  private baseURL = 'https://mosquinator-fbd24e41f56d.herokuapp.com'; 
   constructor(private http: HttpClient) { }
 
   //get all community projects data

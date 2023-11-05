@@ -10,7 +10,7 @@ import { AdminRegistration, UserInformation, AdminResponse, CommunityProjects, u
 })
 export class AdminRegistrationService {
   public  loggedIn = false;
-  private baseURL = 'https://mosquinator-fbd24e41f56d.herokuapp.com/'; 
+  private baseURL = 'https://mosquinator-fbd24e41f56d.herokuapp.com'; 
 
   constructor(private http: HttpClient) { }
 
