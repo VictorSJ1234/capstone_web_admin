@@ -19,9 +19,9 @@ export class NavbarComponent {
     const userRole = this.authService.getUserRole();
 
     // Redirect based on the user's role
-    if (userRole === 'Dengue Task Force') {
+    if (userRole === 'Dengue Task Force Staff') {
       this.router.navigate(['/notification-page']);
-    } else if (userRole === 'Barangay Admin') {
+    } else if (userRole === 'Barangay Health Officer') {
       this.router.navigate(['/barangay-notification-page']);
     } else if (userRole === 'Admin') {
       this.router.navigate(['/admin-notification-page']);

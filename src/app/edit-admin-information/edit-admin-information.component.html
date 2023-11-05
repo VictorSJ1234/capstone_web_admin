@@ -194,10 +194,11 @@
                                     &nbsp;
                                 </div>
                             </div>
-
+                            
+                            <!--
                             <label for="change_password_button">Change Password</label>
                             <button type="button" class="change-password-button" id="change_password_button" name="change_password_button" (click)="openChangePassword()" [disabled]="!editMode">Click here to change password</button>
-
+                            -->
 
 
                             <!--
@@ -229,7 +230,7 @@
             </form>
         </div>
     </section>
-      <!--change password modal-->
+      <!--
       <div id="change_password_modal" class="modal" [ngStyle]="{ display: changePasswordModal ? 'block' : 'none' }">
         <div class="modal-content">
         <div class="modal-header" id="modal_header">
@@ -243,7 +244,6 @@
                         <div class="form-row">
                             <div class="report_fields_container">
                                 <div class="fields_container">
-                                        <!-- current pass -->
                                         <div class="form-group password-container">
                                             <i class="fa fa-lock password_field_icon"></i>
                                             <input
@@ -274,7 +274,6 @@
                         <div class="form-row">
                             <div class="report_fields_container">
                             <div class="fields_container">
-                                <!-- password -->
                                 <div class="form-group password-container">
                                     <i class="fa fa-lock password_field_icon"></i>
                                     <input
@@ -307,7 +306,6 @@
                     <div class="form-row">
                         <div class="report_fields_container">
                             <div class="fields_container">
-                            <!--repeat password-->
                             <div class="form-group">
                                 <i class="fa fa-lock password_field_icon"></i>
                                 <input type="password" class="form-control" id="repeat_password" name="repeat_password" placeholder="Repeat Password" required [(ngModel)]="formData.repeat_password"
@@ -346,6 +344,7 @@
         </div>
         </div>
     </div>  
+    -->
 
     <!-- Modal -->
     <div id="response_modal" class="modal" class="modal" [ngStyle]="{ display: carouselModalOpen ? 'block' : 'none' }">
