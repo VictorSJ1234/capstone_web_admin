@@ -297,8 +297,6 @@ header h1{
     text-align: justify;
     color: white;
     font-size: 1.5vw;
-    padding-left: 20px;
-    padding-right: 20px;
 }
 
 .prevention_information_section .column_2{
@@ -371,6 +369,7 @@ header h1{
     }
     /*top section*/
     .disease_information_section{
+        padding: 10px;
         flex-direction: column;
     }
 
@@ -409,8 +408,8 @@ header h1{
     /*second section*/
     .symptoms_information_section{
         flex-direction: column;
-        padding-right: 0;
-        padding-left: 0;
+        padding-right: 5px;
+        padding-left: 5px;
     }
     .symptoms_information_section .column_1{
         width: 90%;
@@ -509,7 +508,7 @@ header h1{
         text-align: center;
         margin-left: auto;
         margin-right: auto;
-        width: 80%;
+        width: 90%;
     }
 
     /*for cards*/
@@ -666,6 +665,12 @@ header h1{
         width: 100%;
         margin-right: 10px;
     }
+
+    .prevention_information_section .column_1{
+        padding-left: 0;
+        padding-right: 0;
+    }
+
 
     /*for cards*/
 

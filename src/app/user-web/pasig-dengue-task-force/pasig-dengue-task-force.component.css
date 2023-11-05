@@ -99,6 +99,9 @@
     margin-left: auto;
     margin-right: auto;
   }
+  .services_section .services .row .services_image_and_text img{
+    width: 3vw;
+  }
 
   .services_section .services .row .services_image_and_text_top{
     font-family: 'Squada One', sans-serif;
@@ -581,6 +584,11 @@
     font-size: 3vw;
     width: 100%;
   }
+
+  .services_section .services .row .services_image_and_text img{
+    width: 6vw;
+  }
+
 
   .services_section .services .row .services_image_and_text_top{
     font-family: 'Squada One', sans-serif;

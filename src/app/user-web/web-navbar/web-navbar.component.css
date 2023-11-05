@@ -16,7 +16,6 @@
     justify-content: space-between;
     align-items: center; 
     min-width: 92.5vw;
-    background-color: #28376D;
   }
   
   li {
@@ -77,7 +76,7 @@
       padding: 0 25px;
       z-index: 2;
       background-color: #28376D; 
-      height: 100px;
+      height: 80px;
     }
   
     nav a{
@@ -89,6 +88,11 @@
       display: flex;
       justify-content: center;
       align-items: center;
+    }
+
+    nav #logo{
+      width: 9vw;
+      margin-right: 0;
     }
   
     .nav-container {
@@ -182,6 +186,14 @@
       to {
         transform: translateX(0);
       }
+    }
+    
+  }
+  @media screen and (max-width: 500px) {
+
+    nav #logo{
+      width: 15vw;
+      margin-right: 0;
     }
   }
   /*nav*/
