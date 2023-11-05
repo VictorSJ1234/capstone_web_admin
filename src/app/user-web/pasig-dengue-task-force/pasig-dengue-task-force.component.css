@@ -500,7 +500,6 @@
     display: inline-block;
     padding: 16px 32px;
     font-size: 1vw;
-    font-family: 'Risque', cursive;
     font-weight: bold;
     margin: 4px 2px;
     transition-duration: 0.4s;
@@ -521,11 +520,10 @@
     margin-left: 30px;
     cursor: default;
   }
-    
-  .mail_and_button .buttons:hover {
-     border: 2px solid white;
-     background-color: #0384E9;
-     color: white;
+  #button-email:hover {
+    border: 2px solid white;
+    background-color: #0384E9;
+    cursor: pointer;
   }
 
   /*RESPONSIVENESS*/

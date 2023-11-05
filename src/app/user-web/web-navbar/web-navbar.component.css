@@ -7,7 +7,7 @@
     justify-content:space-between;
     align-items: center; 
     z-index: 2;
-    height: 7.5vw;
+    height: 6.5vw;
   }
   
   ul {
@@ -15,7 +15,8 @@
     display: flex;
     justify-content: space-between;
     align-items: center; 
-    min-width: 90vw;
+    min-width: 92.5vw;
+    background-color: #28376D;
   }
   
   li {
@@ -25,9 +26,10 @@
   nav a {
     text-decoration: none;
     color: white;
-    font-size: 1.5vw;
+    font-size: 1.2vw;
     font-weight: bold;
     font-family: 'Montserrat', sans-serif; 
+    margin-right: auto;
   }
   
   .logo-container {
@@ -35,11 +37,12 @@
   }
   
   .logo {
-      height: 60px;
+      height: 50px;
   }
   
   nav #logo{
-    width: 6vw;
+    width: 5vw;
+    margin-right: 10vw;
   }
   
   
