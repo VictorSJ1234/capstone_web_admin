@@ -202,7 +202,7 @@
 ,#report_description, #date, #report_type, #contactNumber, #file_attachment, #districtNumber, #building, #floor
 ,#houseNumber, #repeat_password{
   text-align: justify;
-  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.5);
+  border: black solid 1px;
   border-radius: 5px;
   padding-left: 35px;
   padding-right: 1vw;
@@ -250,7 +250,7 @@
 
 #report_description{
   height: 25vw;
-  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.5);
+  border: black solid 1px;
   padding-left: 15px;
   padding-right: 15px;
 }

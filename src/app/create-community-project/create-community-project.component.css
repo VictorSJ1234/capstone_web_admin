@@ -174,14 +174,14 @@
   #file_button{
     width: 100%;
     height: 3.3vw;
-    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.5);
+    border: black solid 1px;
     font-size: 1.1vw;;
   }
   #project_title, #location, #fileUpload, #attachment_description,#project_date, #project_time, #type_of_project, #email
   ,#password, #birthday, #gender, #contactNumber, #landline, #districtNumber, #building, #floor
   ,#houseNumber, #repeat_password{
     height: 3.3vw;
-    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.5);
+    border: black solid 1px;
     padding-left: 35px;
     font-size: 1.1vw;;
   }
@@ -202,7 +202,7 @@
   }
   #details{
     height: 25vw;
-    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.5);
+    border: black solid 1px;
     font-size: 1.1vw;
   }
   

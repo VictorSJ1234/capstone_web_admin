@@ -46,7 +46,7 @@
                                     [(ngModel)]="fetchedProjectData[0].type_of_project"
                                     [ngClass]="{ 'is-invalid': myForm.submitted && myForm.controls['type_of_project'].invalid }">
                                 <div class="invalid-tooltip" *ngIf="myForm.submitted && myForm.controls['type_of_project'].invalid">
-                                    <span class="tooltip-text">Please enter the title.</span>
+                                    <span class="tooltip-text">Please enter the project type.</span>
                                 </div>
                                 <div class="valid-tooltip">
                                     &nbsp;
@@ -130,7 +130,7 @@
                                     <option value="Ugong">Ugong</option>
                                 </select>
                                 <div class="invalid-tooltip" *ngIf="myForm.submitted && myForm.controls['location'].invalid">
-                                    <span class="tooltip-text">Please select a role.</span>
+                                    <span class="tooltip-text">Please select a location.</span>
                                 </div>
                                 <div class="valid-tooltip">
                                     &nbsp;

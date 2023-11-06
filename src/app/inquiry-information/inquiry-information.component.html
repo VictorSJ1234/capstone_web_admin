@@ -181,27 +181,6 @@
                                     </div>
 
                                 </div>
-
-                                <div class="column_2">
-                                    
-                                    <!-- file upload -->
-                                    <label for="fileUpload">File Upload (Optional)</label>
-                                    <div class="form-group" id="file_upload_container">
-                                        
-                                        <div class="custom-file">
-                                        <i class="fa fa-upload icon"></i>
-                                        <button type="button" class="btn btn-light" (click)="openFileInput()" id="file_button">Choose File</button>
-                                        <span *ngIf="selectedFiles.length > 0">Selected Files:</span>
-                                        <div *ngFor="let selectedFile of selectedFiles; let i = index">
-                                            <div class="selected-file">
-                                            <span>{{ selectedFile.name !== 'No Chosen File' ? (selectedFile.name | slice:0:16) + (selectedFile.name.length > 15 ? '...' : '') : 'No Selected File' }}</span>
-                                            <button class="btn btn-danger btn-sm" (click)="removeSelectedFile(i)">Delete</button>
-                                            </div>
-                                        </div>
-                                        <input type="file" id="fileUpload" name="fileUpload" accept=".pdf, .jpg, .jpeg, .png" style="display: none;" (change)="handleFileUpload($event)" multiple>
-                                        </div>
-                                    </div>
-                                </div>
                             </div>
                                                                 
                         </div>
