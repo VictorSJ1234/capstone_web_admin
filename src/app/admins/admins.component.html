@@ -121,8 +121,8 @@
                                 <select class="form-control" id="role" name="role" required [(ngModel)]="formData.role"
                                     [ngClass]="{ 'is-invalid': myForm.submitted && myForm.controls['role'].invalid }">
                                     <option value="" disabled>Select Role</option>
-                                    <option value="Barangay Admin">Barangay Admin</option>
-                                    <option value="Dengue Task Force">Dengue Task Force</option>
+                                    <option value="Barangay Health Officer">Barangay Health Officer</option>
+                                    <option value="Dengue Task Force Staff">Dengue Task Force Staff</option>
                                     <option value="Admin">Admin</option>
                                 </select>
                                 <div class="invalid-tooltip" *ngIf="myForm.submitted && myForm.controls['role'].invalid">
