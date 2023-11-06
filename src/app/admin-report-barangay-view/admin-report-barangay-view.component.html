@@ -71,6 +71,15 @@
                                 <textarea class="form-control disabled-input" id="report_description" name="report_description" placeholder="Post Description" [(ngModel)]="reports.details " disabled></textarea>
                             </div>
                         </div> 
+                        <div class="column_2" *ngIf="reports.uploaded_file && reports.uploaded_file.length == 0">
+                            <label for="uploaded_file">Attachments: </label>
+                            <div class="form-group">
+                                <div id="file_attachment">
+                                  <i class="fa fa-download icon"></i>
+                                  <button id="download_button" disabled>No Uploaded File</button>
+                                </div>
+                            </div>
+                        </div>
                         <div class="column_2" *ngIf="reports.uploaded_file && reports.uploaded_file.length > 0">
                             <label for="uploaded_file">Attachments: </label>
                             <div *ngFor="let uploadedFile of reports.uploaded_file; let i = index">

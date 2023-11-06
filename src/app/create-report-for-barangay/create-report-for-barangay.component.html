@@ -75,7 +75,7 @@
                                     <option value="Ugong">Ugong</option>
                                 </select>
                                 <div class="invalid-tooltip" *ngIf="myForm.submitted && myForm.controls['barangay'].invalid">
-                                    <span class="tooltip-text">Please select a role.</span>
+                                    <span class="tooltip-text">Please select a barangay.</span>
                                 </div>
                                 <div class="valid-tooltip">
                                     &nbsp;
@@ -98,7 +98,7 @@
                                     <option value="Follow Up">Follow Up</option>
                                 </select>
                                 <div class="invalid-tooltip" *ngIf="myForm.submitted && myForm.controls['status'].invalid">
-                                    <span class="tooltip-text">Please select a role.</span>
+                                    <span class="tooltip-text">Please select a status.</span>
                                 </div>
                                 <div class="valid-tooltip">
                                     &nbsp;
@@ -119,7 +119,7 @@
                                     [(ngModel)]="formData.report_subject"
                                     [ngClass]="{ 'is-invalid': myForm.submitted && myForm.controls['report_subject'].invalid }">
                                 <div class="invalid-tooltip" *ngIf="myForm.submitted && myForm.controls['report_subject'].invalid">
-                                    <span class="tooltip-text">Please enter the title.</span>
+                                    <span class="tooltip-text">Please enter the report subject.</span>
                                 </div>
                                 <div class="valid-tooltip">
                                     &nbsp;
@@ -139,7 +139,7 @@
                                 [(ngModel)]="formData.details"
                                     [ngClass]="{ 'is-invalid': myForm.submitted && myForm.controls['details'].invalid }"></textarea>
                                 <div class="invalid-tooltip" *ngIf="myForm.submitted && myForm.controls['details'].invalid">
-                                    <span class="tooltip-text">Please enter your Post Description.</span>
+                                    <span class="tooltip-text">Please enter the report details</span>
                                 </div>
                                 <div class="valid-tooltip">
                                     &nbsp;

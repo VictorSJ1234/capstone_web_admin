@@ -147,10 +147,41 @@ export class AdminReportsForBarangayManagementComponent {
 
   // Function to confirm and delete the selected report
   confirmDelete() {
+    this.isLoading = true;
     // Call the admin service to delete the report
     this.adminService.deleteReportToBarangay(this.selectedReportId).subscribe(
       () => {
         console.log('Deleted report:', this.selectedReportId);
+
+        // After successfully deleting the report, call the deleteBarangayResponse method with the same reportId
+        this.adminService.deleteBarangayResponse(this.selectedReportId).subscribe(
+          () => {
+            console.log('Deleted response for report:', this.selectedReportId);
+          },
+          (error) => {
+            console.error(error);
+          }
+        );
+
+        this.adminService.deleteAdminResponse(this.selectedReportId).subscribe(
+          () => {
+            console.log('Deleted response for report:', this.selectedReportId);
+          },
+          (error) => {
+            console.error(error);
+          }
+        );
+         // Delete the report notification
+        this.adminService.deleteReportNotificationById(this.selectedReportId).subscribe(
+          () => {
+            console.log('Deleted report notification for report:', this.selectedReportId);
+          },
+          (error) => {
+            console.error(error);
+          }
+        );
+
+        this.isLoading = false;
         this.closeCarouselModal();
         this.fetchAllReports();
       },
@@ -159,6 +190,7 @@ export class AdminReportsForBarangayManagementComponent {
       }
     );
   }
+
   ngOnInit() {
     
     this.route.queryParams.subscribe(params => {

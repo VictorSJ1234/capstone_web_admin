@@ -303,17 +303,6 @@ export class AdminReportToBarangayInformationComponent {
           this.adminRegistrationService.AdminResponseToBarangay(form.value)
             .subscribe(
               response => {
-                this.isLoading = false; 
-                
-                this.openCarouselModalSuccess();
-                this.formData = {
-                  report_status: '',
-                  action_to_do: '',
-                  date: '',
-                  response_description: '',
-                };
-
-                this.selectedFiles = [];
                 for (const userId of this.allAdminId) {
                   const notificationData = {
                     _id: '',
@@ -335,6 +324,17 @@ export class AdminReportToBarangayInformationComponent {
                       console.error(`Error creating project notification for user ${userId}:`, notificationError);
                     });
                 }
+                this.isLoading = false; 
+                
+                this.openCarouselModalSuccess();
+                this.formData = {
+                  report_status: '',
+                  action_to_do: '',
+                  date: '',
+                  response_description: '',
+                };
+
+                this.selectedFiles = [];
                 console.log('Responded successfully:', response);
                 // successful registration
               },
@@ -364,14 +364,6 @@ export class AdminReportToBarangayInformationComponent {
         this.adminRegistrationService.AdminResponseToBarangay(form.value)
           .subscribe(
             response => {
-              this.isLoading = false; 
-              this.openCarouselModalSuccess();
-              this.formData = {
-                report_status: '',
-                action_to_do: '',
-                date: '',
-                response_description: '',
-              };
               for (const userId of this.allAdminId) {
                 const notificationData = {
                   _id: '',
@@ -394,6 +386,14 @@ export class AdminReportToBarangayInformationComponent {
                   });
               }
               console.log('Responded successfully:', response);
+              this.isLoading = false; 
+              this.openCarouselModalSuccess();
+              this.formData = {
+                report_status: '',
+                action_to_do: '',
+                date: '',
+                response_description: '',
+              };
               // successful registration
             },
             (error) => {

@@ -43,8 +43,8 @@ export class CreateCommunityProjectComponent {
   }
 
   openCarouselModalSuccess() {
-    this.isLoading = false;
     this.carouselModalSuccess = true;
+    this.isLoading = false;
   }
 
 

@@ -306,24 +306,13 @@ export class AdminReportBarangayViewComponent {
           this.adminRegistrationService.barangayResponse(form.value)
             .subscribe(
               response => {
-                this.isLoading = false; 
-                this.openCarouselModalSuccess();
-
-                this.formData = {
-                  report_status: '',
-                  action_to_do: '',
-                  recipient: '',
-                  date: '',
-                  response_description: '',
-                };
-                this.selectedFiles = [];
                 for (const userId of this.allAdminId) {
                   const notificationData = {
                     _id: '',
                     projectId: 'Not Applicable'.toString(),
                     userId: 'For Barangay Report',
                     adminId: userId,
-                    recipient: "Pasig Dengue Task Force".toString(),
+                    recipient: "Pasig Dengue Task Force",
                     reportId: this.reports._id,
                     title: this.reports.barangay+' updated the status of a concern'.toString(),
                     message: this.reports.report_subject,
@@ -338,6 +327,17 @@ export class AdminReportBarangayViewComponent {
                       console.error(`Error creating project notification for user ${userId}:`, notificationError);
                     });
                 }
+                this.isLoading = false; 
+                this.openCarouselModalSuccess();
+
+                this.formData = {
+                  report_status: '',
+                  action_to_do: '',
+                  recipient: '',
+                  date: '',
+                  response_description: '',
+                };
+                this.selectedFiles = [];
                 console.log('Responded successfully:', response);
                 // successful registration
               },
@@ -367,23 +367,13 @@ export class AdminReportBarangayViewComponent {
         this.adminRegistrationService.barangayResponse(form.value)
           .subscribe(
             response => {
-              this.isLoading = false; 
-              this.openCarouselModalSuccess();
-              this.formData = {
-                report_status: '',
-                action_to_do: '',
-                recipient: '',
-                date: '',
-                response_description: '',
-              };
-
               for (const userId of this.allAdminId) {
                 const notificationData = {
                   _id: '',
                   projectId: 'Not Applicable'.toString(),
                   userId: 'For Barangay Report',
                   adminId: userId,
-                  recipient: "Pasig Dengue Task Force".toString(),
+                  recipient: "Pasig Dengue Task Force",
                   reportId: this.reports._id,
                   title: this.reports.barangay+' updated the status of a concern'.toString(),
                   message: this.reports.report_subject,
@@ -398,7 +388,15 @@ export class AdminReportBarangayViewComponent {
                     console.error(`Error creating project notification for user ${userId}:`, notificationError);
                   });
               }
-              
+              this.isLoading = false; 
+              this.openCarouselModalSuccess();
+              this.formData = {
+                report_status: '',
+                action_to_do: '',
+                recipient: '',
+                date: '',
+                response_description: '',
+              };
               console.log('Responded successfully:', response);
               // successful registration
             },

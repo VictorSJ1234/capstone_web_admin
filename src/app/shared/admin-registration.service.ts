@@ -392,4 +392,17 @@ export class AdminRegistrationService {
     return this.http.post(`${this.baseURL}/deleteReportToBarangay`, { _id });
   }
 
+  deleteBarangayResponse(reportId: string): Observable<any> {
+    return this.http.delete(`${this.baseURL}/deleteBarangayResponse/${reportId}`);
+  }
+
+  // Function to delete an admin response by reportId
+  deleteAdminResponse(reportId: string): Observable<any> {
+    return this.http.delete(`${this.baseURL}/deleteAdminResponseToBarangay/${reportId}`);
+  }
+  // Function to delete a report notification by reportId
+  deleteReportNotificationById(reportId: string): Observable<any> {
+    return this.http.post(`${this.baseURL}/deleteReportNotificationById`, { reportId });
+  }
+
 }
