@@ -145,4 +145,5 @@ export class adminNotification{
     title: string = '';
     message: string = '';
     notificationStatus: string = '';
+    createdDate: string = '';
 }

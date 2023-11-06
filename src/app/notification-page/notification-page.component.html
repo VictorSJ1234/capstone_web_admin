@@ -4,10 +4,9 @@
 <app-navbar></app-navbar>
 
 <body>
-    <div>
-
+    <div class="loading-overlay" *ngIf="isLoading">
+        <div class="loading-spinner"></div>
     </div>
-
     <section class="label_section">
         <div class="label_container">
             <h1>Notifications</h1>
@@ -15,19 +14,50 @@
     </section>
 
     <div class="tab-buttons">
-        <button (click)="showReadCards()" [ngClass]="{'active-tab': readSelected}">Read</button>
         <button (click)="showUnreadCards()" [ngClass]="{'active-tab': unreadSelected}">Unread</button>
+        <button (click)="showReadCards()" [ngClass]="{'active-tab': readSelected}">Read</button>
+        
     </div>
 
     <section class="info_section" id="second_section">
         <div class="info_container">
-            <div class="info_card" *ngIf="readSelected">
-                <div class="row1">
-                    <div class="card_text_container">
-                        <h3>This page is currently under development</h3>
+            <div  *ngIf="unreadSelected">
+                <div class="info_card" *ngFor="let notification of unreadNotifications">
+                    <div class="row1">
+                        <div class="card_image_container">
+                            <img src="../../assets/icons/bell_2.png" alt="">
+                        </div>
+                        <div class="card_text_container">
+                            <h3>{{notification.title}}</h3>
+                            <p>Report Subject: {{notification.message}}</p>
+                            <p>Date: {{notification.dateCreated | date:'MMMM d, y, h:mm a'}}</p>
+
+                        </div>
+                    </div>
+                    <div class="cards_buttons_container">
+                        <button (click)="markNotificationAsRead(notification)">Read</button>
                     </div>
                 </div>
             </div>
+
+            <div *ngIf="readSelected">
+                <div class="info_card" *ngFor="let notification of readNotifications">
+                    <div class="row1">
+                        <div class="card_image_container">
+                            <img src="../../assets/icons/bell_2.png" alt="">
+                        </div>
+                        <div class="card_text_container">
+                            <h3>{{notification.title}}</h3>
+                            <p>{{ notification.message }}</p>
+                            <p>Date: {{notification.dateCreated | date:'MMMM d, y, h:mm a'}}</p>
+                        </div>
+                    </div>
+                    <div class="cards_buttons_container">
+                        <button [routerLink]="'/mobile-users'">Read</button>
+                    </div>
+                </div>
+            </div>
+            
         </div>
     </section>  
 </body>

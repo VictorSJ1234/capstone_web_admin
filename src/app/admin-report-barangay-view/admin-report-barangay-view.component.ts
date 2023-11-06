@@ -45,6 +45,9 @@ export class AdminReportBarangayViewComponent {
   
   isImageFetched: boolean = false;
 
+  allAdminData: any[] = []; 
+  allAdminId: string[] = [];
+
   
   openFileInput() {
     const fileInput = document.getElementById('fileUpload');
@@ -153,6 +156,7 @@ export class AdminReportBarangayViewComponent {
     this.route.queryParams.subscribe(params => {
       this.reports = history.state.reports;
       this.reportId = this.reports._id; 
+      console.log("asfddf:", this.reports)
 
       // Fetch user data based on userId.
       this.adminRegistrationService.getAdminData(this.userId.toString()).subscribe(
@@ -272,6 +276,7 @@ export class AdminReportBarangayViewComponent {
       this.reports.formattedPostedDate = this.datePipe.transform(this.reports.postedDate, 'MM/dd/yy');
       this.reports.formattedTime = this.datePipe.transform(this.reports.postedDate, 'h:mm a');
     }
+    this.fetchAllUsers();
     window.scrollTo(0, 0);
 
   }
@@ -312,6 +317,27 @@ export class AdminReportBarangayViewComponent {
                   response_description: '',
                 };
                 this.selectedFiles = [];
+                for (const userId of this.allAdminId) {
+                  const notificationData = {
+                    _id: '',
+                    projectId: 'Not Applicable'.toString(),
+                    userId: 'For Barangay Report',
+                    adminId: userId,
+                    recipient: "Pasig Dengue Task Force".toString(),
+                    reportId: this.reports._id,
+                    title: this.reports.barangay+' updated the status of a concern'.toString(),
+                    message: this.reports.report_subject,
+                    notificationStatus: 'Unread',
+                    createdDate: '',
+                  };
+
+                  this.adminRegistrationService.createAdminNotification(notificationData)
+                    .subscribe((notificationResponse) => {
+                      console.log(`Project notification created successfully for user ${userId}:`, notificationResponse);
+                    }, (notificationError) => {
+                      console.error(`Error creating project notification for user ${userId}:`, notificationError);
+                    });
+                }
                 console.log('Responded successfully:', response);
                 // successful registration
               },
@@ -350,6 +376,29 @@ export class AdminReportBarangayViewComponent {
                 date: '',
                 response_description: '',
               };
+
+              for (const userId of this.allAdminId) {
+                const notificationData = {
+                  _id: '',
+                  projectId: 'Not Applicable'.toString(),
+                  userId: 'For Barangay Report',
+                  adminId: userId,
+                  recipient: "Pasig Dengue Task Force".toString(),
+                  reportId: this.reports._id,
+                  title: this.reports.barangay+' updated the status of a concern'.toString(),
+                  message: this.reports.report_subject,
+                  notificationStatus: 'Unread',
+                  createdDate: '',
+                };
+
+                this.adminRegistrationService.createAdminNotification(notificationData)
+                  .subscribe((notificationResponse) => {
+                    console.log(`Project notification created successfully for user ${userId}:`, notificationResponse);
+                  }, (notificationError) => {
+                    console.error(`Error creating project notification for user ${userId}:`, notificationError);
+                  });
+              }
+              
               console.log('Responded successfully:', response);
               // successful registration
             },
@@ -383,6 +432,35 @@ export class AdminReportBarangayViewComponent {
     }
   }
   
+  // Function to fetch all user data from the service
+  fetchAllUsers() {
+    this.isLoading = true;
+    this.adminRegistrationService.getAllAdmin().subscribe(
+      (response: any) => {
+        // Store the fetched user data in the allUserData array
+        this.allAdminData = response.allAdminData;
+        
+        // Extract user IDs into allUserId
+        this.allAdminId = this.allAdminData.map(admin => admin._id);
+
+        // Sort the reports array in descending order based on postedDate
+        this.allAdminData.sort((a, b) => {
+          const dateA = new Date(a.postedDate).getTime();
+          const dateB = new Date(b.postedDate).getTime();
+          return dateB - dateA;
+        });
+
+        this.allAdminData.forEach(admin => {
+          admin.formattedDate = this.datePipe.transform(admin.postedDate, 'MM/dd/yy h:mm a');
+        });
+
+        this.isLoading = false;
+      },
+      (error) => {
+        console.error(error);
+      }
+    );
+  }
 
   isFormValid(): boolean {
     return (

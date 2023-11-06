@@ -79,9 +79,10 @@ export class CreateReportForBarangayComponent {
                       adminId: userId,
                       recipient: this.formData.barangay.toString(),
                       reportId: reportId,
-                      title: 'Pasig Dengue Task Force created a report for you barangay'.toString(),
+                      title: 'The Pasig Dengue Task Force has created a concern for your barangay.'.toString(),
                       message: this.formData.report_subject.toString(),
                       notificationStatus: 'Unread',
+                      createdDate: '',
                     };
 
                     this.adminService.createAdminNotification(notificationData)
@@ -127,9 +128,10 @@ export class CreateReportForBarangayComponent {
                     adminId: userId,
                     recipient: this.formData.barangay.toString(),
                     reportId: reportId,
-                    title: 'Pasig Dengue Task Force created a report for you barangay'.toString(),
+                    title: 'The Pasig Dengue Task Force has created a concern for your barangay.'.toString(),
                     message: this.formData.report_subject.toString(),
                     notificationStatus: 'Unread',
+                    createdDate: '',
                   };
 
                   this.adminService.createAdminNotification(notificationData)

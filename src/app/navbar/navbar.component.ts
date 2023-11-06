@@ -33,6 +33,7 @@ export class NavbarComponent {
   username: string = ''; 
   userEmail: string = ''; 
   office: string = '';
+  role: string = '';
 
   isLoading: boolean = true;
   unreadNotificationCount: number = 0;
@@ -48,6 +49,7 @@ export class NavbarComponent {
           this.username = this.fetchedUserData[0].fullname;
           this.userEmail = this.fetchedUserData[0].email;
           this.office = this.fetchedUserData[0].office;
+          this.role = this.fetchedUserData[0].official_role;
           this.adminService.getNotificationsByUserAndStatus(this.userId, this.office, 'Unread')
           .subscribe(
             (response: any) => {

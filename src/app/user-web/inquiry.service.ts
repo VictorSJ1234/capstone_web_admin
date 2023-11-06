@@ -10,7 +10,7 @@ import { CommunityProjects, denguePost, inquiry } from './inquiry.model';
   providedIn: 'root'
 })
 export class InquiryService {
-  private baseURL = 'http://localhost:3000'; 
+  private baseURL = 'https://mosquinator-api.onrender.com'; 
   constructor(private http: HttpClient) { }
 
   //get all community projects data

@@ -4,12 +4,14 @@ import { AdminRegistrationService } from '../shared/admin-registration.service'
 import { AuthService } from '../authService/auth.service';
 import { interval } from 'rxjs';
 import { switchMap } from 'rxjs/operators';
+import { DatePipe } from '@angular/common';
+
 
 @Component({
   selector: 'app-barangay-notification-page',
   templateUrl: './barangay-notification-page.component.html',
   styleUrls: ['./barangay-notification-page.component.css'],
-  providers: [AdminRegistrationService]
+  providers: [AdminRegistrationService, DatePipe],
 })
 export class BarangayNotificationPageComponent {
   constructor(private router: Router, private route: ActivatedRoute, private adminService: AdminRegistrationService, private authService: AuthService) {
@@ -100,14 +102,31 @@ export class BarangayNotificationPageComponent {
         (response: any) => {
           console.log('Update notification status response:', response);
           notification.status = 'Read';
-
+  
           // Get the report data
           this.adminService.getReportToBarangay(notification.reportId)
             .subscribe(
               (reportResponse: any) => {
-                this.report = reportResponse.reportToBarangayData;
-                console.log(this.report)
-                this.router.navigateByUrl('/admin-report-barangay-view', { state: { reports: this.report} });
+                if (reportResponse && reportResponse.reportToBarangayData) {
+                  this.report = reportResponse.reportToBarangayData[0];
+  
+                  const reportObject = {
+                    _id: this.report._id,
+                    reportId: this.report.reportId,
+                    report_number: this.report.report_number,
+                    barangay: this.report.barangay,
+                    status: this.report.status,
+                    report_subject: this.report.report_subject,
+                    uploaded_file: this.report.uploaded_file,
+                    details: this.report.details,
+                    date_created: this.report.date_created,
+                    formattedDate: this.report.formattedDate,
+                  };
+  
+                  this.router.navigateByUrl('/admin-report-barangay-view', { state: { reports: reportObject } });
+                } else {
+                  console.error('Invalid report data', reportResponse);
+                }
               },
               (reportError) => {
                 console.error('Error fetching report data', reportError);
@@ -119,6 +138,7 @@ export class BarangayNotificationPageComponent {
         }
       );
   }
+  
 
   
 
