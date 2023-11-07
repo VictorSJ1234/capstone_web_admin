@@ -84,7 +84,7 @@ export class DiseasesSecondPageComponent implements OnInit {
     });
   }
 
-  // Create a function to navigate to a specific disease
+  // function to navigate to a specific disease
   navigateToDisease(index: number) {
     this.router.navigate(['/diseases-second-page', this.diseases2[index].name], {
       state: { disease: this.diseases2[index] },

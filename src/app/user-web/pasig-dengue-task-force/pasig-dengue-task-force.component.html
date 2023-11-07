@@ -106,10 +106,10 @@
                                
                             <div class="custom-file">
                               <button type="button" class="btn btn-light" (click)="openFileInput()" id="file_button">Choose File</button>
-                              <span *ngIf="selectedFiles.length > 0" class="selected-file-label">Selected Files:</span>
+                              <span *ngIf="selectedFiles.length > 0" class="selected-file-label" class="file_label">Selected Files:</span>
                               <div *ngFor="let selectedFile of selectedFiles; let i = index">
                                 <div class="selected-file">
-                                  <span>{{ selectedFile.name !== 'No Chosen File' ? (selectedFile.name | slice:0:30) + (selectedFile.name.length > 15 ? '...' : '') : 'No Selected File' }}</span>
+                                  <span class="file_name">{{ selectedFile.name !== 'No Chosen File' ? (selectedFile.name | slice:0:30) + (selectedFile.name.length > 15 ? '...' : '') : 'No Selected File' }}</span>
                                   <button class="btn btn-danger btn-sm" (click)="removeSelectedFile(i)">Delete</button>
                                   <hr>
                                 </div>

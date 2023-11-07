@@ -62,7 +62,7 @@
             <table class="report_table" id="report_table">
                 <thead>
                     <tr>
-                        <th><input type="checkbox" class="row-checkbox"></th>
+                        <th><input type="checkbox" class="row-checkbox" (change)="checkAll($event)"></th>
                         <th>Concern Id</th>
                         <th>Type of Concern</th>
                         <th>Recieved on</th>
@@ -76,7 +76,7 @@
                         <td colspan="7">No reports available.</td>
                     </tr>
                     <tr *ngFor="let report of reports | slice:(currentPage - 1) * itemsPerPage:(currentPage * itemsPerPage); let i = index">
-                        <td><input type="checkbox" class="row-checkbox"></td>
+                        <td><input type="checkbox" class="row-checkbox" (change)="toggleSelectReport(report.reportId)" [ngModel]="selectedReportIds.includes(report.reportId)"></td>
                         <td>{{report.reportId}} </td>
                         <td>{{report.report_type}}</td>
                         <td>{{report.formattedDate}}</td>
@@ -92,11 +92,19 @@
                 </tbody>
             </table>
         </div>
-        <div class="pagination">
-            <button (click)="previousPage()">◄</button>
-            <button *ngFor="let page of getPages()" (click)="setPage(page)"  [ngClass]="{'active': page === currentPage}">{{ page }}</button>
-            <button (click)="nextPage()">►</button>
-        </div>
+        <div class="pagination_and_buttons_container">
+            <div class="download_and_deleted_selected"  *ngIf="selectedReportIds.length > 0">
+                <button class="download-selected" (click)="downloadSelectedReports()">Download Selected Reports</button>
+                <button class="hide-button" (click)="openCarouselModal2()">Delete Selected Reports</button>
+            </div>
+            <div class="download_and_deleted_selected"  *ngIf="selectedReportIds.length == 0">
+            </div>
+            <div class="pagination">
+                <button (click)="previousPage()">◄</button>
+                <button *ngFor="let page of getPages()" (click)="setPage(page)"  [ngClass]="{'active': page === currentPage}">{{ page }}</button>
+                <button (click)="nextPage()">►</button>
+            </div>
+        </div>  
     </section> 
 
     
@@ -118,4 +126,21 @@
           </div>
         </div>
       </div>   
+
+      <div id="response_modal" class="modal" [ngStyle]="{ display: carouselModalOpen2 ? 'block' : 'none' }">
+        <div class="modal-content">
+            <div class="modal-header" id="modal_header">
+            <span class="close" id="close_carousel" (click)="closeCarouselModal()">&times;</span>
+            <h2>Are you sure?</h2>
+            </div>
+            
+            <div class="modal-body">
+            <p>Confirm to delete selected reports</p>
+            <div class="redirect-button-container">
+                <button class="cancel-button" (click)="closeCarouselModal()">Cancel</button>
+                <button class="confirm-button" (click)="deleteCheckedReports()">Confirm</button> 
+            </div>
+            </div>
+        </div>
+        </div>   
 <body>
