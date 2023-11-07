@@ -221,7 +221,7 @@ export class InquiriesManagementComponent {
     selectedInquiries.forEach((inquiry) => {
       doc.text(`Sender: ${inquiry.email}`, 10, yPos + 10);
       doc.text(`Inquiry Subject: ${inquiry.subject}`, 10, yPos + 20);
-      doc.text(`Date: ${inquiry.in}`, 10, yPos + 30);
+      doc.text(`Date: ${inquiry.formattedDate}`, 10, yPos + 30);
       doc.text(`Inquiry Message: ${inquiry.inquiry}`, 10, yPos + 40);
       yPos += 40;
     });

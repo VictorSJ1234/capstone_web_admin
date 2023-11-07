@@ -405,4 +405,8 @@ export class AdminRegistrationService {
     return this.http.post(`${this.baseURL}/deleteReportNotificationById`, { reportId });
   }
 
+  countReportsByStatus(reportStatus: string): Observable<any> {
+    return this.http.post(`${this.baseURL}/reports/countByStatus`, { reportStatus });
+  }
+
 }

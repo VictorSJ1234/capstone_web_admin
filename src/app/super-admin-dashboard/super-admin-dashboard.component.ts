@@ -15,11 +15,14 @@ export class SuperAdminDashboardComponent implements OnInit, AfterViewInit {
   // Arrays to store barangays and user counts
   barangays: string[] = [];
   months: string[] = [];
+  status: string[] = [];
   reports: string[] = [];
   userCounts: number[] = [];
   reportsPerMonth: number[] = [];
+  reportsStatus: number[] = [];
   reportCountsByMonth: number[] = [];
   reportCounts: number[] = [];
+  reportCountsByStatus: number[] = [];
   isLoading: boolean = false;
   currentYear = new Date().getFullYear();
   emptyChartMessage = "No data available for this chart.";
@@ -39,6 +42,16 @@ export class SuperAdminDashboardComponent implements OnInit, AfterViewInit {
     'December'
   ];
 
+  StatusList: string[] = [
+    'New Report',
+    'Under Review',
+    'Action in Progress',
+    'Resolved',
+    'Cancel',
+    'Follow Up',
+  ];
+
+
   
   // Reference to the canvas elements
   @ViewChild('barChartCanvas') barChartCanvas: any;
@@ -51,6 +64,7 @@ export class SuperAdminDashboardComponent implements OnInit, AfterViewInit {
   private barChart: Chart | null = null;
   private barChartForReport: Chart | null = null;
   private barChartForReportPerMonth: Chart | null = null;
+  pieChart: Chart<"pie", number[], string> | null = null;
 
   constructor(private adminRegistrationService: AdminRegistrationService) {}
 
@@ -59,6 +73,7 @@ export class SuperAdminDashboardComponent implements OnInit, AfterViewInit {
     this.fetchUserCountsForBarangays();
     this.fetchReportCountsForBarangays();
     this.fetchUserCountsByMonth();
+    this.fetchStatusCount();
     this.adminRegistrationService.getTotalReportCount().subscribe(
       (response: any) => {
         this.totalReportCount = response.totalCount;
@@ -77,11 +92,12 @@ export class SuperAdminDashboardComponent implements OnInit, AfterViewInit {
       }
     );
 
+    this.createPieChart();
     window.scrollTo(0, 0);
   }
 
   ngAfterViewInit(): void {
-    // Charts will be created here.
+    this.createPieChart();
   }
 
   createChart() {
@@ -187,26 +203,79 @@ export class SuperAdminDashboardComponent implements OnInit, AfterViewInit {
   }
   
   createPieChart() {
+    if (this.pieChart) {
+      this.pieChart.destroy();
+    }
+  
     const ctx = this.pieChartCanvas.nativeElement;
-    new Chart(ctx, {
+    this.pieChart = new Chart(ctx, {
       type: 'pie',
       data: {
-        labels: ['Received', 'Responded', 'On-going', 'Completed', 'Cancelled', 'Follow-ups'],
+        labels: this.StatusList, 
         datasets: [
           {
-            data: [10, 20, 15, 30, 5, 10], // Replace with your data
+            data: this.reportsStatus, 
             backgroundColor: [
-              'rgba(75, 192, 192, 0.6)',
-              'rgba(255, 99, 132, 0.6)',
-              'rgba(255, 205, 86, 0.6)',
-              'rgba(54, 162, 235, 0.6)',
-              'rgba(153, 102, 255, 0.6)',
-              'rgba(255, 159, 64, 0.6)',
+              'rgb(49, 84, 147)',
+              'rgb(59, 100, 173)',
+              'rgb(68, 114, 196)',
+              'rgb(143, 162, 212)',
+              'rgb(191, 191, 191)',
+              'rgb(186, 196, 226)',
             ],
           },
         ],
       },
+      options: {
+        responsive: true,
+        maintainAspectRatio: true,
+      },
     });
+  
+    if (this.reportsStatus.length === 0) {
+      ctx.fillText(this.emptyChartMessage, ctx.canvas.width / 2, ctx.canvas.height / 2);
+    }
+  }
+
+  fetchStatusCount() {
+    this.isLoading = true;
+    const StatusList: string[] = [
+      'New Report',
+      'Under Review',
+      'Action in Progress',
+      'Resolved',
+      'Cancel',
+      'Follow Up',
+    ];
+
+    const fetchReportCount = (status: string) => {
+      return this.adminRegistrationService.countReportsByStatus(status).toPromise();
+    };
+
+    const fetchReportCounts = async () => {
+      for (const status of StatusList) {
+        try {
+          const response: any = await fetchReportCount(status);
+          this.status.push(status);
+          this.reportsStatus.push(response.count);
+          console.log(`Fetched reports count for ${status}:`, response.count);
+        } catch (error) {
+          console.error(`Error fetching report counts for ${status}:`, error);
+        }
+      }
+
+      this.sortStatusAndCounts(StatusList);
+      this.createPieChart();
+      this.isLoading = false;
+    };
+
+    fetchReportCounts();
+  }
+
+  sortStatusAndCounts(StatusList: string[]) {
+    // Sort the status and counts based on the specified order
+    this.status.sort((a, b) => StatusList.indexOf(a) - StatusList.indexOf(b));
+    this.reportsStatus = this.status.map((status) => this.reportsStatus[this.status.indexOf(status)]);
   }
 
   fetchUserCountsByMonth() {
