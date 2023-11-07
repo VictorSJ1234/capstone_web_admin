@@ -186,7 +186,13 @@ export class InquiriesManagementComponent {
     } else {
       this.selectedInquiryIds.push(reportId);
     }
-  }
+
+    // Update the selectedReportIds based on selectedInquiryIds
+    this.selectedInquiryIds = this.inquiries
+      .filter(inquiry => this.selectedInquiryIds.includes(inquiry._id))
+      .map(inquiry => inquiry._id);
+}
+
 
   downloadSelectedReports() {
     if (this.selectedInquiryIds.length === 0) {
@@ -215,7 +221,8 @@ export class InquiriesManagementComponent {
     selectedInquiries.forEach((inquiry) => {
       doc.text(`Sender: ${inquiry.email}`, 10, yPos + 10);
       doc.text(`Inquiry Subject: ${inquiry.subject}`, 10, yPos + 20);
-      doc.text(`Date: ${inquiry.formattedDate}`, 10, yPos + 30);
+      doc.text(`Date: ${inquiry.in}`, 10, yPos + 30);
+      doc.text(`Inquiry Message: ${inquiry.inquiry}`, 10, yPos + 40);
       yPos += 40;
     });
   
@@ -253,10 +260,10 @@ export class InquiriesManagementComponent {
   
     if (checked) {
       // If the master checkbox is checked, add all report ids to the selectedReportIds array
-      this.selectedReportIds = this.inquiries.map(report => report._id);
+      this.selectedInquiryIds = this.inquiries.map(report => report._id);
     } else {
       // If the master checkbox is unchecked, clear the selectedReportIds array
-      this.selectedReportIds = [];
+      this.selectedInquiryIds = [];
     }
   }
 

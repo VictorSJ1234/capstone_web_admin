@@ -50,7 +50,7 @@
                         <td colspan="7">No inquiries available.</td>
                     </tr>
                     <tr *ngFor="let inquiry of inquiries | slice:(currentPage - 1) * itemsPerPage:(currentPage * itemsPerPage); let i = index">
-                        <td><input type="checkbox" class="row-checkbox" (change)="toggleSelectReport(inquiry._id)" [ngModel]="selectedReportIds.includes(inquiry._id)"></td>
+                        <td><input type="checkbox" class="row-checkbox" (change)="toggleSelectReport(inquiry._id)" [ngModel]="selectedInquiryIds.includes(inquiry._id)"></td>
                         <td>{{inquiry.email}} </td>
                         <td>{{inquiry.subject}} </td>
                         <td>{{inquiry.formattedDate}}</td>
@@ -63,9 +63,11 @@
             </table>
         </div>
         <div class="pagination_and_buttons_container">
-            <div class="download_and_deleted_selected">
+            <div class="download_and_deleted_selected" *ngIf="selectedInquiryIds.length > 0">
                 <button class="download-selected" (click)="downloadSelectedReports()">Download Selected Reports</button>
                 <button class="delete-selected" (click)="openCarouselModal2()">Delete Selected Inquiries</button>
+            </div>
+            <div class="download_and_deleted_selected" *ngIf="selectedInquiryIds.length === 0">
             </div>
             <div class="pagination">
                 <button (click)="previousPage()">◄</button>

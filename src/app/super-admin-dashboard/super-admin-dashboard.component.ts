@@ -255,7 +255,38 @@ export class SuperAdminDashboardComponent implements OnInit, AfterViewInit {
   fetchUserCountsForBarangays() {
     this.isLoading = true; 
     // List of barangays to fetch user counts for
-    const barangayList = ['Barangay 1', 'Barangay 2', 'Barangay 3', 'Barangay 4'];
+    const barangayList = [
+      'Bagong Ilog',
+      'Bagong Katipunan',
+      'Bambang',
+      'Buting',
+      'Caniogan',
+      'Dela Paz',
+      'Kalawaan',
+      'Kapasigan',
+      'Kapitolyo',
+      'Malinao',
+      'Manggahan (incl. Napico)',
+      'Maybunga',
+      'Oranbo',
+      'Palatiw',
+      'Pinagbuhatan',
+      'Pineda',
+      'Rosario',
+      'Sagad',
+      'San Antonio',
+      'San Joaquin',
+      'San Jose',
+      'San Miguel',
+      'San Nicolas',
+      'Santa Cruz',
+      'Santa Lucia',
+      'Santa Rosa',
+      'Santolan',
+      'Santo Tomas',
+      'Sumilang',
+      'Ugong',
+    ];
   
     // Fetch user counts for each barangay using a loop
     barangayList.forEach((barangay) => {
@@ -284,7 +315,38 @@ export class SuperAdminDashboardComponent implements OnInit, AfterViewInit {
   fetchReportCountsForBarangays() {
     this.isLoading = true; 
     // List of barangays to fetch user counts for
-    const barangayList = ['Palatiw', 'Bagong Katipunan', 'Bagong Ilog', 'Bambang'];
+    const barangayList = [
+      'Bagong Ilog',
+      'Bagong Katipunan',
+      'Bambang',
+      'Buting',
+      'Caniogan',
+      'Dela Paz',
+      'Kalawaan',
+      'Kapasigan',
+      'Kapitolyo',
+      'Malinao',
+      'Manggahan (incl. Napico)',
+      'Maybunga',
+      'Oranbo',
+      'Palatiw',
+      'Pinagbuhatan',
+      'Pineda',
+      'Rosario',
+      'Sagad',
+      'San Antonio',
+      'San Joaquin',
+      'San Jose',
+      'San Miguel',
+      'San Nicolas',
+      'Santa Cruz',
+      'Santa Lucia',
+      'Santa Rosa',
+      'Santolan',
+      'Santo Tomas',
+      'Sumilang',
+      'Ugong',
+    ];
   
     // Fetch user counts for each barangay using a loop
     barangayList.forEach((reports) => {
