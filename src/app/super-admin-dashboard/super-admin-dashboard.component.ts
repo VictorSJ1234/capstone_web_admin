@@ -247,31 +247,31 @@ export class SuperAdminDashboardComponent implements OnInit, AfterViewInit {
       'Cancel',
       'Follow Up',
     ];
-
+  
     const fetchReportCount = (status: string) => {
       return this.adminRegistrationService.countReportsByStatus(status).toPromise();
     };
-
+  
     const fetchReportCounts = async () => {
       for (const status of StatusList) {
         try {
           const response: any = await fetchReportCount(status);
-          this.status.push(status);
-          this.reportsStatus.push(response.count);
+          this.status.push(response.count !== null ? status : 'New Report');
+          this.reportsStatus.push(response.count !== null ? response.count : 0);
           console.log(`Fetched reports count for ${status}:`, response.count);
         } catch (error) {
           console.error(`Error fetching report counts for ${status}:`, error);
         }
       }
-
+  
       this.sortStatusAndCounts(StatusList);
       this.createPieChart();
       this.isLoading = false;
     };
-
+  
     fetchReportCounts();
   }
-
+  
   sortStatusAndCounts(StatusList: string[]) {
     // Sort the status and counts based on the specified order
     this.status.sort((a, b) => StatusList.indexOf(a) - StatusList.indexOf(b));

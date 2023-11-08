@@ -409,4 +409,8 @@ export class AdminRegistrationService {
     return this.http.post(`${this.baseURL}/reports/countByStatus`, { reportStatus });
   }
 
+  countReportsByStatusAndBarangay(barangay: string, reportStatus: string): Observable<any> {
+    return this.http.post(`${this.baseURL}/reports/countByStatusAndBarangay`, { barangay, reportStatus });
+  }
+
 }

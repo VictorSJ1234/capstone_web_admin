@@ -17,7 +17,7 @@ export class DiseasesComponent {
   diseases: Disease[] = [
     {
       name: 'Dengue',
-      imageSrc: '../../../assets/diseases/dengue.jpeg',
+      imageSrc: '../../../assets/diseases/dengue.png',
       description:
         'Dengue is a viral infection caused by the dengue virus (DENV), transmitted to humans through the bite of infected mosquitoes. About half of the world\'s population is now at risk of dengue with an estimated 100–400 million infections occurring each year. ',
         source: '- World Health Organization, 2023',
@@ -46,7 +46,7 @@ export class DiseasesComponent {
     },
     {
       name: 'Zika Virus',
-      imageSrc: '../../../assets/diseases/zikavirus.png',
+      imageSrc: '../../../assets/diseases/zika virus.png',
       description:
         'Zika is spread mostly by the bite of an infected Aedes species mosquito (Ae. aegypti and Ae. albopictus). These mosquitoes bite during the day and night. Zika can be passed from a pregnant woman to her fetus. Infection during pregnancy can ',
       source: '- Centers for Disease Control and Prevention, 2023',

@@ -205,7 +205,7 @@ export class DiseasesSecondPageComponent implements OnInit {
   setSource() {
     switch (this.selectedDisease?.name) {
       case 'Dengue':
-        this.source = '- World Health Organization, Dec 8, 2022';
+        this.source = '- World Health Organization, March 17, 2023';
         break;
       case 'Malaria':
         this.source = '- World Health Organization, Dec 8, 2022';
@@ -329,80 +329,110 @@ export class DiseasesSecondPageComponent implements OnInit {
       case 'Dengue':
         this.cardInfo = [
           {
-            symptom: 'Symptom 1 for Dengue',
+            symptom: 'High fever (40°C/104°F)',
           },
           {
-            symptom: 'Symptom 2 for Dengue',
+            symptom: 'Severe headachet',
           },
           {
-            symptom: 'Symptom 3 for Dengue',
+            symptom: 'Pain behind the eyes',
           },
           {
-            symptom: 'Symptom 4 for Dengue',
+            symptom: 'muscle and joint pains',
+          },
+          {
+            symptom: 'Nausea',
+          },
+          {
+            symptom: 'Vomiting',
           },
         ];
         break;
       case 'Malaria':
         this.cardInfo = [
           {
-            symptom: 'Symptom 1 for Malaria',
+            symptom: 'Exhaustion',
           },
           {
-            symptom: 'Symptom 2 for Malaria',
+            symptom: 'Trouble breathing',
           },
           {
-            symptom: 'Symptom 3 for Malaria',
+            symptom: 'Fever',
           },
           {
-            symptom: 'Symptom 4 for Malaria',
+            symptom: 'Chills',
+          },
+          {
+            symptom: 'Dark or bloody urine jaundice',
+          },
+          {
+            symptom: 'Yellowing of the eyes and skin',
           },
         ];
         break;
       case 'Filariasis':
         this.cardInfo = [
           {
-            symptom: 'Symptom 1 for Filariasis',
+            symptom: "Symptoms can be confused with other illnesses like Zika, leading to misdiagnosis."
           },
           {
-            symptom: 'Symptom 2 for Filariasis',
+            symptom: "In some cases, symptoms are mild, and people may not realize they're infected"
           },
           {
-            symptom: 'Symptom 3 for Filariasis',
+            symptom: 'Recurrent episodes of acute inflammation, including fever and pain',
           },
           {
-            symptom: 'Symptom 4 for Filariasis',
+            symptom: 'Skin rashes and itching',
+          },
+          {
+            symptom: 'Asymptomatic infection (no immediate symptoms)',
+          },
+          {
+            symptom: 'Lymphedema (swelling), often in the legs',
           },
         ];
         break;
       case 'Chikungunya':
         this.cardInfo = [
           {
-            symptom: 'Symptom 1 for Chikungunya',
+            symptom: 'Joint swelling',
           },
           {
-            symptom: 'Symptom 2 for Chikungunya',
+            symptom: 'Muscular discomfort',
           },
           {
-            symptom: 'Symptom 3 for Chikungunya',
+            symptom: 'Headache',
           },
           {
-            symptom: 'Symptom 4 for Chikungunya',
+            symptom: 'Nauseaa',
+          },
+          {
+            symptom: 'Exhaustion',
+          },
+          {
+            symptom: 'Rash ',
           },
         ];
         break;
       case 'Zika Virus':
         this.cardInfo = [
           {
-            symptom: 'Symptom 1 for Zika Virus',
+            symptom: 'Joint swelling',
           },
           {
-            symptom: 'Symptom 2 for Zika Virus',
+            symptom: 'Muscular pain',
           },
           {
-            symptom: 'Symptom 3 for Zika Virus',
+            symptom: 'Headache',
           },
           {
-            symptom: 'Symptom 4 for Zika Virus',
+            symptom: 'Nauseaa',
+          },
+          {
+            symptom: 'Exhaustion',
+          },
+          {
+            symptom: 'Rash ',
           },
         ];
         break;
@@ -418,64 +448,66 @@ export class DiseasesSecondPageComponent implements OnInit {
       case 'Dengue':
         this.cardInfoPrevention = [
           {
-            prevention: 'prevention 1 for Dengue',
+            prevention: 'clothing that covers the most of your body',
           },
           {
-            prevention: 'prevention 2 for Dengue',
+            prevention: 'If sleeping during the day, use mosquito nets that have been sprayed with insect repellent.',
           },
           {
-            prevention: 'prevention 3 for Dengue',
+            prevention: 'Mosquito repellents (DEET, Picaridin, or IR3535) ',
           },
           {
-            prevention: 'prevention 4 for Dengue',
+            prevention: 'Coils, as well as vaporizers.',
           },
+          
         ];
         break;
       case 'Malaria':
         this.cardInfoPrevention = [
           {
-            prevention: 'prevention 1 for Malaria',
+            prevention: 'Vector control is a vital component of malaria control and elimination strategies as it is highly effective in preventing infection and reducing disease transmission.',
+          },
+          
+          {
+            prevention: 'Use mosquito nets when sleeping in places where malaria is present Use mosquito repellents (containing DEET, IR3535, or Icaridin) after dusk Use coils and vaporizers.',
           },
           {
-            prevention: 'prevention 2 for Malaria',
+            prevention: 'Talk to a doctor about taking medicines such as chemoprophylaxis before traveling to areas where malaria is common. ',
           },
           {
-            prevention: 'prevention 3 for Malaria',
-          },
-          {
-            prevention: 'prevention 4 for Malaria',
+            prevention: 'Lower the risk of getting malaria by avoiding mosquito bites.',
           },
         ];
         break;
       case 'Filariasis':
         this.cardInfoPrevention = [
           {
-            prevention: 'prevention 1 for Filariasis',
+            prevention: 'Vector control is a vital component of malaria control and elimination strategies as it is highly effective in preventing infection and reducing disease transmission.',
           },
           {
-            prevention: 'prevention 2 for Filariasis',
+            prevention: 'Lower the risk of getting malaria by avoiding mosquito bites.',
           },
           {
-            prevention: 'prevention 3 for Filariasis',
+            prevention: 'Use mosquito nets when sleeping in places where malaria is present Use mosquito repellents (containing DEET, IR3535, or Icaridin) after dusk Use coils and vaporizers.',
           },
           {
-            prevention: 'prevention 4 for Filariasis',
+            prevention: 'Talk to a doctor about taking medicines such as chemoprophylaxis before traveling to areas where malaria is common. ',
           },
         ];
         break;
       case 'Chikungunya':
         this.cardInfoPrevention = [
           {
-            prevention: 'prevention 1 for Chikungunya',
+            prevention: 'Wearing clothing (preferably light-colored) that covers as much of the body as possible.',
           },
           {
-            prevention: 'prevention 2 for Chikungunya',
+            prevention: 'Insecticide-treated mosquito nets should be used against day-biting mosquitoes by persons who sleep during the daytime, for example young children, sick patients or older people.',
           },
           {
-            prevention: 'prevention 3 for Chikungunya',
+            prevention: 'Use physical barriers such as window screens and closed doors and windows',
           },
           {
-            prevention: 'prevention 4 for Chikungunya',
+            prevention: 'Applying insect repellent to skin or clothing that contains DEET, IR3535, or icaridin according to product label instructions are all examples of personal protection measures.',
           },
         ];
         break;

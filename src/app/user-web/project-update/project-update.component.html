@@ -31,6 +31,11 @@
               <span class="barangay_name">Location: {{ project.location }}</span>
             </td>
           </tr>
+          <tr *ngIf="communityProjectsData.length === 0">
+            <td class="date_column">
+              <span class="date"> No community projects are available at the moment.</span>
+            </td>
+          </tr>
         </tbody>
       </table>
     </div>

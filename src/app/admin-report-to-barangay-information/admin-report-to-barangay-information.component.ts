@@ -3,8 +3,6 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { NgForm } from '@angular/forms';
 import { AdminRegistrationService } from '../shared/admin-registration.service';
 import { DatePipe } from '@angular/common';
-import { interval } from 'rxjs';
-import { switchMap } from 'rxjs/operators';
 
 
 @Component({

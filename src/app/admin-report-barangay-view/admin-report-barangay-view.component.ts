@@ -4,8 +4,6 @@ import { NgForm } from '@angular/forms';
 import { AdminRegistrationService } from '../shared/admin-registration.service';
 import { DatePipe } from '@angular/common';
 import { AuthService } from '../authService/auth.service';
-import { interval } from 'rxjs';
-import { switchMap } from 'rxjs/operators';
 
 
 @Component({

@@ -169,6 +169,19 @@ body{
     margin-bottom: 0;
 }
 
+.graph_container{
+  margin-left: auto;
+  margin-right: auto;
+  width: 85%;
+}
+
+.pie-chart-container{
+  width:  60%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+
  /*for loading*/
  .loading-overlay {
   position: fixed;
