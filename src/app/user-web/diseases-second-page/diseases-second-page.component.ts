@@ -163,7 +163,7 @@ export class DiseasesSecondPageComponent implements OnInit {
         this.scientificName = 'Anopheles mosquitoes';
         break;
       case 'Filariasis':
-        this.scientificName = 'Aedes (Ae. aegypti) mosquito';
+        this.scientificName = 'Culex, Anopheles, Aedes Mosquitos';
         break;
       case 'Chikungunya':
         this.scientificName = 'Aedes (Stegomyia) aegypti, Aedes (Stegomyia) albopictus';
@@ -482,26 +482,39 @@ export class DiseasesSecondPageComponent implements OnInit {
       case 'Filariasis':
         this.cardInfoPrevention = [
           {
-            prevention: 'Vector control is a vital component of malaria control and elimination strategies as it is highly effective in preventing infection and reducing disease transmission.',
+            prevention: 'Elimination of lymphatic filariasis is possible by preventing infection spread with preventive chemotherapy.',
           },
           {
-            prevention: 'Lower the risk of getting malaria by avoiding mosquito bites.',
+            prevention: 'Mass drug administration (MDA) entails giving an annual dose of medications to the entire at-risk population.',
           },
           {
-            prevention: 'Use mosquito nets when sleeping in places where malaria is present Use mosquito repellents (containing DEET, IR3535, or Icaridin) after dusk Use coils and vaporizers.',
+            prevention: 'The MDA regimen recommended is determined by the co-occurrence of lymphatic filariasis and other filarial diseases. ',
           },
           {
-            prevention: 'Talk to a doctor about taking medicines such as chemoprophylaxis before traveling to areas where malaria is common. ',
+            prevention: 'Take preventive measures when traveling to areas where filariasis is common, such as using insect repellent, wearing protective clothing, and sleeping under bed nets.',
           },
         ];
         break;
       case 'Chikungunya':
         this.cardInfoPrevention = [
           {
-            prevention: 'Wearing clothing (preferably light-colored) that covers as much of the body as possible.',
+            prevention: 'The main method to reduce transmission of CHIKV is through control of the mosquito vectors.',
           },
           {
             prevention: 'Insecticide-treated mosquito nets should be used against day-biting mosquitoes by persons who sleep during the daytime, for example young children, sick patients or older people.',
+          },
+          {
+            prevention: 'For protection during outbreaks of chikungunya, clothing which minimizes skin exposure to the day-biting vectors is advised.',
+          },
+          {
+            prevention: 'Repellents can be applied to exposed skin or to clothing in strict accordance with product label instructions.',
+          },
+        ];
+        break;
+      case 'Zika Virus':
+        this.cardInfoPrevention = [
+          {
+            prevention: 'Wearing clothing (preferably light-colored) that covers as much of the body as possible.',
           },
           {
             prevention: 'Use physical barriers such as window screens and closed doors and windows',
@@ -509,21 +522,8 @@ export class DiseasesSecondPageComponent implements OnInit {
           {
             prevention: 'Applying insect repellent to skin or clothing that contains DEET, IR3535, or icaridin according to product label instructions are all examples of personal protection measures.',
           },
-        ];
-        break;
-      case 'Zika Virus':
-        this.cardInfoPrevention = [
           {
-            prevention: 'prevention 1 for Zika Virus',
-          },
-          {
-            prevention: 'prevention 2 for Zika Virus',
-          },
-          {
-            prevention: 'prevention 3 for Zika Virus',
-          },
-          {
-            prevention: 'prevention 4 for Zika Virus',
+            prevention: 'Preventing mosquito bites during the day and early evening is a critical step in preventing Zika virus infection, particularly in pregnant women, women of reproductive age, and young children.',
           },
         ];
         break;
