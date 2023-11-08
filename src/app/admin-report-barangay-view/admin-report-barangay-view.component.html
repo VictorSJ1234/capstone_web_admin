@@ -262,11 +262,11 @@
     <div id="responseAlertModal" class="responseAlertModal" class="modal" [ngStyle]="{ display: carouselModalResponseAlert ? 'block' : 'none' }">
         <div class="modal-content-response-alert">
           <div class="modal-header" id="modal_header">
-            <h2>Report {{latestResponseStatus}}!</h2>
+            <h2>Report {{latestResponseStatus === 'Cancel' ? 'Cancelled' : latestResponseStatus}}!</h2>
           </div>
           
           <div class="modal-body">
-            <p>This report has been {{latestResponseStatus}} by The Pasig Dengue Task Force.</p>
+            <p>This report has been {{latestResponseStatus === 'Cancel' ? 'Cancelled' : latestResponseStatus}} by The Pasig Dengue Task Force.</p>
             <div class="redirect-button-container">
                 <button class="back-button" (click)="closeCarouselModal()">Back</button> 
             </div>

@@ -6,6 +6,7 @@ import { DatePipe } from '@angular/common';
 import { AuthService } from '../authService/auth.service';
 
 
+
 @Component({
   selector: 'app-admin-report-barangay-view',
   templateUrl: './admin-report-barangay-view.component.html',
@@ -115,7 +116,11 @@ export class AdminReportBarangayViewComponent {
   openCarouselModal() {
     if (this.adminResponseData.length > 0 && this.adminResponseData[0].report_status === 'Resolved') {
       this.openCarouselModalResponseAlert();
-    } else {
+    } 
+    else if (this.adminResponseData.length > 0 && this.adminResponseData[0].report_status === 'Cancel') {
+      this.openCarouselModalResponseAlert();
+    }
+    else {
       this.carouselModalOpen = true;
     }
   }
