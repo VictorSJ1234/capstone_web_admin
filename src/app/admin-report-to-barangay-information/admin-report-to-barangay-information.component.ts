@@ -145,6 +145,7 @@ export class AdminReportToBarangayInformationComponent {
   }
   ngOnInit() {
     this.isLoading = true;
+    this.fetchAllUsers();
     this.route.queryParams.subscribe(params => {
       this.reports = history.state.reports;
       this.reportId = this.reports._id; 
@@ -257,7 +258,7 @@ export class AdminReportToBarangayInformationComponent {
             } else {
               console.error('No admin response data found.');
             }
-            this.isLoading = false; 
+            //this.isLoading = false; 
           },
           error => {
             console.error('Error fetching admin response data:', error);
@@ -271,7 +272,6 @@ export class AdminReportToBarangayInformationComponent {
       this.reports.formattedPostedDate = this.datePipe.transform(this.reports.postedDate, 'MM/dd/yy');
       this.reports.formattedTime = this.datePipe.transform(this.reports.postedDate, 'h:mm a');
     }
-    this.fetchAllUsers();
     window.scrollTo(0, 0);
 
   }

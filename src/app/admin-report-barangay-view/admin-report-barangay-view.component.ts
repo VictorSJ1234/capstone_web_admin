@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { NgForm } from '@angular/forms';
 import { AdminRegistrationService } from '../shared/admin-registration.service';
@@ -13,7 +13,7 @@ import { AuthService } from '../authService/auth.service';
   styleUrls: ['./admin-report-barangay-view.component.css', '../../assets/bootstrap/bootstrap.min.css'],
   providers: [AdminRegistrationService, DatePipe]
 })
-export class AdminReportBarangayViewComponent {
+export class AdminReportBarangayViewComponent implements OnInit {
  //initialize data containers
   //! means undefined
   userData: any;
@@ -155,6 +155,7 @@ export class AdminReportBarangayViewComponent {
   }
   ngOnInit() {
     this.isLoading = true;
+    this.fetchAllUsers();
     this.userId = this.authService.getUserId();
     this.route.queryParams.subscribe(params => {
       this.reports = history.state.reports;
@@ -221,7 +222,7 @@ export class AdminReportBarangayViewComponent {
           console.error('No admin response data found.');
           console.error(this.reports._id);
         }
-        this.isLoading = false; 
+        //this.isLoading = false; 
       },
       error => {
         console.error('Error fetching admin response data:', error);
@@ -279,7 +280,6 @@ export class AdminReportBarangayViewComponent {
       this.reports.formattedPostedDate = this.datePipe.transform(this.reports.postedDate, 'MM/dd/yy');
       this.reports.formattedTime = this.datePipe.transform(this.reports.postedDate, 'h:mm a');
     }
-    this.fetchAllUsers();
     window.scrollTo(0, 0);
 
   }
@@ -443,6 +443,8 @@ export class AdminReportBarangayViewComponent {
         
         // Extract user IDs into allUserId
         this.allAdminId = this.allAdminData.map(admin => admin._id);
+
+        console.log("peeps", response)
 
         // Sort the reports array in descending order based on postedDate
         this.allAdminData.sort((a, b) => {
