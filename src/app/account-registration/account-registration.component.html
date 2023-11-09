@@ -8,7 +8,7 @@
             <h1 class="inquiry_title">Pasig Dengue Task Force<br>Online Management</h1>
         </div>
         <div class="description_container">
-            <h1 class="description">Admin Registration</h1>
+            <h1 class="description">Registration</h1>
         </div>
         <div class="form_container">
             <form (ngSubmit)="register(myForm)" #myForm="ngForm">
@@ -205,8 +205,8 @@
                             <div *ngFor="let selectedFile of selectedFiles; let i = index">
                               <span *ngIf="selectedFiles.length > 0">Selected Files:</span>
                               <div class="selected-file"  style="margin-bottom: 5px;">
-                                <span>{{ selectedFile.name !== 'No Chosen File' ? (selectedFile.name | slice:0:20) + (selectedFile.name.length > 15 ? '...   ' : '') : 'No Selected File' }}</span>
-                                <button class="btn btn-danger btn-sm" (click)="removeSelectedFile(i)">Delete</button>
+                                <span>{{ selectedFile.name !== 'No Chosen File' ? (selectedFile.name | slice:0:17) + (selectedFile.name.length > 12 ? '...   ' : '') : 'No Selected File' }}</span>
+                                <button id="remove_file" class="btn btn-danger btn-sm" (click)="removeSelectedFile(i)">Delete</button>
                               </div>
                             </div>
                             <div class="file-tooltip-text" *ngIf="myForm.submitted &&selectedFiles.length === 0">
@@ -249,6 +249,12 @@
               <div class="register_button_container">
                 <p>Already have an account?</p>
                 <a routerLink="/account-login">Account Login!</a>
+              </div>
+              <hr>
+
+              <div class="note_container">
+                <a><span>NOTE:</span> Exclusively for Pasig City Barangay Health officials and Pasig City Anti-Dengue Task Force only. If you're a Pasig City resident, please use our mobile app for Dengue related concerns reporting.
+                </a>
               </div>
             </form>
         </div>
