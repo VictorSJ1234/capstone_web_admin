@@ -178,6 +178,28 @@
   text-decoration: underline;
 }
 
+.note_container{
+  margin-top: 10px;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  font-size: 1vw;
+  padding-left: 15px;
+  padding-right: 15px;
+}
+.note_container p{
+  margin-bottom: 0;
+}
+
+.note_container a span{
+  color: red;
+}
+
+
+.note_container a{
+  text-decoration: none;
+}
+
 .forgot_password_container{
   margin-top: 20px;
   display: flex;
@@ -295,6 +317,10 @@
       font-size: 2vw;
     }
 
+    .note_container{
+      font-size: 2vw;
+    }
+
     .forgot_password_container{
       font-size: 2vw;
     }
@@ -325,9 +351,14 @@
       flex-direction: column;
       align-items: center;
     }
+
+    .inquiry_title_container img{
+      width: 9vw;
+      height: 9vw;
+    }
     
     .inquiry_title_container h1{
-      font-size: 8vw;
+      font-size: 5.5vw;
     }
     .description_container h1{
       font-size: 5vw;
@@ -351,6 +382,11 @@
     .register_button_container{
       font-size: 2.5vw;
     }
+
+    .note_container{
+      font-size: 2.5vw;
+    }
+
     .forgot_password_container{
       font-size: 2.5vw;
     }

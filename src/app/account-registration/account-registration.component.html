@@ -74,7 +74,7 @@
                               required
                               [(ngModel)]="formData.password"
                               [ngClass]="{ 'is-invalid': myForm.submitted && myForm.controls['password'].invalid }"
-                              pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*]).{8,}$"
+                              pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[.!@#$%^&*]).{10,}$"
                             >
                             <span class="password-icon" (click)="togglePasswordVisibility()">
                               <i class="fa" [ngClass]="showPassword ? 'fa-eye-slash' : 'fa-eye'"></i>
@@ -82,7 +82,7 @@
                             <div class="invalid-tooltip" *ngIf="myForm.submitted && myForm.controls['password'].invalid">
                               <span class="tooltip-text">
                               Password must have at least 1 uppercase and lowercase, 1 digit,
-                               1 special character(!@#$%^&*), and be 8+ characters long.
+                               1 special character(.!@#$%^&*), and be 10+ characters long.
                               </span>
                             </div>
                             <div class="valid-tooltip">

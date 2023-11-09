@@ -262,7 +262,7 @@ export class EditAdminInformationComponent {
   }
 
   isPasswordValid(): boolean {
-    const passwordPattern = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*]).{8,}$/;
+    const passwordPattern = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[.!@#$%^&*]).{10,}$/;
     return passwordPattern.test(this.formData.currentPassword);
   }
 

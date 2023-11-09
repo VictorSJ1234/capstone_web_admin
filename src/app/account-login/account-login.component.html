@@ -9,7 +9,7 @@
             <h1 class="inquiry_title">Pasig Dengue Task Force<br>Online Management</h1>
         </div>
         <div class="description_container">
-            <h1 class="description">Admin Login</h1>
+            <h1 class="description">Login</h1>
         </div>
         <div class="form_container">
             <form (ngSubmit)="login()" #myForm="ngForm">
@@ -67,9 +67,16 @@
                 <p>Don't have an account yet?</p>
                 <a routerLink="/account-registration">Register Here!</a>
               </div>
-              <hr>
+             
               <div class="forgot_password_container">
                 <a routerLink="/forgot-password">Forgot Password?</a>
+              </div>
+
+              <hr>
+
+              <div class="note_container">
+                <a><span>NOTE:</span> Exclusively for Pasig City Barangay Health officials and Pasig City Anti-Dengue Task Force only. If you're a Pasig City resident, please use our mobile app for Dengue related concerns reporting.
+                </a>
               </div>
             </form>
         </div>

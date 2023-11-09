@@ -234,7 +234,7 @@ export class AccountRegistrationComponent {
   
   // Function to check if the password follows the required pattern
   isPasswordValid(): boolean {
-    const passwordPattern = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*]).{8,}$/;
+    const passwordPattern = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[.!@#$%^&*]).{10,}$/;
     return passwordPattern.test(this.formData.password);
   }
 
