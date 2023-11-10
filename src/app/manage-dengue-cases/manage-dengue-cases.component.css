@@ -272,7 +272,7 @@ body{
 */
 
 #report_table tbody td:nth-child(1) {
-  min-width: 4%;
+  min-width: 20%;
 }
 
 #report_table tbody td:nth-child(2) {
@@ -283,15 +283,7 @@ body{
   min-width: 20%;
 }
 
-#report_table tbody td:nth-child(4) {
-  min-width: 20%;
-}
-#report_table tbody td:nth-child(5) {
-  min-width: 20%;
-}
-#report_table tbody td:nth-child(7) {
-  min-width: 20%;
-}
+
 /* Styles for the concenr button */
 .concerns-button {
   background-color: #0384E9;

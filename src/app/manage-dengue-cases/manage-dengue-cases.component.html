@@ -52,7 +52,6 @@
             <table class="report_table" id="report_table">
                 <thead>
                     <tr>
-                        <th><input type="checkbox" class="row-checkbox"></th>
                         <th>Title of Post</th>
                         <th>Date & Time</th>
                         <th>Actions Time</th>
@@ -60,7 +59,6 @@
                 </thead>
                 <tbody id="user_table_body">
                     <tr *ngFor="let post of denguePostData; let i = index" [ngClass]="{ 'even-row': i % 2 === 0, 'odd-row': i % 2 !== 0 }">
-                        <td><input type="checkbox" class="row-checkbox"></td>
                         <td>{{post.project_title}} </td>
                         <td>{{post.project_date}}</td>
                         <td>
