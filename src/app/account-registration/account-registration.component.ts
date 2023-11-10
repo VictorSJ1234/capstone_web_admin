@@ -234,7 +234,7 @@ export class AccountRegistrationComponent {
   
   // Function to check if the password follows the required pattern
   isPasswordValid(): boolean {
-    const passwordPattern = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[.!@#$%^&*]).{10,}$/;
+    const passwordPattern = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[.!@#$%^&*_-]).{10,}$/;
     return passwordPattern.test(this.formData.password);
   }
 
@@ -247,6 +247,7 @@ export class AccountRegistrationComponent {
   // Function to check if the form is valid before submission
   //checks if data are not empty or followed the right functions
   isFormValid(): boolean {
+    const namePattern = /^[A-Za-z\s]+$/;
     return (
       this.formData.fullname.trim() !== '' &&
       this.formData.office.trim() !== '' &&
@@ -276,5 +277,16 @@ export class AccountRegistrationComponent {
     const pdfUrl = '../assets/terms_conditions/TERMS AND CONDITIONS_Mosquinator 2.pdf'; // Replace with the actual path to your PDF file
     window.open(pdfUrl, '_blank');
   }
+
+  getMaxDate(): string {
+    // Calculate today's date
+    const today = new Date();
+  
+    // Convert today's date to the format "YYYY-MM-DD"
+    const formattedDate = today.toISOString().split('T')[0];
+  
+    return formattedDate;
+  }
 }
+
 //test

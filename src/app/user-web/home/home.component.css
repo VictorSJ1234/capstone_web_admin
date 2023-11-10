@@ -104,6 +104,8 @@
   }
   
   #info_text_container #info_description{
+    margin-top: -0.8vw;
+    text-align: justify;
     font-size: 2vw;
   }
   

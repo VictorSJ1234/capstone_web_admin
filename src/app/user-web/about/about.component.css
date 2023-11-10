@@ -168,8 +168,8 @@ header h1{
     display: inline-block;
     padding: 16px 32px;
     font-size: 1.5vw;
-    font-family: 'Risque', cursive;
-    font-weight: bold;
+    font-family: 'Squada One', sans-serif;
+    font-weight: lighter;
     margin: 4px 2px;
     transition-duration: 0.4s;
     cursor: pointer;
