@@ -809,12 +809,12 @@
       text-align: center;
       display: inline-block;
       padding: 10px 32px;
-      font-size: 1.5vw;
+      font-size: 1.8vw;
       font-weight: bold;
       margin: 4px 2px;
       transition-duration: 0.4s;
       cursor: default;
-      width: 40vw;
+      width: 55vw;
     }
     
 }
