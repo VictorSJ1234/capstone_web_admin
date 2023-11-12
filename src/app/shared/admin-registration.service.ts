@@ -4,13 +4,14 @@ import { Observable } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 
 import { AdminRegistration, UserInformation, AdminResponse, CommunityProjects, userReportStatus, ReportToBarangay, denguePost, BarangayResponse, AdminResponseToBarangay, inquiry, notification, adminNotification  } from './admin-registration.model';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AdminRegistrationService {
   public  loggedIn = false;
-  private baseURL = 'https://mosquinator-backend-20075696f4d1.herokuapp.com'; 
+  private baseURL = environment.apiUrl; 
 
   constructor(private http: HttpClient) { }
 

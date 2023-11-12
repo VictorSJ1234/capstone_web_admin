@@ -5,12 +5,13 @@ import { catchError } from 'rxjs/operators';
 
 
 import { CommunityProjects, denguePost, inquiry } from './inquiry.model';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class InquiryService {
-  private baseURL = 'https://mosquinator-backend-20075696f4d1.herokuapp.com'; 
+  private baseURL = environment.apiUrl; 
   constructor(private http: HttpClient) { }
 
   //get all community projects data
