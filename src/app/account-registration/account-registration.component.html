@@ -20,7 +20,7 @@
                         <!--name-->
                         <div class="form-group">
                           <i class="fa fa-user icon"></i>
-                          <input type="text" class="form-control" id="fullname" name="fullname" placeholder="First Name" required
+                          <input type="text" class="form-control" id="fullname" name="fullname" placeholder="Full Name" required
                                 [(ngModel)]="formData.fullname"
                                 [ngClass]="{ 'is-invalid': myForm.submitted && myForm.controls['fullname'].invalid }"
                                 pattern="[A-Za-z\s]*"
@@ -39,7 +39,7 @@
                               <i class="fa fa-venus-mars icon"></i>
                               <select class="form-control" id="gender" name="gender" required [(ngModel)]="formData.gender"
                                   [ngClass]="{ 'is-invalid': myForm.submitted && myForm.controls['gender'].invalid }">
-                                  <option value="" disabled>Select gender</option>
+                                  <option value="" disabled>Select Sex</option>
                                   <option value="male">Male</option>
                                   <option value="female">Female</option>
                               </select>
@@ -78,6 +78,7 @@
                               required
                               [(ngModel)]="formData.password"
                               [ngClass]="{ 'is-invalid': myForm.submitted && myForm.controls['password'].invalid }"
+                              (input)="checkPasswordMatch()"
                               pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[.!@#$%^&*_-]).{10,}$"
                             >
                             <span class="password-icon" (click)="togglePasswordVisibility()">
@@ -234,7 +235,7 @@
               </div>
 
               <div id="checkbox_container">
-                <input type="checkbox" id="termsCheckbox" [(ngModel)]="isTermsChecked" (change)="toggleTermsCheckbox()">
+                <input type="checkbox" id="termsCheckbox" [(ngModel)]="isTermsChecked" (click)="toggleTermsCheckbox()">
                 <label for="termsCheckbox">I agree to the <a href="javascript:void(0)" (click)="openPdfInNewTab()">Terms and Conditions</a> and <a href="javascript:void(0)" (click)="openPdfInNewTab()">Privacy Policy</a></label>
               </div>
               <div class="error-container">

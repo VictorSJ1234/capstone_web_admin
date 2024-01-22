@@ -108,6 +108,11 @@ export class ForgotPasswordComponent {
   register(form: NgForm) {
     this.isLoading = true; 
     if (this.isFormValid()) {
+      if (this.formData.password !== this.formData.repeat_password) {
+        console.log('Password and repeat password do not match.');
+        this.isLoading = false;
+        return;
+      }
       this.adminService.resetPassword(this.formData.email, this.formData.password).subscribe(
         (response) => {
             this.formData = {
@@ -179,8 +184,8 @@ export class ForgotPasswordComponent {
       this.formData.email.trim() !== '' &&
       this.formData.password.trim() !== '' &&
       this.formData.repeat_password.trim() !== '' &&
-      !this.passwordMismatch &&
-      !this.isEmailInvalid()
+      !this.isEmailInvalid() &&
+      this.isPasswordValid()
     );
   }
 

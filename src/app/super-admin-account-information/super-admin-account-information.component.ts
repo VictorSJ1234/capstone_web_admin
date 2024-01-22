@@ -238,7 +238,17 @@ export class SuperAdminAccountInformationComponent {
   }
 
   savePassword(form: NgForm) {
+
+    this.checkPasswordMatch();
+
     if (this.isPasswordFormValid()) {
+
+      if (this.formData.password !== this.formData.repeat_password) {
+        console.log('Password and repeat password do not match.');
+        this.isLoading = false;
+        return;
+      }
+      
       this.openConfirmSavePasswordModal();
         
     } else {
@@ -262,7 +272,7 @@ export class SuperAdminAccountInformationComponent {
 
   isPasswordValid(): boolean {
     const passwordPattern = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[.!@#$%^&*_-]).{10,}$/;
-    return passwordPattern.test(this.formData.currentPassword);
+    return passwordPattern.test(this.formData.password);
   }
 
   isEmailInvalid(): boolean {
@@ -286,7 +296,7 @@ export class SuperAdminAccountInformationComponent {
       this.formData.password.trim() !== '' &&
       this.formData.repeat_password.trim() !== '' &&
       this.formData.currentPassword.trim() !== '' &&
-      !this.passwordMismatch 
+      this.isPasswordValid()
     );
   }
 

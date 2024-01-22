@@ -108,7 +108,7 @@ export class EditDengueCasesComponent {
           }
         );
       });
-    } else if (this.fetchedProjectData[0].uploaded_file && !this.isImageFetched) {
+    } else if (this.fetchedProjectData[0].uploaded_file && this.isImageFetched) {
       // If there's a fetched uploaded_file and it wasn't removed
       form.value.uploaded_file = this.fetchedProjectData[0].uploaded_file; // Set uploaded_file to fetched image
       // Call the service to edit admin data

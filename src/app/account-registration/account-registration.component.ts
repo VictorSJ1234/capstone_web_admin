@@ -121,6 +121,8 @@ export class AccountRegistrationComponent {
   // Function to handle the registration process
   register(form: NgForm) {
     this.isLoading = true; 
+
+    this.checkPasswordMatch();
     if (this.isFormValid()) {
 
       if (!this.isTermsChecked) {
@@ -131,6 +133,12 @@ export class AccountRegistrationComponent {
 
       if (this.selectedFiles.length === 0) {
         console.log('Please select at least one file.');
+        this.isLoading = false;
+        return;
+      }
+
+      if (this.formData.password !== this.formData.repeat_password) {
+        console.log('Password and repeat password do not match.');
         this.isLoading = false;
         return;
       }
@@ -258,8 +266,8 @@ export class AccountRegistrationComponent {
       this.formData.repeat_password.trim() !== '' &&
       this.formData.gender.trim() !== '' &&
       this.formData.contact_number.trim() !== '' &&
-      !this.passwordMismatch &&
-      !this.isEmailInvalid()
+      !this.isEmailInvalid() &&
+      this.isPasswordValid()
     );
   }
 

@@ -58,6 +58,9 @@
                     </tr>
                 </thead>
                 <tbody id="user_table_body">
+                    <tr *ngIf="denguePostData.length === 0">
+                        <td colspan="7">No dengue post yet.</td>
+                    </tr>
                     <tr *ngFor="let post of denguePostData; let i = index" [ngClass]="{ 'even-row': i % 2 === 0, 'odd-row': i % 2 !== 0 }">
                         <td>{{post.project_title}} </td>
                         <td>{{post.project_date}}</td>

@@ -1,8 +1,7 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { catchError } from 'rxjs/operators';
-
 
 import { CommunityProjects, denguePost, inquiry } from './inquiry.model';
 import { environment } from 'src/environments/environment';
@@ -12,30 +11,37 @@ import { environment } from 'src/environments/environment';
 })
 export class InquiryService {
   private baseURL = environment.apiUrl; 
+  private apiKey = 'pasigdtf'; 
   constructor(private http: HttpClient) { }
 
-  //get all community projects data
+  // Get all community projects data
   getAllCommunityProjects(): Observable<any> {
-    return this.http.post(`${this.baseURL}/getAllCommunityProjects`, {});
-  }
-  // Function to fetch community projects by reportId
-  getAdminResponseById(_id: string): Observable<any> {
-    return this.http.post(`${this.baseURL}/getCommunityProject`, { _id });
+    const headers = new HttpHeaders().set('x-api-key', this.apiKey);
+    return this.http.post(`${this.baseURL}/getAllCommunityProjects`, {}, { headers });
   }
 
-  //get all community projects data
+  // Function to fetch community projects by reportId
+  getAdminResponseById(_id: string): Observable<any> {
+    const headers = new HttpHeaders().set('x-api-key', this.apiKey);
+    return this.http.post(`${this.baseURL}/getCommunityProject`, { _id }, { headers });
+  }
+
+  // Get all community projects data
   getAllDenguePost(): Observable<any> {
-    return this.http.post(`${this.baseURL}/getAllDenguePost`, {});
+    const headers = new HttpHeaders().set('x-api-key', this.apiKey);
+    return this.http.post(`${this.baseURL}/getAllDenguePost`, {}, { headers });
   }
 
   // Add a new method to get the latest dengue post
   getLatestDenguePost(): Observable<any> {
-    return this.http.post(`${this.baseURL}/getLatestDenguePost`, {});
+    const headers = new HttpHeaders().set('x-api-key', this.apiKey);
+    return this.http.post(`${this.baseURL}/getLatestDenguePost`, {}, { headers });
   }
 
   createInquiry(response: inquiry): Observable<any> {
+    const headers = new HttpHeaders().set('x-api-key', this.apiKey);
     // Make a POST request to the admin registration endpoint
-    return this.http.post(`${this.baseURL}/createInquiry`, response)
+    return this.http.post(`${this.baseURL}/createInquiry`, response, { headers })
       .pipe(
         catchError(error => {
           throw error;

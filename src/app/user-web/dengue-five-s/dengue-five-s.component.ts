@@ -6,6 +6,11 @@ import { Component } from '@angular/core';
   styleUrls: ['./dengue-five-s.component.css']
 })
 export class DengueFiveSComponent {
+
+  ngOnInit() {
+    window.scrollTo(0, 0);
+  }
+
   searchAndDestroyTitle: string = "Search and Destroy";
   searchAndDestroyInfo: string = "Mosquitoes breed in stagnant, standing water. So it's best to search your house for empty tin cans, discarded tires, unused buckets, and other containers that may have collected stagnant water and empty these out. If you have an untended pool, birdbath, and clogged rain gutters, these may also become breeding areas for mosquitoes so clean these out as well.";
 

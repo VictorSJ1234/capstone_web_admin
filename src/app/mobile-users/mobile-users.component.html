@@ -42,19 +42,33 @@
                         <th>Email</th>
                         <th>Registration Time</th>
                         <th>Confirmation</th>
-                        <th>Actions</th>
+                        <th>Uploaded File</th>
+                        <th>User Profile</th>
                     </tr>
                 </thead>
                 <tbody id="user_table_body">
+                    <tr *ngIf="userData.length === 0">
+                        <td colspan="7">No registered mobile user yet.</td>
+                    </tr>
                     <tr *ngFor="let user of userData | slice:(currentPage - 1) * itemsPerPage:(currentPage * itemsPerPage); let i = index">
                         <td>{{ user.name }} </td>
                         <td>{{ user.email }}</td>
                         <td>{{ user.formattedDate }}</td>
                         <td>
                             <button class="confirmation-button" (click)="openValidation(user)" [disabled]="user.accountStatus == 'Validated'"> {{ user.accountStatus }}</button>
-                        </td>                        
+                        </td> 
                         <td>
-                            <button class="edit-button" (click)="editReport(user)" >Profile</button>
+                            <div *ngFor="let uploadedFile of user.uploaded_file; let i = index">
+                                <div id="view_file_attachment">
+                                    <button id="view_button" *ngIf="uploadedFile" (click)="openResponseFileInNewTab(user, i)">Attached File</button>
+                                </div>
+                            </div>
+                            <div *ngIf="!(user.uploaded_file && user.uploaded_file.length > 0)">
+                                No Uploaded File
+                            </div>
+                        </td>                       
+                        <td>
+                            <button class="edit-button" (click)="editReport(user)" >View</button>
                             <button class="hide-button" (click)="openCarouselModal(user)" id="delete_button">Delete</button>
                         </td>
                     </tr>

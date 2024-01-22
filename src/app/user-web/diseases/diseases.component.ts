@@ -14,6 +14,12 @@ interface Disease {
   styleUrls: ['./diseases.component.css']
 })
 export class DiseasesComponent {
+
+  ngOnInit() {
+    window.scrollTo(0, 0);
+  }
+
+  
   diseases: Disease[] = [
     {
       name: 'Dengue',

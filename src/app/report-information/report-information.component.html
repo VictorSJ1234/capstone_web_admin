@@ -146,6 +146,7 @@
                         <th>Status</th>
                         <th>Response</th>
                         <th>Date and Time</th>
+                        <th>Uploaded File</th>
                     </tr>
                 </thead>
                 <tbody id="user_table_body">
@@ -153,7 +154,16 @@
                         <td [ngStyle]="{'color': getStatusColor(response.report_status)}">{{ response.report_status }}</td>
                         <td>{{ response.response_description }}</td>
                         <td>{{ response.formattedDate }}</td>
-
+                        <td>
+                            <div *ngFor="let uploadedFile of response.uploaded_file; let i = index">
+                                <div id="view_file_attachment">
+                                    <button id="view_button" *ngIf="uploadedFile" (click)="openResponseFileInNewTab(response, i)">Attached File {{ i + 1 }}</button>
+                                </div>
+                            </div>
+                            <div *ngIf="!(response.uploaded_file && response.uploaded_file.length > 0)">
+                                No Uploaded File
+                            </div>
+                        </td>
                     </tr>
                 </tbody>
             </table>

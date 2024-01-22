@@ -56,12 +56,15 @@ export class AdminDashboardComponent implements OnInit, AfterViewInit {
   @ViewChild('barChartCanvasForReport') barChartCanvasForReport: any;
   @ViewChild('barChartCanvasForReportPerMonth') barChartCanvasForReportPerMonth: any;
   @ViewChild('pieChartCanvas') pieChartCanvas: any;
+  @ViewChild('barChartCanvasForStatus') barChartCanvasForStatus: any;
 
 
   private barChart: Chart | null = null;
   private barChartForReport: Chart | null = null;
   private barChartForReportPerMonth: Chart | null = null;
   pieChart: Chart<"pie", number[], string> | null = null;
+  private barChartForStatus: Chart | null = null;
+
 
   constructor(private adminRegistrationService: AdminRegistrationService) {}
 
@@ -91,19 +94,19 @@ export class AdminDashboardComponent implements OnInit, AfterViewInit {
     this.adminRegistrationService.getTotalInquiryCount().subscribe(
       (response: any) => {
         this.totalInquiryCount = response.totalCount;
-        this.createPieChart();
+        this.createChartForStatus();
       },
       (error) => {
         console.error('Error fetching total user report count:', error);
       }
     );
 
-    this.createPieChart();
+    this.createChartForStatus();
     window.scrollTo(0, 0);
   }
 
   ngAfterViewInit(): void {
-    this.createPieChart();
+    this.createChartForStatus();
   }
 
   createChart() {
@@ -208,19 +211,20 @@ export class AdminDashboardComponent implements OnInit, AfterViewInit {
     console.log('Report Counts by Month:', sortedData);
   }
   
-  createPieChart() {
-    if (this.pieChart) {
-      this.pieChart.destroy();
+  createChartForStatus() {
+    if (this.barChartForStatus) {
+      this.barChartForStatus.destroy();
     }
   
-    const ctx = this.pieChartCanvas.nativeElement;
-    this.pieChart = new Chart(ctx, {
-      type: 'pie',
+    const ctx = this.barChartCanvasForStatus.nativeElement;
+    this.barChartForStatus = new Chart(ctx, {
+      type: 'bar',
       data: {
-        labels: this.StatusList, 
+        labels: this.StatusList,
         datasets: [
           {
-            data: this.reportsStatus, 
+            label: 'Community Concern Status',
+            data: this.reportsStatus,
             backgroundColor: [
               'rgb(49, 84, 147)',
               'rgb(59, 100, 173)',
@@ -229,6 +233,8 @@ export class AdminDashboardComponent implements OnInit, AfterViewInit {
               'rgb(191, 191, 191)',
               'rgb(186, 196, 226)',
             ],
+            borderColor: 'rgba(75, 192, 192, 1)',
+            borderWidth: 1,
           },
         ],
       },
@@ -242,6 +248,7 @@ export class AdminDashboardComponent implements OnInit, AfterViewInit {
       ctx.fillText(this.emptyChartMessage, ctx.canvas.width / 2, ctx.canvas.height / 2);
     }
   }
+  
   
   
 
@@ -277,7 +284,7 @@ export class AdminDashboardComponent implements OnInit, AfterViewInit {
             this.createChart();
             this.createChartForReport();
             this.createChartForReportPerMonth();
-            this.createPieChart();
+            this.createChartForStatus();
           }
         },
         (error) => {
@@ -315,7 +322,7 @@ export class AdminDashboardComponent implements OnInit, AfterViewInit {
       }
   
       this.sortStatusAndCounts(StatusList);
-      this.createPieChart();
+      this.createChartForStatus();
       this.isLoading = false;
     };
   
@@ -380,7 +387,7 @@ sortStatusAndCounts(StatusList: string[]) {
             this.createChart();
             this.createChartForReport();
             this.createChartForReportPerMonth();
-            this.createPieChart();
+            this.createChartForStatus();
           }
         },
         (error) => {
@@ -440,7 +447,7 @@ sortStatusAndCounts(StatusList: string[]) {
             this.createChart();
             this.createChartForReport();
             this.createChartForReportPerMonth();
-            this.createPieChart();
+            this.createChartForStatus();
           }
         },
         (error) => {

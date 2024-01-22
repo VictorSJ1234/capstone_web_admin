@@ -64,9 +64,9 @@
                 <img *ngIf="latestDenguePost && latestDenguePost.uploaded_file" [src]="convertToImage(latestDenguePost.uploaded_file)" alt="image">
             </div>
             <div id="text_container">
-                <h2 id="about_dengue">Dengue Cases</h2>
+                <h2 id="about_dengue">  {{latestDenguePost && latestDenguePost.project_title ? latestDenguePost.project_title : 'No post yet'}}</h2>
                 <p id="about_dengue_p">
-                    {{latestDenguePost && latestDenguePost.details ? latestDenguePost.details : 'No post yet'}}
+                    {{latestDenguePost && latestDenguePost.details ? latestDenguePost.details : ''}}
                 </p>
             </div>
         </div>

@@ -14,7 +14,7 @@
     </section> 
     <section class="edit_section">
         <div class="table_header">
-            <h2 class="report_list_header">Admin Information</h2>
+            <h2 class="report_list_header">Account Information</h2>
             <button class="edit-button" (click)="toggleEditMode()">Edit</button>
         </div>
         <div class="user_information_row">
@@ -59,7 +59,6 @@
                                     <option value="" disabled>Select gender</option>
                                     <option value="male">Male</option>
                                     <option value="female">Female</option>
-                                    <option value="tagilid">Tagilid</option>
                                 </select>
                                 <div class="invalid-tooltip" *ngIf="myForm.submitted && myForm.controls['gender'].invalid">
                                     <span class="tooltip-text">Please select a gender.</span>
@@ -243,6 +242,7 @@
                                     required
                                     [(ngModel)]="formData.password"
                                     [ngClass]="{ 'is-invalid': passwordForm.submitted && passwordForm.controls['password'].invalid }"
+                                    (input)="checkPasswordMatch()"
                                     pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[.!@#$%^&*_-]).{10,}$"
                                     >
                                     <span class="password-icon" (click)="togglePasswordVisibility()">

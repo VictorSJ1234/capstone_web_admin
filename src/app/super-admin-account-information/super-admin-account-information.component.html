@@ -50,7 +50,7 @@
                                 </div>
                             </div> 
                             <!--gender-->
-                            <label for="gender">Gender</label>
+                            <label for="gender">Sex</label>
                             <div class="form-group">
                                 <i class="fa fa-venus-mars icon"></i>
                                 <select class="form-control" id="gender" name="gender" required [(ngModel)]="fetchedAdminData[0].gender" [disabled]="!editMode"
@@ -259,6 +259,7 @@
                                     required
                                     [(ngModel)]="formData.password"
                                     [ngClass]="{ 'is-invalid': passwordForm.submitted && passwordForm.controls['password'].invalid }"
+                                    (input)="checkPasswordMatch()"
                                     pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[.!@#$%^&*_-]).{8,}$"
                                     >
                                     <span class="password-icon" (click)="togglePasswordVisibility()">

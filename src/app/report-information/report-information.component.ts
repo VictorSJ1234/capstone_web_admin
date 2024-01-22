@@ -533,5 +533,40 @@ export class ReportInformationComponent {
     return 'application/octet-stream';
   }
 
+  
+  openResponseFileInNewTab(response: any, index: number) {
+    if (
+        response.uploaded_file &&
+        Array.isArray(response.uploaded_file) &&
+        index >= 0 &&
+        index < response.uploaded_file.length
+    ) {
+        const base64String = response.uploaded_file[index];
+        try {
+            // Create a Blob from the base64 string
+            const byteCharacters = atob(base64String);
+            const byteNumbers = new Array(byteCharacters.length);
+            for (let i = 0; i < byteCharacters.length; i++) {
+                byteNumbers[i] = byteCharacters.charCodeAt(i);
+            }
+            const byteArray = new Uint8Array(byteNumbers);
+            const blob = new Blob([byteArray], {
+                type: this.getFileTypeFromBase64(base64String),
+            });
+  
+            // Create a data URL for the blob
+            const url = window.URL.createObjectURL(blob);
+  
+            // Open the file in a new tab
+            window.open(url, '_blank');
+  
+            window.URL.revokeObjectURL(url);
+        } catch (error) {
+            console.error('Error opening file in a new tab:', error);
+        }
+    } else {
+        console.error('Invalid or missing uploaded file data at index:', index);
+    }
+  }
 
 }

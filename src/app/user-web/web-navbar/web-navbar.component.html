@@ -12,12 +12,12 @@
         </label>
         <div class="nav-container">
             <ul class="nav-tabs">
-                <li class="nav-tab-logo"><a href="" ><img src="../../../assets/home_images/pasig_logo.png"  id="logo" alt="Mosquinator"></a></li>
-                <li class="nav-tab"><a href="" >Pasig Dengue Task Force</a></li>
-                <li class="nav-tab"><a href="project-update" >&nbsp;&nbsp;&nbsp;Community Projects</a></li>
-                <li class="nav-tab"><a href="dengue-five-s" >Dengue 5S</a></li>
-                <li class="nav-tab"><a href="home" >Mosquinator App</a></li>
-                <li class="nav-tab"><a href="diseases" >Mosquito-Borne Diseases</a></li>
+                <li class="nav-tab-logo"><a routerLink=""><img src="../../../assets/home_images/pasig_logo.png" id="logo" alt="Mosquinator"></a></li>
+                <li class="nav-tab" [routerLinkActive]="['active-tab']" [routerLinkActiveOptions]="{exact: true}"><a routerLink="/">Pasig Dengue Task Force</a></li>
+                <li class="nav-tab" [routerLinkActive]="['active-tab']"><a routerLink="/project-update">Community Projects</a></li>
+                <li class="nav-tab" [routerLinkActive]="['active-tab']"><a routerLink="/dengue-five-s">Dengue 5S</a></li>
+                <li class="nav-tab" [routerLinkActive]="['active-tab']"><a routerLink="/home">Mosquinator App</a></li>
+                <li class="nav-tab" [routerLinkActive]="['active-tab']"><a routerLink="/diseases">Mosquito-Borne Diseases</a></li>
             </ul>
         </div>
     </nav>

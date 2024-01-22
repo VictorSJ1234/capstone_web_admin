@@ -6,6 +6,12 @@ import { Component } from '@angular/core';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent {
+
+  ngOnInit() {
+    window.scrollTo(0, 0);
+  }
+
+  
   carouselModalOpen = false;
 
   openCarouselModal() {
