@@ -273,7 +273,7 @@ export class BarangayAdminProfileEditComponent {
   }
 
   isPasswordValid(): boolean {
-    const passwordPattern = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[.!@#$%^&*]).{10,}$/;
+    const passwordPattern = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[.!@#$%^&*_-]).{10,}$/;
     return passwordPattern.test(this.formData.password);
   }
 
