@@ -65,7 +65,7 @@
               </div>
               <div class="register_button_container">
                 <p>Don't have an account yet?</p>
-                <a routerLink="/account-registration">Register Here!</a>
+                <a (click)="redirectToRegister()" id="register-here-button">Register Here!</a>
               </div>
              
               <div class="forgot_password_container">
@@ -98,5 +98,18 @@
         </div>
       </div>
     </div>
+
+    <!-- Terms and conditions modal -->
+    <div class="modal-overlay" *ngIf="showTermsModal">
+      <div class="modal-content-terms">
+          <span class="close" (click)="closeTermsModal()">&times;</span>
+          <h2>Terms and Conditions</h2>
+          <p>Please read our <a href="javascript:void(0)" (click)="openPdfInNewTab()">Terms and Conditions</a> and <a href="javascript:void(0)" (click)="openPdfInNewTab()">Privacy Policy</a> carefully. By accepting, you agree to our terms and policies.</p>
+          <div class="button-container">
+              <button class="agree-button" (click)="agreeTermsAndRegister()">Agree</button>
+              <button class="disagree-button" (click)="disagreeTerms()">Disagree</button>
+          </div>
+      </div>
+  </div>
 
 </body>

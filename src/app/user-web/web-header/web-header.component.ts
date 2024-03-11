@@ -9,6 +9,7 @@ import { Router } from '@angular/router';
 export class WebHeaderComponent {
   currentDate = '';
   currentTime = '';
+  showTermsModal = false;
 
   constructor(private router: Router) {
     this.updateDateTime();
@@ -38,8 +39,31 @@ export class WebHeaderComponent {
     this.router.navigate(['/account-login']); 
   }
 
-  // Redirect to the registration page
+  // Open terms and conditions modal
   redirectToRegister(): void {
-    this.router.navigate(['/account-registration']); 
+    this.showTermsModal = true;
+  }
+
+  // Close terms and conditions modal
+  closeTermsModal(): void {
+    this.showTermsModal = false;
+  }
+
+  // Proceed with registration if terms are agreed
+  agreeTermsAndRegister(): void {
+    this.router.navigate(['/account-registration']);
+    this.showTermsModal = false;
+  }
+
+  // Disagree with terms
+  disagreeTerms(): void {
+    this.showTermsModal = false;
+  }
+
+  openPdfInNewTab() {
+    const pdfUrl = '../assets/terms_conditions/TERMS AND CONDITIONS_Mosquinator 2.pdf'; 
+    window.open(pdfUrl, '_blank');
   }
 }
+
+

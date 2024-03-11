@@ -93,8 +93,8 @@ export class AccountRegistrationComponent {
   }
   
   showEmailError = false;
-  showTermsError = false;
-  isTermsChecked: boolean = false;
+  //showTermsError = false;
+  //isTermsChecked: boolean = false;
 
   passwordMismatch = false;
   showPassword = false;
@@ -125,12 +125,13 @@ export class AccountRegistrationComponent {
     this.checkPasswordMatch();
     if (this.isFormValid()) {
 
+      /** 
       if (!this.isTermsChecked) {
         this.isLoading = false;
         this.showTermsError = true;
         return;
       }
-
+      */
       if (this.selectedFiles.length === 0) {
         console.log('Please select at least one file.');
         this.isLoading = false;
@@ -225,12 +226,15 @@ export class AccountRegistrationComponent {
       if (this.isEmailInvalid()) {
         console.log('Invalid Email.');
       }
+      /** 
       if (!this.isTermsChecked) {
         this.showTermsError = true;
       }
+      */
     }
   }
 
+  /** 
   toggleTermsCheckbox() {
     this.isTermsChecked = !this.isTermsChecked;
     // Hide the terms error message when the checkbox is checked
@@ -238,6 +242,7 @@ export class AccountRegistrationComponent {
       this.showTermsError = false;
     }
   }
+  */
 
   
   // Function to check if the password follows the required pattern
@@ -282,7 +287,7 @@ export class AccountRegistrationComponent {
   }
 
   openPdfInNewTab() {
-    const pdfUrl = '../assets/terms_conditions/TERMS AND CONDITIONS_Mosquinator 2.pdf'; // Replace with the actual path to your PDF file
+    const pdfUrl = '../assets/terms_conditions/TERMS AND CONDITIONS_Mosquinator 2.pdf'; 
     window.open(pdfUrl, '_blank');
   }
 

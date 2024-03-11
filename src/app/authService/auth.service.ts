@@ -29,7 +29,7 @@ export class AuthService {
     sessionStorage.removeItem('token');
     sessionStorage.removeItem('userId');
     sessionStorage.clear();
-    window.location.replace('account-login');
+    window.location.replace('');
   }
 
   // Check if the user is authenticated

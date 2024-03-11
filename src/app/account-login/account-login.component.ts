@@ -19,6 +19,7 @@ export class AccountLoginComponent {
   showConnectionError = false;
   showPassword = false;
   isLoading: boolean = false;
+  showTermsModal = false;
 
   constructor(private adminService: AdminRegistrationService, private router: Router, private authService: AuthService) {}
 
@@ -137,5 +138,31 @@ export class AccountLoginComponent {
 
   togglePasswordVisibility(): void {
     this.showPassword = !this.showPassword;
+  }
+
+  // Open terms and conditions modal
+  redirectToRegister(): void {
+    this.showTermsModal = true;
+  }
+
+  // Close terms and conditions modal
+  closeTermsModal(): void {
+    this.showTermsModal = false;
+  }
+
+  // Proceed with registration if terms are agreed
+  agreeTermsAndRegister(): void {
+    this.router.navigate(['/account-registration']);
+    this.showTermsModal = false;
+  }
+
+  // Disagree with terms
+  disagreeTerms(): void {
+    this.showTermsModal = false;
+  }
+
+  openPdfInNewTab() {
+    const pdfUrl = '../assets/terms_conditions/TERMS AND CONDITIONS_Mosquinator 2.pdf'; 
+    window.open(pdfUrl, '_blank');
   }
 }
