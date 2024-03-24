@@ -40,20 +40,30 @@
                     <tr>
                         <th>Username</th>
                         <th>Email</th>
-                        <th>Registration Time</th>
-                        <th>Confirmation of Role</th>
-                        <th>Role</th>
-                        <th>Actions</th>
+                        <th>Account Validation</th>
+                        <th>Uploaded File</th>
+                        <th>Current Role</th>
+                        <th>User Profile</th>
                     </tr>
                 </thead>
                 <tbody id="user_table_body">
                     <tr *ngFor="let Admin of adminData | slice:(currentPage - 1) * itemsPerPage:(currentPage * itemsPerPage); let i = index">
                         <td>{{Admin.fullname}} </td>
                         <td>{{Admin.email}}</td>
-                        <td>{{Admin.formattedDate}}</td>
+                        <!--<td>{{Admin.formattedDate}}</td>--> 
                         <td>
                             <button class="confirmation-button" (click)="openValidation(Admin)" [disabled]="Admin.accountStatus == 'Validated'" >{{Admin.accountStatus}}</button>
                         </td>
+                        <td>
+                            <div *ngFor="let uploadedFile of Admin.uploaded_file; let i = index">
+                                <div id="view_file_attachment">
+                                    <button id="view_button" *ngIf="uploadedFile" (click)="openResponseFileInNewTab(Admin, i)">Attached File</button>
+                                </div>
+                            </div>
+                            <div *ngIf="!(Admin.uploaded_file && Admin.uploaded_file.length > 0)">
+                                No Uploaded File
+                            </div>
+                        </td> 
                         <td>
                             <p class="role-button">{{Admin.official_role}}</p>
                         </td>
